@@ -5,8 +5,9 @@
   "main": "dist",
   "scripts": {
     "dev:web": "nodemon -w core --exec \"babel-node core/web --presets es2015,stage-0\"",
-    "build:web": "babel src -s -D -d dist --presets es2015,stage-0",
+    "build": "babel core -s -D -d dist --presets es2015,stage-0",
     "start:web": "node dist",
+    "start:web:forever": "forever dist",
     "prestart:web": "npm run -s build",
     "test:web": "eslint src"
   },
