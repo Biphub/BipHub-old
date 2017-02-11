@@ -1,9 +1,9 @@
-import { Router } from 'express';
+import { Router } from 'express'
 
-export default ({ config, db }) => {
-  let routes = Router();
-
+const middlewareCore = () => {
+	const routes = Router()
   // add middleware here
-
-  return routes;
+	return routes
 }
+
+export default middlewareCore
