@@ -25,8 +25,8 @@
       "no-unused-vars": 1
     }
   },
-  "repository": "developit/express-es6-rest-api",
-  "author": "Jason Miller <jason@developit.ca>",
+  "repository": "bipio/biphub-core",
+  "author": "Jason Shin <visualbbasic@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.13.3",
