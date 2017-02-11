@@ -5,10 +5,9 @@ export default ({config, db}) => {
 
   // root HTML
   html.get('/', (req, res) => {
-    res.render('html/home', {
+    res.render('html/home.hbs', {
       title: 'Home'
     })
   })
-
   return html
 }
