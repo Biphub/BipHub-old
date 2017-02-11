@@ -3,14 +3,16 @@ import path from 'path'
 
 const loadNConf = () => {
   const configPath = __dirname
-  nconf.set('database:host', '127.0.0.1');
-  nconf.set('database:port', 5984);
+
+  // TODO: Check what this does
+  nconf.argv().env()
+
   // Loads hub config
-  nconf.file('hub', path.join(configPath, 'hub.json'))
+  nconf.file( 'hub', {file: path.join(configPath, 'hub.json')} )
 
   // Loads web config
-  nconf.file('web', path.join(configPath, 'web.json'))
-  console.log('laoded web ', path.join(configPath, 'web.json') , '  ', nconf.get('database'))
+  nconf.file( 'web', {file: path.join(configPath, 'web.json')} )
+
   return nconf
 }
 

@@ -10,14 +10,12 @@ import morgan from 'morgan'
 import middleware from './middleware'
 import path from 'path'
 
-console.log('web config ', config.get('web:port'))
-
 // Initiating express
 let app = express();
 app.server = http.createServer(app);
 
 // Express configuration
-app.set('port', process.env.PORT || config.port || 3000)
+app.set('port', config.get('web:port') || 3000)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 
@@ -29,7 +27,7 @@ app.use(morgan('dev'))
 
 // 3rd party middleware
 app.use(cors({
-  exposedHeaders: config.corsHeaders
+  exposedHeaders: config.get('web:corsHeaders')
 }))
 
 app.use(bodyParser.json({
