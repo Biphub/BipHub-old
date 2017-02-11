@@ -1,7 +1,7 @@
 import api from './controllers/api'
 import bodyParser from 'body-parser'
 import cors from 'cors'
-import config from '../config/config.json'
+import config from '../config'
 import express from 'express'
 import http from 'http'
 import html from './controllers/html'
@@ -9,6 +9,8 @@ import initializeDb from '../db'
 import morgan from 'morgan'
 import middleware from './middleware'
 import path from 'path'
+
+console.log('web config ', config.get('web:port'))
 
 // Initiating express
 let app = express();
