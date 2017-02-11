@@ -1,0 +1,16 @@
+sudo: required
+language: node_js
+node_js:
+  - "node"
+
+before_install:
+  - "npm install -g eslint"
+  - "npm install -g eslint-config-airbnb-base"
+  - "npm install -g install-peerdeps"
+  - "install-peerdeps --dev eslint-config-airbnb-base"
+
+install:
+  - npm install
+
+script:
+  - npm run lint:prod
