@@ -58,8 +58,8 @@ initializeDb((db) => {
    * TODO: Instead of callback try incorporating promises using bluebird.js
    */
 	app.listen(app.get('port'), () => {
-		console.log('%s App is running at http://localhost:%d in %s mode ', app.get('port'))
-		console.log('  Press CTRL-C to stop\n')
+		// console.log('%s App is running at http://localhost:%d in %s mode ', app.get('port'))
+		// console.log('  Press CTRL-C to stop\n')
 	})
 })
 
