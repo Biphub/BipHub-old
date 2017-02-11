@@ -11,7 +11,8 @@
     "prestart:web": "npm run -s build",
     "test:web": "eslint src",
     "lint:fix": "eslint --fix ./",
-    "lint": "eslint ./"
+    "lint:dev": "eslint ./",
+    "lint:prod": "eslint --rule \"\"no-console\": [\"error\"]\" ./"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
