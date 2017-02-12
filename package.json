@@ -4,7 +4,7 @@
   "description": "Starter project for an ES6 RESTful Express API",
   "main": "dist",
   "scripts": {
-    "dev:web": "nodemon -w core --exec \"babel-node core/web --presets es2015,stage-0\"",
+    "dev:web": "nodemon -w core --exec \"babel-node core/admin --presets es2015,stage-0\"",
     "build": "babel core -s -D -d dist --presets es2015,stage-0",
     "start:web": "node dist",
     "start:web:forever": "forever dist",
@@ -39,9 +39,11 @@
     "express-handlebars": "^3.0.0",
     "hbs": "^4.0.1",
     "lodash": "^4.17.4",
+    "mocha": "^3.2.0",
     "morgan": "^1.8.0",
     "nconf": "^0.8.4",
-    "resource-router-middleware": "^0.6.0"
+    "resource-router-middleware": "^0.6.0",
+    "should": "^11.2.0"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
