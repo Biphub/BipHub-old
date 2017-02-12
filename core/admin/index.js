@@ -77,16 +77,6 @@ initializeDb((db) => {
 		console.log('%s App is running at http://localhost:%d in %s mode ', app.get('port'))
 		console.log('  Press CTRL-C to stop\n')
 	})
-
 })
-
-setTimeout(() => {
-	var socket = require('socket.io-client')('http://localhost:8080/')
-	socket.on('connect', function(){
-		console.log('connected to the server!')
-	});
-	socket.on('event', function(data){});
-	socket.on('disconnect', function(){});
-}, 3000)
 
 export default app
