@@ -18,8 +18,8 @@ const server = http.Server(app)
 const io = SocketIO(server)
 const viewPath = path.join(__dirname, 'views')
 const hbs = exphbs({
-	layoutsDir: viewPath,
-	extname: '.hbs',
+  layoutsDir: viewPath,
+  extname: '.hbs',
 })
 
 app.server = server
@@ -40,43 +40,52 @@ app.use(morgan('dev'))
 
 // 3rd party middleware
 app.use(cors({
-	exposedHeaders: config.get('web:corsHeaders'),
+  exposedHeaders: config.get('web:corsHeaders'),
 }))
 
 app.use(bodyParser.json({
-	limit: config.bodyLimit,
+  limit: config.bodyLimit,
 }))
 
 // connect to db
 // TODO: Find a way to refactor below
 initializeDb((db) => {
   // internal middleware
-	app.use(middleware({ config, db }))
+  app.use(middleware({ config, db }))
 
   // html router
-	app.use('/', html({ config, db }))
+  app.use('/', html({ config, db }))
 
   // api router
-	app.use('/api', api({ config, db }))
+  app.use('/api', api({ config, db }))
 
-	io.on('connection', (socket) => {
-		console.log('client connected ', socket)
-		socket.on('event', (data) => {
-			console.log('data received ', data)
-		})
-		socket.on('disconnect', () => {
-			console.log('socket disconnected')
-		})
-	})
+  io.on('connection', (socket) => {
+    console.log('client connected ', socket)
+    socket.on('event', (data) => {
+      console.log('data received ', data)
+    })
+    socket.on('disconnect', () => {
+      console.log('socket disconnected')
+    })
+  })
 
   /**
    * Start Express server.
    * TODO: Instead of callback try incorporating promises using bluebird.js
    */
-	server.listen(app.get('port'), () => {
-		console.log('%s App is running at http://localhost:%d in %s mode ', app.get('port'))
-		console.log('  Press CTRL-C to stop\n')
-	})
+  server.listen(app.get('port'), () => {
+    console.log('%s App is running at http://localhost:%d in %s mode ', app.get('port'))
+    console.log('  Press CTRL-C to stop\n')
+  })
 })
+
+setTimeout(() => {
+  const socket = require('socket.io-client')('http://localhost:8080/')
+  socket.on('connect', () => {
+    console.log('connected to the server!')
+  })
+  socket.on('event', (data) => {})
+  socket.on('disconnect', () => {})
+}, 3000)
 
 export default app

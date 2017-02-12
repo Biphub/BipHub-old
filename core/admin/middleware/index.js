@@ -1,9 +1,9 @@
 import { Router } from 'express'
 
 const middlewareCore = () => {
-	const routes = Router()
+  const routes = Router()
   // add middleware here
-	return routes
+  return routes
 }
 
 export default middlewareCore

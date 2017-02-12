@@ -2,7 +2,6 @@
   "extends": "airbnb-base",
   "rules": {
     "func-names": ["error", "never"],
-    "indent": [2, "tab"],
     "no-tabs": 0,
     "no-param-reassign": ["off"],
     "no-extra-semi": "error",

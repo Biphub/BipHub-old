@@ -1,4 +1,4 @@
 const initializeHub = () => {
-	console.log('test')
+  console.log('test')
 }
 export default initializeHub
