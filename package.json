@@ -5,7 +5,7 @@
   "main": "dist",
   "scripts": {
     "dev:web": "nodemon -w core --exec \"babel-node core/admin --presets es2015,stage-0\"",
-    "build": "babel core -s -D -d dist --presets es2015,stage-0",
+    "build": "babel core -s -D -d dist/core --presets es2015,stage-0 && babel bips -s -D -d dist/bips --presets es2015,stage-0",
     "start:web": "node dist",
     "start:web:forever": "forever dist",
     "prestart:web": "npm run -s build",
@@ -46,7 +46,6 @@
     "resource-router-middleware": "^0.6.0"
   },
   "devDependencies": {
-    "babel": "^6.5.2",
     "babel-cli": "^6.9.0",
     "babel-core": "^6.9.0",
     "babel-preset-es2015": "^6.9.0",
