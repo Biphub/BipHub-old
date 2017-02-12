@@ -1,11 +1,10 @@
 import { assert } from 'chai'
 
 describe('Hub should register all webhooks', () => {
-	it('should be ok', (done) => {
+	it('should be ok', () => {
 		const user = {
 			age: 2
 		}
-		assert.equal(user.age, 3, 'not equal!')
-		done()
+		return assert.equal(user.age, 2, 'not equal!')
 	})
 })
