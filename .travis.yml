@@ -8,9 +8,11 @@ before_install:
   - "npm install -g eslint-config-airbnb-base"
   - "npm install -g install-peerdeps"
   - "install-peerdeps --dev eslint-config-airbnb-base"
+  - "npm install -g mocha chai babel"
 
 install:
   - npm install
 
 script:
   - npm run lint:prod
+  - npm run test:all
