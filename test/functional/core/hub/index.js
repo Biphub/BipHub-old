@@ -1,6 +1,6 @@
 import { assert } from 'chai'
 
-describe('Hub funcationality testing', () => {
+describe('Hub should register all webhooks', () => {
 	it('should be ok', (done) => {
 		const user = {
 			age: 2
