@@ -7,7 +7,7 @@ import morgan from 'morgan'
 import path from 'path'
 import api from './controllers/api'
 import html from './controllers/html'
-import config from '../config'
+import config from '../../config'
 import initializeDb from '../db'
 import middleware from './middleware'
 
@@ -28,6 +28,9 @@ app.set('view engine', 'handlebars')
 
 // view engine
 app.engine('html', hbs)
+
+// static files
+app.use('/static', express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
 
 // logger
 app.use(morgan('dev'))
@@ -61,6 +64,22 @@ initializeDb((db) => {
 		// console.log('%s App is running at http://localhost:%d in %s mode ', app.get('port'))
 		// console.log('  Press CTRL-C to stop\n')
 	})
+	/*console.log('server instance')
+	console.log(app.server)
+	var server = require('http').createServer();
+	var io = require('socket.io')(server);
+	io.on('connection', function(client){
+		client.on('event', function(data){});
+		client.on('disconnect', function(){});
+	})0;*/
+	//server.listen(3000);
 })
+/*
+setTimeout(() => {
+	var socket = require('socket.io-client')('http://localhost:3000');
+	socket.on('connect', function(){});
+	socket.on('event', function(data){});
+	socket.on('disconnect', function(){});
+}, 3000)*/
 
 export default app

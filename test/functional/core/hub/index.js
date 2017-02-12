@@ -5,6 +5,7 @@ describe('Hub should register all webhooks', () => {
 		const user = {
 			age: 2
 		}
-		return assert.equal(user.age, 2, 'not equal!')
+
+		//return assert.equal(user.age, 2, 'not equal!')
 	})
 })
