@@ -4,7 +4,7 @@
   "description": "Starter project for an ES6 RESTful Express API",
   "main": "dist",
   "scripts": {
-    "dev:web": "nodemon -w core --exec \"babel-node core/admin --presets es2015,stage-0\"",
+    "dev": "better-npm-run dev",
     "build": "babel core -s -D -d dist/core --presets es2015,stage-0 && babel bips -s -D -d dist/bips --presets es2015,stage-0",
     "start:web": "node dist",
     "start:web:forever": "forever dist",
@@ -14,6 +14,14 @@
     "lint:dev": "eslint ./",
     "lint:prod": "eslint --rule \"\"no-console\": [\"error\"]\" ./",
     "test:all": "mocha --compilers js:babel-core/register \"./test/**/*.js\""
+  },
+  "betterScripts": {
+    "dev": {
+      "command": "nodemon -w core --exec \"babel-node core/admin --presets es2015,stage-0\"",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    }
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
@@ -33,6 +41,7 @@
   "author": "Jason Shin <visualbbasic@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "better-npm-run": "0.0.14",
     "body-parser": "^1.13.3",
     "compression": "^1.5.2",
     "cors": "^2.7.1",

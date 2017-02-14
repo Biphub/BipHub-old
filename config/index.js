@@ -8,11 +8,9 @@ const loadNConf = () => {
   // TODO: Check what this does
   nconf.argv().env()
 
-  // Loads hub config
-  nconf.file('hub', { file: path.join(configPath, 'hub.json') })
-
-  // Loads web config
-  nconf.file('web', { file: path.join(configPath, 'web.json') })
+  // Loads configs
+  nconf.file('hub', { file: path.join(configPath, 'env/dev/hub.json') })
+  nconf.file('web', { file: path.join(configPath, 'env/dev/web.json') })
 
   return nconf
 }
