@@ -1,17 +1,5 @@
+import socketServer from './socketServer'
 
-
-class Hub {
-  init() {
-    console.log('init')
-  }
-
-  loadBips() {
-
-  }
-
-  restart() {
-
-  }
+export default {
+  socketServer,
 }
-
-export default Hub
