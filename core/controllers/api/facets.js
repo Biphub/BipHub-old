@@ -1,5 +1,5 @@
 import resource from 'resource-router-middleware'
-import facetsModel from '../../../models/facets'
+import facetsModel from '../../models/facets'
 
 const facetsRoute = () => resource({
 	/** Property name to store preloaded entity on `request`. */

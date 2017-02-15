@@ -1,6 +1,17 @@
-import requireAll from 'require-all'
 
-const initializeHub = () => {
-  console.log('test')
+
+class Hub {
+  init() {
+    console.log('init')
+  }
+
+  loadBips() {
+
+  }
+
+  restart() {
+
+  }
 }
-export default initializeHub
+
+export default Hub

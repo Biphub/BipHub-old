@@ -8,8 +8,8 @@ import path from 'path'
 import SocketIO from 'socket.io'
 import api from './controllers/api'
 import html from './controllers/html'
-import config from '../../config'
-import initializeDb from '../db'
+import config from '../config'
+import initializeDb from './db'
 import middleware from './middleware'
 
 // Initiating express
@@ -59,16 +59,10 @@ initializeDb((db) => {
   // api router
   app.use('/api', api({ config, db }))
 
+  // Socket
   io.on('connection', (socket) => {
-    console.log('client connected ', socket)
-    socket.on('event', (data) => {
-      console.log('data received ', data)
-    })
-    socket.on('disconnect', () => {
-      console.log('socket disconnected')
-    })
-  })
 
+  })
   /**
    * Start Express server.
    * TODO: Instead of callback try incorporating promises using bluebird.js
@@ -78,14 +72,5 @@ initializeDb((db) => {
     console.log('  Press CTRL-C to stop\n')
   })
 })
-
-setTimeout(() => {
-  const socket = require('socket.io-client')('http://localhost:8080/')
-  socket.on('connect', () => {
-    console.log('connected to the server!')
-  })
-  socket.on('event', (data) => {})
-  socket.on('disconnect', () => {})
-}, 3000)
 
 export default app

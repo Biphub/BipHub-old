@@ -1,0 +1,6 @@
+{
+  "hubs": {
+    "containing_directory": "bips/",
+    "namespace": "biphub-"
+  }
+}
