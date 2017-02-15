@@ -8,6 +8,7 @@ import path from 'path'
 import SocketIO from 'socket.io'
 import api from './controllers/api'
 import html from './controllers/html'
+import hub from './hub'
 import config from '../config'
 import initializeDb from './db'
 import middleware from './middleware'
@@ -60,9 +61,7 @@ initializeDb((db) => {
   app.use('/api', api({ config, db }))
 
   // Socket
-  io.on('connection', (socket) => {
-
-  })
+  io.on('connection', hub.socketServer)
   /**
    * Start Express server.
    * TODO: Instead of callback try incorporating promises using bluebird.js
