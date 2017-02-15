@@ -22,7 +22,7 @@ const hbs = exphbs({
   layoutsDir: viewPath,
   extname: '.hbs',
 })
-
+hub.supervisor.loadBips()
 app.server = server
 
 // Express configuration
