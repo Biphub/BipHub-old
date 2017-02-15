@@ -22,7 +22,7 @@ const hbs = exphbs({
   layoutsDir: viewPath,
   extname: '.hbs',
 })
-hub.supervisor.loadBips()
+
 app.server = server
 
 // Express configuration
@@ -60,8 +60,9 @@ initializeDb((db) => {
   // api router
   app.use('/api', api({ config, db }))
 
-  // Socket
-  io.on('connection', hub.socketServer)
+  // Initializes hub with socket io
+  hub.initialize(io)
+
   /**
    * Start Express server.
    * TODO: Instead of callback try incorporating promises using bluebird.js
