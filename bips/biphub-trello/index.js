@@ -4,9 +4,9 @@ function init() {
   console.log('trellow started')
   const socket = client('http://localhost:8080')
   socket.on('connect', () => {
-    console.log('connected')
+    console.log('trello connected')
   })
-  socket.on('event', (data) => {
+  socket.on('testEvent', (data) => {
     console.log('data ', data)
   })
   socket.on('disconnect', () => {

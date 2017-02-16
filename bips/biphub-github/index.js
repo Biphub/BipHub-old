@@ -4,9 +4,10 @@ function init() {
   console.log('github started')
   const socket = client('http://localhost:8080')
   socket.on('connect', () => {
-    console.log('connected')
+    console.log('github connected')
+    socket.emit('yoServer', 'hi A')
   })
-  socket.on('event', (data) => {
+  socket.on('testEvent', (data) => {
     console.log('data ', data)
   })
   socket.on('disconnect', () => {

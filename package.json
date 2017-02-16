@@ -17,7 +17,7 @@
   },
   "betterScripts": {
     "dev": {
-      "command": "nodemon -w core --exec \"babel-node core --presets es2015,stage-0\"",
+      "command": "nodemon -w core -w config -w bips --exec \"babel-node core --presets es2015,stage-0\"",
       "env": {
         "NODE_ENV": "development"
       }
