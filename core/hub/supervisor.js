@@ -3,6 +3,7 @@ import forOwn from 'lodash/forOwn'
 
 let bips = []
 
+// TODO: Implement registering all actions
 /**
  * Loads all bips using require all
  * TODO: refactor it so that it loads bips

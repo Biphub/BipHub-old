@@ -1,5 +1,11 @@
 import client from 'socket.io-client'
 
+const actions = [
+  'postIssue',
+  'listIssue',
+  'deleteIssue',
+]
+
 function init() {
   console.log('github started')
   const socket = client('http://localhost:8080')
