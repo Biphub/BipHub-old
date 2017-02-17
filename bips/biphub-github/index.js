@@ -1,9 +1,15 @@
 import client from 'socket.io-client'
 
-const actions = [
+const incomingActions = [
+  'issueCreated',
+  'issueDeleted',
+  'issueMoved',
+]
+
+const outgoingActions = [
   'postIssue',
-  'listIssue',
   'deleteIssue',
+  'moveIssue',
 ]
 
 function init() {
@@ -19,6 +25,14 @@ function init() {
   socket.on('disconnect', () => {
     console.log('disconnected')
   })
+}
+
+function registerIncomingActions(socket) {
+  socket.emit('')
+}
+
+function registerOutgoingActions(socket) {
+
 }
 
 export default {
