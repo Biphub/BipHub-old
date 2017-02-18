@@ -15,7 +15,7 @@ install:
   - npm install
 
 script:
-  - snyk auth snykAuthToken
+  - snyk auth {{snykAuthToken}}
   - npm run lint:dev
   - npm run test:all
   - npm run snyk:test
