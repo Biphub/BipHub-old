@@ -13,7 +13,8 @@
     "fix": "eslint --fix ./",
     "lint:dev": "eslint ./",
     "lint:prod": "eslint --rule \"\"no-console\": [\"error\"]\" ./",
-    "test:all": "mocha --compilers js:babel-core/register \"./test/**/*.js\""
+    "test:all": "mocha --compilers js:babel-core/register \"./test/**/*.js\"",
+    "snyk:test": "snyk test"
   },
   "betterScripts": {
     "dev": {
@@ -55,8 +56,6 @@
     "nconf": "^0.8.4",
     "require-all": "^2.1.0",
     "resource-router-middleware": "^0.6.0",
-    "socket.io": "^1.7.2",
-    "socket.io-client": "^1.7.2",
     "sqlite3": "^3.1.8"
   },
   "devDependencies": {
