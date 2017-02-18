@@ -1,28 +1,25 @@
 import requireAll from 'require-all'
 import forOwn from 'lodash/forOwn'
+import config from '../../../config'
+import store from './BipStore'
 
-let bips = []
-
-// TODO: Implement registering all actions
-/**
- * Loads all bips using require all
- * TODO: refactor it so that it loads bips
- * according to env
- */
 function loadBips() {
-  const rawBips = requireAll(`${__dirname}/../../bips`)
-  bips = []
+  const nodeEnv = config.get('NODE_ENV')
+  let rawBips = {}
+  if (nodeEnv === 'development') {
+    rawBips = requireAll(`${__dirname}/../../../bips`)
+  }
   forOwn(rawBips, (value, key) => {
-    bips.push(rawBips[key].index.default)
+    store.storeBip(rawBips[key].index.default)
   })
 }
 
 /**
  * Init all loaded bips
- * TODO: Check if bips are loaded
  */
 function initBips() {
   loadBips()
+  const bips = store.getBips()
   bips.forEach(bip => bip.init())
 }
 
@@ -30,6 +27,7 @@ function initBips() {
  * Restarts all loaded bips
  */
 const restartBips = () => {
+  const bips = store.getBips()
   bips.forEach(bip => console.log('restarting bip ', bip))
 }
 

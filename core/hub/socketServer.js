@@ -8,7 +8,7 @@ const socketServer = (socket) => {
   })
 
   socket.on('disconnect', () => {
-    console.log('socket disconnected')
+    console.log('socket disconnected ', socket)
   })
 }
 

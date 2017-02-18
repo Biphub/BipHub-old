@@ -1,10 +1,11 @@
 import socketServer from './socketServer'
-import supervisor from './supervisor'
+import loader from './BipLoader'
 
 const initialize = (io) => {
   // Hub and Socket
   io.on('connection', socketServer)
-  supervisor.initBips()
+  // Invokes init function of each bip
+  loader.initBips()
   setTimeout(() => {
     io.emit('testEvent', 'testing!')
   }, 500)
