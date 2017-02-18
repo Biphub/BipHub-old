@@ -3,6 +3,10 @@ import forOwn from 'lodash/forOwn'
 import config from '../../../config'
 import store from './BipStore'
 
+/**
+ * Loads bips from bips folder or npm modules.
+ * Folder to load bips is decided according to NDOE_ENV value
+ */
 function loadBips() {
   const nodeEnv = config.get('NODE_ENV')
   let rawBips = {}
