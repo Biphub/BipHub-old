@@ -1,5 +1,4 @@
 import client from 'socket.io-client'
-import factory from './factory'
 
 function init() {
   console.log('github started')

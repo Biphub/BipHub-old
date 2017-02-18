@@ -10,9 +10,9 @@
     "start:web:forever": "forever dist",
     "prestart:web": "npm run -s build",
     "test:web": "eslint src",
-    "lint:fix": "eslint --fix ./",
+    "fix": "eslint --fix ./",
     "lint:dev": "eslint ./",
-    "lint:prod": "eslint --rule \"\"no-console\": [\"error\"]\" ./",
+    "lint:prod": "eslint --rule \"\"no-console\": [\"error\"]\" ./"
     "test:all": "mocha --compilers js:babel-core/register \"./test/**/*.js\""
   },
   "betterScripts": {

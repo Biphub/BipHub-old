@@ -14,5 +14,5 @@ install:
   - npm install
 
 script:
-  - npm run lint:prod
+  - npm run lint:dev
   - npm run test:all
