@@ -8,7 +8,8 @@ import path from 'path'
 import SocketIO from 'socket.io'
 import api from './controllers/api'
 import html from './controllers/html'
-import hub from './hub'
+import webhook from './controllers/webhooks'
+import bipAdapter from './adapter'
 import config from '../config'
 import initializeDb from './db'
 import middleware from './middleware'
@@ -60,8 +61,10 @@ initializeDb((db) => {
   // api router
   app.use('/api', api({ config, db }))
 
+  app.use('/webhook', webhook({ config, db }))
+
   // Initializes hub with socket io
-  hub.initialize(io)
+  bipAdapter.initialize(io)
 
   /**
    * Start Express server.
