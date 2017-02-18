@@ -1,10 +1,7 @@
-const getId = () => ({
-  id: 1,
-})
+const getId = () => 1
 
-const getName = () => ({
-  name: 'biphub-trello',
-})
+const getName = () => 'biphub-trello'
+
 
 const getIncomingActions = () => [
   'issueCreated',
@@ -18,9 +15,12 @@ const getOutgoingActions = () => [
   'moveIssue',
 ]
 
-const getConfig = () => {
-
-}
+const getConfig = () => ({
+  id: getId(),
+  name: getName(),
+  incomingActions: getIncomingActions(),
+  outgoingActions: getOutgoingActions(),
+})
 
 export default {
   getId,

@@ -1,4 +1,5 @@
 import client from 'socket.io-client'
+import factory from './factory'
 
 function init() {
   console.log('trellow started')
@@ -12,6 +13,9 @@ function init() {
   socket.on('disconnect', () => {
     console.log('disconnected')
   })
+
+  // Register trello Bip
+  socket.emit('REGISTER_BIP', factory.getConfig())
 }
 
 export default {

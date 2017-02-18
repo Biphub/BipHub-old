@@ -1,16 +1,5 @@
 import client from 'socket.io-client'
-
-const incomingActions = [
-  'issueCreated',
-  'issueDeleted',
-  'issueMoved',
-]
-
-const outgoingActions = [
-  'postIssue',
-  'deleteIssue',
-  'moveIssue',
-]
+import factory from './factory'
 
 function init() {
   console.log('github started')
@@ -25,13 +14,6 @@ function init() {
   socket.on('disconnect', () => {
     console.log('disconnected')
   })
-}
-
-function registerIncomingActions(socket) {
-  socket.emit('')
-}
-
-function registerOutgoingActions(socket) {
 
 }
 
