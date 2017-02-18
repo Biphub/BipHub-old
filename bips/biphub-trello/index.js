@@ -10,6 +10,9 @@ function init() {
   socket.on('testEvent', (data) => {
     console.log('data ', data)
   })
+  socket.on('broadcast', (data) => {
+    console.log('broadcast! ', data)
+  })
   socket.on('disconnect', () => {
     console.log('disconnected')
   })

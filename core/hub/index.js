@@ -10,6 +10,7 @@ const initialize = (io) => {
 
   setTimeout(() => {
     io.emit('testEvent', 'testing!')
+    io.emit('broadcast', 'yoyo!')
   }, 500)
 }
 

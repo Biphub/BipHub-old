@@ -12,7 +12,7 @@
     "test:web": "eslint src",
     "fix": "eslint --fix ./",
     "lint:dev": "eslint ./",
-    "lint:prod": "eslint --rule \"\"no-console\": [\"error\"]\" ./"
+    "lint:prod": "eslint --rule \"\"no-console\": [\"error\"]\" ./",
     "test:all": "mocha --compilers js:babel-core/register \"./test/**/*.js\""
   },
   "betterScripts": {
