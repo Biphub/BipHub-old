@@ -1,17 +1,19 @@
+import get from 'lodash/get'
+
 const store = {}
 /**
  * Base of simple state store
  * @returns {{set: (function(*, *)), get: (function(*): *)}}
  */
 const base = () => {
-  const set = (key, data) => {
+  const baseSet = (key, data) => {
     store[key] = data
   }
-  const get = key => store[key]
+  const baseGet = key => get(store, key, null)
 
   return {
-    set,
-    get,
+    set: baseSet,
+    get: baseGet,
   }
 }
 

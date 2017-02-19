@@ -39,7 +39,7 @@ const loader = () => {
   }
 
   return {
-	  initBips,
+    initBips,
     restartBips,
   }
 }

@@ -13,10 +13,6 @@ import bipAdapter from './adapter'
 import config from '../config'
 import initializeDb from './db'
 import middleware from './middleware'
-import store from './store'
-
-store.set('test', 'testing!!')
-console.log('test getting ', store.get('test'))
 
 // Initiating express
 const app = express()
