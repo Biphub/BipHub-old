@@ -2,13 +2,10 @@ import client from 'socket.io-client'
 import config from './config'
 
 function init() {
-  console.log('trellow started')
-  const socket = client('http://localhost:8080')
+  const socket = client('http://localhost:8080/bips')
   socket.on('connect', () => {
     console.log('trello connected')
   })
-
-  socket.on()
 
   socket.on('disconnect', () => {
     console.log('disconnected')
@@ -18,6 +15,9 @@ function init() {
   socket.emit('REGISTER_BIP', config)
 }
 
+const getConfig = () => config
+
 export default {
   init,
+  getConfig,
 }

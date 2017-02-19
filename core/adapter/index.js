@@ -1,10 +1,6 @@
-import socketServer from './SocketServer'
 import bipLoader from './BipLoader'
 
 const initialize = (io) => {
-  // Pass io object into socket server module
-  socketServer.handleConnections(io)
-
   // Invokes init function of each bip
   bipLoader().initBips()
 

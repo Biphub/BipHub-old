@@ -9,6 +9,7 @@ import SocketIO from 'socket.io'
 import api from './controllers/api'
 import html from './controllers/html'
 import webhook from './controllers/webhooks'
+import SocketServer from './controllers/SocketServer'
 import bipAdapter from './adapter'
 import config from '../config'
 import initializeDb from './db'
@@ -65,6 +66,11 @@ initializeDb((db) => {
 
   // Initializes hub with socket io
   bipAdapter.initialize(io)
+
+  // Handles socket connections
+  // Rooms:
+  // 1. /bips -> Handles bips connections
+  SocketServer.handleConnections(io)
 
   /**
    * Start Express server.
