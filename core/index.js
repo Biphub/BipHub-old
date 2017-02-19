@@ -12,8 +12,12 @@ import webhook from './controllers/webhooks'
 import SocketServer from './controllers/SocketServer'
 import bipAdapter from './adapter'
 import config from './config'
-import initializeDb from './db'
+import initializeDb from './data/db'
 import middleware from './middleware'
+import schema from './data/schema/schema'
+
+console.log('object keys:')
+console.log(Object.keys(schema))
 
 // Initiating express
 const app = express()
