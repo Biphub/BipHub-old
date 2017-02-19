@@ -1,0 +1,18 @@
+{
+  "hubs": {
+    "containing_directory": "bips/",
+    "namespace": "biphub-"
+  },
+  "web": {
+    "port": 8080,
+    "bodyLimit": "100kb",
+    "corsHeaders": ["Link"]
+  },
+  "database": {
+    "client": "sqlite3",
+    "connection": {
+      "filename": "content/data/ghost-dev.db"
+    },
+    "debug": true
+  }
+}

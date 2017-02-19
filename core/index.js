@@ -11,7 +11,7 @@ import html from './controllers/html'
 import webhook from './controllers/webhooks'
 import SocketServer from './controllers/SocketServer'
 import bipAdapter from './adapter'
-import config from '../config'
+import config from './config'
 import initializeDb from './db'
 import middleware from './middleware'
 

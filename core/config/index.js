@@ -5,8 +5,8 @@ const loadNConf = () => {
   const configPath = __dirname
   const ENV_DEV = 'development'
   const ENV_PROD = 'production'
-  const PATH_DEV = 'env/dev/'
-  const PATH_PROD = 'env/prod/'
+  const PATH_DEV = 'env/config.development.json'
+  const PATH_PROD = 'env/config.production.json'
   let configDir = PATH_DEV
 
   // Loads environment variables
@@ -20,7 +20,7 @@ const loadNConf = () => {
   }
 
   // Loads configs
-  nconf.file('hub', { file: `${configDir}hub.json` })
+  nconf.file('hub', { file: `${configDir}` })
   nconf.file('web', { file: `${configDir}web.json` })
   return nconf
 }

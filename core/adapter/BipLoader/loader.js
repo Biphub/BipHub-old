@@ -1,6 +1,6 @@
 import requireAll from 'require-all'
 import forOwn from 'lodash/forOwn'
-import config from '../../../config'
+import config from '../../config'
 import bipStore from '../../store/bipStore'
 
 const loader = () => {
