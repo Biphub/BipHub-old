@@ -14,10 +14,17 @@ import bipAdapter from './adapter'
 import config from './config'
 import initializeDb from './data/db'
 import middleware from './middleware'
-import schema from './data/schema/schema'
+import connection from './data/db/connection'
+import Bip from './models/Bip'
 
-console.log('object keys:')
-console.log(Object.keys(schema))
+connection.sync().then(() => {
+	Bip.create({
+		title: 'sdepold',
+		description: 'yo'
+	})
+
+  Bip.find({where: {description: 'yo'}}).then(bip => console.log('bip found! ', bip.dataValues))
+})
 
 // Initiating express
 const app = express()

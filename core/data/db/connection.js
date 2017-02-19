@@ -1,13 +1,15 @@
-import knex from 'knex'
+import Sequelize from 'sequelize'
 import config from '../../config'
 
-const getKnexInstance = () => {
-  let knexInstance = null
+let sequelize = null
 
-  if (!knexInstance && config.get('database') && config.get('database').client) {
-    knexInstance = knex(config.get('database'))
+const getSequelize = () => {
+  if (!sequelize) {
+    console.log('sequlize initiating ', sequelize)
+    sequelize = new Sequelize(null, null, null, config.get('database'))
+    return sequelize
   }
-  return knexInstance
+  return null
 }
 
-export default getKnexInstance()
+export default getSequelize()

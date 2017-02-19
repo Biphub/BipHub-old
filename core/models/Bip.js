@@ -1,10 +1,9 @@
-import Bookshelf from 'bookshelf'
+import Sequelize from 'sequelize'
 import connection from '../data/db/connection'
 
-const bookshelfInstance = Bookshelf(connection)
-
-const Bip = bookshelfInstance.Model.extend({
-  tableName: 'bips',
+const Bip = connection.define('Bip', {
+  title: Sequelize.STRING,
+  description: Sequelize.TEXT,
 })
 
 export default Bip
