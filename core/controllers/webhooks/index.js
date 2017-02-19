@@ -8,6 +8,5 @@ export default () => {
 
     res.json({ result: 'webhook received' })
   })
-
   return webhook
 }

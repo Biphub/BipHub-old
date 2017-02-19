@@ -1,11 +1,16 @@
 export default {
   name: 'biphub-trello',
-  incomingActions: [
-    'issueCreated',
-    'issueDeleted',
-  ],
+  incomingActions: {
+    type: 'webhook',
+    endpoint: '/trello',
+    actions: [
+      'issueCreated',
+      'issueDeleted',
+		],
+	},
   outgoingActions: [
     'createIssue',
     'deleteIssue',
   ],
+
 }
