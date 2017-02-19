@@ -9,7 +9,10 @@
     "corsHeaders": ["Link"]
   },
   "database": {
-    "dialect": "sqlite",
-    "filename": "content/data/biphub-dev.db"
+    "client": "sqlite3",
+    "connection": {
+      "filename": "content/data/biphub-dev.db"
+    },
+    "debug": true
   }
 }

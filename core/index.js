@@ -14,17 +14,17 @@ import bipAdapter from './adapter'
 import config from './config'
 import initializeDb from './data/db'
 import middleware from './middleware'
-import connection from './data/db/connection'
-import Bip from './models/Bip'
+import data from './data'
+data.init()
+import Bips from './models/Bips'
 
-connection.sync().then(() => {
-	Bip.create({
-		title: 'sdepold',
-		description: 'yo'
+setTimeout(() => {
+	new Bips.byEmail('test').then((bip) => {
+		console.log(bip)
 	})
 
-  Bip.find({where: {description: 'yo'}}).then(bip => console.log('bip found! ', bip.dataValues))
-})
+}, 2000)
+
 
 // Initiating express
 const app = express()

@@ -1,15 +1,21 @@
-import Sequelize from 'sequelize'
+import Knex from 'knex'
+import Bookshelf from 'bookshelf'
 import config from '../../config'
 
-let sequelize = null
+let bookshelf = null
+let knex = null
 
-const getSequelize = () => {
-  if (!sequelize) {
-    console.log('sequlize initiating ', sequelize)
-    sequelize = new Sequelize(null, null, null, config.get('database'))
-    return sequelize
+const init = () => {
+	console.log('initiated bookshelf and knex! ', Boolean(knex) , ' bookshelf ', Boolean(bookshelf))
+  if (!bookshelf) {
+    console.log('initiated bookshelf and knex!')
+    knex = Knex(config.get('database'))
+    bookshelf = Bookshelf(knex)
+    return {
+      knex,
+      bookshelf,
+    }
   }
-  return null
 }
 
-export default getSequelize()
+export default init()
