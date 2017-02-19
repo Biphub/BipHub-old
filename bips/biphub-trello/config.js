@@ -6,8 +6,8 @@ export default {
     actions: [
       'issueCreated',
       'issueDeleted',
-		],
-	},
+    ],
+  },
   outgoingActions: [
     'createIssue',
     'deleteIssue',

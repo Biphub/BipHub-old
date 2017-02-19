@@ -1,6 +1,5 @@
 import socketServer from './SocketServer'
 import bipLoader from './BipLoader'
-import store from '../store'
 
 const initialize = (io) => {
   // Pass io object into socket server module
