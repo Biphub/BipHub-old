@@ -19,9 +19,7 @@ data.init()
 import Bips from './models/Bips'
 
 setTimeout(() => {
-	new Bips.byEmail('test').then((bip) => {
-		console.log(bip)
-	})
+	new Bips({name: 'test', description: 'testing'}).save()
 
 }, 2000)
 

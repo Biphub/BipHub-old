@@ -1,13 +1,14 @@
 import connection from '../db/connection'
 
 const createTable = () => {
-  connection.knex.schema.createTable('bips', (table) => {
-    console.log('creating table ', table)
+  connection.knex.schema.createTableIfNotExists('bips', (table) => {
     table.increments()
     table.string('name')
     table.string('description', 128)
+		table.timestamps()
+  }).then(data => {
+    console.log('result')
   })
-  console.log('yyoyoyoyo created bips table')
 }
 
 export default {
