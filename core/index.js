@@ -15,7 +15,6 @@ import config from './config'
 import initializeDb from './data/db'
 import middleware from './middleware'
 import data from './data'
-data.init()
 // Initiating express
 const app = express()
 const server = http.Server(app)
@@ -53,7 +52,8 @@ app.use(bodyParser.json({
 
 // connect to db
 // TODO: Find a way to refactor below
-initializeDb((db) => {
+
+data.init().then(() => {
   // internal middleware
   app.use(middleware({ config, db }))
 

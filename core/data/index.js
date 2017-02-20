@@ -1,8 +1,7 @@
 import schema from './schema'
 
-const init = () => {
-  console.log('testing!')
-  schema.createTables()
+async function init() {
+  await schema.createTables()
 }
 
 export default {
