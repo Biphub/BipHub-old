@@ -55,15 +55,15 @@ app.use(bodyParser.json({
 
 data.init().then(() => {
   // internal middleware
-  app.use(middleware({ config, db }))
+  app.use(middleware())
 
   // html router
-  app.use('/', html({ config, db }))
+  app.use('/', html())
 
   // api router
-  app.use('/api', api({ config, db }))
+  app.use('/api', api())
 
-  app.use('/webhook', webhook({ config, db }))
+  app.use('/webhook', webhook())
 
   // Initializes hub with socket io
   bipAdapter.initialize(io)
