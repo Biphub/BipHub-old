@@ -16,14 +16,6 @@ import initializeDb from './data/db'
 import middleware from './middleware'
 import data from './data'
 data.init()
-import Bips from './models/Bips'
-
-setTimeout(() => {
-	new Bips({name: 'test', description: 'testing'}).save()
-
-}, 2000)
-
-
 // Initiating express
 const app = express()
 const server = http.Server(app)

@@ -1,8 +1,8 @@
 import bip from './bips.schema'
 
-const createTables = () => {
+async function createTables() {
 	// Creates table
-  bip.createTable()
+  await bip.createTable()
 }
 
 export default {
