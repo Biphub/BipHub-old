@@ -12,9 +12,8 @@ import webhook from './controllers/webhooks'
 import SocketServer from './controllers/SocketServer'
 import bipAdapter from './adapter'
 import config from './config'
-import initializeDb from './data/db'
 import middleware from './middleware'
-import data from './data'
+import Models from './models'
 // Initiating express
 const app = express()
 const server = http.Server(app)
@@ -50,37 +49,42 @@ app.use(bodyParser.json({
   limit: config.bodyLimit,
 }))
 
-// connect to db
-// TODO: Find a way to refactor below
+// internal middleware
+app.use(middleware())
 
-data.init().then(() => {
-  // internal middleware
-  app.use(middleware())
+// html router
+app.use('/', html())
 
-  // html router
-  app.use('/', html())
+// api router
+app.use('/api', api())
 
-  // api router
-  app.use('/api', api())
+app.use('/webhook', webhook())
 
-  app.use('/webhook', webhook())
+// Initializes hub with socket io
+bipAdapter.initialize(io)
 
-  // Initializes hub with socket io
-  bipAdapter.initialize(io)
+// Handles socket connections
+// Rooms:
+// 1. /bips -> Handles bips connections
+SocketServer.handleConnections(io)
 
-  // Handles socket connections
-  // Rooms:
-  // 1. /bips -> Handles bips connections
-  SocketServer.handleConnections(io)
+console.log('new Bip')
+var bip = new Models.Bips
+bip.set('name', 'yaswrf')
+bip.set('description', 'zzzz')
+console.log('yoyo')
+bip.save().then((data) => {
+	console.log(data.get('name'))
+}).catch(err => {console.log('err ', err)})
 
-  /**
-   * Start Express server.
-   * TODO: Instead of callback try incorporating promises using bluebird.js
-   */
-  server.listen(app.get('port'), () => {
-    console.log('%s App is running at http://localhost:%d in %s mode ', app.get('port'))
-    console.log('  Press CTRL-C to stop\n')
-  })
+
+/**
+ * Start Express server.
+ * TODO: Instead of callback try incorporating promises using bluebird.js
+ */
+server.listen(app.get('port'), () => {
+	console.log('%s App is running at http://localhost:%d in %s mode ', app.get('port'))
+	console.log('  Press CTRL-C to stop\n')
 })
 
 export default app

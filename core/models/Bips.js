@@ -1,9 +1,9 @@
-import connection from '../data/db/connection'
+function createModel(bookshelf) {
+  const Bips = bookshelf.Model.extend({
+    tableName: 'Bips',
+    hasTimestamps: true,
+  })
+  return Bips
+}
 
-const Bips = connection.bookshelf.Model.extend({
-  tableName: 'bips',
-  hasTimestamps: true,
-
-})
-
-export default Bips
+export default createModel
