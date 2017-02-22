@@ -56,6 +56,7 @@
     "mocha": "^3.2.0",
     "morgan": "^1.8.0",
     "nconf": "^0.8.4",
+    "q": "^1.4.1",
     "require-all": "^2.1.0",
     "resource-router-middleware": "^0.6.0",
     "socket.io": "^1.7.3",

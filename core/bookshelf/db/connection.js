@@ -4,7 +4,6 @@ import config from '../../config'
 
 
 const init = () => {
-  console.log(global.bookshelf)
   if (typeof global.bookshelf === 'undefined') {
     global.knex = Knex(config.get('database'))
     global.bookshelf = Bookshelf(global.knex)

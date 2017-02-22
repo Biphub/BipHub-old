@@ -53,33 +53,35 @@ app.use(bodyParser.json({
 app.use(middleware())
 
 // Models initiates DB
-Models.getModels().then((models) => {
-  const test = require('./data/db/connection')
-  // console.log(models)
-  // html router
-  app.use('/', html())
 
-  // api router
-  app.use('/api', api())
+// console.log(models)
+// html router
+app.use('/', html())
 
-  app.use('/webhook', webhook())
-
-  // Initializes hub with socket io
-  bipAdapter.initialize(io)
-
-  // Handles socket connections
-  // Rooms:
-  // 1. /bips -> Handles bips connections
-  SocketServer.handleConnections(io)
-
-  /**
-   * Start Express server.
-   * TODO: Instead of callback try incorporating promises using bluebird.js
-   */
-  server.listen(app.get('port'), () => {
-    console.log('%s App is running at http://localhost:%d in %s mode ', app.get('port'))
-    console.log('  Press CTRL-C to stop\n')
-  })
+new Models.Bips({ name: 'testing yo', description: 'lol' }).save().then((d) => {
+  console.log(d)
 })
+// api router
+app.use('/api', api())
+
+app.use('/webhook', webhook())
+
+// Initializes hub with socket io
+bipAdapter.initialize(io)
+
+// Handles socket connections
+// Rooms:
+// 1. /bips -> Handles bips connections
+SocketServer.handleConnections(io)
+
+/**
+ * Start Express server.
+ * TODO: Instead of callback try incorporating promises using bluebird.js
+ */
+server.listen(app.get('port'), () => {
+  console.log('%s App is running at http://localhost:%d in %s mode ', app.get('port'))
+  console.log('  Press CTRL-C to stop\n')
+})
+
 
 export default app

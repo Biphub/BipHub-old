@@ -1,9 +1,8 @@
-function createModel(bookshelf) {
-  const Bips = bookshelf.Model.extend({
-    tableName: 'bips',
-    hasTimestamps: true,
-  })
-  return Bips
-}
+import bookshelf from '../bookshelf'
 
-export default createModel
+const Bips = bookshelf.Model.extend({
+  tableName: 'bips',
+  hasTimestamps: true,
+})
+
+export default Bips
