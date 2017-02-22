@@ -11,7 +11,7 @@
   "database": {
     "client": "sqlite3",
     "connection": {
-      "filename": "content/data/biphub-dev.db"
+      "filename": "content/data/biphub-dev.sqlite3"
     },
     "debug": true
   }

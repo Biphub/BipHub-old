@@ -1,7 +1,10 @@
 function createModel(bookshelf) {
   const IncomingActions = bookshelf.Model.extend({
-    tableName: 'IncomingActions',
+    tableName: 'incoming_actions',
     hasTimestamps: true,
+    bip() {
+      return this.belongsTo('Bips')
+    },
   })
   return IncomingActions
 }

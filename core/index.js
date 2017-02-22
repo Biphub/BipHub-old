@@ -53,8 +53,8 @@ app.use(bodyParser.json({
 app.use(middleware())
 
 // Models initiates DB
-Models.getModels().then(models => {
-  console.log('Init modles')
+Models.getModels().then((models) => {
+  const test = require('./data/db/connection')
   // console.log(models)
   // html router
   app.use('/', html())
@@ -80,7 +80,6 @@ Models.getModels().then(models => {
     console.log('%s App is running at http://localhost:%d in %s mode ', app.get('port'))
     console.log('  Press CTRL-C to stop\n')
   })
-
 })
 
 export default app

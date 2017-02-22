@@ -1,6 +1,6 @@
 function createModel(bookshelf) {
   const Bips = bookshelf.Model.extend({
-    tableName: 'Bips',
+    tableName: 'bips',
     hasTimestamps: true,
   })
   return Bips
