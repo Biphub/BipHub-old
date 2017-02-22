@@ -52,9 +52,10 @@ app.use(bodyParser.json({
 // internal middleware
 app.use(middleware())
 
+// Models initiates DB
 Models.getModels().then(models => {
   console.log('Init modles')
-  console.log(models)
+  // console.log(models)
   // html router
   app.use('/', html())
 
