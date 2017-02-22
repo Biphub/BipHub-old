@@ -52,29 +52,34 @@ app.use(bodyParser.json({
 // internal middleware
 app.use(middleware())
 
-// html router
-app.use('/', html())
+Models.getModels().then(models => {
+  console.log('Init modles')
+  console.log(models)
+  // html router
+  app.use('/', html())
 
-// api router
-app.use('/api', api())
+  // api router
+  app.use('/api', api())
 
-app.use('/webhook', webhook())
+  app.use('/webhook', webhook())
 
-// Initializes hub with socket io
-bipAdapter.initialize(io)
+  // Initializes hub with socket io
+  bipAdapter.initialize(io)
 
-// Handles socket connections
-// Rooms:
-// 1. /bips -> Handles bips connections
-SocketServer.handleConnections(io)
+  // Handles socket connections
+  // Rooms:
+  // 1. /bips -> Handles bips connections
+  SocketServer.handleConnections(io)
 
-/**
- * Start Express server.
- * TODO: Instead of callback try incorporating promises using bluebird.js
- */
-server.listen(app.get('port'), () => {
-  console.log('%s App is running at http://localhost:%d in %s mode ', app.get('port'))
-  console.log('  Press CTRL-C to stop\n')
+  /**
+   * Start Express server.
+   * TODO: Instead of callback try incorporating promises using bluebird.js
+   */
+  server.listen(app.get('port'), () => {
+    console.log('%s App is running at http://localhost:%d in %s mode ', app.get('port'))
+    console.log('  Press CTRL-C to stop\n')
+  })
+
 })
 
 export default app
