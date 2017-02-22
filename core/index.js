@@ -68,23 +68,13 @@ bipAdapter.initialize(io)
 // 1. /bips -> Handles bips connections
 SocketServer.handleConnections(io)
 
-console.log('new Bip')
-var bip = new Models.Bips
-bip.set('name', 'yaswrf')
-bip.set('description', 'zzzz')
-console.log('yoyo')
-bip.save().then((data) => {
-	console.log(data.get('name'))
-}).catch(err => {console.log('err ', err)})
-
-
 /**
  * Start Express server.
  * TODO: Instead of callback try incorporating promises using bluebird.js
  */
 server.listen(app.get('port'), () => {
-	console.log('%s App is running at http://localhost:%d in %s mode ', app.get('port'))
-	console.log('  Press CTRL-C to stop\n')
+  console.log('%s App is running at http://localhost:%d in %s mode ', app.get('port'))
+  console.log('  Press CTRL-C to stop\n')
 })
 
 export default app

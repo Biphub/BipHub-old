@@ -1,10 +1,10 @@
 import db from './db/connection'
 import schema from './schema'
 
-function init() {
+async function init() {
   const connection = db()
-  schema.createTables(connection)
-  return connection
+  await schema.createTables(connection)
+  return connection.bookshelf
 }
 
-export default init()
+export default init
