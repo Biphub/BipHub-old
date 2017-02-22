@@ -33,7 +33,7 @@ function createTables() {
       table.integer('bips_id').references('bips.id')
     }),
   ])
-	global.schemaFinished = true
+  global.schemaFinished = true
   return true
 }
 
