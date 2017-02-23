@@ -18,9 +18,9 @@ function createTables() {
     knex.schema.dropTableIfExists('incoming_actions'),
     knex.schema.createTableIfNotExists('incoming_actions', (table) => {
       table.increments()
-      table.string('name')
       table.string('type')
       table.string('endpoint')
+      table.string('action')
       table.timestamps()
       table.integer('bips_id').references('bips.id')
     }),
