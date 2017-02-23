@@ -1,4 +1,4 @@
-import bookshelf from '../../bookshelf'
+import bookshelf from '../../../bookshelf'
 
 const base = bookshelf.Model.extend({
   hasTimestamps: ['created_at', 'updated_at'],

@@ -1,8 +1,8 @@
 import base from './base'
 
-const Bips = base.extend({
+const Bip = base.extend({
   tableName: 'bips',
   hasTimestamps: true,
 })
 
-export default Bips
+export default Bip

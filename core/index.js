@@ -13,7 +13,7 @@ import SocketServer from './controllers/SocketServer'
 import bipAdapter from './adapter'
 import config from './config'
 import middleware from './middleware'
-import Models from './models'
+import './models'
 // Initiating express
 const app = express()
 const server = http.Server(app)

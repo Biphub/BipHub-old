@@ -1,11 +1,11 @@
 import base from './base'
 
-const IncomingActions = base.extend({
-  tableName: 'incoming_actions',
+const OutgoingAction = base.extend({
+  tableName: 'outgoing_actions',
   hasTimestamps: true,
   bip() {
     return this.belongsTo('Bips')
   },
 })
 
-export default IncomingActions
+export default OutgoingAction
