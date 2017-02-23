@@ -7,7 +7,8 @@ const Socket = (socket) => {
   socket.on(ACTION_REGISTER_BIP, (data) => {
     console.log('Socket recieved new data ', data)
     // Add to DB
-    Single.Bip.create({ name: data.name }).then((d) => {
+    Single.Bip.registerBip({ bip: { name: data.name } }).then((d) => {
+      console.log('saved! ', d)
     })
   })
 

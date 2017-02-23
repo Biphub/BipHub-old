@@ -1,3 +1,8 @@
-/**
- * Created by Shin on 23/02/2017.
- */
+import bookshelf from '../../bookshelf'
+import Bip from '../single/Bip'
+
+const Bips = bookshelf.Collection.extended({
+  model: Bip,
+})
+
+export default Bips

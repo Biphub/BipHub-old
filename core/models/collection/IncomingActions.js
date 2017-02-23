@@ -1,3 +1,8 @@
-/**
- * Created by Shin on 23/02/2017.
- */
+import bookshelf from '../../bookshelf'
+import IncomingAction from '../single/IncomingAction'
+
+const IncomingActions = bookshelf.Collection.extended({
+  model: IncomingAction,
+})
+
+export default IncomingActions
