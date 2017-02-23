@@ -1,6 +1,6 @@
-import bookshelf from '../bookshelf'
+import base from './base'
 
-const IncomingActions = bookshelf.Model.extend({
+const IncomingActions = base.extend({
   tableName: 'incoming_actions',
   hasTimestamps: true,
   bip() {

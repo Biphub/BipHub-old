@@ -58,9 +58,6 @@ app.use(middleware())
 // html router
 app.use('/', html())
 
-new Models.Bips({ name: 'testing yo', description: 'lol' }).save().then((d) => {
-  console.log(d)
-})
 // api router
 app.use('/api', api())
 

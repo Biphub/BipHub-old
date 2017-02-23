@@ -7,21 +7,20 @@ function createTables() {
   // If schema is already built, do not build it again.
   if (typeof global.schemaFinished !== 'undefined') { return false }
 
-  Q.allResolved([
+  Q.allSettled([
     knex.schema.dropTableIfExists('bips'),
     knex.schema.createTableIfNotExists('bips', (table) => {
       table.increments()
       table.string('name')
       table.string('description', 128)
-      table.string('testfield', 128)
-      table.string('hmmzccz', 128)
       table.timestamps()
     }),
     knex.schema.dropTableIfExists('incoming_actions'),
     knex.schema.createTableIfNotExists('incoming_actions', (table) => {
       table.increments()
       table.string('name')
-      table.string('description', 128)
+      table.string('type')
+      table.string('endpoint')
       table.timestamps()
       table.integer('bips_id').references('bips.id')
     }),

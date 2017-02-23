@@ -12,7 +12,7 @@ function init() {
   })
 
   // Register trello Bip
-  // socket.emit('REGISTER_BIP', config)
+  socket.emit('REGISTER_BIP', config)
 }
 
 const getConfig = () => config

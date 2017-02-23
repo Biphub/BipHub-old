@@ -1,6 +1,6 @@
-import bookshelf from '../bookshelf'
+import base from './base'
 
-const Bips = bookshelf.Model.extend({
+const Bips = base.extend({
   tableName: 'bips',
   hasTimestamps: true,
 })

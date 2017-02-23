@@ -35,7 +35,7 @@ const loader = () => {
 	 */
   const restartBips = () => {
     const bips = bipStore.get()
-    bips.forEach(bip => console.log('restarting bip ', bip))
+    // bips.forEach(bip => console.log('restarting bip ', bip))
   }
 
   return {
