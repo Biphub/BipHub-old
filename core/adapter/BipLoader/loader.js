@@ -1,7 +1,6 @@
 import requireAll from 'require-all'
 import forOwn from 'lodash/forOwn'
 import config from '../../config'
-import bipStore from '../../store/bipStore'
 
 const loader = () => {
 	/**
@@ -18,29 +17,19 @@ const loader = () => {
     forOwn(rawBips, (value, key) => {
       bips.push(rawBips[key].index.default)
     })
-    bipStore.set(bips)
+    return bips
   }
 
 	/**
 	 * Init all loaded bips
 	 */
   function initBips() {
-    loadBips()
-    const bips = bipStore.get()
+    const bips = loadBips()
     bips.forEach(bip => bip.init())
-  }
-
-	/**
-	 * Restarts all loaded bips
-	 */
-  const restartBips = () => {
-    const bips = bipStore.get()
-    // bips.forEach(bip => console.log('restarting bip ', bip))
   }
 
   return {
     initBips,
-    restartBips,
   }
 }
 
