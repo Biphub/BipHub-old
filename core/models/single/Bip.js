@@ -1,7 +1,7 @@
 import Q from 'q'
+import Promise from 'bluebird'
 import base from './base'
-import IncomingActions from '../collection/IncomingActions'
-import OutgoingActions from '../collection/OutgoingActions'
+import IncomingAction from './IncomingAction'
 
 const Bip = base.extend({
   tableName: 'bips',
@@ -9,14 +9,8 @@ const Bip = base.extend({
 }, {
   async registerBip({ bip, incomingActions }) {
     const savedBip = await this.forge(bip).save(null, null)
-    console.log('registering bip! ', savedBip.id)
-		// const builtIncomingActions = IncomingActions.forge(incomingActions)
-    // const stuff = await Q.all(builtIncomingActions.invoke('save'))
-    this.registerIncomingActions()
+    IncomingAction.registerIncomingActions({ incomingActions, bipId: savedBip.id })
     return true
-  },
-  registerIncomingActions() {
-    console.log('testing method')
   },
   registerOutgoingActions() {
 

@@ -22,7 +22,7 @@ function createTables() {
       table.string('endpoint')
       table.string('action')
       table.timestamps()
-      table.integer('bips_id').references('bips.id')
+      table.integer('bip_id').references('bips.id')
     }),
     knex.schema.dropTableIfExists('outgoing_actions'),
     knex.schema.createTableIfNotExists('outgoing_actions', (table) => {

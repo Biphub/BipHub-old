@@ -44,6 +44,7 @@
   "license": "MIT",
   "dependencies": {
     "better-npm-run": "0.0.14",
+    "bluebird": "^3.4.7",
     "body-parser": "^1.13.3",
     "bookshelf": "^0.10.3",
     "compression": "^1.5.2",
