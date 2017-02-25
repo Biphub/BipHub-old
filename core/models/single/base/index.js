@@ -14,6 +14,11 @@ const base = bookshelf.Model.extend({
   create(data, options) {
     return this.forge(data).save(null, options)
   },
+
+  update(data) {
+    console.log('updated received payload ', data)
+    return this.forge(data).save(null, { method: 'update' })
+  },
 })
 
 export default base

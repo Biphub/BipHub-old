@@ -6,8 +6,8 @@ export default {
 		{ type: 'webhook', endpoint: '/trello3', action: 'issueDeleted' },
   ],
   outgoingActions: [
-    'createIssue',
-    'deleteIssue',
+		{ name: 'createIssue' },
+		{ name: 'deleteIssue' },
   ],
 
 }

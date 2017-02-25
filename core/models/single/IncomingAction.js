@@ -8,10 +8,10 @@ const IncomingAction = base.extend({
     return this.belongsTo('Bips')
   },
 }, {
-  async registerIncomingActions({ incomingActions, bipId }) {
+  registerIncomingActions({ incomingActions, bipId }) {
     const forgedIncActions = incomingActions.map((incomingAction) => {
       incomingAction.bip_id = bipId
-      return this.forge(incomingAction).save()
+      return this.create(incomingAction, null)
     })
     Q.allSettled(forgedIncActions)
   },

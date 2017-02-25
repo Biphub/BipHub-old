@@ -1,3 +1,4 @@
+import Q from 'q'
 import Single from '../../models/single'
 
 // Action sent from bip to register itself
@@ -9,12 +10,16 @@ const Socket = (socket) => {
     const payload = {
       bip: { name: data.name },
       incomingActions: data.incomingActions,
+      outgoingActions: data.outgoingActions,
     }
-    // Add to DB
-    Single.Bip.registerBip(payload).then((d) => {
-      console.log('saved! ', d)
+    // TODO: refactor this to use either Q or await
+    Single.Bip.registerBip(payload).then(payload => {
+      Single.Bip.setBipActive(payload.id).then(payload => {
+        console.log('updated ', payload)
+      })
     })
   })
+
 
   socket.on('disconnect', () => {
     console.log('socket disconnected ')
