@@ -14,6 +14,7 @@ import bipAdapter from './adapter'
 import config from './config'
 import middleware from './middleware'
 import './models'
+import './logger'
 // Initiating express
 const app = express()
 const server = http.Server(app)

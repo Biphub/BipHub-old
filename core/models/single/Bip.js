@@ -15,8 +15,12 @@ const Bip = base.extend({
   async setBipActive(bipId) {
     const foundBip = await this.findOne({ id: bipId })
     foundBip.attributes.active = true
-    const updatedBip = await this.update(foundBip.attributes)
-    return updatedBip
+    return this.update(foundBip.attributes)
+  },
+  async setBipInactive(bipId) {
+    const foundBip = await this.findOne({ id: bipId })
+    foundBip.attributes.ative = false
+    return this.update(foundBip.attributes)
   },
 })
 

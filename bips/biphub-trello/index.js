@@ -9,6 +9,7 @@ function init() {
 
   socket.on('disconnect', () => {
     // console.log('disconnected')
+    // TODO: Implement reconnect
   })
 
   // Register trello Bip

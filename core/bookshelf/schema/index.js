@@ -34,6 +34,16 @@ function createTables() {
       table.integer('bip_id').references('bips.id')
     }),
   ])
+  /*
+   ,
+   knex.schema.dropTableIfExists('logs'),
+   knex.schema.createTableIfNotExists('logs', (table) => {
+   table.increments()
+   table.string('level')
+   table.json('payload')
+   table.timestamps()
+   }),
+   */
   global.schemaFinished = true
   return true
 }
