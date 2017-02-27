@@ -15,6 +15,11 @@ const IncomingAction = base.extend({
     })
     Q.allSettled(forgedIncActions)
   },
+  findByEndPoint(endPoint, action) {
+    const endPointVariation = `/${endPoint}`
+    const actionVariation = `/${action}`
+    return this.findOne({ endPoint: endPointVariation, action: actionVariation })
+  },
 })
 
 export default IncomingAction

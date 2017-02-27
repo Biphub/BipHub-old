@@ -6,6 +6,8 @@ const initialize = (io) => {
 
 	/**
    * Emits action to all sockets
+	 * Depreciated
+	 * Moving this logic to controller
 	 * @param action
 	 * @param data
 	 */
