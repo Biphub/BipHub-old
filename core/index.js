@@ -72,6 +72,9 @@ bipAdapter.initialize(io)
 // Rooms:
 // 1. /bips -> Handles bips connections
 pubsub.initialize(io)
+pubsub.subscribe('REGISTER_BIP', (d) => {
+  console.log('registering! subscribed ', d)
+})
 // SocketServer.handleConnections(io)
 
 /**
