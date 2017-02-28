@@ -10,7 +10,10 @@ const actions = config.get('actions')
  * @param io
  */
 function initialize(io) {
-  if (typeof global.io === 'undefined') {
+	/**
+   * We shouldn't be using global here
+	 */
+	if (typeof global.io === 'undefined') {
     io.on('connection', (socket) => {
       forOwn(actions, (value) => {
         const { event } = value
