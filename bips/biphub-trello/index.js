@@ -2,7 +2,7 @@ import client from 'socket.io-client'
 import config from './config'
 
 function init() {
-  const socket = client('http://localhost:8080/bips')
+  const socket = client('http://localhost:8080/')
   socket.on('connect', () => {
     // console.log('trello connected')
   })
@@ -13,6 +13,7 @@ function init() {
   })
 
   // Register trello Bip
+  console.log('emitting!')
   socket.emit('REGISTER_BIP', config)
 }
 

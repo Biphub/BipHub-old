@@ -1,17 +1,20 @@
-import events from 'events'
+import Events from 'events'
+import forOwn from 'lodash/forOwn'
+import config from '../config'
+
+const events = new Events.EventEmitter()
+const actions = config.get('actions')
 
 /**
  * Intializes IO
  * @param io
  */
-const initialize = (io) => {
-  console.log('global io ', global.io)
+function initialize(io) {
   if (typeof global.io === 'undefined') {
     io.on('connection', (socket) => {
-      console.log('io connected')
-
-      socket.on('*', (event, data) => {
-				console.log('Received new event ', event, '  ', data)
+      forOwn(actions, (value) => {
+        const { event } = value
+        socket.on(event, payload => events.emit(event, payload))
       })
     })
     global.io = io
@@ -23,17 +26,12 @@ const publish = (action, data) => {
   io.emit(action, data)
 }
 
-const subscribe = (action) => {
-
-}
-
-const unsubscribe = (action) => {
-
+const subscribe = (action, callback) => {
+  events.on(action, callback)
 }
 
 export default {
   initialize,
   publish,
   subscribe,
-  unsubscribe,
 }

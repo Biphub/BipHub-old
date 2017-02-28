@@ -9,6 +9,7 @@ const loadNConf = () => {
   const PATH_PROD = 'env/config.production.json'
   const PATH_ACTIONS_DEV = 'env/actions.development.json'
   let configDir = PATH_DEV
+  let actionConfigDir = PATH_ACTIONS_DEV
 
   // Loads environment variables
   nconf.argv().env()
@@ -16,12 +17,14 @@ const loadNConf = () => {
 
   if (nodeEnv === ENV_DEV) {
     configDir = path.join(configPath, PATH_DEV)
+    actionConfigDir = path.join(configPath, PATH_ACTIONS_DEV)
   } else if (nodeEnv === ENV_PROD) {
     configDir = path.join(configPath, PATH_PROD)
   }
 
   // Loads configs
   nconf.file('hub', { file: `${configDir}` })
+  nconf.file('action', { file: `${actionConfigDir}` })
   nconf.file('web', { file: `${configDir}web.json` })
   return nconf
 }

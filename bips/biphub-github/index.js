@@ -1,7 +1,7 @@
 import client from 'socket.io-client'
 
 function init() {
-  const socket = client('http://localhost:8080/bips')
+  const socket = client('http://localhost:8080/')
   socket.on('connect', () => {
   })
   socket.on('testEvent', () => {
