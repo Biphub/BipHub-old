@@ -13,7 +13,7 @@ export default () => {
    * Received webhook incoming action
    * Must handle payload as well
 	 */
-	webhook.use('/*', (req, res) => {
+  webhook.use('/*', (req, res) => {
     const { endpoint, action } = urlHelper.getBipActions(req.originalUrl)
     incomingAction.findByEndPoint(endpoint, action).then((incomingAction) => {
 

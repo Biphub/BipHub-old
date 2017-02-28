@@ -7,6 +7,7 @@ const loadNConf = () => {
   const ENV_PROD = 'production'
   const PATH_DEV = 'env/config.development.json'
   const PATH_PROD = 'env/config.production.json'
+  const PATH_ACTIONS_DEV = 'env/actions.development.json'
   let configDir = PATH_DEV
 
   // Loads environment variables

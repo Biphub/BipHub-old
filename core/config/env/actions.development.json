@@ -1,0 +1,7 @@
+{
+  "actions": {
+    "register_bip": {
+      "event": "REGISTER_BIP"
+    }
+  }
+}

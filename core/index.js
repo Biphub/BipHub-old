@@ -13,6 +13,7 @@ import SocketServer from './controllers/io'
 import bipAdapter from './adapter'
 import config from './config'
 import middleware from './middleware'
+import pubsub from './pubsub'
 import './models'
 import './logger'
 // Initiating express
@@ -70,7 +71,8 @@ bipAdapter.initialize(io)
 // Handles socket connections
 // Rooms:
 // 1. /bips -> Handles bips connections
-SocketServer.handleConnections(io)
+pubsub.initialize(io)
+// SocketServer.handleConnections(io)
 
 /**
  * Start Express server.
