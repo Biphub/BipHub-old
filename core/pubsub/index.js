@@ -6,15 +6,11 @@ import root from '../helpers/root'
 const actions = config.get('actions')
 let events = root.events
 
-console.log('event initiated! ', typeof events)
 /**
  * Intializes IO
  * @param io
  */
 function initialize(io) {
-	/**
-   * We shouldn't be using global here
-	 */
   if (typeof root.io === 'undefined') {
     events = new Events.EventEmitter()
 
@@ -30,7 +26,7 @@ function initialize(io) {
 }
 
 const publish = (action, data) => {
-  const { io } = global
+  const { io } = root
   io.emit(action, data)
 }
 

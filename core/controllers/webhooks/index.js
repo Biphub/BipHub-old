@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import incomingAction from '../../models/single/IncomingAction'
 import urlHelper from '../../helpers/url'
+import pubsub from '../../pubsub'
 
 /**
  * Route(/webhook)
@@ -18,6 +19,7 @@ export default () => {
     incomingAction.findByEndPoint(endpoint, action).then((incomingAction) => {
 
     })
+		pubsub.publish('test', 'test')
     res.json({ result: 'webhook received' })
   })
   return webhook

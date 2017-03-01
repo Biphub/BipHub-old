@@ -11,7 +11,9 @@ function init() {
     // console.log('disconnected')
     // TODO: Implement reconnect
   })
-
+  socket.on('test', () => {
+    console.log('test pubsub from client')
+  })
   // Register trello Bip
   console.log('emitting!')
   socket.emit('REGISTER_BIP', config)

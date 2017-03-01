@@ -53,9 +53,7 @@ app.use(bodyParser.json({
 // internal middleware
 app.use(middleware())
 
-// Handles socket connections
-// Rooms:
-// 1. /bips -> Handles bips connections
+// Pubsub based on websocket
 pubsub.initialize(io)
 // SocketServer.handleConnections(io)
 
