@@ -9,7 +9,6 @@ import SocketIO from 'socket.io'
 import api from './controllers/api'
 import html from './controllers/html'
 import webhook from './controllers/webhooks'
-import SocketServer from './controllers/io'
 import bipAdapter from './adapter'
 import config from './config'
 import middleware from './middleware'
@@ -54,7 +53,11 @@ app.use(bodyParser.json({
 // internal middleware
 app.use(middleware())
 
-// Models initiates DB
+// Handles socket connections
+// Rooms:
+// 1. /bips -> Handles bips connections
+pubsub.initialize(io)
+// SocketServer.handleConnections(io)
 
 // console.log(models)
 // html router
@@ -68,14 +71,6 @@ app.use('/webhook', webhook())
 // Initializes hub with socket io
 bipAdapter.initialize(io)
 
-// Handles socket connections
-// Rooms:
-// 1. /bips -> Handles bips connections
-pubsub.initialize(io)
-pubsub.subscribe('REGISTER_BIP', (d) => {
-  console.log('registering! subscribed ', d)
-})
-// SocketServer.handleConnections(io)
 
 /**
  * Start Express server.
