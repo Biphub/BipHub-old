@@ -2,5 +2,7 @@ import pubsub from '../../pubsub'
 import config from '../../config'
 
 export default () => {
-  console.log(config.get('actions'))
+  pubsub.subscribe(config.get('actions:register_bip:event'), (payload) => {
+    console.log('register bip received payload ', payload)
+  })
 }

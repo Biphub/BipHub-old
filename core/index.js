@@ -5,7 +5,6 @@ import exphbs from 'express-handlebars'
 import http from 'http'
 import morgan from 'morgan'
 import path from 'path'
-import bipAdapter from './adapter'
 import config from './config'
 import middleware from './middleware'
 import controllers from './controllers'
@@ -50,7 +49,6 @@ app.use(middleware())
 
 // Setup controllers
 controllers(app)
-
 
 /**
  * Start Express server.

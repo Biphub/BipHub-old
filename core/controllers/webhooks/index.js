@@ -12,12 +12,11 @@ export default () => {
 
 	/**
    * Received webhook incoming action
-   * Must handle payload as well
 	 */
   webhook.use('/*', (req, res) => {
     const { endpoint, action } = urlHelper.getBipActions(req.originalUrl)
-    incomingAction.findByEndPoint(endpoint, action).then((incomingAction) => {
-
+    incomingAction.findByEndPoint(endpoint, action).then((payload) => {
+      console.log(payload)
     })
     pubsub.publish('test', 'test')
     res.json({ result: 'webhook received' })

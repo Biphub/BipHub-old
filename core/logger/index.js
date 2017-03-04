@@ -1,5 +1,4 @@
-const winston = require('winston')
-// Requiring `winston-sqlire` will expose `winston.transports.SQLite`
+import winston from 'winston'
 import 'winston-sqlite3'
 
 winston.add(winston.transports.SQLite3, {
