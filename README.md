@@ -2,6 +2,7 @@ Biphub - Connecting games and people together
 ==================================
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b9613dc9b4d647fbb9dc6d3b50832361)](https://www.codacy.com/app/JasonShin/BipHub?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=JasonShin/BipHub&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.org/JasonShin/BipHub.svg?branch=master)](https://travis-ci.org/JasonShin/BipHub)
 
 This is a straightforward boilerplate for building REST APIs with ES6 and Express.
 
