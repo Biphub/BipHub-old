@@ -1,4 +1,4 @@
-Express & ES6 REST API Boilerplate
+Biphub - Connecting games and people together
 ==================================
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b9613dc9b4d647fbb9dc6d3b50832361)](https://www.codacy.com/app/JasonShin/BipHub?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=JasonShin/BipHub&amp;utm_campaign=Badge_Grade)
