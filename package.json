@@ -5,7 +5,6 @@
   "main": "dist",
   "scripts": {
     "dev": "better-npm-run dev",
-    "dashboard": "better-npm-run dev:dash",
     "build": "babel core -s -D -d dist/core --presets es2015,stage-0 && babel bips -s -D -d dist/bips --presets es2015,stage-0",
     "start:web": "node dist",
     "start:web:forever": "forever dist",
