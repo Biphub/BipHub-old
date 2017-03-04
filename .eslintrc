@@ -8,5 +8,6 @@
     "semi": ["error", "never"],
     "consistent-return": ["off"],
     "no-console": ["off"]
-  }
+  },
+  "plugins": ["security"]
 }
