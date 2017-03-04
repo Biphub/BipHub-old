@@ -1,5 +1,5 @@
 export default {
-  name: 'biphub-trello',
+  name: 'biphub-slack',
   incomingActions: [
     { type: 'webhook', endpoint: '/trello', action: '/issueCreated' },
 		{ type: 'webhook', endpoint: '/trello', action: '/issueDeleted' },

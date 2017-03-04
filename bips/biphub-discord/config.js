@@ -1,5 +1,5 @@
 export default {
-  name: 'biphub-github',
+  name: 'biphub-discord',
   incomingActions: [
 		{ type: 'webhook', endpoint: '/github', action: '/cardCreated' },
 		{ type: 'webhook', endpoint: '/github', action: '/cardDeleted' },

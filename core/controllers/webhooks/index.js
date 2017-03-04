@@ -19,7 +19,7 @@ export default () => {
     incomingAction.findByEndPoint(endpoint, action).then((incomingAction) => {
 
     })
-		pubsub.publish('test', 'test')
+    pubsub.publish('test', 'test')
     res.json({ result: 'webhook received' })
   })
   return webhook

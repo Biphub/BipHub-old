@@ -27,7 +27,9 @@ function initialize(io) {
 
 const publish = (action, data) => {
   const { io } = root
-  io.emit(action, data)
+  if (io) {
+    io.emit(action, data)
+  }
 }
 
 const subscribe = (action, callback) => {
