@@ -5,20 +5,15 @@ import exphbs from 'express-handlebars'
 import http from 'http'
 import morgan from 'morgan'
 import path from 'path'
-import SocketIO from 'socket.io'
-import api from './controllers/api'
-import html from './controllers/html'
-import webhook from './controllers/webhooks'
 import bipAdapter from './adapter'
 import config from './config'
 import middleware from './middleware'
-import pubsub from './pubsub'
+import controllers from './controllers'
 import './models'
 import './logger'
 // Initiating express
 const app = express()
 const server = http.Server(app)
-const io = SocketIO(server)
 const viewPath = path.join(__dirname, 'views')
 const hbs = exphbs({
   layoutsDir: viewPath,
@@ -53,21 +48,8 @@ app.use(bodyParser.json({
 // internal middleware
 app.use(middleware())
 
-// Pubsub based on websocket
-pubsub.initialize(io)
-// SocketServer.handleConnections(io)
-
-// console.log(models)
-// html router
-app.use('/', html())
-
-// api router
-app.use('/api', api())
-
-app.use('/webhook', webhook())
-
-// Initializes hub with socket io
-bipAdapter.initialize(io)
+// Setup controllers
+controllers(app)
 
 
 /**
