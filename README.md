@@ -1,6 +1,7 @@
 Express & ES6 REST API Boilerplate
 ==================================
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b9613dc9b4d647fbb9dc6d3b50832361)](https://www.codacy.com/app/JasonShin/BipHub?utm_source=github.com&utm_medium=referral&utm_content=JasonShin/BipHub&utm_campaign=badger)
 [![bitHound Score](https://www.bithound.io/github/developit/express-es6-rest-api/badges/score.svg)](https://www.bithound.io/github/developit/express-es6-rest-api)
 
 This is a straightforward boilerplate for building REST APIs with ES6 and Express.
