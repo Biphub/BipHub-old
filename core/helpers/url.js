@@ -1,8 +1,9 @@
 const getBipActions = (originalUrl) => {
   const split = originalUrl.split('/')
+  split.shift()
   return {
-    endpoint: split[2],
-    action: split[3],
+    endpoint: split[1],
+    action: split[2],
   }
 }
 

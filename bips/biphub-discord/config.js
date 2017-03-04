@@ -2,9 +2,9 @@ export default {
   name: 'biphub-discord',
   description: 'Discord Bip for Biphub!',
   incomingActions: [
-		{ type: 'webhook', endpoint: '/github', action: '/cardCreated' },
-		{ type: 'webhook', endpoint: '/github', action: '/cardDeleted' },
-		{ type: 'webhook', endpoint: '/github', action: '/cardMoved' },
+		{ type: 'webhook', endpoint: '/discord', action: '/cardCreated' },
+		{ type: 'webhook', endpoint: '/discord', action: '/cardDeleted' },
+		{ type: 'webhook', endpoint: '/discord', action: '/cardMoved' },
   ],
   outgoingActions: [
 		{ name: 'createCard' },

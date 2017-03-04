@@ -9,6 +9,9 @@ function init() {
   })
   socket.on('disconnect', () => {
   })
+  socket.on('discord:issueCreated', (payload) => {
+    console.log('creating issue! ', payload)
+	})
   socket.emit('REGISTER_BIP', config)
 }
 

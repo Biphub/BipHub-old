@@ -7,6 +7,7 @@ import single from '../../models/single'
  */
 const setup = () => {
   pubsub.subscribe(config.get('actions:register_bip:event'), (payload) => {
+    // TODO: Implement schema validator
     const bip = {
       name: payload.name,
       description: payload.description,
@@ -16,6 +17,10 @@ const setup = () => {
     single.Bip.registerBip({ bip, incomingActions, outgoingActions }).then((result) => {
       console.log('successfully registered a bip ', result.attributes.name)
     })
+  })
+
+  pubsub.subscribe(config.get('actions:ping:event'), (payload) => {
+    console.log('Ping from ', payload)
   })
 }
 
