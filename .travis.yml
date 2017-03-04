@@ -9,7 +9,6 @@ before_install:
   - "npm install -g install-peerdeps"
   - "install-peerdeps --dev eslint-config-airbnb-base"
   - "npm install -g mocha chai babel"
-  - "npm install -g snyk"
 
 install:
   - npm install
@@ -18,5 +17,4 @@ script:
   - snyk auth $SNYK_AUTH_TOKEN
   - npm run lint:dev
   - npm run test:all
-  - npm run snyk:test
   - npm run build

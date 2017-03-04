@@ -1,4 +1,5 @@
 import client from 'socket.io-client'
+import config from './config'
 
 function init() {
   const socket = client('http://localhost:8080/')
@@ -8,6 +9,7 @@ function init() {
   })
   socket.on('disconnect', () => {
   })
+  socket.emit('REGISTER_BIP', config)
 }
 
 export default {

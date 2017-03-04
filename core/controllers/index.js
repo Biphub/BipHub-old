@@ -28,7 +28,7 @@ const setup = (app) => {
   app.use('/webhook', webhook())
 
 	// Bips actions controller
-  bips()
+  bips.setup()
 }
 
 export default setup
