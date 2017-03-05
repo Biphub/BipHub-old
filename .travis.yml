@@ -20,3 +20,6 @@ script:
   - npm run lint:dev
   - npm run test:all
   - npm run build
+
+notifications:
+  slack: $SLACK_TRAVIS_TOKEN

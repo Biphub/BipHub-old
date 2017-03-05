@@ -14,13 +14,18 @@ export default () => {
    * Received webhook incoming action
 	 */
   webhook.use('/*', (req, res) => {
-    const { endpoint, action } = urlHelper.getBipActions(req.originalUrl)
+    const { body, originalUrl } = req
+    const { endpoint, action } = urlHelper.getBipActions(originalUrl)
 
-    incomingAction.findByEndPoint(endpoint, action).then(() => {
+    // Handle incoming action and publish it to bips
+    incomingAction.findByEndPoint(endpoint, action)
+    .then(() => {
       const actionRoute = `${endpoint}:${action}`
-      console.log(actionRoute)
-      pubsub.publish(actionRoute, 'test')
-      res.json({ result: 'webhook received' })
+      pubsub.publish(actionRoute, body)
+      res.json({ result: true })
+    })
+    .catch(() => {
+      res.json({ result: false })
     })
   })
   return webhook
