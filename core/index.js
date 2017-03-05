@@ -30,7 +30,7 @@ app.set('view engine', 'handlebars')
 app.engine('html', hbs)
 
 // static files
-app.use('/static', express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
+// app.use('/static', express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
 
 // logger
 app.use(morgan('dev'))
