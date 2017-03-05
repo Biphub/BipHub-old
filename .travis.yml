@@ -2,6 +2,8 @@ sudo: required
 language: node_js
 node_js:
   - "node"
+notifications:
+  slack: $SLACK_TRAVIS_TOKEN
 
 before_install:
   - "npm install -g eslint"
@@ -20,6 +22,3 @@ script:
   - npm run lint:dev
   - npm run test:all
   - npm run build
-
-notifications:
-  slack: $SLACK_TRAVIS_TOKEN
