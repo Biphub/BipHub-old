@@ -3,7 +3,7 @@ language: node_js
 node_js:
   - "node"
 notifications:
-  slack: $SLACK_TRAVIS_TOKEN
+  slack: bipioteam:1TUQcmvbfrbxWwxViLG4ybAA
 
 before_install:
   - "npm install -g eslint"
