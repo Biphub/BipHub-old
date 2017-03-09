@@ -3,7 +3,7 @@ import IncomingActions from './IncomingActions'
 import OutgoingActions from './OutgoingActions'
 
 export default {
-	APIs,
+  APIs,
   IncomingActions,
   OutgoingActions,
 }

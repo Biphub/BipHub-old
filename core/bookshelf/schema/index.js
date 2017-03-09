@@ -9,6 +9,12 @@ function createTables() {
 
   // TODO: Implement migration
   Q.allSettled([
+    knex.schema.dropTableIfExists('bips'),
+    knex.schema.createTableIfNotExists('bips', (table) => {
+      table.increments()
+      table.boolean('active')
+      table.timestamps()
+    }),
     knex.schema.dropTableIfExists('apis'),
     knex.schema.createTableIfNotExists('apis', (table) => {
       table.increments()
