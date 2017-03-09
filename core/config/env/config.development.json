@@ -1,6 +1,6 @@
 {
   "hubs": {
-    "containing_directory": "bips/",
+    "containing_directory": "apis/",
     "namespace": "biphub-"
   },
   "web": {

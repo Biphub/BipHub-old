@@ -1,4 +1,4 @@
-const getBipActions = (originalUrl) => {
+const getApiActions = (originalUrl) => {
   const split = originalUrl.split('/')
   split.shift()
   return {
@@ -8,5 +8,5 @@ const getBipActions = (originalUrl) => {
 }
 
 export default {
-  getBipActions,
+  getApiActions,
 }

@@ -1,8 +1,8 @@
 import apiLoader from './ApiLoader'
 
 const initialize = (io) => {
-  // Invokes init function of each bip
-  apiLoader().initBips()
+  // Invokes init function of each api
+  apiLoader().initAPIs()
 
 	/**
    * Emits action to all sockets

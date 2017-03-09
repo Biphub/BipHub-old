@@ -15,9 +15,9 @@ export default () => {
 	 */
   webhook.use('/*', (req, res) => {
     const { body, originalUrl } = req
-    const { endpoint, action } = urlHelper.getBipActions(originalUrl)
+    const { endpoint, action } = urlHelper.getApiActions(originalUrl)
 
-    // Handle incoming action and publish it to bips
+    // Handle incoming action and publish it to APIs
     incomingAction.findByEndPoint(endpoint, action)
     .then(() => {
       const actionRoute = `${endpoint}:${action}`

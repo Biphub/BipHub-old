@@ -1,7 +1,7 @@
 {
   "actions": {
-    "register_bip": {
-      "event": "REGISTER_BIP"
+    "register_api": {
+      "event": "REGISTER_API"
     },
     "ping": {
       "event": "PING"

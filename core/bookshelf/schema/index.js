@@ -9,8 +9,8 @@ function createTables() {
 
   // TODO: Implement migration
   Q.allSettled([
-    knex.schema.dropTableIfExists('bips'),
-    knex.schema.createTableIfNotExists('bips', (table) => {
+    knex.schema.dropTableIfExists('apis'),
+    knex.schema.createTableIfNotExists('apis', (table) => {
       table.increments()
       table.string('name')
       table.string('description', 128)
@@ -24,14 +24,14 @@ function createTables() {
       table.string('endpoint')
       table.string('action')
       table.timestamps()
-      table.integer('bip_id').references('bips.id')
+      table.integer('api_id').references('apis.id')
     }),
     knex.schema.dropTableIfExists('outgoing_actions'),
     knex.schema.createTableIfNotExists('outgoing_actions', (table) => {
       table.increments()
       table.string('name')
       table.timestamps()
-      table.integer('bip_id').references('bips.id')
+      table.integer('api_id').references('apis.id')
     }),
   ])
   global.schemaFinished = true

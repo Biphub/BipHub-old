@@ -11,11 +11,11 @@ const loader = () => {
     const nodeEnv = config.get('NODE_ENV')
     let rawAPIs = {}
     if (nodeEnv === 'development') {
-			rawAPIs = requireAll(`${__dirname}/../../../apis`)
+      rawAPIs = requireAll(`${__dirname}/../../../apis`)
     }
     const APIs = []
     forOwn(rawAPIs, (value, key) => {
-			APIs.push(rawAPIs[key].index.default)
+      APIs.push(rawAPIs[key].index.default)
     })
     return APIs
   }

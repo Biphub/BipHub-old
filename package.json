@@ -10,9 +10,9 @@
     "start:web:forever": "forever dist",
     "prestart:web": "npm run -s build",
     "test:web": "eslint src",
-    "fix": "eslint --fix ./",
-    "lint:dev": "eslint ./",
-    "lint:prod": "eslint --rule \"\"no-console\": [\"error\"]\" ./",
+    "js:fix": "eslint --fix ./",
+    "js:lint:dev": "eslint ./",
+    "js:lint:prod": "eslint --rule \"\"no-console\": [\"error\"]\" ./",
     "test:all": "mocha --compilers js:babel-core/register \"./test/**/*.js\"",
     "snyk:test": "snyk test"
   },

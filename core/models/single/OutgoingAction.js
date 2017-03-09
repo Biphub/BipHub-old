@@ -4,13 +4,13 @@ import base from './base'
 const OutgoingAction = base.extend({
   tableName: 'outgoing_actions',
   hasTimestamps: true,
-  bip() {
-    return this.belongsTo('Bips')
+  api() {
+    return this.belongsTo('Apis')
   },
 }, {
-  registerOutgoingActions({ outgoingActions, bipId }) {
+  registerOutgoingActions({ outgoingActions, apiId }) {
     const forgedOutActions = outgoingActions.map((outgoingAction) => {
-      outgoingAction.bip_id = bipId
+      outgoingAction.api_id = apiId
       return this.create(outgoingAction, null)
     })
     Q.allSettled(forgedOutActions)

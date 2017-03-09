@@ -1,9 +1,9 @@
-import Bip from './Bip'
+import API from './API'
 import IncomingAction from './IncomingAction'
 import OutgoingAction from './OutgoingAction'
 
 export default {
-  Bip,
+  API,
   IncomingAction,
   OutgoingAction,
 }

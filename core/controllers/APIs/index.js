@@ -3,19 +3,19 @@ import config from '../../config'
 import single from '../../models/single'
 
 /**
- * Setup pubsub subscribers for communication with bips
+ * Setup pubsub subscribers for communication with APIs
  */
 const setup = () => {
-  pubsub.subscribe(config.get('actions:register_bip:event'), (payload) => {
+  pubsub.subscribe(config.get('actions:register_api:event'), (payload) => {
     // TODO: Implement schema validator
-    const bip = {
+    const api = {
       name: payload.name,
       description: payload.description,
     }
     const incomingActions = payload.incomingActions
     const outgoingActions = payload.outgoingActions
-    single.Bip.registerBip({ bip, incomingActions, outgoingActions }).then((result) => {
-      console.log('successfully registered a bip ', result.attributes.name)
+    single.API.registerAPI({ api, incomingActions, outgoingActions }).then((result) => {
+      console.log('successfully registered an API ', result.attributes.name)
     })
   })
 

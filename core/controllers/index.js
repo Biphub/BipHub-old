@@ -2,8 +2,8 @@ import SocketIO from 'socket.io'
 import api from './api'
 import html from './html'
 import webhook from './webhooks'
-import bips from './bips'
-import bipAdapter from '../adapter'
+import apis from './APIs'
+import apiAdapter from '../adapter'
 import pubsub from '../pubsub'
 
 /**
@@ -13,10 +13,10 @@ import pubsub from '../pubsub'
 const setup = (app) => {
 	// IO initialized
   const io = SocketIO(app.server)
-	// Pubsub used for communication with bips
+	// Pubsub used for communication with apis
   pubsub.initialize(io)
-	// Bip adapter loads and inits websocket client of all bips
-  bipAdapter.initialize(io)
+	// API adapter loads and inits websocket client of all APIs
+  apiAdapter.initialize(io)
 
 	// html router
   app.use('/', html())
@@ -27,8 +27,8 @@ const setup = (app) => {
 	// External webhook router
   app.use('/webhook', webhook())
 
-	// Bips actions controller
-  bips.setup()
+	// APIs actions controller
+  apis.setup()
 }
 
 export default setup
