@@ -6,7 +6,7 @@ import single from '../../models/single'
  * Setup pubsub subscribers for communication with Apps
  */
 const setup = () => {
-  pubsub.subscribe(config.get('actions:register_api:event'), (payload) => {
+  pubsub.subscribe(config.get('actions:register_app:event'), (payload) => {
     // TODO: Implement schema validator
     const app = {
       name: payload.name,

@@ -12,7 +12,7 @@ function init() {
   socket.on('discord:issueCreated', (payload) => {
     console.log('creating issue! ', payload)
   })
-  socket.emit('REGISTER_BIP', config)
+  socket.emit('REGISTER_APP', config)
 }
 
 export default {

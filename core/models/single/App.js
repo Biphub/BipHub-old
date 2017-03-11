@@ -22,6 +22,9 @@ const App = base.extend({
     foundApp.attributes.ative = false
     return this.update(foundApp.attributes)
   },
+  async listAll() {
+    return this.collection().fetch()
+  },
 })
 
 export default App

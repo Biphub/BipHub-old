@@ -1,7 +1,7 @@
 {
   "actions": {
-    "register_api": {
-      "event": "REGISTER_API"
+    "register_app": {
+      "event": "REGISTER_APP"
     },
     "ping": {
       "event": "PING"

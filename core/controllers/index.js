@@ -1,10 +1,13 @@
 import SocketIO from 'socket.io'
+import config from '../config'
 import api from './api'
 import html from './html'
 import webhook from './webhooks'
 import apps from './app'
 import apiAdapter from '../adapter'
 import pubsub from '../pubsub'
+
+const apiVersion = config.get('api:version')
 
 /**
  * Initialises routing and websocket portion of express
@@ -22,7 +25,7 @@ const setup = (app) => {
   app.use('/', html())
 
 	// api router
-  app.use('/api', api())
+  app.use(`/api/${apiVersion}`, api())
 
 	// External webhook router
   app.use('/webhook', webhook())

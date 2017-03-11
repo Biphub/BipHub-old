@@ -8,10 +8,13 @@
     "bodyLimit": "100kb",
     "corsHeaders": ["Link"]
   },
+  "api": {
+    "version": "1.0.0"
+  },
   "database": {
     "client": "sqlite3",
     "connection": {
-      "filename": "content/data/biphub-dev2.sqlite3"
+      "filename": "content/data/biphub-dev.sqlite3"
     },
     "debug": false
   }
