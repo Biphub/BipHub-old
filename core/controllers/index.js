@@ -2,7 +2,7 @@ import SocketIO from 'socket.io'
 import api from './api'
 import html from './html'
 import webhook from './webhooks'
-import apis from './APIs'
+import apps from './app'
 import apiAdapter from '../adapter'
 import pubsub from '../pubsub'
 
@@ -28,7 +28,7 @@ const setup = (app) => {
   app.use('/webhook', webhook())
 
 	// APIs actions controller
-  apis.setup()
+  apps.setup()
 }
 
 export default setup

@@ -1,9 +1,9 @@
-import API from './API'
+import App from './App'
 import IncomingAction from './IncomingAction'
 import OutgoingAction from './OutgoingAction'
 
 export default {
-  API,
+  App,
   IncomingAction,
   OutgoingAction,
 }

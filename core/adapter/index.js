@@ -1,8 +1,8 @@
-import apiLoader from './ApiLoader'
+import appLoader from './AppLoader'
 
 const initialize = (io) => {
   // Invokes init function of each api
-  apiLoader().initAPIs()
+  appLoader().initAPIs()
 
 	/**
    * Emits action to all sockets

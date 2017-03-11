@@ -15,8 +15,8 @@ function createTables() {
       table.boolean('active')
       table.timestamps()
     }),
-    knex.schema.dropTableIfExists('apis'),
-    knex.schema.createTableIfNotExists('apis', (table) => {
+    knex.schema.dropTableIfExists('apps'),
+    knex.schema.createTableIfNotExists('apps', (table) => {
       table.increments()
       table.string('name')
       table.string('description', 128)
