@@ -4,7 +4,7 @@ import single from '../../models/single'
 export default () => {
   const api = Router()
 
-  api.get('/app', (req, res) => {
+  api.get('/apps', (req, res) => {
     console.log('get all apps')
     single.App.listAll().then((result) => {
       res.json({ result })
