@@ -46,7 +46,15 @@ function init() {
 
   bot.on('message', (data) => {
 		// all ingoing events https://api.slack.com/rtm
-    console.log(data)
+    const { type } = data
+    switch (type) {
+      case 'message':
+        console.log(data)
+        break
+      default:
+        console.log('nothing!')
+        break
+    }
   })
 }
 
