@@ -9,6 +9,9 @@
     "corsHeaders": ["Link"]
   },
   "api": {
+    "title": "Bipflow API",
+    "description": "Bipflow API micro documentation",
+    "email": "visualbbasic@gmail.com",
     "version": "1.0.0"
   },
   "database": {
