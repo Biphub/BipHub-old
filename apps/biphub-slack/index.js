@@ -16,7 +16,6 @@ function init() {
     console.log('test pubsub from client')
   })
   // Register trello Bip
-  console.log('emitting! yo!')
   socket.emit('REGISTER_APP', config)
 
   // Slack test
