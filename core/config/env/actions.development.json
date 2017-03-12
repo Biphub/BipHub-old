@@ -3,6 +3,12 @@
     "register_app": {
       "event": "REGISTER_APP"
     },
+    "incoming_action": {
+      "event": "INCOMING_ACTION"
+    },
+    "hello": {
+      "event": "HELLO"
+    },
     "ping": {
       "event": "PING"
     }

@@ -19,6 +19,10 @@ const setup = () => {
     })
   })
 
+  pubsub.subscribe(config.get('actions:incoming_action:event'), (payload) => {
+    console.log('incoming action received! ', payload)
+  })
+
   pubsub.subscribe(config.get('actions:ping:event'), (payload) => {
     console.log('Ping from ', payload)
   })

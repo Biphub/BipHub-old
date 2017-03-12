@@ -15,6 +15,7 @@ function init() {
   socket.on('test', () => {
     console.log('test pubsub from client')
   })
+
   // Register trello Bip
   socket.emit('REGISTER_APP', config)
 
@@ -50,6 +51,7 @@ function init() {
     switch (type) {
       case 'message':
         console.log(data)
+        socket.emit('INCOMING_ACTION', data)
         break
       default:
         console.log('nothing!')
