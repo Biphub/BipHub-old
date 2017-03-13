@@ -7,6 +7,10 @@ import single from '../../models/single'
  * Setup pubsub subscribers for communication with Apps
  */
 const setup = () => {
+	/**
+   * Registers any apps.
+   * TODO: Check duplicates
+	 */
   pubsub.subscribe(config.get('actions:register_app:event'), ({ payload }) => {
     // TODO: Implement schema validator
     const app = {
@@ -33,10 +37,17 @@ const setup = () => {
     })
   })
 
+	/**
+   * Accepts any incoming actions from Apps
+	 */
   pubsub.subscribe(config.get('actions:incoming_action:event'), ({ payload, query }) => {
     console.log('incoming action received! from ', query.bipName, '  ', payload)
   })
 
+	/**
+   * Accepts pings
+   * TODO: Clarify what todo if ping constantly fails
+	 */
   pubsub.subscribe(config.get('actions:ping:event'), (payload) => {
     console.log('Ping from ', payload)
   })

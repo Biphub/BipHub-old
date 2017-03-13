@@ -25,9 +25,9 @@ function init() {
 
   bot.on('start', () => {
 		// more information about additional params https://api.slack.com/methods/chat.postMessage
-    const params = {
-      icon_emoji: ':cat:',
-    }
+		// const params = {
+    //  icon_emoji: ':cat:',
+		// }
 
 		// define channel, where bot exist. You can adjust it there https://my.slack.com/services
     // bot.postMessageToChannel('general', 'meow!', params)
