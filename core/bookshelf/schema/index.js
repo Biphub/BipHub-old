@@ -14,11 +14,14 @@ function createTables() {
       table.increments()
       table.boolean('active')
       table.timestamps()
+      table.integer('incoming_actions_id').references('bips.id')
+      table.integer('outgoing_actions_id').references('bips.id')
     }),
     knex.schema.dropTableIfExists('apps'),
     knex.schema.createTableIfNotExists('apps', (table) => {
       table.increments()
       table.string('name')
+      table.string('auth_type')
       table.string('description', 128)
       table.boolean('active')
       table.timestamps()
@@ -28,7 +31,7 @@ function createTables() {
       table.increments()
       table.string('type')
       table.string('endpoint')
-      table.string('action')
+      table.string('name')
       table.timestamps()
       table.integer('api_id').references('apis.id')
     }),

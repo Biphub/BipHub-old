@@ -3,13 +3,11 @@ import SlackBots from 'slackbots'
 import config from './config'
 
 function init() {
-  const socket = client('http://localhost:8080/')
+  const socket = client('http://localhost:8080/', { query: `bipName=${config.name}` })
   socket.on('connect', () => {
-    // console.log('trello connected')
   })
 
   socket.on('disconnect', () => {
-    // console.log('disconnected')
     // TODO: Implement reconnect
   })
   socket.on('test', () => {
@@ -32,17 +30,17 @@ function init() {
     }
 
 		// define channel, where bot exist. You can adjust it there https://my.slack.com/services
-    bot.postMessageToChannel('general', 'meow!', params)
+    // bot.postMessageToChannel('general', 'meow!', params)
 
 		// define existing username instead of 'user_name'
-    bot.postMessageToUser('visualbbasic', 'meow!', params)
+    // bot.postMessageToUser('visualbbasic', 'meow!', params)
 
 		// If you add a 'slackbot' property,
 		// you will post to another user's slackbot channel instead of a direct message
-    bot.postMessageToUser('user_name', 'meow!', { slackbot: true, icon_emoji: ':cat:' })
+    // bot.postMessageToUser('user_name', 'meow!', { slackbot: true, icon_emoji: ':cat:' })
 
 		// define private group instead of 'private_group', where bot exist
-    bot.postMessageToGroup('private_group', 'meow!', params)
+    // bot.postMessageToGroup('private_group', 'meow!', params)
   })
 
   bot.on('message', (data) => {
