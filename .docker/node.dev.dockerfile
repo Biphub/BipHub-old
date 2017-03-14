@@ -29,7 +29,7 @@ RUN npm install -g \
 RUN install-peerdeps --dev eslint-config-airbnb-base
 
 RUN npm cache clean
-RUN npm install --no-bin-links
+RUN npm install
 RUN npm uninstall sqlite3
 RUN npm cache clean
 RUN npm install sqlite3@3.1.4
