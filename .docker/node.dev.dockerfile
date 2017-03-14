@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:6
 MAINTAINER Jason Shin
 
 WORKDIR /home
@@ -18,12 +18,20 @@ RUN npm install -g \
     node-pre-gyp \
     babel-cli \
     nodemon \
-    better-npm-run
+    better-npm-run \
+    eslint \
+    eslint-config-airbnb-base \
+    install-peerdeps \
+    eslint-plugin-security \
+    mocha \
+    chai
+
+RUN install-peerdeps --dev eslint-config-airbnb-base
 
 RUN npm cache clean
 RUN npm install --no-bin-links
 RUN npm uninstall sqlite3
-RUN npm cache clean &&
+RUN npm cache clean
 RUN npm install sqlite3@3.1.4
 
 ENTRYPOINT ["npm", "run", "dev"]
