@@ -1,4 +1,5 @@
 import forOwn from 'lodash/forOwn'
+import get from 'lodash/get'
 import pubsub from '../../pubsub'
 import config from '../../config'
 import single from '../../models/single'
@@ -10,6 +11,7 @@ const setup = () => {
 	/**
    * Registers any apps.
    * TODO: Check duplicates
+   * TODO: Check that query contains requires data. query.bipName must be present
 	 */
   pubsub.subscribe(config.get('actions:register_app:event'), ({ payload }) => {
     // TODO: Implement schema validator
@@ -39,13 +41,23 @@ const setup = () => {
 
 	/**
    * Accepts any incoming actions from Apps
+   * All payload must be formatted as
+   * payload = {
+   *  payload // contains actual data
+   *  meta // contains meta data, incoming action name, app name
+   * }
+   *
+   * query: contains name of bip, retrieved from socket's query string
 	 */
   pubsub.subscribe(config.get('actions:incoming_action:event'), ({ payload, query }) => {
-    console.log('incoming action received! from ', query.bipName, '  ', payload)
+    const bipName = get(payload, 'bipName', null)
+    if (bipName) {
+      console.log('incoming action received! from ', query.bipName, '  ', payload)
+    }
   })
 
 	/**
-   * Accepts pings
+   * Accepts ping check
    * TODO: Clarify what todo if ping constantly fails
 	 */
   pubsub.subscribe(config.get('actions:ping:event'), (payload) => {

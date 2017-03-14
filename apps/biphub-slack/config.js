@@ -20,7 +20,7 @@ export default {
     emailDomainChanged: { type: 'webhook/ws', name: 'email_domain_changed' },
     emojiChanged: { type: 'webhook/ws', name: 'emoji_changed' },
     fileChange: { type: 'webhook/ws', name: 'file_change' },
-    message: { type: 'webhook/ws', name: 'message' },
+    message: { type: 'webhook/ws', name: 'message', conditions: ['matches', 'contains'] },
   },
   outgoingActions: [
 		{ name: 'createIssue' },

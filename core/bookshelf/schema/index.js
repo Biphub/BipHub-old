@@ -1,17 +1,19 @@
 import Q from 'q'
 import connection from '../db/connection'
+import root from '../../helpers/root'
 
 function createTables() {
   const { knex } = connection()
 
   // If schema is already built, do not build it again.
-  if (typeof global.schemaFinished !== 'undefined') { return false }
+  if (typeof root.schemaFinished !== 'undefined') { return false }
 
   // TODO: Implement migration
   Q.allSettled([
     knex.schema.dropTableIfExists('bips'),
     knex.schema.createTableIfNotExists('bips', (table) => {
       table.increments()
+      table.string('condition')
       table.boolean('active')
       table.timestamps()
       table.integer('incoming_actions_id').references('bips.id')
@@ -43,7 +45,7 @@ function createTables() {
       table.integer('api_id').references('apis.id')
     }),
   ])
-  global.schemaFinished = true
+  root.schemaFinished = true
   return true
 }
 

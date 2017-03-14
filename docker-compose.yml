@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  node:
+    container_name: biphub-dev
+    build:
+      context: .
+      dockerfile: .docker/node.dev.dockerfile
+    volumes:
+      - //c/Users/Shin/Desktop/Biphub/biphub-core:/home
+    ports:
+      - "3000:8080"

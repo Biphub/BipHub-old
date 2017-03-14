@@ -2,6 +2,9 @@ import client from 'socket.io-client'
 import SlackBots from 'slackbots'
 import config from './config'
 
+/**
+ * Initiates this App
+ */
 function init() {
   const socket = client('http://localhost:8080/', { query: `bipName=${config.name}` })
   socket.on('connect', () => {
@@ -46,16 +49,33 @@ function init() {
   bot.on('message', (data) => {
 		// all ingoing events https://api.slack.com/rtm
     const { type } = data
+    const payload = {}
     switch (type) {
       case 'message':
         console.log(data)
-        socket.emit('INCOMING_ACTION', data)
+        payload.event = 'INCOMING_ACTION'
+        payload.data = data
+        payload.meta = config.incomingActions.message
         break
       default:
         console.log('nothing!')
         break
     }
+    socket.emit(payload.event, formatPayload(payload.data, payload.meta))
   })
+}
+
+/**
+ * Formats payload
+ * @param payload
+ * @param meta
+ * @returns {{payload: *, meta: *}}
+ */
+function formatPayload(payload, meta) {
+  return {
+    payload,
+    meta,
+  }
 }
 
 const getConfig = () => config
