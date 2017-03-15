@@ -1,16 +1,16 @@
 import Knex from 'knex'
 import Bookshelf from 'bookshelf'
 import config from '../../config'
-
+import root from '../../helpers/root'
 
 const init = () => {
-  if (typeof global.bookshelf === 'undefined') {
-    global.knex = Knex(config.get('database'))
-    global.bookshelf = Bookshelf(global.knex)
+  if (typeof root.bookshelf === 'undefined') {
+    root.knex = Knex(config.get('database'))
+    root.bookshelf = Bookshelf(root.knex)
   }
   return {
-    knex: global.knex,
-    bookshelf: global.bookshelf,
+    knex: root.knex,
+    bookshelf: root.bookshelf,
   }
 }
 

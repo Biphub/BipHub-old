@@ -19,7 +19,10 @@ function initialize(io) {
     io.on('connection', (socket) => {
       forOwn(actions, (value) => {
         const { event } = value
-        socket.on(event, payload => events.emit(event, payload))
+        socket.on(event, (payload) => {
+          const { query } = socket.handshake
+          events.emit(event, { payload, query })
+        })
       })
     })
   }

@@ -54,10 +54,9 @@ controllers(app)
  * Start Express server.
  * TODO: Instead of callback try incorporating promises using bluebird.js
  */
-server.listen(app.get('port'), () => {
+server.listen(app.get('port'), '0.0.0.0', () => {
   console.log('%s App is running at http://localhost:%d in %s mode ', app.get('port'))
   console.log('  Press CTRL-C to stop\n')
 })
-
 
 export default app
