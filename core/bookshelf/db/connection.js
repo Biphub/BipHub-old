@@ -3,7 +3,6 @@ import Bookshelf from 'bookshelf'
 import config from '../../config'
 import root from '../../helpers/root'
 
-
 const init = () => {
   if (typeof root.bookshelf === 'undefined') {
     root.knex = Knex(config.get('database'))
