@@ -1,6 +1,7 @@
 import client from 'socket.io-client'
 import SlackBots from 'slackbots'
 import config from './config'
+import password from '../../.password/slack'
 
 /**
  * Initiates this App
@@ -22,7 +23,7 @@ function init() {
 
   // Slack test
   const bot = new SlackBots({
-    token: 'xoxb-153818245495-tokNO6F1RKrFj15IGXfZBnpQ',
+    token: password.token,
     name: 'biphubbot',
   })
 
