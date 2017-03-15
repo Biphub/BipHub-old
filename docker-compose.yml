@@ -2,11 +2,16 @@ version: '2'
 
 services:
   node:
+    image: core
     container_name: biphub-dev
+    environment:
+        NODE_ENV: development
     build:
       context: .
       dockerfile: .docker/node.dev.dockerfile
+    command: npm run dev
     volumes:
-      - //c/Users/Shin/Desktop/Biphub/biphub-core:/home
+      - .:/home
+      - /home/node_modules
     ports:
       - "3000:8080"

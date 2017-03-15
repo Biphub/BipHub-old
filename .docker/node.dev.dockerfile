@@ -1,9 +1,11 @@
 FROM node:6
 MAINTAINER Jason Shin
 
-WORKDIR /home
+ENV HOME=/home
 
-COPY . /home
+COPY package.json $HOME
+
+WORKDIR /home
 
 RUN apt-get update && apt-get install -y \
     sudo \
@@ -33,5 +35,6 @@ RUN npm install
 RUN npm uninstall sqlite3
 RUN npm cache clean
 RUN npm install sqlite3@3.1.4
+RUN npm install --only=dev
 
-ENTRYPOINT ["npm", "run", "dev"]
+COPY . $HOME
