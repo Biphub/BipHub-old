@@ -23,7 +23,7 @@ function init() {
 	})
 
 	discordClient.on('message', message => {
-	  console.log('discord new message ', message)
+	  console.log('discord new message ', message.type)
 		message.reply('pong')
 	})
 
