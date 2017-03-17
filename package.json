@@ -6,7 +6,7 @@
   "scripts": {
     "dev:local": "better-npm-run dev:local",
     "dev:docker": "better-npm-run dev:docker",
-    "build": "babel core -s -D -d dist/core --presets es2015,stage-0 && babel apps -s -D -d dist/apps --presets es2015,stage-0",
+    "build": "babel core -s -D -d dist/core && babel apps -s -D -d dist/apps",
     "start:web": "node dist",
     "start:web:forever": "forever dist",
     "prestart:web": "npm run -s build",
@@ -20,7 +20,7 @@
   },
   "betterScripts": {
     "dev:local": {
-      "command": "nodemon -w core -w apps --exec \"babel-node --presets es2015,es2017,stage-0\" core/index.js",
+      "command": "nodemon -w core -w apps --exec \"babel-node\" core/index.js",
       "env": {
         "NODE_ENV": "development"
       }
@@ -87,6 +87,7 @@
     "babel-preset-es2015-node5": "^1.2.0",
     "babel-preset-es2017": "^6.22.0",
     "babel-preset-stage-0": "^6.5.0",
+    "better-npm-run": "0.0.14",
     "chai": "^3.5.0",
     "eslint": "^3.17.1",
     "eslint-config-airbnb-base": "^11.1.1",

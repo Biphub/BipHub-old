@@ -1,7 +1,7 @@
 import Discord from 'discord.js'
 import client from 'socket.io-client'
 import config from './config'
-import password from '../../.password/discord'
+import password from '../.password/discord'
 
 function init() {
   const socket = client('http://localhost:8080/', { query: `bipName=${config.name}` })
@@ -24,7 +24,6 @@ function init() {
 
 	discordClient.on('message', message => {
 	  console.log('discord new message ', message.type)
-		message.reply('pong')
 	})
 
 	discordClient.login(password.token)
