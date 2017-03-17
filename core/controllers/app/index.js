@@ -50,8 +50,10 @@ const setup = () => {
    * query: contains name of bip, retrieved from socket's query string
 	 */
   pubsub.subscribe(config.get('actions:incoming_action:event'), ({ payload, query }) => {
-    const bipName = get(payload, 'bipName', null)
+    const bipName = get(query, 'bipName', null)
     if (bipName) {
+      // Using bipname and event name, search for a bip
+      // TODO: Implement seeding
       console.log('incoming action received! from ', query.bipName, '  ', payload)
     }
   })

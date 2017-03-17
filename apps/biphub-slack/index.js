@@ -51,10 +51,9 @@ function init() {
 		// all ingoing events https://api.slack.com/rtm
     const { type } = data
     const payload = {}
+    payload.event = 'INCOMING_ACTION'
     switch (type) {
       case 'message':
-        console.log(data)
-        payload.event = 'INCOMING_ACTION'
         payload.data = data
         payload.meta = config.incomingActions.message
         break

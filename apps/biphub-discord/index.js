@@ -16,17 +16,27 @@ function init() {
   })
   socket.emit('REGISTER_APP', config)
 
-	const discordClient = new Discord.Client()
+  const discordClient = new Discord.Client()
 
-	discordClient.on('ready', () => {
-		console.log('I am Discord and I am ready!')
-	})
+  discordClient.on('ready', () => {
+    console.log('I am Discord and I am ready!')
+  })
 
-	discordClient.on('message', message => {
-	  console.log('discord new message ', message.type)
-	})
+  discordClient.on('message', (message) => {
+    const payload = {}
+    payload.event = 'INCOMING_ACTION'
+    switch (message.type) {
+      case 'DEFAULT':
+        payload.data = message.content
+        payload.meta = config.incomingActions.message
+        break
+      default:
+    }
+    console.log('emitting new payload! ', payload)
+    socket.emit(payload.event, { data: payload.data, meta: payload.meta })
+  })
 
-	discordClient.login(password.token)
+  discordClient.login(password.token)
 }
 
 export default {
