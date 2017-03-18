@@ -61,21 +61,11 @@ function init() {
         console.log('nothing!')
         break
     }
-    socket.emit(payload.event, formatPayload(payload.data, payload.meta))
+    socket.emit(payload.event, {
+      data: payload.data,
+      meta: payload.meta,
+    })
   })
-}
-
-/**
- * Formats payload
- * @param payload
- * @param meta
- * @returns {{payload: *, meta: *}}
- */
-function formatPayload(payload, meta) {
-  return {
-    payload,
-    meta,
-  }
 }
 
 const getConfig = () => config

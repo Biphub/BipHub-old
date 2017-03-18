@@ -13,7 +13,7 @@ function createTables() {
     knex.schema.dropTableIfExists('bips'),
     knex.schema.createTableIfNotExists('bips', (table) => {
       table.increments()
-      table.string('condition')
+      table.string('conditions')  // JS array serialized into an array TODO: Find a better way
       table.boolean('active')
       table.timestamps()
       table.integer('incoming_actions_id').references('bips.id')
@@ -25,6 +25,7 @@ function createTables() {
       table.string('name')
       table.string('auth_type')
       table.string('description', 128)
+
       table.boolean('active')
       table.timestamps()
     }),
