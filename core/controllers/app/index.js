@@ -3,6 +3,7 @@ import get from 'lodash/get'
 import pubsub from '../../pubsub'
 import config from '../../config'
 import single from '../../models/single'
+import arrayHelper from '../../helpers/array'
 
 /**
  * Setup pubsub subscribers for communication with Apps
@@ -25,6 +26,9 @@ const setup = () => {
     // TODO: Think about refactoring this section. Does it belong to controllers?
     // Creates an array of incomingActions
     forOwn(payload.incomingActions, (val) => {
+      const conditions = arrayHelper.toString(val.conditions)
+      console.log('conditions ', conditions)
+      val.conditions = conditions
       incomingActions.push(val)
     })
 
