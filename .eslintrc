@@ -7,7 +7,8 @@
     "no-extra-semi": "error",
     "semi": ["error", "never"],
     "consistent-return": ["off"],
-    "no-console": ["off"]
+    "no-console": ["off"],
+    "import/no-unresolved": ["error", { "ignore": ["password$"] }]
   },
   "plugins": ["security"]
 }

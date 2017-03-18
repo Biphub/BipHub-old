@@ -8,7 +8,7 @@ const IncomingAction = base.extend({
     return this.belongsTo('Apis')
   },
 }, {
-  registerIncomingActions({ incomingActions, apiId }) {
+  createMany({ incomingActions, apiId }) {
     const forgedIncActions = incomingActions.map((incomingAction) => {
       incomingAction.api_id = apiId
       return this.create(incomingAction, null)

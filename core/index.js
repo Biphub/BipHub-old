@@ -3,7 +3,6 @@ import cors from 'cors'
 import express from 'express'
 import exphbs from 'express-handlebars'
 import http from 'http'
-import morgan from 'morgan'
 import path from 'path'
 import config from './config'
 import middleware from './middleware'
@@ -19,7 +18,6 @@ const hbs = exphbs({
   layoutsDir: viewPath,
   extname: '.hbs',
 })
-
 app.server = server
 
 // Express configuration
@@ -32,9 +30,6 @@ app.engine('html', hbs)
 
 // static files
 // app.use('/static', express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
-
-// logger
-app.use(morgan('dev'))
 
 // 3rd party middleware
 app.use(cors({

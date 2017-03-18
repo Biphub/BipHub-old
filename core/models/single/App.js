@@ -1,23 +1,43 @@
+import _ from 'lodash'
 import base from './base'
 import IncomingAction from './IncomingAction'
 import OutgoingAction from './OutgoingAction'
+import arrayHelper from '../../helpers/array'
 
 const App = base.extend({
   tableName: 'apps',
   hasTimestamps: true,
 }, {
-  async registerApp({ app, incomingActions, outgoingActions }) {
+  async createOne(data) {
+    const app = {
+      name: data.name,
+      description: data.description,
+    }
+    const incomingActions = []
+    const outgoingActions = []
+
+		// Creates an array of incomingActions
+    _.forOwn(data.incomingActions, (val) => {
+      val.conditions = arrayHelper.toString(val.conditions)
+      incomingActions.push(val)
+    })
+
+		// Creates an array of outgoingActions
+    _.forOwn(data.outgoingActions, (val) => {
+      outgoingActions.push(val)
+    })
+
     const savedApp = await this.create(app, null)
-    IncomingAction.registerIncomingActions({ incomingActions, apiId: savedApp.id })
-    OutgoingAction.registerOutgoingActions({ outgoingActions, apiId: savedApp.id })
+    IncomingAction.createMany({ incomingActions, apiId: savedApp.id })
+    OutgoingAction.createMany({ outgoingActions, apiId: savedApp.id })
     return savedApp
   },
-  async setAppActive(appId) {
+  async setActive(appId) {
     const foundApp = await this.findOne({ id: appId })
     foundApp.attributes.active = true
     return this.update(foundApp.attributes)
   },
-  async setAppInactive(appId) {
+  async setInactive(appId) {
     const foundApp = await this.findOne({ id: appId })
     foundApp.attributes.ative = false
     return this.update(foundApp.attributes)
