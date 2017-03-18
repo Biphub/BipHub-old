@@ -32,7 +32,6 @@ const setup = () => {
     forOwn(payload.outgoingActions, (val) => {
       outgoingActions.push(val)
     })
-
     // Register an app with incoming and outgoing actions
     single.App.registerApp({ app, incomingActions, outgoingActions }).then((result) => {
       console.log('successfully registered an App ', result.attributes.name)
