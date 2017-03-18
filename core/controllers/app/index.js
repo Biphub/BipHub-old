@@ -26,9 +26,7 @@ const setup = () => {
     // TODO: Think about refactoring this section. Does it belong to controllers?
     // Creates an array of incomingActions
     forOwn(payload.incomingActions, (val) => {
-      const conditions = arrayHelper.toString(val.conditions)
-      console.log('conditions ', conditions)
-      val.conditions = conditions
+      val.conditions = arrayHelper.toString(val.conditions)
       incomingActions.push(val)
     })
 

@@ -5,8 +5,8 @@
  */
 const toString = (array) => {
   if (typeof array !== 'undefined' && array !== null) {
-  	console.log('stringing')
-    return JSON.stringify(array)
+    const result = JSON.stringify(array)
+    return result
   }
   return null
 }
