@@ -17,6 +17,7 @@ function createTables() {
     knex.schema.createTableIfNotExists('bips', (table) => {
       table.increments()
       table.boolean('active')
+      table.string('incoming_action_condition')
       table.timestamps()
       table.integer('incoming_actions_id').references('bips.id')
       table.integer('outgoing_actions_id').references('bips.id')
