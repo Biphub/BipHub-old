@@ -1,6 +1,5 @@
 const path = require('path')
-// Update with your config settings.
-console.log('db file ', path.join(__dirname, '../../content/data/biphub-dev.sqlite3'))
+
 module.exports = {
 
   development: {

@@ -1,6 +1,4 @@
 import db from './db/connection'
-import schema from './schema'
-import seed from './seed'
 
 const connection = db(() => {
 

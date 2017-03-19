@@ -1,6 +1,6 @@
 const Q = require('q')
 
-exports.up = function (knex, Promise) {
+exports.up = function (knex) {
   return Q.allSettled([
     knex.schema.createTableIfNotExists('bips', (table) => {
       table.increments()
@@ -37,7 +37,7 @@ exports.up = function (knex, Promise) {
   ])
 }
 
-exports.down = function (knex, Promise) {
+exports.down = function (knex) {
   return Q.allSettled([
     knex.schema.dropTableIfExists('bips'),
     knex.schema.dropTableIfExists('apps'),
