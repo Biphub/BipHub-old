@@ -7,7 +7,7 @@ import password from '../.password/slack.password'
  * Initiates this App
  */
 function init() {
-  const socket = client('http://localhost:8080/', { query: `bipName=${config.name}` })
+  const socket = client('http://localhost:8080/', { query: `appName=${config.name}` })
   socket.on('connect', () => {
   })
 

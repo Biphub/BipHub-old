@@ -4,7 +4,7 @@ import config from './config'
 import password from '../.password/discord.password'
 
 function init() {
-  const socket = client('http://localhost:8080/', { query: `bipName=${config.name}` })
+  const socket = client('http://localhost:8080/', { query: `appName=${config.name}` })
   socket.on('connect', () => {
   })
   socket.on('testEvent', () => {

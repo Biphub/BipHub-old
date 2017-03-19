@@ -7,6 +7,7 @@ module.exports = {
     connection: {
       filename: path.join(__dirname, '../../content/data/biphub-dev.sqlite3'),
     },
+    debug: false,
   },
 
   staging: {
@@ -41,5 +42,4 @@ module.exports = {
     },
   },
   debug: false,
-  directory: path.join(__dirname, 'migrations'),
 }

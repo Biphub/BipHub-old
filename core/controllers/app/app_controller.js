@@ -2,6 +2,7 @@ import _ from 'lodash'
 import pubsub from '../../pubsub'
 import config from '../../config'
 import single from '../../models/single'
+import appFactory from '../../factory/app_factory'
 
 /**
  * Setup pubsub subscribers for communication with Apps
@@ -31,11 +32,18 @@ const setup = () => {
 	 * query: contains name of bip, retrieved from socket's query string
 	 */
   pubsub.subscribe(config.get('actions:incoming_action:event'), ({ payload, query }) => {
-    const bipName = _.get(query, 'bipName', null)
-    if (bipName) {
-			// Using bipname and event name, search for a bip
-			// TODO: Implement seeding
-      console.log('incoming action received! from ', query.bipName, '  ', payload)
+    const appName = _.get(query, 'appName', null)
+
+    if (appName) {
+      // Search an app in DB using app name
+			// Search an associated incoming action using the app id
+			// Search for bips using incoming action id
+			// Broadcast condition check to incoming actions
+			// Receive condition pass or fail
+			// If passed, get bip's outgoing action id
+      appFactory.searchBips({ appName, meta: payload.meta })
+				.then(() => {
+})
     }
   })
 
