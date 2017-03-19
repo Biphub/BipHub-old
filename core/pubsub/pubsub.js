@@ -1,5 +1,5 @@
 import Events from 'events'
-import forOwn from 'lodash/forOwn'
+import _ from 'lodash'
 import config from '../config'
 import root from '../helpers/root'
 
@@ -17,7 +17,7 @@ function initialize(io) {
     root.events = events
     root.io = io
     io.on('connection', (socket) => {
-      forOwn(actions, (value) => {
+      _.forOwn(actions, (value) => {
         const { event } = value
         socket.on(event, (payload) => {
           const { query } = socket.handshake

@@ -1,5 +1,5 @@
+import _ from 'lodash'
 import requireAll from 'require-all'
-import forOwn from 'lodash/forOwn'
 import config from '../../config'
 
 const loader = () => {
@@ -14,7 +14,7 @@ const loader = () => {
       rawAPIs = requireAll(`${__dirname}/../../../apps`)
     }
     const APIs = []
-    forOwn(rawAPIs, (value, key) => {
+    _.forOwn(rawAPIs, (value, key) => {
       APIs.push(rawAPIs[key].index.default)
     })
     return APIs

@@ -3,9 +3,25 @@ import Bookshelf from 'bookshelf'
 import config from '../../config'
 import root from '../../helpers/root'
 
-const init = () => {
+const init = (seed) => {
   if (typeof root.bookshelf === 'undefined') {
-    root.knex = Knex(config.get('database'))
+    // Runs seed after creating DB tables
+    const afterCreate = () => {
+      if (config.getEnv(true) === 'dev') {
+        seed()
+      }
+    }
+    // Builds database config
+    const databaseConfig = Object.assign(
+      config.get('database'),
+      {
+        pool: {
+          afterCreate,
+        },
+      },
+    )
+    console.log('db config ', databaseConfig)
+    root.knex = Knex(databaseConfig)
     root.bookshelf = Bookshelf(root.knex)
   }
   return {
