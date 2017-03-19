@@ -16,7 +16,9 @@
     "js:lint:prod": "eslint --rule \"\"no-console\": [\"error\"]\" ./",
     "test:all": "mocha --compilers js:babel-core/register \"./test/**/*.js\"",
     "snyk:test": "snyk test",
-    "sqlite3:fix": "npm uninstall sqlite3 && npm cache clean && npm install sqlite3@3.1.4"
+    "sqlite3:fix": "npm uninstall sqlite3 && npm cache clean && npm install sqlite3@3.1.4",
+    "knex:seed": "knex seed:run --knexfile=./core/bookshelf/knexfile.js",
+    "knex:migrate": "knex migrate:latest --knexfile=./core/bookshelf/knexfile.js"
   },
   "betterScripts": {
     "dev:local": {

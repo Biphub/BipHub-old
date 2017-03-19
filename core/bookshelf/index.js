@@ -1,8 +1,6 @@
 import db from './db/connection'
 
-const connection = db(() => {
-
-})
+const connection = db()
 // schema.createTables(connection)
 
 /*

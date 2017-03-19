@@ -1,12 +1,12 @@
+const Q = require('q')
+const appFixture = require('./fixtures/apps_fixture')
+const bipFixture = require('./fixtures/bips_fixture')
 
 exports.seed = function (knex) {
-  // Deletes ALL existing entries
-  return knex('table_name').del()
-    .then(() =>
-      // Inserts seed entries
-       knex('table_name').insert([
-        { id: 1, colName: 'rowValue1' },
-        { id: 2, colName: 'rowValue2' },
-        { id: 3, colName: 'rowValue3' },
-       ]))
+  return Q.allSettled([
+    knex('apps').del()
+      .then(() => knex('apps').insert(appFixture)),
+    knex('bips').del()
+      .then(() => knex('bips').insert(bipFixture)),
+  ])
 }
