@@ -7,6 +7,7 @@ const seedConfig = { directory: path.join(__dirname, 'seeds') }
 const connection = db()
 const { knex, bookshelf } = connection
 
+// NOTE: use ES5 syntax until you find out how to run knex-cli using ES6 syntax
 knex.migrate.latest(migrationConfig)
 	.then(() => knex.seed.run(seedConfig))
 	.then(() => console.log('migration complete2!'))
