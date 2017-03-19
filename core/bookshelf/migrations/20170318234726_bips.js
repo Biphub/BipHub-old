@@ -26,13 +26,13 @@ exports.up = function (knex) {
       table.string('conditions')  // JS array serialized into an array TODO: Find a better way
       table.string('name')
       table.timestamps()
-      table.integer('api_id').references('apis.id')
+      table.integer('app_id').references('apps.id')
     }),
     knex.schema.createTableIfNotExists('outgoing_actions', (table) => {
       table.increments()
       table.string('name')
       table.timestamps()
-      table.integer('api_id').references('apis.id')
+      table.integer('app_id').references('apps.id')
     }),
   ])
 }
