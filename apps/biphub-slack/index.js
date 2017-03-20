@@ -58,7 +58,7 @@ function init() {
         payload.meta = config.incomingActions.message
         break
       default:
-        console.log('nothing!')
+        console.log('INFO: Slack ping!')
         break
     }
     socket.emit(payload.event, {

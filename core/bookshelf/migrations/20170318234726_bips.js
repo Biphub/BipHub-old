@@ -5,8 +5,8 @@ exports.up = function (knex) {
     knex.schema.createTableIfNotExists('bips', (table) => {
       table.increments()
       table.boolean('active')
-      table.string('incoming_action_condition')
       table.timestamps()
+      table.integer('incoming_action_condition_id').references('incoming_action_conditions.id')
       table.integer('incoming_actions_id').references('bips.id')
       table.integer('outgoing_actions_id').references('bips.id')
     }),
@@ -15,7 +15,6 @@ exports.up = function (knex) {
       table.string('name')
       table.string('auth_type')
       table.string('description', 128)
-
       table.boolean('active')
       table.timestamps()
     }),
@@ -34,6 +33,13 @@ exports.up = function (knex) {
       table.timestamps()
       table.integer('app_id').references('apps.id')
     }),
+    knex.schema.createTableIfNotExists('incoming_action_conditions', (table) => {
+      table.increments()
+      table.boolean('active')
+      table.string('condition_payload')
+      table.timestamps()
+      table.integer('bip_id').references('bips.id')
+    }),
   ])
 }
 
@@ -43,5 +49,6 @@ exports.down = function (knex) {
     knex.schema.dropTableIfExists('apps'),
     knex.schema.dropTableIfExists('incoming_actions'),
     knex.schema.dropTableIfExists('outgoing_actions'),
+    knex.schema.dropTableIfExists('incoming_action_condition'),
   ])
 }

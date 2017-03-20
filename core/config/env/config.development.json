@@ -19,6 +19,6 @@
     "connection": {
       "filename": "content/data/biphub-dev.sqlite3"
     },
-    "debug": true
+    "debug": false
   }
 }
