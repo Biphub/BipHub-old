@@ -8,24 +8,41 @@ import password from '../.password/slack.password'
  */
 function init() {
   const socket = client('http://localhost:8080/', { query: `appName=${config.name}` })
+  const bot = new SlackBots({
+    token: password.token,
+    name: 'biphubbot',
+  })
+
   socket.on('connect', () => {
+    console.log('INFO: Slack app connected')
+    bot.on('message', (data) => {
+			// all ingoing events https://api.slack.com/rtm
+      const { type } = data
+      const payload = {}
+      payload.event = 'INCOMING_ACTION'
+      switch (type) {
+        case 'message':
+          payload.data = data
+          payload.meta = config.incomingActions.message
+          break
+        default:
+          console.log('INFO: Slack ping!')
+          break
+      }
+      socket.emit(payload.event, {
+        data: payload.data,
+        meta: payload.meta,
+      })
+    })
   })
 
   socket.on('disconnect', () => {
     // TODO: Implement reconnect
   })
-  socket.on('test', () => {
-    console.log('test pubsub from client')
-  })
 
   // Register trello Bip
   socket.emit('REGISTER_APP', config)
 
-  // Slack test
-  const bot = new SlackBots({
-    token: password.token,
-    name: 'biphubbot',
-  })
 
   bot.on('start', () => {
 		// more information about additional params https://api.slack.com/methods/chat.postMessage
@@ -45,26 +62,6 @@ function init() {
 
 		// define private group instead of 'private_group', where bot exist
     // bot.postMessageToGroup('private_group', 'meow!', params)
-  })
-
-  bot.on('message', (data) => {
-		// all ingoing events https://api.slack.com/rtm
-    const { type } = data
-    const payload = {}
-    payload.event = 'INCOMING_ACTION'
-    switch (type) {
-      case 'message':
-        payload.data = data
-        payload.meta = config.incomingActions.message
-        break
-      default:
-        console.log('INFO: Slack ping!')
-        break
-    }
-    socket.emit(payload.event, {
-      data: payload.data,
-      meta: payload.meta,
-    })
   })
 }
 

@@ -27,18 +27,19 @@ exports.up = function (knex) {
       table.timestamps()
       table.integer('app_id').references('apps.id')
     }),
+    knex.schema.createTableIfNotExists('incoming_action_conditions', (table) => {
+      table.increments()
+      table.boolean('active')
+      table.string('name')
+      table.string('condition_payload')
+      table.timestamps()
+      table.integer('bip_id').references('bips.id')
+    }),
     knex.schema.createTableIfNotExists('outgoing_actions', (table) => {
       table.increments()
       table.string('name')
       table.timestamps()
       table.integer('app_id').references('apps.id')
-    }),
-    knex.schema.createTableIfNotExists('incoming_action_conditions', (table) => {
-      table.increments()
-      table.boolean('active')
-      table.string('condition_payload')
-      table.timestamps()
-      table.integer('bip_id').references('bips.id')
     }),
   ])
 }
