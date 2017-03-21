@@ -61,6 +61,7 @@ async function checkIncomingActionCondition({
     const incActionAttr = incomingAction.attributes
     const incActionCondAttr = incomingActionCondition.attributes
 
+    // TODO: subscribe to mesasgeName_result
     broadCastConditionCheck({
       appName: appAttr.name,
       incActionName: incActionAttr.name,
