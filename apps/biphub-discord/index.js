@@ -37,6 +37,11 @@ function init() {
   })
 
   discordClient.login(password.token)
+
+  // Incoming action conditions check
+  socket.on('biphub-discord_message_contains', (payload) => {
+    console.log('INFO: discord checking condition ', payload)
+  })
 }
 
 export default {

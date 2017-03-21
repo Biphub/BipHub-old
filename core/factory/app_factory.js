@@ -53,7 +53,7 @@ async function checkIncomingActionCondition({ app, incomingAction, bipEntity }) 
     const appAttr = app.attributes
     const incActionAttr = incomingAction.attributes
     const incActionCondAttr = incomingActionCondition.attributes
-
+    console.log('condtion attr ', incActionCondAttr)
     broadCastConditionCheck({
       appName: appAttr.name,
       incActionName: incActionAttr.name,
