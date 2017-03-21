@@ -28,12 +28,16 @@ async function searchBipAssociates({ appName, meta }) {
  * @param incActionName
  * @param conditionName
  * @param payload
+ * @param condition
  */
-function broadCastConditionCheck({ appName, incActionName, conditionName, payload }) {
+function broadCastConditionCheck({
+  appName, incActionName, conditionName, payload, condition,
+}) {
   const messageName = `${appName}_${incActionName}_${conditionName}`
-  console.log('message name ', messageName)
+
   pubsub.publish(messageName, {
     payload,
+    condition,
   })
 }
 
@@ -43,9 +47,12 @@ function broadCastConditionCheck({ appName, incActionName, conditionName, payloa
  * @param app
  * @param incomingAction
  * @param bipEntity
+ * @param incoming_action_payload
  * @returns {Promise.<void>}
  */
-async function checkIncomingActionCondition({ app, incomingAction, bipEntity }) {
+async function checkIncomingActionCondition({
+  app, incomingAction, bipEntity, incoming_action_payload,
+}) {
   if (bipEntity && !_.isEmpty(bipEntity)) {
     const incomingActionCondition = await single.IncomingActionConditions.findOne({
       id: bipEntity.attributes.incoming_action_condition_id,
@@ -53,37 +60,41 @@ async function checkIncomingActionCondition({ app, incomingAction, bipEntity }) 
     const appAttr = app.attributes
     const incActionAttr = incomingAction.attributes
     const incActionCondAttr = incomingActionCondition.attributes
-    console.log('condtion attr ', incActionCondAttr)
+
     broadCastConditionCheck({
       appName: appAttr.name,
       incActionName: incActionAttr.name,
       conditionName: incActionCondAttr.name,
+      payload: incoming_action_payload,
       condition: incActionCondAttr.condition_payload,
     })
   }
 }
 
 /**
- * Bip (Verb) action
  * @param appName
- * @param incoming_action_payload_meta
+ * @param incoming_action_payload
  * @returns {Promise.<void>}
  */
 async function bip({
   appName,
-  incoming_action_payload_meta,
+  incoming_action_payload,
 }) {
-  if (appName && !_.isEmpty(incoming_action_payload_meta)) {
+  if (appName && !_.isEmpty(incoming_action_payload)) {
 		// Retrieves app, incoming actions, bips from appname and payload meta
     const {
       app,
       incomingAction,
       bips,
-    } = await searchBipAssociates({ appName, meta: incoming_action_payload_meta })
+    } = await searchBipAssociates({ appName, meta: incoming_action_payload.meta })
 
     _.forEach(bips, (bipEntity) => {
       // Incoming action condition check broadcast = appname_incomingActionName_conditionName
-      checkIncomingActionCondition({ app, incomingAction, bipEntity }).then(() => {
+      // Checks incoming action condition of each bip (one payload meta + app can be associated with
+      // multiple incoming action condition)
+      checkIncomingActionCondition({
+        app, incomingAction, bipEntity, incoming_action_payload,
+      }).then(() => {
         console.log('bip id ', bipEntity.id, ' has check condition')
       })
     })

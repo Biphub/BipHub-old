@@ -30,6 +30,7 @@ function initialize(io) {
 
 const publish = (action, data) => {
   const { io } = root
+  console.log('publishing something ', data)
   if (io) {
     io.emit(action, data)
   }

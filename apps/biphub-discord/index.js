@@ -14,6 +14,7 @@ function init() {
   socket.on('discord:issueCreated', (payload) => {
     console.log('creating issue! ', payload)
   })
+  // Request for App registration
   socket.emit('REGISTER_APP', config)
 
   const discordClient = new Discord.Client()
@@ -39,8 +40,16 @@ function init() {
   discordClient.login(password.token)
 
   // Incoming action conditions check
-  socket.on('biphub-discord_message_contains', (payload) => {
-    console.log('INFO: discord checking condition ', payload)
+  const conditionMessageName = `${config.name}_message_contains`
+  socket.on(conditionMessageName, ({ payload, condition }) => {
+    console.log('INFO: discord message contains check ', condition)
+    const parsed = JSON.parse(condition)
+    if (parsed && payload.data.includes(parsed.subject)) {
+      console.log('INFO: discord passed contains test! ', payload.data, '  ', condition)
+      socket.emit(`${conditionMessageName}_result`, true)
+    } else {
+      console.log('WARN: discord failed contains test! ', payload.data, '  ', condition)
+    }
   })
 }
 

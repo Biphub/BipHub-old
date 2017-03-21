@@ -44,7 +44,7 @@ const setup = () => {
       /* appFactory.searchBips({ appName, meta: payload.meta })
 				.then(() => {
 				})*/
-      appFactory.bip({ appName, incoming_action_payload_meta: payload.meta })
+      appFactory.bip({ appName, incoming_action_payload: payload })
     }
   })
 
