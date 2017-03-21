@@ -41,7 +41,7 @@ const setup = () => {
 			// Broadcast condition check to incoming actions
 			// Receive condition pass or fail
 			// If passed, get bip's outgoing action id
-      /*appFactory.searchBips({ appName, meta: payload.meta })
+      /* appFactory.searchBips({ appName, meta: payload.meta })
 				.then(() => {
 				})*/
       appFactory.bip({ appName, incoming_action_payload_meta: payload.meta })
