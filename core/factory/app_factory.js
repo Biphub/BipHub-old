@@ -23,25 +23,6 @@ async function searchBipAssociates({ appName, meta }) {
 }
 
 /**
- * Broadcasts actual condition check to apps
- * @param appName
- * @param incActionName
- * @param conditionName
- * @param payload
- * @param condition
- */
-function broadCastConditionCheck({
-  appName, incActionName, conditionName, payload, condition,
-}) {
-  const messageName = `${appName}_${incActionName}_${conditionName}`
-
-  pubsub.publish(messageName, {
-    payload,
-    condition,
-  })
-}
-
-/**
  * Check incoming action's conditions by broadcasting.
  * TODO: Put rules in the documentation: only use attributes in functions that actually use them
  * @param app
@@ -60,14 +41,21 @@ async function checkIncomingActionCondition({
     const appAttr = app.attributes
     const incActionAttr = incomingAction.attributes
     const incActionCondAttr = incomingActionCondition.attributes
+    const appName = appAttr.name
+    const incActionName = incActionAttr.name
+    const conditionName = incActionCondAttr.name
+    const condition = incActionCondAttr.condition_payload
+    const messageName = `${appName}_${incActionName}_${conditionName}`
+    const messageResult = `${messageName}_result`
 
     // TODO: subscribe to mesasgeName_result
-    broadCastConditionCheck({
-      appName: appAttr.name,
-      incActionName: incActionAttr.name,
-      conditionName: incActionCondAttr.name,
+    pubsub.publish(messageName, {
       payload: incoming_action_payload,
-      condition: incActionCondAttr.condition_payload,
+      condition,
+    })
+    // We only want to register it once per same incoming action condition
+    pubsub.subscribe(messageResult, (result) => {
+      console.log('message result ', result)
     })
   }
 }
