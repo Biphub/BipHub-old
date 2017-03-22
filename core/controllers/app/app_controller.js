@@ -31,7 +31,7 @@ const setup = () => {
 	 *
 	 * query: contains name of bip, retrieved from socket's query string
 	 */
-  pubsub.subscribe(config.get('actions:incoming_action:event'), ({ payload, query }) => {
+  pubsub.subscribe(config.get('actions:incoming_action:event'), ({ payload, query, socket }) => {
     const appName = _.get(query, 'appName', null)
 
     if (appName) {
@@ -44,7 +44,7 @@ const setup = () => {
       /* appFactory.searchBips({ appName, meta: payload.meta })
 				.then(() => {
 				})*/
-      appFactory.bip({ appName, incoming_action_payload: payload })
+      appFactory.bip({ appName, incoming_action_payload: payload, socket })
     }
   })
 

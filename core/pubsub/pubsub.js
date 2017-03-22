@@ -21,18 +21,20 @@ function initialize(io) {
         const { event } = value
         socket.on(event, (payload) => {
           const { query } = socket.handshake
-          events.emit(event, { payload, query })
+          events.emit(event, { payload, query, socket })
         })
       })
     })
   }
 }
 
-const publish = (action, data) => {
+const publish = ({ action, data, socket, callback }) => {
   const { io } = root
   console.log('publishing something ', data)
-  if (io) {
-    io.emit(action, data)
+  if (io && !socket) {
+    io.emit(action, data, callback)
+  } else {
+    socket.emit(action, data, callback)
   }
 }
 

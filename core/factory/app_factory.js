@@ -32,7 +32,7 @@ async function searchBipAssociates({ appName, meta }) {
  * @returns {Promise.<void>}
  */
 async function checkIncomingActionCondition({
-  app, incomingAction, bipEntity, incoming_action_payload,
+  app, incomingAction, bipEntity, incoming_action_payload, socket,
 }) {
   if (bipEntity && !_.isEmpty(bipEntity)) {
     const incomingActionCondition = await single.IncomingActionConditions.findOne({
@@ -46,16 +46,18 @@ async function checkIncomingActionCondition({
     const conditionName = incActionCondAttr.name
     const condition = incActionCondAttr.condition_payload
     const messageName = `${appName}_${incActionName}_${conditionName}`
-    const messageResult = `${messageName}_result`
 
     // TODO: subscribe to mesasgeName_result
-    pubsub.publish(messageName, {
-      payload: incoming_action_payload,
-      condition,
-    })
-    // We only want to register it once per same incoming action condition
-    pubsub.subscribe(messageResult, (result) => {
-      console.log('message result ', result)
+    pubsub.publish({
+      action: messageName,
+      data: {
+        payload: incoming_action_payload,
+        condition,
+      },
+      callback(data) {
+        console.log('INFO: app factory received reply for condition check ', data)
+      },
+      socket,
     })
   }
 }
@@ -68,6 +70,7 @@ async function checkIncomingActionCondition({
 async function bip({
   appName,
   incoming_action_payload,
+	socket,
 }) {
   if (appName && !_.isEmpty(incoming_action_payload)) {
 		// Retrieves app, incoming actions, bips from appname and payload meta
@@ -82,7 +85,7 @@ async function bip({
       // Checks incoming action condition of each bip (one payload meta + app can be associated with
       // multiple incoming action condition)
       checkIncomingActionCondition({
-        app, incomingAction, bipEntity, incoming_action_payload,
+        app, incomingAction, bipEntity, incoming_action_payload, socket,
       }).then(() => {
         console.log('bip id ', bipEntity.id, ' has check condition')
       })

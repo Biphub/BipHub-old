@@ -42,12 +42,13 @@ function init() {
   // Incoming action conditions check
   // 1. message contains
   const conditionMessageName = `${config.name}_message_contains`
-  socket.on(conditionMessageName, ({ payload, condition }) => {
+  socket.on(conditionMessageName, ({ payload, condition }, reply) => {
     console.log('INFO: discord message contains check ', condition)
     const parsed = JSON.parse(condition)
     if (parsed && payload.data.includes(parsed.subject)) {
       console.log('INFO: discord passed contains test! ', payload.data, '  ', condition)
-      socket.emit(`${conditionMessageName}_result`, 'testing')
+      //socket.emit(`${conditionMessageName}_result`, 'testing')
+			reply('testing reply')
     } else {
       console.log('WARN: discord failed contains test! ', payload.data, '  ', condition)
     }

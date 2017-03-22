@@ -21,7 +21,7 @@ export default () => {
     incomingAction.findByEndPoint(endpoint, action)
     .then(() => {
       const actionRoute = `${endpoint}:${action}`
-      pubsub.publish(actionRoute, body)
+      pubsub.publish({ action: ctionRoute, data: body })
       res.json({ result: true })
     })
     .catch(() => {
