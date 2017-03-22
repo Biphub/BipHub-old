@@ -49,6 +49,7 @@ async function checkIncomingActionCondition({
 
     // TODO: subscribe to mesasgeName_result
     pubsub.publish({
+      socket,
       action: messageName,
       data: {
         payload: incoming_action_payload,
@@ -57,7 +58,6 @@ async function checkIncomingActionCondition({
       callback(data) {
         console.log('INFO: app factory received reply for condition check ', data)
       },
-      socket,
     })
   }
 }
