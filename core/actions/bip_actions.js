@@ -39,6 +39,7 @@ async function checkIncomingActionCondition({
     const incomingActionCondition = await single.IncomingActionConditions.findOne({
       id: bipEntity.attributes.incoming_action_condition_id,
     })
+    // TODO: Refactor below code
     const appAttr = app.attributes
     const incActionAttr = incomingAction.attributes
     const incActionCondAttr = incomingActionCondition.attributes
