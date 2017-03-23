@@ -48,20 +48,18 @@ async function checkIncomingActionCondition({
     const conditionName = incActionCondAttr.name
     const condition = incActionCondAttr.condition_payload
     const messageName = `${appName}_${incActionName}_${conditionName}`
-
-    pubsub.publish({
+    const result = await pubsub.publish({
       socket,
       action: messageName,
       data: {
         payload: incomingActionPayload,
         condition,
       },
-      callback(data) {
-        console.log('INFO: app factory received reply for condition check ', data)
-      },
     })
+    return result
   }
 }
+
 
 /**
  *
@@ -88,8 +86,12 @@ async function bip({
       // multiple incoming action condition)
       checkIncomingActionCondition({
         app, incomingAction, bipEntity, incomingActionPayload, socket,
-      }).then(() => {
-        console.log('INFO: bip id ', bipEntity.id, ' has check condition')
+      }).then((result) => {
+        if (result) {
+          console.log('INFO: Bip passed test ', result)
+        } else {
+          console.log('INFO: Bip failed test ', result)
+        }
       })
     })
   }

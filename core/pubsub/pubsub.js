@@ -28,14 +28,14 @@ function initialize(io) {
   }
 }
 
-const publish = ({ action, data, socket, callback }) => {
+const publish = ({ action, data, socket }) => new Promise((resolve, reject) => {
   const { io } = root
   if (io && !socket) {
-    io.emit(action, data, callback)
+    io.emit(action, data, result => resolve(result))
   } else {
-    socket.emit(action, data, callback)
+    socket.emit(action, data, result => resolve(result))
   }
-}
+})
 
 const subscribe = (action, callback) => {
   events.on(action, callback)

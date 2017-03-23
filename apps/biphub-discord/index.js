@@ -48,9 +48,10 @@ function init() {
     const parsed = JSON.parse(condition)
     if (parsed && payload && payload.data.includes(parsed.subject)) {
       console.log('INFO: discord passed contains test! ', payload.data, '  ', condition)
-      reply('testing reply')
+      reply(true)
     } else {
       console.log('WARN: discord failed contains test!')
+      reply(false)
     }
   })
 
