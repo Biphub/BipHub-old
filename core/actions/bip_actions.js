@@ -41,14 +41,23 @@ async function checkIncomingActionCondition({
   }
 }
 
+/**
+ * Forwarding bips to connected apps
+ * @param bipEntity
+ * @param data
+ * @returns {Promise.<void>}
+ */
 async function forwardBip({ bipEntity, data }) {
   if (!_.isEmpty(bipEntity)) {
     const bipAttr = bipEntity.attributes
-    const outgoingAction = (await single.OutgoingAction.findOne({ id: bipAttr.outgoing_actions_id })).attributes
-    const app = (await single.App.findOne({ id: outgoingAction.app_id })).attributes
+    const outgoingAction = await single.OutgoingAction.findOne({ id: bipAttr.outgoing_actions_id })
+    const outgoingAttr = outgoingAction.attributes
+    const app = await single.App.findOne({ id: outgoingAttr.app_id })
+    const appAttr = app.attributes
+
     console.log('INFO forwarding bip to outgoing action ', outgoingAction.id)
     pubsub.publish({
-      action: `${app.name}_${outgoingAction.name}`,
+      action: `${appAttr.name}_${outgoingAttr.name}`,
       data,
     })
   }
@@ -74,15 +83,13 @@ async function bip({
     const bips = (await single.Bip.findAll({ incoming_actions_id: incomingAction.id })).models
     console.log('outgoing action meta ', meta)
     _.forEach(bips, (bipEntity) => {
-      // Incoming action condition check broadcast = appname_incomingActionName_conditionName
-      // Checks incoming action condition of each bip (one payload meta + app can be associated with
-      // multiple incoming action condition)
       checkIncomingActionCondition({
         app, incomingAction, bipEntity, incomingActionPayload, socket,
       }).then((result) => {
         if (result) {
-          forwardBip({ bipEntity }).then()
-          // console.log('INFO: Bip passed test ', result, '  ', bipEntity, incomingActionPayload)
+          // TODO: Fix below incomingActionPayload.data so
+          // TODO: it doesn't always assume it passes .data payload.
+          forwardBip({ bipEntity, data: incomingActionPayload.data }).then()
         } else {
           console.log('INFO: Bip failed test ', result)
         }
