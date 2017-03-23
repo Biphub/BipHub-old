@@ -3,26 +3,6 @@ import single from '../models/single'
 import pubsub from '../pubsub'
 
 /**
- * Search associated entities to app and payload meta.
- * TODO: Replace below logic with join table
- * @param appName
- * @param meta
- * @returns {Promise.<{app: *, incomingAction: *, bips: (*|Array)}>}
- */
-async function searchBip({ appName, meta }) {
-  if (appName && !_.isEmpty(meta)) {
-    const app = await single.App.findOne({ name: appName })
-    const incomingAction = await single.IncomingAction.findOne({ app_id: app.id, name: meta.name })
-    const bips = await single.Bip.findAll({ incoming_actions_id: incomingAction.id })
-    return {
-      app,
-      incomingAction,
-      bips: bips.models,
-    }
-  }
-}
-
-/**
  * Check incoming action's conditions by broadcasting.
  * TODO: Put rules in the documentation: only use attributes in functions that actually use them
  * @param app
@@ -47,8 +27,9 @@ async function checkIncomingActionCondition({
     const incActionName = incActionAttr.name
     const conditionName = incActionCondAttr.name
     const condition = incActionCondAttr.condition_payload
+    // TODO: Move below code to helper
     const messageName = `${appName}_${incActionName}_${conditionName}`
-    const result = await pubsub.publish({
+    const conditionResult = await pubsub.publish({
       socket,
       action: messageName,
       data: {
@@ -56,10 +37,18 @@ async function checkIncomingActionCondition({
         condition,
       },
     })
-    return result
+    return conditionResult
   }
 }
 
+async function forwardBip({ bipEntity, data }) {
+  if(!_.isEmpty(bipEntity)) {
+    const bipAttr = bipEntity.attributes
+    const outgoingAction = await single.OutgoingAction.findOne({ id: bipAttr.outgoing_actions_id })
+    const app = await single.App.findOne({ id: outgoingAction.attributes.app_id })
+    pubsub.publish()
+	}
+}
 
 /**
  *
@@ -79,7 +68,7 @@ async function bip({
     const app = await single.App.findOne({ name: appName })
     const incomingAction = await single.IncomingAction.findOne({ app_id: app.id, name: meta.name })
     const bips = (await single.Bip.findAll({ incoming_actions_id: incomingAction.id })).models
-
+    console.log('outgoing action meta ', meta)
     _.forEach(bips, (bipEntity) => {
       // Incoming action condition check broadcast = appname_incomingActionName_conditionName
       // Checks incoming action condition of each bip (one payload meta + app can be associated with
@@ -88,7 +77,8 @@ async function bip({
         app, incomingAction, bipEntity, incomingActionPayload, socket,
       }).then((result) => {
         if (result) {
-          console.log('INFO: Bip passed test ', result)
+					forwardBip({ bipEntity }).then()
+          // console.log('INFO: Bip passed test ', result, '  ', bipEntity, incomingActionPayload)
         } else {
           console.log('INFO: Bip failed test ', result)
         }

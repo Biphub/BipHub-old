@@ -37,6 +37,7 @@ exports.up = function (knex) {
     }),
     knex.schema.createTableIfNotExists('outgoing_actions', (table) => {
       table.increments()
+      table.string('type')
       table.string('name')
       table.timestamps()
       table.integer('app_id').references('apps.id')

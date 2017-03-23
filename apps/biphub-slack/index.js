@@ -7,6 +7,7 @@ import password from '../.password/slack.password'
  * Initiates this App
  */
 function init() {
+  const appName = config.name
   const socket = client('http://localhost:8080/', { query: `appName=${config.name}` })
   const bot = new SlackBots({
     token: password.token,
@@ -42,6 +43,12 @@ function init() {
       data: payload.data,
       meta: payload.meta,
     })
+  })
+
+  // Slack outgoing actions
+  socket.on(`${appName}_${config.outgoingActions.postMessage.name}`, (data) => {
+    console.log('slack: post message received ', data)
+		bot.postMessage('general', 'testing!!')
   })
 }
 

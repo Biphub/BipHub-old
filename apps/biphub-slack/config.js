@@ -22,10 +22,9 @@ export default {
     fileChange: { type: 'webhook/ws', name: 'file_change' },
     message: { type: 'webhook/ws', name: 'message', conditions: ['matches', 'contains'] },
   },
-  outgoingActions: [
-		{ name: 'createIssue' },
-		{ name: 'deleteIssue' },
-  ],
+  outgoingActions: {
+    postMessage: { type: 'webhook/ws', name: 'post_message' },
+  },
   requirements: {
     auth: {
       method: 'token',

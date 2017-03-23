@@ -28,7 +28,13 @@ function initialize(io) {
   }
 }
 
-const publish = ({ action, data, socket }) => new Promise((resolve, reject) => {
+/**
+ * Promisified publish
+ * @param action
+ * @param data
+ * @param socket
+ */
+const publish = ({ action, data, socket }) => new Promise((resolve) => {
   const { io } = root
   if (io && !socket) {
     io.emit(action, data, result => resolve(result))
@@ -37,6 +43,11 @@ const publish = ({ action, data, socket }) => new Promise((resolve, reject) => {
   }
 })
 
+/**
+ * Promisified subscribe
+ * @param action
+ * @param callback
+ */
 const subscribe = (action, callback) => {
   events.on(action, callback)
 }
