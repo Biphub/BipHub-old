@@ -50,7 +50,7 @@ const setup = () => {
 	 * TODO: Clarify what todo if ping constantly fails
 	 */
   pubsub.subscribe(config.get('actions:ping:event'), (payload) => {
-    console.log('Ping from ', payload)
+    console.log('INFO: Ping from ', payload)
   })
 }
 

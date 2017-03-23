@@ -47,8 +47,8 @@ function init() {
 
   // Slack outgoing actions
   socket.on(`${appName}_${config.outgoingActions.postMessage.name}`, (data) => {
-    console.log('slack: post message received ', data)
-    bot.postMessage('general', `test bip forward ${data}`)
+    console.log('slack: post message received')
+    bot.postMessage('general', `test bip forward ${data}`, null)
   })
 }
 
