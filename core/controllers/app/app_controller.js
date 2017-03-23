@@ -2,7 +2,7 @@ import _ from 'lodash'
 import pubsub from '../../pubsub'
 import config from '../../config'
 import single from '../../models/single'
-import appFactory from '../../factory/app_factory'
+import bipActions from '../../actions/bip_actions'
 
 /**
  * Setup pubsub subscribers for communication with Apps
@@ -41,10 +41,7 @@ const setup = () => {
 			// Broadcast condition check to incoming actions
 			// Receive condition pass or fail
 			// If passed, get bip's outgoing action id
-      /* appFactory.searchBips({ appName, meta: payload.meta })
-				.then(() => {
-				})*/
-      appFactory.bip({ appName, incoming_action_payload: payload, socket })
+      bipActions.bip({ appName, incomingActionPayload: payload, socket })
     }
   })
 

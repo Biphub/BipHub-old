@@ -5,24 +5,26 @@ import password from '../.password/discord.password'
 
 function init() {
   const socket = client('http://localhost:8080/', { query: `appName=${config.name}` })
+
+  // General Socket.io client events
   socket.on('connect', () => {
+    socket.emit('REGISTER_APP', config)
   })
   socket.on('testEvent', () => {
   })
   socket.on('disconnect', () => {
   })
-  socket.on('discord:issueCreated', (payload) => {
-    console.log('creating issue! ', payload)
-  })
-  // Request for App registration
-  socket.emit('REGISTER_APP', config)
 
   const discordClient = new Discord.Client()
 
+  // General Discord events
+  // 1. On connect
   discordClient.on('ready', () => {
-    console.log('I am Discord and I am ready!')
+    console.log('INFO: Discord app ready')
   })
 
+  // Discord Incoming Events
+  // 1. on message
   discordClient.on('message', (message) => {
     const payload = {}
     payload.event = 'INCOMING_ACTION'
@@ -33,7 +35,7 @@ function init() {
         break
       default:
     }
-    console.log('emitting new payload! ', payload)
+    console.log('INFO: Discord emitting new incoming event')
     socket.emit(payload.event, { data: payload.data, meta: payload.meta })
   })
 
@@ -43,16 +45,16 @@ function init() {
   // 1. message contains
   const conditionMessageName = `${config.name}_message_contains`
   socket.on(conditionMessageName, ({ payload, condition }, reply) => {
-    console.log('INFO: discord message contains check ', condition)
     const parsed = JSON.parse(condition)
-    if (parsed && payload.data.includes(parsed.subject)) {
+    if (parsed && payload && payload.data.includes(parsed.subject)) {
       console.log('INFO: discord passed contains test! ', payload.data, '  ', condition)
-      //socket.emit(`${conditionMessageName}_result`, 'testing')
-			reply('testing reply')
+      reply('testing reply')
     } else {
-      console.log('WARN: discord failed contains test! ', payload.data, '  ', condition)
+      console.log('WARN: discord failed contains test!')
     }
   })
+
+  // Outgoing actions
 }
 
 export default {

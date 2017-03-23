@@ -9,7 +9,7 @@ import pubsub from '../pubsub'
  * @param meta
  * @returns {Promise.<{app: *, incomingAction: *, bips: (*|Array)}>}
  */
-async function searchBipAssociates({ appName, meta }) {
+async function searchBip({ appName, meta }) {
   if (appName && !_.isEmpty(meta)) {
     const app = await single.App.findOne({ name: appName })
     const incomingAction = await single.IncomingAction.findOne({ app_id: app.id, name: meta.name })
@@ -28,11 +28,12 @@ async function searchBipAssociates({ appName, meta }) {
  * @param app
  * @param incomingAction
  * @param bipEntity
- * @param incoming_action_payload
+ * @param incomingActionPayload
+ * @param socket
  * @returns {Promise.<void>}
  */
 async function checkIncomingActionCondition({
-  app, incomingAction, bipEntity, incoming_action_payload, socket,
+  app, incomingAction, bipEntity, incomingActionPayload, socket,
 }) {
   if (bipEntity && !_.isEmpty(bipEntity)) {
     const incomingActionCondition = await single.IncomingActionConditions.findOne({
@@ -47,12 +48,11 @@ async function checkIncomingActionCondition({
     const condition = incActionCondAttr.condition_payload
     const messageName = `${appName}_${incActionName}_${conditionName}`
 
-    // TODO: subscribe to mesasgeName_result
     pubsub.publish({
       socket,
       action: messageName,
       data: {
-        payload: incoming_action_payload,
+        payload: incomingActionPayload,
         condition,
       },
       callback(data) {
@@ -63,31 +63,32 @@ async function checkIncomingActionCondition({
 }
 
 /**
+ *
  * @param appName
- * @param incoming_action_payload
+ * @param incomingActionPayload
+ * @param socket
  * @returns {Promise.<void>}
  */
 async function bip({
   appName,
-  incoming_action_payload,
+	incomingActionPayload,
 	socket,
 }) {
-  if (appName && !_.isEmpty(incoming_action_payload)) {
-		// Retrieves app, incoming actions, bips from appname and payload meta
-    const {
-      app,
-      incomingAction,
-      bips,
-    } = await searchBipAssociates({ appName, meta: incoming_action_payload.meta })
+  if (appName && !_.isEmpty(incomingActionPayload)) {
+    // TODO: Replace below logic with join table
+    const { meta } = incomingActionPayload
+    const app = await single.App.findOne({ name: appName })
+    const incomingAction = await single.IncomingAction.findOne({ app_id: app.id, name: meta.name })
+    const bips = (await single.Bip.findAll({ incoming_actions_id: incomingAction.id })).models
 
     _.forEach(bips, (bipEntity) => {
       // Incoming action condition check broadcast = appname_incomingActionName_conditionName
       // Checks incoming action condition of each bip (one payload meta + app can be associated with
       // multiple incoming action condition)
       checkIncomingActionCondition({
-        app, incomingAction, bipEntity, incoming_action_payload, socket,
+        app, incomingAction, bipEntity, incomingActionPayload, socket,
       }).then(() => {
-        console.log('bip id ', bipEntity.id, ' has check condition')
+        console.log('INFO: bip id ', bipEntity.id, ' has check condition')
       })
     })
   }

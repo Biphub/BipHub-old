@@ -30,7 +30,6 @@ function initialize(io) {
 
 const publish = ({ action, data, socket, callback }) => {
   const { io } = root
-  console.log('publishing something ', data)
   if (io && !socket) {
     io.emit(action, data, callback)
   } else {
