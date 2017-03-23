@@ -37,7 +37,7 @@ function initialize(io) {
 const publish = ({ action, data, socket }) => new Promise((resolve) => {
   const { io } = root
   if (io && !socket) {
-    io.emit(action, data, result => resolve(result))
+    io.emit(action, data)
   } else {
     socket.emit(action, data, result => resolve(result))
   }
