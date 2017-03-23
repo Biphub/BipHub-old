@@ -31,7 +31,7 @@ exports.up = function (knex) {
       table.increments()
       table.boolean('active')
       table.string('name')
-      table.string('condition_payload')
+      table.json('condition_payload')
       table.timestamps()
       table.integer('bip_id').references('bips.id')
     }),

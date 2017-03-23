@@ -3,13 +3,12 @@ let incomingActionConditionsFixture = require('./fixtures/incoming_action_condit
 exports.seed = function (knex) {
   return knex('incoming_action_conditions').del()
     .then(() => {
-      /*incomingActionConditionsFixture = incomingActionConditionsFixture.map(
+      incomingActionConditionsFixture = incomingActionConditionsFixture.map(
         (item) => {
           const payload = item.condition_payload
           item.condition_payload = JSON.stringify(payload)
           return item
-        })*/
-      console.log('fixture ', incomingActionConditionsFixture)
-      knex('incoming_action_conditions').insert(incomingActionConditionsFixture)
+        })
+      return knex('incoming_action_conditions').insert(incomingActionConditionsFixture)
     })
 }
