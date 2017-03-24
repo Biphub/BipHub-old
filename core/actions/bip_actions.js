@@ -82,6 +82,7 @@ async function bip({
     const incomingAction = await single.IncomingAction.findOne({ app_id: app.id, name: meta.name })
     const bips = (await single.Bip.findAll({ incoming_actions_id: incomingAction.id })).models
 
+    // TODO: refactor below code
     _.forEach(bips, (bipEntity) => {
       checkIncomingActionCondition({
         app, incomingAction, bipEntity, incomingActionPayload, socket,
