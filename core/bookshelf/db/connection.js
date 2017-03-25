@@ -7,6 +7,7 @@ const init = () => {
   if (typeof root.bookshelf === 'undefined') {
     root.knex = Knex(config.get('database'))
     root.bookshelf = Bookshelf(root.knex)
+    root.bookshelf.plugin('registry')
   }
   return {
     knex: root.knex,

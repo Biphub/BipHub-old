@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import config from '../../config'
-import single from '../../models/single'
+import models from '../../models'
 import bips from './bips'
 
 export default () => {
@@ -17,7 +17,7 @@ export default () => {
    * /apps
 	 */
   api.get('/apps', (req, res) => {
-    single.App.listAll().then((result) => {
+    models.App.listAll().then((result) => {
       res.json({ result })
     })
   })

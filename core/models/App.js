@@ -1,8 +1,9 @@
 import _ from 'lodash'
 import base from './base'
+import bookshelf from '../bookshelf'
 import IncomingAction from './IncomingAction'
 import OutgoingAction from './OutgoingAction'
-import arrayHelper from '../../helpers/array'
+import arrayHelper from '../helpers/array'
 
 const App = base.extend({
   tableName: 'apps',
@@ -47,4 +48,4 @@ const App = base.extend({
   },
 })
 
-export default App
+export default bookshelf.model('App', App)

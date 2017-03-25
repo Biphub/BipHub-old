@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import incomingAction from '../../models/single/IncomingAction'
+import incomingAction from '../../models/IncomingAction'
 import urlHelper from '../../helpers/url'
 import pubsub from '../../pubsub'
 

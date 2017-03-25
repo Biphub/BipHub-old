@@ -1,11 +1,12 @@
 import Q from 'q'
 import base from './base'
+import bookshelf from '../bookshelf'
 
 const IncomingAction = base.extend({
   tableName: 'incoming_actions',
   hasTimestamps: true,
-  api() {
-    return this.belongsTo('Apis')
+  app() {
+    return this.belongsTo('App')
   },
 }, {
   createMany({ incomingActions, apiId }) {
@@ -22,4 +23,4 @@ const IncomingAction = base.extend({
   },
 })
 
-export default IncomingAction
+export default bookshelf.model('incomingAction', IncomingAction)

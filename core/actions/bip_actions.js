@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import Q from 'q'
-import single from '../models/single'
+import models from '../models'
 import pubsub from '../pubsub'
 
 /**
@@ -17,7 +17,7 @@ async function checkIncomingActionCondition({
   app, incomingAction, bipEntity, incomingActionPayload, socket,
 }) {
   if (bipEntity && !_.isEmpty(bipEntity)) {
-    const incomingActionCondition = await single.IncomingActionConditions.findOne({
+    const incomingActionCondition = await models.IncomingActionConditions.findOne({
       id: bipEntity.get('incoming_action_condition_id'),
     })
     // TODO: Refactor below code
@@ -79,8 +79,8 @@ async function checkAllIncomingActionConditions({
  */
 async function forwardBip({ bipEntity, data }) {
   if (!_.isEmpty(bipEntity)) {
-    const outgoingAction = await single.OutgoingAction.findOne({ id: bipEntity.get('outgoing_actions_id') })
-    const app = await single.App.findOne({ id: outgoingAction.get('app_id') })
+    const outgoingAction = await models.OutgoingAction.findOne({ id: bipEntity.get('outgoing_actions_id') })
+    const app = await models.App.findOne({ id: outgoingAction.get('app_id') })
     pubsub.publish({
       action: `${app.get('name')}_${outgoingAction.get('name')}`,
       data,
@@ -115,9 +115,10 @@ async function bip({
 }) {
   if (appName && !_.isEmpty(incomingActionPayload)) {
     const { meta } = incomingActionPayload
-    const app = await single.App.findOne({ name: appName })
-    const incomingAction = await single.IncomingAction.findOne({ app_id: app.id, name: meta.name })
-    const rawBips = (await single.Bip.findAll({ incoming_actions_id: incomingAction.id })).models
+    const app = await models.App.findOne({ name: appName }, { withRelated: ['incoming_actions'] })
+    console.log(app.related('incoming_actions'))
+    const incomingAction = await models.IncomingAction.findOne({ app_id: app.id, name: meta.name })
+    const rawBips = (await models.Bip.findAll({ incoming_actions_id: incomingAction.id })).models
     const checkedBips = await checkAllIncomingActionConditions({
       app, incomingAction, bipEntities: rawBips, incomingActionPayload, socket,
     })

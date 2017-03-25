@@ -42,6 +42,13 @@ exports.up = function (knex) {
       table.timestamps()
       table.integer('app_id').references('apps.id')
     }),
+    knex.schema.createTableIfNotExists('incoming_action_field', (table) => {
+      table.increments()
+      table.string('name')
+      table.string('type')
+      table.timestamps()
+      table.integer('incoming_action_id').references('incoming_actions.id')
+    }),
   ])
 }
 

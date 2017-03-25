@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import pubsub from '../../pubsub'
 import config from '../../config'
-import single from '../../models/single'
+import models from '../../models'
 import bipActions from '../../actions/bip_actions'
 
 /**
@@ -16,7 +16,7 @@ const setup = () => {
 		// Run payload validation
 
 		// Register an app with incoming and outgoing actions
-    single.App.createOne(payload).then((result) => {
+		models.App.createOne(payload).then((result) => {
       console.log('successfully registered an App ', result.get('name'))
     })
   })
