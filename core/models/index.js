@@ -7,7 +7,8 @@ import IncomingActionConditions from './IncomingActionConditions'
 
 export default {
   App,
-  Bip,
+  Bip: Bip.Bip,
+  Bips: Bip.Bips,
   IncomingAction,
   OutgoingAction,
   IncomingActionConditions,
