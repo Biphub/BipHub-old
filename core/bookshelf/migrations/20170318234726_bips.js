@@ -7,8 +7,14 @@ exports.up = function (knex) {
       table.boolean('active')
       table.timestamps()
       table.integer('incoming_action_condition_id').references('incoming_action_conditions.id')
-      table.integer('incoming_actions_id').references('bips.id')
-      table.integer('outgoing_actions_id').references('bips.id')
+      table.integer('incoming_actions_id').references('incoming_actions.id')
+      table.integer('outgoing_actions_id').references('outgoing_actions.id')
+    }),
+    knex.schema.createTableIfNotExists('bip_fields_map', (table) => {
+      table.increments()
+      table.boolean('active')
+      table.timestamps()
+      table.integer('bip_id').references('bips.id')
     }),
     knex.schema.createTableIfNotExists('apps', (table) => {
       table.increments()
@@ -66,5 +72,7 @@ exports.down = function (knex) {
     knex.schema.dropTableIfExists('incoming_actions'),
     knex.schema.dropTableIfExists('outgoing_actions'),
     knex.schema.dropTableIfExists('incoming_action_condition'),
+    knex.schema.dropTableIfExists('incoming_action_field'),
+    knex.schema.dropTableIfExists('outgoing_action_field'),
   ])
 }
