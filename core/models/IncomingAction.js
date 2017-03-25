@@ -8,6 +8,9 @@ const IncomingAction = base.extend({
   app() {
     return this.belongsTo('App')
   },
+  incomingActionsFields() {
+    return this.hasMany('IncomingActionField')
+  },
 }, {
   createMany({ incomingActions, apiId }) {
     const forgedIncActions = incomingActions.map((incomingAction) => {

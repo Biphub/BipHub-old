@@ -5,8 +5,11 @@ import bookshelf from '../bookshelf'
 const OutgoingAction = base.extend({
   tableName: 'outgoing_actions',
   hasTimestamps: true,
-  api() {
-    return this.belongsTo('Apis')
+  app() {
+    return this.belongsTo('App')
+  },
+  OutgoingActionFields() {
+    return this.hasMany('OutgoingActionField')
   },
 }, {
   createMany({ outgoingActions, apiId }) {
