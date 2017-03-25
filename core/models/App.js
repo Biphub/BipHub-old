@@ -54,4 +54,11 @@ const App = base.extend({
   },
 })
 
-export default bookshelf.model('App', App)
+const Apps = bookshelf.Collection.extend({
+  model: App,
+})
+
+export default {
+  App: bookshelf.model('App', App),
+  Apps: bookshelf.collection('Apps', Apps),
+}

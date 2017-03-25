@@ -17,7 +17,7 @@ async function checkIncomingActionCondition({
   app, incomingAction, bipEntity, incomingActionPayload, socket,
 }) {
   if (bipEntity && !_.isEmpty(bipEntity)) {
-    const incomingActionCondition = await models.IncomingActionConditions.findOne({
+    const incomingActionCondition = await models.IncomingActionCondition.findOne({
       id: bipEntity.get('incoming_action_condition_id'),
     })
     // TODO: Refactor below code
@@ -113,10 +113,10 @@ async function bip({
 	incomingActionPayload,
 	socket,
 }) {
-  if (appName && !_.isEmpty(incomingActionPayload)) {
+  if (appName && !_.isEmpty(incomingActionPayload) && socket) {
     const { meta } = incomingActionPayload
+    // TODO: Refactor below using Bookshelf methods
     const app = await models.App.findOne({ name: appName })
-    console.log('test ', app.incomingActions())
     const incomingAction = await models.IncomingAction.findOne({ app_id: app.id, name: meta.name })
     const rawBips = (await models.Bip.findAll({ incoming_actions_id: incomingAction.id })).models
     const checkedBips = await checkAllIncomingActionConditions({

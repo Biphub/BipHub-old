@@ -16,7 +16,7 @@ const setup = () => {
 		// Run payload validation
 
 		// Register an app with incoming and outgoing actions
-		models.App.createOne(payload).then((result) => {
+    models.App.createOne(payload).then((result) => {
       console.log('successfully registered an App ', result.get('name'))
     })
   })
