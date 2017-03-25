@@ -17,7 +17,7 @@ const setup = () => {
 
 		// Register an app with incoming and outgoing actions
     single.App.createOne(payload).then((result) => {
-      console.log('successfully registered an App ', result.attributes.name)
+      console.log('successfully registered an App ', result.get('name'))
     })
   })
 

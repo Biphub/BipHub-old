@@ -18,16 +18,13 @@ async function checkIncomingActionCondition({
 }) {
   if (bipEntity && !_.isEmpty(bipEntity)) {
     const incomingActionCondition = await single.IncomingActionConditions.findOne({
-      id: bipEntity.attributes.incoming_action_condition_id,
+      id: bipEntity.get('incoming_action_condition_id'),
     })
     // TODO: Refactor below code
-    const appAttr = app.attributes
-    const incActionAttr = incomingAction.attributes
-    const incActionCondAttr = incomingActionCondition.attributes
-    const appName = appAttr.name
-    const incActionName = incActionAttr.name
-    const conditionName = incActionCondAttr.name
-    const condition = incActionCondAttr.condition_payload
+    const appName = app.get('name')
+    const incActionName = incomingAction.get('name')
+    const conditionName = incomingActionCondition.get('name')
+    const condition = incomingActionCondition.get('condition_payload')
     // TODO: Move below code to helper
     const messageName = `${appName}_${incActionName}_${conditionName}`
     const conditionResult = await pubsub.publish({
@@ -82,14 +79,10 @@ async function checkAllIncomingActionConditions({
  */
 async function forwardBip({ bipEntity, data }) {
   if (!_.isEmpty(bipEntity)) {
-    const bipAttr = bipEntity.attributes
-    console.log('INFO: Checking bip attr ')
-    const outgoingAction = await single.OutgoingAction.findOne({ id: bipAttr.outgoing_actions_id })
-    const outgoingAttr = outgoingAction.attributes
-    const app = await single.App.findOne({ id: outgoingAttr.app_id })
-    const appAttr = app.attributes
+    const outgoingAction = await single.OutgoingAction.findOne({ id: bipEntity.get('outgoing_actions_id') })
+    const app = await single.App.findOne({ id: outgoingAction.get('app_id') })
     pubsub.publish({
-      action: `${appAttr.name}_${outgoingAttr.name}`,
+      action: `${app.get('name')}_${outgoingAction.get('name')}`,
       data,
     })
   }
@@ -103,7 +96,6 @@ async function fowardAllBips({ bipEntities, data }) {
   _.forEach(bipEntities, (bipEntity) => {
     bipFoward.push(forwardBip({ bipEntity, data }))
   })
-  console.log('INFO: Bipfowards ', bipFoward)
   return Q.all(bipFoward)
 }
 

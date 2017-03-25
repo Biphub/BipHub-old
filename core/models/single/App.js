@@ -34,12 +34,12 @@ const App = base.extend({
   },
   async setActive(appId) {
     const foundApp = await this.findOne({ id: appId })
-    foundApp.attributes.active = true
+    foundApp.set({ active: true })
     return this.update(foundApp.attributes)
   },
   async setInactive(appId) {
     const foundApp = await this.findOne({ id: appId })
-    foundApp.attributes.ative = false
+    foundApp.set({ ative: false })
     return this.update(foundApp.attributes)
   },
   async listAll() {
