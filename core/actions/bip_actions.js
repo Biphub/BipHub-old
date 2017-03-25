@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import Q from 'q'
 import single from '../models/single'
 import pubsub from '../pubsub'
 
@@ -13,7 +14,7 @@ import pubsub from '../pubsub'
  * @returns {Promise.<void>}
  */
 async function checkIncomingActionCondition({
-  app, incomingAction, bipEntity, incomingActionPayload, socket,
+  app, incomingAction, bipEntity, incomingActionPayload, socket, getAttributes,
 }) {
   if (bipEntity && !_.isEmpty(bipEntity)) {
     const incomingActionCondition = await single.IncomingActionConditions.findOne({
@@ -37,8 +38,35 @@ async function checkIncomingActionCondition({
         condition,
       },
     })
-    return conditionResult
+    if (getAttributes) {
+      return {
+        bip: bipEntity.attributes,
+        result: conditionResult,
+      }
+    }
+    return {
+      bip: bipEntity,
+      result: conditionResult,
+    }
   }
+}
+
+async function checkAllIncomingActionConditions({
+  app, incomingAction, incomingActionPayload, bipEntities, socket,
+}) {
+  const conditionCheckFuncs = []
+  _.forEach(bipEntities, (bipEntity) => {
+    conditionCheckFuncs.push(checkIncomingActionCondition({
+      app, incomingAction, bipEntity, incomingActionPayload, socket,
+    }))
+  })
+  const allResult = await Q.all(conditionCheckFuncs)
+  console.log('INFO: bip action compsoed ', allResult)
+  /* conditionCheckFuncs.filter((payload) => {
+    if (payload.result) {
+      return payload.bipEntity
+    }
+  })*/
 }
 
 /**
@@ -54,8 +82,6 @@ async function forwardBip({ bipEntity, data }) {
     const outgoingAttr = outgoingAction.attributes
     const app = await single.App.findOne({ id: outgoingAttr.app_id })
     const appAttr = app.attributes
-
-    console.log('INFO forwarding bip to outgoing action ', outgoingAction.id)
     pubsub.publish({
       action: `${appAttr.name}_${outgoingAttr.name}`,
       data,
@@ -63,8 +89,10 @@ async function forwardBip({ bipEntity, data }) {
   }
 }
 
+// Actual composed actions below
+
 /**
- *
+ * Base bip action that reacts to incoming event and forward it to outgoing action
  * @param appName
  * @param incomingActionPayload
  * @param socket
@@ -81,9 +109,11 @@ async function bip({
     const app = await single.App.findOne({ name: appName })
     const incomingAction = await single.IncomingAction.findOne({ app_id: app.id, name: meta.name })
     const bips = (await single.Bip.findAll({ incoming_actions_id: incomingAction.id })).models
-
+    checkAllIncomingActionConditions({
+      app, incomingAction, bipEntities: bips, incomingActionPayload, socket,
+    }).then()
     // TODO: refactor below code
-    _.forEach(bips, (bipEntity) => {
+    /* _.forEach(bips, (bipEntity) => {
       checkIncomingActionCondition({
         app, incomingAction, bipEntity, incomingActionPayload, socket,
       }).then((result) => {
@@ -95,7 +125,7 @@ async function bip({
           console.log('INFO: Bip failed test ', result)
         }
       })
-    })
+    })*/
   }
 }
 
