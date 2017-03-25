@@ -8,6 +8,12 @@ import arrayHelper from '../helpers/array'
 const App = base.extend({
   tableName: 'apps',
   hasTimestamps: true,
+  incomingActions() {
+    return this.hasMany('IncomingAction')
+  },
+  outgoingActions() {
+    return this.hasMany('OutgoingAction')
+  },
 }, {
   async createOne(data) {
     const app = {

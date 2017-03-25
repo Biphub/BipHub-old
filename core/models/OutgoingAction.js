@@ -1,5 +1,6 @@
 import Q from 'q'
 import base from './base'
+import bookshelf from '../bookshelf'
 
 const OutgoingAction = base.extend({
   tableName: 'outgoing_actions',
@@ -17,4 +18,4 @@ const OutgoingAction = base.extend({
   },
 })
 
-export default OutgoingAction
+export default bookshelf.model('OutgoingAction', OutgoingAction)

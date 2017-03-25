@@ -23,4 +23,4 @@ const IncomingAction = base.extend({
   },
 })
 
-export default bookshelf.model('incomingAction', IncomingAction)
+export default bookshelf.model('IncomingAction', IncomingAction)

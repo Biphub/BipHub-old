@@ -115,8 +115,8 @@ async function bip({
 }) {
   if (appName && !_.isEmpty(incomingActionPayload)) {
     const { meta } = incomingActionPayload
-    const app = await models.App.findOne({ name: appName }, { withRelated: ['incoming_actions'] })
-    console.log(app.related('incoming_actions'))
+    const app = await models.App.findOne({ name: appName })
+    console.log('test ', app.incomingActions())
     const incomingAction = await models.IncomingAction.findOne({ app_id: app.id, name: meta.name })
     const rawBips = (await models.Bip.findAll({ incoming_actions_id: incomingAction.id })).models
     const checkedBips = await checkAllIncomingActionConditions({
