@@ -23,7 +23,13 @@ export default {
     message: { type: 'webhook/ws', name: 'message', conditions: ['matches', 'contains'] },
   },
   outgoingActions: {
-    postMessage: { type: 'webhook/ws', name: 'post_message' },
+    postMessage: {
+      type: 'webhook/ws',
+      name: 'post_message',
+      fields: {
+        data: { type: 'string', name: 'data' },
+      },
+    },
   },
   requirements: {
     auth: {

@@ -1,3 +1,5 @@
+import _ from 'lodash'
+import Q from 'q'
 import base from './base'
 import db from '../bookshelf'
 
@@ -7,6 +9,21 @@ const OutgoingActionField = base.extend({
   hasTimestamps: true,
   outgoingAction() {
     return this.belongsTo('OutgoingAction')
+  },
+}, {
+	/**
+   * Creates many outgoing action
+	 * @param fields
+	 * @param outgoingActionId
+	 * @returns {Promise.<*>}
+	 */
+  async createMany({ fields, outgoingActionId }) {
+    const fns = []
+    _.forOwn(fields, (field) => {
+      field.outgoing_action_id = outgoingActionId
+      fns.push(this.create(field))
+    })
+    return Q.all(fns)
   },
 })
 

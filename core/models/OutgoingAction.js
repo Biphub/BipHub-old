@@ -1,6 +1,8 @@
+import _ from 'lodash'
 import Q from 'q'
 import base from './base'
 import db from '../bookshelf'
+import models from './index'
 
 const { bookshelf } = db
 const OutgoingAction = base.extend({
@@ -13,12 +15,32 @@ const OutgoingAction = base.extend({
     return this.hasMany('OutgoingActionField')
   },
 }, {
-  createMany({ outgoingActions, appId }) {
-    const forgedOutActions = outgoingActions.map((outgoingAction) => {
-      outgoingAction.app_id = appId
-      return this.create(outgoingAction, null)
-    })
-    Q.allSettled(forgedOutActions)
+	/**
+   * Create one outgoing action
+	 * @param entity
+	 * @param appId
+	 */
+  async createOne({ entity, appId }) {
+    const fields = _.get(entity, 'fields', null)
+    console.log('outgoing ', fields)
+    // Delete fields so bookshelf can save outgoing action
+    if (fields) {
+      delete entity.fields
+    }
+
+    entity.app_id = appId
+    const outgoingAction = await this.create(entity)
+    await models.OutgoingActionField.createMany({ fields, outgoingActionId: outgoingAction.get('id') })
+    return true
+  },
+	/**
+   * create many outgoing actions
+	 * @param outgoingActions
+	 * @param appId
+	 */
+  async createMany({ outgoingActions, appId }) {
+    const forgedOutActions = outgoingActions.map(entity => this.createOne({ entity, appId }))
+    Q.all(forgedOutActions)
   },
 })
 

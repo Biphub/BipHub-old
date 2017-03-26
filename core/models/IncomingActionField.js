@@ -11,6 +11,12 @@ const IncomingActionField = base.extend({
     return this.belongsTo('IncomingAction')
   },
 }, {
+	/**
+   * Creates many incoming actions
+	 * @param fields
+	 * @param incomingActionId
+	 * @returns {Promise.<*>}
+	 */
   async createMany({ fields, incomingActionId }) {
     const fns = []
     _.forOwn(fields, (field) => {

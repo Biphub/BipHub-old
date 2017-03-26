@@ -15,6 +15,12 @@ const IncomingAction = base.extend({
     return this.hasMany('IncomingActionField')
   },
 }, {
+	/**
+   * create one incoming action
+	 * @param entity
+	 * @param appId
+	 * @returns {Promise.<boolean>}
+	 */
   async createOne({ entity, appId }) {
     const fields = _.get(entity, 'fields', null)
 
@@ -27,10 +33,21 @@ const IncomingAction = base.extend({
     await models.IncomingActionField.createMany({ fields, incomingActionId: incAction.get('id') })
     return true
   },
+	/**
+   * Creates many incoming actions
+	 * @param incomingActions
+	 * @param appId
+	 * @returns {Promise.<void>}
+	 */
   async createMany({ incomingActions, appId }) {
     const forgedIncActions = incomingActions.map(entity => this.createOne({ entity, appId }))
     Q.all(forgedIncActions)
   },
+	/**
+	 * @param endPoint
+	 * @param action
+	 * @returns {*}
+	 */
   findByEndPoint(endPoint, action) {
     const endPointVariation = `/${endPoint}`
     const actionVariation = `/${action}`

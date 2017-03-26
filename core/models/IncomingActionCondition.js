@@ -1,4 +1,3 @@
-import Q from 'q'
 import base from './base'
 import db from '../bookshelf'
 
