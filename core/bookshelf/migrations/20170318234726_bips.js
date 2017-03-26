@@ -10,12 +10,6 @@ exports.up = function (knex) {
       table.integer('incoming_actions_id').references('incoming_actions.id')
       table.integer('outgoing_actions_id').references('outgoing_actions.id')
     }),
-    knex.schema.createTableIfNotExists('bip_fields_map', (table) => {
-      table.increments()
-      table.boolean('active')
-      table.timestamps()
-      table.integer('bip_id').references('bips.id')
-    }),
     knex.schema.createTableIfNotExists('apps', (table) => {
       table.increments()
       table.string('name')
@@ -51,6 +45,7 @@ exports.up = function (knex) {
     knex.schema.createTableIfNotExists('incoming_action_field', (table) => {
       table.increments()
       table.string('name')
+      table.string('payload')
       table.string('type')
       table.timestamps()
       table.integer('incoming_action_id').references('incoming_actions.id')
