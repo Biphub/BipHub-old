@@ -9,6 +9,7 @@ export default {
       fields: {
         content: { type: 'string', name: 'content' },
       },
+
     },
   },
   outgoingActions: [

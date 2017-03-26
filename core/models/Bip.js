@@ -1,6 +1,7 @@
 import base from './base'
-import bookshelf from '../bookshelf'
+import db from '../bookshelf'
 
+const { bookshelf } = db
 const Bip = base.extend({
   tableName: 'bips',
   hasTimestamps: true,

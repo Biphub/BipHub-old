@@ -2,14 +2,6 @@ const Q = require('q')
 
 exports.up = function (knex) {
   return Q.allSettled([
-    knex.schema.createTableIfNotExists('bips', (table) => {
-      table.increments()
-      table.boolean('active')
-      table.timestamps()
-      table.integer('incoming_action_condition_id').references('incoming_action_conditions.id')
-      table.integer('incoming_actions_id').references('incoming_actions.id')
-      table.integer('outgoing_actions_id').references('outgoing_actions.id')
-    }),
     knex.schema.createTableIfNotExists('apps', (table) => {
       table.increments()
       table.string('name')
@@ -17,6 +9,14 @@ exports.up = function (knex) {
       table.string('description', 128)
       table.boolean('active')
       table.timestamps()
+    }),
+    knex.schema.createTableIfNotExists('bips', (table) => {
+      table.increments()
+      table.boolean('active')
+      table.timestamps()
+      table.integer('incoming_action_condition_id').references('incoming_action_conditions.id')
+      table.integer('incoming_actions_id').references('incoming_actions.id')
+      table.integer('outgoing_actions_id').references('outgoing_actions.id')
     }),
     knex.schema.createTableIfNotExists('incoming_actions', (table) => {
       table.increments()
@@ -45,7 +45,6 @@ exports.up = function (knex) {
     knex.schema.createTableIfNotExists('incoming_action_field', (table) => {
       table.increments()
       table.string('name')
-      table.string('payload')
       table.string('type')
       table.timestamps()
       table.integer('incoming_action_id').references('incoming_actions.id')

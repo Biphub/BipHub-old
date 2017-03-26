@@ -1,6 +1,6 @@
-import bookshelf from '../../bookshelf'
+import db from '../../bookshelf'
 
-const base = bookshelf.Model.extend({
+const base = db.bookshelf.Model.extend({
   hasTimestamps: ['created_at', 'updated_at'],
 }, {
   findAll(filter, options) {

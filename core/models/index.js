@@ -1,4 +1,3 @@
-import '../bookshelf' // Force inits DB connection
 import App from './App'
 import Bip from './Bip'
 import IncomingAction from './IncomingAction'

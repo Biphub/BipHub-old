@@ -1,7 +1,8 @@
 import Q from 'q'
 import base from './base'
-import bookshelf from '../bookshelf'
+import db from '../bookshelf'
 
+const { bookshelf } = db
 const OutgoingAction = base.extend({
   tableName: 'outgoing_actions',
   hasTimestamps: true,

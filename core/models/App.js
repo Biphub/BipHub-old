@@ -1,9 +1,10 @@
 import _ from 'lodash'
 import base from './base'
-import bookshelf from '../bookshelf'
+import db from '../bookshelf'
 import models from './index'
 import arrayHelper from '../helpers/array'
 
+const { bookshelf } = db
 const App = base.extend({
   tableName: 'apps',
   hasTimestamps: true,
@@ -36,7 +37,7 @@ const App = base.extend({
 
     const savedApp = await this.create(app, null)
     models.IncomingAction.createMany({ incomingActions, appId: savedApp.id })
-    models.OutgoingAction.createMany({ outgoingActions, appId: savedApp.id })
+    // models.OutgoingAction.createMany({ outgoingActions, appId: savedApp.id })
     return savedApp
   },
   async setActive(appId) {

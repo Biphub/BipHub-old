@@ -1,7 +1,10 @@
+import _ from 'lodash'
 import Q from 'q'
 import base from './base'
-import bookshelf from '../bookshelf'
+import db from '../bookshelf'
+import models from './index'
 
+const { bookshelf } = db
 const IncomingAction = base.extend({
   tableName: 'incoming_actions',
   hasTimestamps: true,
@@ -12,15 +15,21 @@ const IncomingAction = base.extend({
     return this.hasMany('IncomingActionField')
   },
 }, {
-  createOne({ incomingAction, appId }) {
-    incomingAction.app_id = appId
-    return this.create(incomingAction, null)
+  async createOne({ entity, appId }) {
+    const fields = _.get(entity, 'fields', null)
+
+    // Delete fields from the entity
+    if (fields) {
+      delete entity.fields
+    }
+    entity.app_id = appId
+    const incAction = await this.create(entity, null)
+    await models.IncomingActionField.createMany({ fields, incomingActionId: incAction.get('id') })
+    return true
   },
-  createMany({ incomingActions, appId }) {
-    const forgedIncActions = incomingActions.map((incomingAction) => {
-      return this.createOne({ incomingAction, appId })
-    })
-    Q.allSettled(forgedIncActions)
+  async createMany({ incomingActions, appId }) {
+    const forgedIncActions = incomingActions.map(entity => this.createOne({ entity, appId }))
+    Q.all(forgedIncActions)
   },
   findByEndPoint(endPoint, action) {
     const endPointVariation = `/${endPoint}`

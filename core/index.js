@@ -4,6 +4,7 @@ import express from 'express'
 import exphbs from 'express-handlebars'
 import http from 'http'
 import path from 'path'
+import db from './bookshelf'
 import config from './config'
 import middleware from './middleware'
 import controllers from './controllers'
@@ -43,16 +44,19 @@ app.use(bodyParser.json({
 // internal middleware
 app.use(middleware())
 
-// Setup controllers
-controllers(app)
+// Runs latest migration
+db.migrate().then(() => {
+	// Setup controllers
+  controllers(app)
 
-/**
- * Start Express server.
- * TODO: Instead of callback try incorporating promises using bluebird.js
- */
-server.listen(app.get('port'), '0.0.0.0', () => {
-  console.log('%s App is running at http://localhost:%d in %s mode ', app.get('port'))
-  console.log('  Press CTRL-C to stop\n')
+	/**
+	 * Start Express server.
+	 * TODO: Instead of callback try incorporating promises using bluebird.js
+	 */
+  server.listen(app.get('port'), '0.0.0.0', () => {
+    console.log('%s App is running at http://localhost:%d in %s mode ', app.get('port'))
+    console.log('  Press CTRL-C to stop\n')
+  })
 })
 
 export default app

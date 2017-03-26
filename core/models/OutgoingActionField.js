@@ -1,6 +1,7 @@
 import base from './base'
-import bookshelf from '../bookshelf'
+import db from '../bookshelf'
 
+const { bookshelf } = db
 const OutgoingActionField = base.extend({
   tableName: 'outgoing_action_field',
   hasTimestamps: true,

@@ -4,7 +4,7 @@ import api from './api'
 import html from './html'
 import webhook from './webhooks'
 import apps from './app'
-import apiAdapter from '../adapter'
+import appAdapter from '../adapter'
 import pubsub from '../pubsub'
 
 const apiVersion = config.get('api:version')
@@ -19,7 +19,7 @@ const setup = (app) => {
 	// Pubsub used for communication with apis
   pubsub.initialize(io)
 	// API adapter loads and inits websocket client of all APIs
-  apiAdapter.initialize(io)
+  appAdapter.initialize(io)
 
 	// html router
   app.use('/', html())
