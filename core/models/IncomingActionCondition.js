@@ -11,6 +11,6 @@ const IncomingActionConditions = bookshelf.Collection.extend({
 })
 
 export default {
-  IncomingActionCondition: bookshelf.model('IncomingActionCondition', IncomingActionCondition),
-  IncomingActionConditions: bookshelf.collection('IncomingActionConditions', IncomingActionConditions),
+  single: bookshelf.model('IncomingActionCondition', IncomingActionCondition),
+  collection: bookshelf.collection('IncomingActionConditions', IncomingActionConditions),
 }

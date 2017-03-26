@@ -7,7 +7,7 @@ export default {
       name: 'message',
       conditions: ['matches', 'contains'],
       fields: {
-        data: { type: 'string', name: 'data' },
+        content: { type: 'string', name: 'content' },
       },
     },
   },

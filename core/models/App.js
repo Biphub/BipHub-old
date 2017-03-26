@@ -1,8 +1,7 @@
 import _ from 'lodash'
 import base from './base'
 import bookshelf from '../bookshelf'
-import IncomingAction from './IncomingAction'
-import OutgoingAction from './OutgoingAction'
+import models from './index'
 import arrayHelper from '../helpers/array'
 
 const App = base.extend({
@@ -15,6 +14,7 @@ const App = base.extend({
     return this.hasMany('OutgoingAction')
   },
 }, {
+  // Register an app
   async createOne(data) {
     const app = {
       name: data.name,
@@ -35,8 +35,8 @@ const App = base.extend({
     })
 
     const savedApp = await this.create(app, null)
-    IncomingAction.createMany({ incomingActions, apiId: savedApp.id })
-    OutgoingAction.createMany({ outgoingActions, apiId: savedApp.id })
+    models.IncomingAction.createMany({ incomingActions, appId: savedApp.id })
+    models.OutgoingAction.createMany({ outgoingActions, appId: savedApp.id })
     return savedApp
   },
   async setActive(appId) {
@@ -59,6 +59,6 @@ const Apps = bookshelf.Collection.extend({
 })
 
 export default {
-  App: bookshelf.model('App', App),
-  Apps: bookshelf.collection('Apps', Apps),
+  single: bookshelf.model('App', App),
+  collection: bookshelf.collection('Apps', Apps),
 }

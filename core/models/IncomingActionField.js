@@ -14,6 +14,6 @@ const IncomingActionFields = bookshelf.Collection.extend({
 })
 
 export default {
-  IncomingActionField: bookshelf.model('IncomingActionField', IncomingActionField),
-  IncomingActionFields: bookshelf.collection('IncomingActionFields', IncomingActionFields),
+  single: bookshelf.model('IncomingActionField', IncomingActionField),
+  collection: bookshelf.collection('IncomingActionFields', IncomingActionFields),
 }

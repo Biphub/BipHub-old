@@ -12,9 +12,9 @@ const OutgoingAction = base.extend({
     return this.hasMany('OutgoingActionField')
   },
 }, {
-  createMany({ outgoingActions, apiId }) {
+  createMany({ outgoingActions, appId }) {
     const forgedOutActions = outgoingActions.map((outgoingAction) => {
-      outgoingAction.api_id = apiId
+      outgoingAction.app_id = appId
       return this.create(outgoingAction, null)
     })
     Q.allSettled(forgedOutActions)
@@ -26,6 +26,6 @@ const OutgoingActions = bookshelf.Collection.extend({
 })
 
 export default {
-  OutgoingAction: bookshelf.model('OutgoingAction', OutgoingAction),
-  OutgoingActions: bookshelf.collection('OutgoingActions', OutgoingActions),
+  single: bookshelf.model('OutgoingAction', OutgoingAction),
+  collection: bookshelf.collection('OutgoingActions', OutgoingActions),
 }

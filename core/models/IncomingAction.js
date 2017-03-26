@@ -12,10 +12,13 @@ const IncomingAction = base.extend({
     return this.hasMany('IncomingActionField')
   },
 }, {
-  createMany({ incomingActions, apiId }) {
+  createOne({ incomingAction, appId }) {
+    incomingAction.app_id = appId
+    return this.create(incomingAction, null)
+  },
+  createMany({ incomingActions, appId }) {
     const forgedIncActions = incomingActions.map((incomingAction) => {
-      incomingAction.api_id = apiId
-      return this.create(incomingAction, null)
+      return this.createOne({ incomingAction, appId })
     })
     Q.allSettled(forgedIncActions)
   },
@@ -31,6 +34,6 @@ const IncomingActions = bookshelf.Collection.extend({
 })
 
 export default {
-  IncomingAction: bookshelf.model('IncomingAction', IncomingAction),
-  IncomingActions: bookshelf.collection('IncomingActions', IncomingActions),
+  single: bookshelf.model('IncomingAction', IncomingAction),
+  collection: bookshelf.collection('IncomingActions', IncomingActions),
 }

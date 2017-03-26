@@ -17,6 +17,6 @@ const Bips = bookshelf.Collection.extend({
 })
 
 export default {
-  Bip: bookshelf.model('Bip', Bip),
-  Bips: bookshelf.collection('Bips', Bips),
+  single: bookshelf.model('Bip', Bip),
+  collection: bookshelf.collection('Bips', Bips),
 }
