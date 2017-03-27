@@ -7,7 +7,6 @@ import models from './index'
 const { bookshelf } = db
 const OutgoingAction = base.extend({
   tableName: 'outgoing_actions',
-  hasTimestamps: true,
   app() {
     return this.belongsTo('App')
   },

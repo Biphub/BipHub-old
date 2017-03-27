@@ -26,15 +26,29 @@ const base = db.bookshelf.Model.extend({
   findAll(filter, options) {
     return this.forge().where(filter).fetchAll(options)
   },
-
+	/**
+   * Find one entity
+	 * @param query
+	 * @param options
+	 * @returns {*|Promise.<Model|null>}
+	 */
   findOne(query, options) {
     return this.forge(query).fetch(options)
   },
-
+	/**
+   * Creates one entity
+	 * @param data
+	 * @param options
+	 * @returns {*}
+	 */
   create(data, options) {
     return this.forge(data).save(null, options)
   },
-
+	/**
+   * Updates one entity
+	 * @param data
+	 * @returns {*}
+	 */
   update(data) {
     console.log('updated received payload ', data)
     return this.forge(data).save(null, { method: 'update' })

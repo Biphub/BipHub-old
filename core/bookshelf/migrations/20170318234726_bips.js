@@ -13,6 +13,11 @@ exports.up = function (knex) {
     knex.schema.createTableIfNotExists('bips', (table) => {
       table.increments()
       table.boolean('active')
+      table.jsonb('incoming_action_options_values')
+      table.jsonb('outgoing_action_options_values')
+      table.jsonb('incoming_action_fields_values')
+      table.jsonb('outgoing_action_fields_values')
+      table.jsonb('fields_mapping')
       table.timestamps()
       table.integer('incoming_action_condition_id').references('incoming_action_conditions.id')
       table.integer('incoming_actions_id').references('incoming_actions.id')

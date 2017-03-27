@@ -7,7 +7,6 @@ import arrayHelper from '../helpers/array'
 const { bookshelf } = db
 const App = base.extend({
   tableName: 'apps',
-  hasTimestamps: true,
 	/**
    * get incoming actions
 	 * @returns {*|Collection}

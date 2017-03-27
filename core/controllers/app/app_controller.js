@@ -17,9 +17,9 @@ const setup = () => {
 
 		// Register an app with incoming and outgoing actions
     models.App.createOne(payload).then((app) => {
-			app.related('incomingActions').fetch().then((model) => {
-				console.log(model)
-			})
+      app.related('incomingActions').fetch().then((model) => {
+        console.log(model)
+      })
     }).catch(() => {
       console.log('WARN: App is already registered')
     })

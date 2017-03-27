@@ -6,7 +6,6 @@ import db from '../bookshelf'
 const { bookshelf } = db
 const IncomingActionField = base.extend({
   tableName: 'incoming_action_field',
-  hasTimestamps: true,
   IncomingAction() {
     return this.belongsTo('IncomingAction')
   },

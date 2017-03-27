@@ -4,8 +4,6 @@ import db from '../bookshelf'
 const { bookshelf } = db
 const IncomingActionCondition = base.extend({
   tableName: 'incoming_action_conditions',
-  hasTimestamp: true,
-}, {
 })
 
 const IncomingActionConditions = bookshelf.Collection.extend({

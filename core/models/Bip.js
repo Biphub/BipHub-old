@@ -4,7 +4,6 @@ import db from '../bookshelf'
 const { bookshelf } = db
 const Bip = base.extend({
   tableName: 'bips',
-  hasTimestamps: true,
   incomingAction() {
     return this.belongsTo('IncomingAction')
   },
