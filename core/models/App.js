@@ -8,18 +8,36 @@ const { bookshelf } = db
 const App = base.extend({
   tableName: 'apps',
   hasTimestamps: true,
+	/**
+   * get incoming actions
+	 * @returns {*|Collection}
+	 */
   incomingActions() {
     return this.hasMany('IncomingAction')
   },
+	/**
+   * get outgoing actions
+	 * @returns {*|Collection}
+	 */
   outgoingActions() {
     return this.hasMany('OutgoingAction')
   },
 }, {
-  // Register an app
+	/**
+   * Register an app
+   * It prevents users from registering duplicate app
+	 * @param data
+	 * @returns {Promise.<*>}
+	 */
   async createOne(data) {
     const app = {
       name: data.name,
       description: data.description,
+    }
+    const foundApp = await this.findOne({ name: app.name })
+    // Do not register already existing app
+    if (foundApp) {
+      return foundApp
     }
     const incomingActions = []
     const outgoingActions = []
@@ -36,22 +54,31 @@ const App = base.extend({
     })
 
     const savedApp = await this.create(app, null)
-    await models.IncomingAction.createMany({ incomingActions, appId: savedApp.id })
-    await models.OutgoingAction.createMany({ outgoingActions, appId: savedApp.id })
+    await this.registerAppActions({ incomingActions, outgoingActions, appId: savedApp.id })
     return savedApp
   },
-  async setActive(appId) {
-    const foundApp = await this.findOne({ id: appId })
-    foundApp.set({ active: true })
-    return this.update(foundApp.attributes)
+	/**
+   * Register app's incoming and outgoing actions
+	 * @param incomingActions
+	 * @param outgoingActions
+	 * @param appId
+	 * @returns {Promise.<*|Promise|Promise.<*>|Promise.<void>>}
+	 */
+  async registerAppActions({ incomingActions, outgoingActions, appId }) {
+    const incCreateResult = await models.IncomingAction.createMany({ incomingActions, appId })
+    const outCreateResult = await models.OutgoingAction.createMany({ outgoingActions, appId })
+    return incCreateResult && outCreateResult
   },
-  async setInactive(appId) {
+	/**
+   * set active of app
+	 * @param appId
+	 * @param active
+	 * @returns {Promise.<void>}
+	 */
+  async setActive({ appId, active }) {
     const foundApp = await this.findOne({ id: appId })
-    foundApp.set({ ative: false })
+    foundApp.set({ active })
     return this.update(foundApp.attributes)
-  },
-  async listAll() {
-    return this.collection().fetch()
   },
 })
 
