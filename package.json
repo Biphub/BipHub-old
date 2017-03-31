@@ -4,7 +4,9 @@
   "description": "Connecting people and robots",
   "main": "dist",
   "scripts": {
+    "start": "better-npm-run dev:local",
     "dev:local": "better-npm-run dev:local",
+    "dev:pm2": "babel-node core/index.pm2.js",
     "dev:docker": "better-npm-run dev:docker",
     "build": "babel core -s -D -d dist/core && babel apps -s -D -d dist/apps",
     "start:web": "node dist",
@@ -22,7 +24,7 @@
   },
   "betterScripts": {
     "dev:local": {
-      "command": "nodemon -w core -w apps --exec \"babel-node\" core/index.js",
+      "command": "nodemon --trace-warnings -w core -w apps --exec \"babel-node\" core/index.js",
       "env": {
         "NODE_ENV": "development"
       }
@@ -68,6 +70,7 @@
     "knex": "^0.12.7",
     "lodash": "^4.17.4",
     "nconf": "^0.8.4",
+    "pm2": "^2.4.3",
     "q": "^1.4.1",
     "require-all": "^2.1.0",
     "resource-router-middleware": "^0.6.0",
@@ -86,6 +89,7 @@
     "babel-preset-es2015-node5": "^1.2.0",
     "babel-preset-es2017": "^6.22.0",
     "babel-preset-stage-0": "^6.5.0",
+    "babel-register": "^6.24.0",
     "better-npm-run": "0.0.14",
     "chai": "^3.5.0",
     "eslint": "^3.18.0",
@@ -98,6 +102,7 @@
     "gulp-shell": "^0.6.3",
     "gulp-watch": "^4.3.11",
     "mocha": "^3.2.0",
+    "nodejs-dashboard": "^0.4.1",
     "nodemon": "^1.9.2",
     "rimraf": "^2.6.1",
     "run-sequence": "^1.2.2"

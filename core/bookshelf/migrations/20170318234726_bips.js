@@ -10,13 +10,17 @@ exports.up = function (knex) {
       table.boolean('active')
       table.timestamps()
     }),
+    // Bip represents a integration between two apps
     knex.schema.createTableIfNotExists('bips', (table) => {
       table.increments()
       table.boolean('active')
+      // Contains options
       table.jsonb('incoming_action_options_values')
       table.jsonb('outgoing_action_options_values')
+      // Contains fields
       table.jsonb('incoming_action_fields_values')
       table.jsonb('outgoing_action_fields_values')
+      // Mapping between fields
       table.jsonb('fields_mapping')
       table.timestamps()
       table.integer('incoming_action_condition_id').references('incoming_action_conditions.id')

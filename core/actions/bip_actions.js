@@ -123,7 +123,7 @@ async function bip({
       app, incomingAction, bipEntities: rawBips, incomingActionPayload, socket,
     })
     const result = fowardAllBips({ bipEntities: checkedBips, data: incomingActionPayload.data })
-    console.log('INFO: Result after forwarding all bips ', result)
+    return result
   }
 }
 

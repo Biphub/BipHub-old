@@ -14,7 +14,6 @@ function init() {
   })
   socket.on('disconnect', () => {
   })
-
   const discordClient = new Discord.Client()
 
   // General Discord events
@@ -35,6 +34,7 @@ function init() {
         break
       default:
     }
+    // console.log('INFO: Duscird channel ', message.channel.name)
     console.log('INFO: Discord emitting new incoming event')
     socket.emit(payload.event, { data: payload.data, meta: payload.meta })
   })

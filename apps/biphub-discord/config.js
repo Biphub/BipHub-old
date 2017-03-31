@@ -10,7 +10,7 @@ export default {
         content: { type: 'string', name: 'content' },
       },
       options: {
-
+        channel: { type: 'string', name: 'channel' },
       },
     },
   },

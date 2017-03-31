@@ -10,15 +10,16 @@ import bipActions from '../../actions/bip_actions'
 const setup = () => {
 	/**
 	 * Registers any apps.
+	 * name: REGISTER_APP
 	 * TODO: Check that query contains requires data. query.bipName must be present
 	 */
-  pubsub.subscribe(config.get('actions:register_app:event'), ({ payload }) => {
+  pubsub.subscribe('REGISTER_APP', ({ payload }) => {
 		// Run payload validation
 
 		// Register an app with incoming and outgoing actions
     models.App.createOne(payload).then((app) => {
       app.related('incomingActions').fetch().then((model) => {
-        console.log(model)
+        // console.log(model)
       })
     }).catch(() => {
       console.log('WARN: App is already registered')
@@ -26,6 +27,14 @@ const setup = () => {
   })
 
 	/**
+	 * App requests core to find all bips with associated options
+	 */
+  pubsub.subscribe('GET_OPTIONS_VALUES', ({ payload, query, socket }) => {
+
+  })
+
+	/**
+	 * name: INCOMING_ACTION
 	 * Accepts any incoming actions from Apps
 	 * All payload must be formatted as
 	 * payload = {
@@ -35,7 +44,7 @@ const setup = () => {
 	 *
 	 * query: contains name of bip, retrieved from socket's query string
 	 */
-  pubsub.subscribe(config.get('actions:incoming_action:event'), ({ payload, query, socket }) => {
+  pubsub.subscribe('INCOMING_ACTION', ({ payload, query, socket }) => {
     const appName = _.get(query, 'appName', null)
 
     if (appName) {

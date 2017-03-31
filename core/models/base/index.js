@@ -50,7 +50,6 @@ const base = db.bookshelf.Model.extend({
 	 * @returns {*}
 	 */
   update(data) {
-    console.log('updated received payload ', data)
     return this.forge(data).save(null, { method: 'update' })
   },
 })

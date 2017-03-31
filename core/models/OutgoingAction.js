@@ -21,7 +21,6 @@ const OutgoingAction = base.extend({
 	 */
   async createOne({ entity, appId }) {
     const fields = _.get(entity, 'fields', null)
-    console.log('outgoing ', fields)
     // Delete fields so bookshelf can save outgoing action
     if (fields) {
       delete entity.fields
