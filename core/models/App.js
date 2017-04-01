@@ -2,7 +2,7 @@ import _ from 'lodash'
 import base from './base'
 import db from '../bookshelf'
 import models from './index'
-import arrayHelper from '../helpers/array'
+import collectionHelper from '../helpers/collection'
 
 const { bookshelf } = db
 const App = base.extend({
@@ -35,19 +35,8 @@ const App = base.extend({
     if (foundApp) {
       return foundApp
     }
-    const incomingActions = []
-    const outgoingActions = []
-
-    // Creates an array of incomingActions
-    _.forOwn(appData.incomingActions, (val) => {
-      // val.conditions = arrayHelper.toString(val.conditions)
-      incomingActions.push(val)
-    })
-
-    // Creates an array of outgoingActions
-    _.forOwn(appData.outgoingActions, (val) => {
-      outgoingActions.push(val)
-    })
+    const incomingActions = collectionHelper.flatForOwn(appData.incomingActions)
+    const outgoingActions = collectionHelper.flatForOwn(appData.outgoingActions)
 
     const savedApp = await this.create(appData, null)
     await this.registerAppActions({ incomingActions, outgoingActions, appId: savedApp.id })
