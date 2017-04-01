@@ -10,6 +10,7 @@ const OutgoingActionField = base.extend({
     return this.belongsTo('OutgoingAction')
   },
 }, {
+  attributes: ['id', 'name', 'type', 'incoming_action_id'],
 	/**
    * Creates many outgoing action
 	 * @param fields

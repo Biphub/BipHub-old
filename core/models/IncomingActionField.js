@@ -10,6 +10,7 @@ const IncomingActionField = base.extend({
     return this.belongsTo('IncomingAction')
   },
 }, {
+  attributes: ['id', 'name', 'type', 'incoming_action_id'],
 	/**
    * Creates many incoming actions
 	 * @param fields

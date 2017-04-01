@@ -4,6 +4,8 @@ import db from '../bookshelf'
 const { bookshelf } = db
 const IncomingActionCondition = base.extend({
   tableName: 'incoming_action_conditions',
+}, {
+  attributes: ['id', 'active', 'name', 'condition_payload', 'bip_id'],
 })
 
 const IncomingActionConditions = bookshelf.Collection.extend({

@@ -26,34 +26,19 @@ const App = base.extend({
 	/**
    * Register an app
    * It prevents users from registering duplicate app
-	 * @param data
+	 * @param appData
 	 * @returns {Promise.<*>}
 	 */
-  async createOne(data) {
-    const app = {
-      name: data.name,
-      description: data.description,
-    }
-    const foundApp = await this.findOne({ name: app.name })
+  async createOne(appData) {
+    const foundApp = await this.findOne({ name: appData.name })
     // Do not register already existing app
-    if (foundApp) {
-      return foundApp
-    }
-    const incomingActions = []
-    const outgoingActions = []
+    //if (foundApp) {
+      //return foundApp
+    //}
+    const incomingActions = _.mapValues(appData.incomingActions, o => o)
+    const outgoingActions = _.mapValues(appData.outgoingActions, o => o)
 
-		// Creates an array of incomingActions
-    _.forOwn(data.incomingActions, (val) => {
-      val.conditions = arrayHelper.toString(val.conditions)
-      incomingActions.push(val)
-    })
-
-		// Creates an array of outgoingActions
-    _.forOwn(data.outgoingActions, (val) => {
-      outgoingActions.push(val)
-    })
-
-    const savedApp = await this.create(app, null)
+    const savedApp = await this.create(appData, null)
     await this.registerAppActions({ incomingActions, outgoingActions, appId: savedApp.id })
     return savedApp
   },
@@ -65,6 +50,7 @@ const App = base.extend({
 	 * @returns {Promise.<*|Promise|Promise.<*>|Promise.<void>>}
 	 */
   async registerAppActions({ incomingActions, outgoingActions, appId }) {
+    console.log('registering actions ', incomingActions)
     const incCreateResult = await models.IncomingAction.createMany({ incomingActions, appId })
     const outCreateResult = await models.OutgoingAction.createMany({ outgoingActions, appId })
     return incCreateResult && outCreateResult
