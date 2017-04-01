@@ -14,6 +14,7 @@ const IncomingAction = base.extend({
     return this.hasMany('IncomingActionField')
   },
 }, {
+  attributes: ['id', 'type', 'endpoint', 'conditions'],
 	/**
    * create one incoming action
 	 * @param entity

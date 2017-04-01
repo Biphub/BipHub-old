@@ -116,14 +116,16 @@ async function bip({
   if (appName && !_.isEmpty(incomingActionPayload) && socket) {
     const { meta } = incomingActionPayload
     // TODO: Refactor below using Bookshelf methods
-    const app = await models.App.findOne({ name: appName })
-    const incomingAction = await models.IncomingAction.findOne({ app_id: app.id, name: meta.name })
+    console.log('bip test! ', appName)
+    const app = await models.App.findOne({ name: appName }, { withRelated: ['incomingActions', 'outgoingActions'] })
+    const appData = app.toJSON()
+    /*const incomingAction = await models.IncomingAction.findOne({ app_id: app.id, name: meta.name })
     const rawBips = (await models.Bip.findAll({ incoming_actions_id: incomingAction.id })).models
     const checkedBips = await checkAllIncomingActionConditions({
       app, incomingAction, bipEntities: rawBips, incomingActionPayload, socket,
     })
     const result = fowardAllBips({ bipEntities: checkedBips, data: incomingActionPayload.data })
-    return result
+    return result*/
   }
 }
 

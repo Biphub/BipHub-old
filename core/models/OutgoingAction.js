@@ -7,9 +7,9 @@ import models from './index'
 const { bookshelf } = db
 const OutgoingAction = base.extend({
   tableName: 'outgoing_actions',
-  app() {
+  /*app() {
     return this.belongsTo('App')
-  },
+  },*/
   OutgoingActionFields() {
     return this.hasMany('OutgoingActionField')
   },

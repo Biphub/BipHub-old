@@ -26,8 +26,9 @@ function init() {
   // 1. on message
   discordClient.on('message', (message) => {
     // Note: simply declare messages as if else
-    if (message.type === 'default') {
-      socket.emit('BIP', {
+    if (message.type === 'DEFAULT') {
+      console.log('INFO discord message ', message.content, '  ', config.incomingActions.message)
+      socket.emit('INCOMING_ACTION', {
         data: message.content,
         meta: config.incomingActions.message,
       })
@@ -49,8 +50,6 @@ function init() {
       reply(false)
     }
   })
-
-  // Outgoing actions
 }
 
 export default {

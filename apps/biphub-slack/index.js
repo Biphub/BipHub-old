@@ -31,7 +31,7 @@ function init() {
 
     // Note: simply declare event as if else
     if (type === 'message') {
-      socket.emit('BIP', {
+      socket.emit('INCOMING_ACTION', {
         data,
         meta: config.incomingActions.message,
       })

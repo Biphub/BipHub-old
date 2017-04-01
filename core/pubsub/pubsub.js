@@ -1,5 +1,6 @@
 import Events from 'events'
 import _ from 'lodash'
+import logger from '../logger'
 import config from '../config'
 import root from '../helpers/root'
 
@@ -49,6 +50,7 @@ const publish = ({ action, data, socket }) => new Promise((resolve) => {
  * @param callback
  */
 const subscribe = (action, callback) => {
+  logger.info(`pubsub subscribing to ${action}`)
   events.on(action, callback)
 }
 
