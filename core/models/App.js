@@ -32,11 +32,22 @@ const App = base.extend({
   async createOne(appData) {
     const foundApp = await this.findOne({ name: appData.name })
     // Do not register already existing app
-    //if (foundApp) {
-      //return foundApp
-    //}
-    const incomingActions = _.mapValues(appData.incomingActions, o => o)
-    const outgoingActions = _.mapValues(appData.outgoingActions, o => o)
+    if (foundApp) {
+      return foundApp
+    }
+    const incomingActions = []
+    const outgoingActions = []
+
+    // Creates an array of incomingActions
+    _.forOwn(appData.incomingActions, (val) => {
+      val.conditions = arrayHelper.toString(val.conditions)
+      incomingActions.push(val)
+    })
+
+    // Creates an array of outgoingActions
+    _.forOwn(appData.outgoingActions, (val) => {
+      outgoingActions.push(val)
+    })
 
     const savedApp = await this.create(appData, null)
     await this.registerAppActions({ incomingActions, outgoingActions, appId: savedApp.id })
@@ -50,7 +61,6 @@ const App = base.extend({
 	 * @returns {Promise.<*|Promise|Promise.<*>|Promise.<void>>}
 	 */
   async registerAppActions({ incomingActions, outgoingActions, appId }) {
-    console.log('registering actions ', incomingActions)
     const incCreateResult = await models.IncomingAction.createMany({ incomingActions, appId })
     const outCreateResult = await models.OutgoingAction.createMany({ outgoingActions, appId })
     return incCreateResult && outCreateResult

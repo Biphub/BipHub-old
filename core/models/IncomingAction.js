@@ -23,11 +23,6 @@ const IncomingAction = base.extend({
 	 */
   async createOne({ entity, appId }) {
     const fields = _.get(entity, 'fields', null)
-
-    // Delete fields from the entity
-    if (fields) {
-      delete entity.fields
-    }
     entity.app_id = appId
     const incAction = await this.create(entity, null)
     await models.IncomingActionField.createMany({ fields, incomingActionId: incAction.get('id') })
