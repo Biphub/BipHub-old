@@ -25,18 +25,13 @@ function init() {
   // Discord Incoming Events
   // 1. on message
   discordClient.on('message', (message) => {
-    const payload = {}
-    payload.event = 'INCOMING_ACTION'
-    switch (message.type) {
-      case 'DEFAULT':
-        payload.data = message.content
-        payload.meta = config.incomingActions.message
-        break
-      default:
+    // Note: simply declare messages as if else
+    if (message.type === 'default') {
+      socket.emit('BIP', {
+        data: message.content,
+        meta: config.incomingActions.message,
+      })
     }
-    // console.log('INFO: Duscird channel ', message.channel.name)
-    console.log('INFO: Discord emitting new incoming event')
-    socket.emit(payload.event, { data: payload.data, meta: payload.meta })
   })
 
   discordClient.login(password.token)

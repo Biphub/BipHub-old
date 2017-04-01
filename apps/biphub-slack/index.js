@@ -28,24 +28,18 @@ function init() {
   bot.on('message', (data) => {
 		// all ingoing events https://api.slack.com/rtm
     const { type } = data
-    const payload = {}
-    payload.event = 'INCOMING_ACTION'
-    switch (type) {
-      case 'message':
-        payload.data = data
-        payload.meta = config.incomingActions.message
-        break
-      default:
-        console.log('INFO: Slack ping!')
-        break
+
+    // Note: simply declare event as if else
+    if (type === 'message') {
+      socket.emit('BIP', {
+        data,
+        meta: config.incomingActions.message,
+      })
     }
-    socket.emit(payload.event, {
-      data: payload.data,
-      meta: payload.meta,
-    })
   })
 
   // Slack outgoing actions
+  // Note: simply below config.outgoingactions....
   socket.on(`${appName}_${config.outgoingActions.postMessage.name}`, (data) => {
     console.log('slack: post message received')
     bot.postMessage('general', `test bip forward ${data}`, null)

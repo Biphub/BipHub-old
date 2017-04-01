@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import pubsub from '../../pubsub'
-import config from '../../config'
 import models from '../../models'
+import logger from '../../logger'
 import bipActions from '../../actions/bip_actions'
 
 /**
@@ -14,15 +14,14 @@ const setup = () => {
 	 * TODO: Check that query contains requires data. query.bipName must be present
 	 */
   pubsub.subscribe('REGISTER_APP', ({ payload }) => {
-		// Run payload validation
 
 		// Register an app with incoming and outgoing actions
     models.App.createOne(payload).then((app) => {
       app.related('incomingActions').fetch().then((model) => {
-        // console.log(model)
+        logger.info(`Register app successful for ${model.get('name')}`)
       })
     }).catch(() => {
-      console.log('WARN: App is already registered')
+      logger.error(`Register app failed for ${payload.name}`)
     })
   })
 
@@ -30,7 +29,6 @@ const setup = () => {
 	 * App requests core to find all bips with associated options
 	 */
   pubsub.subscribe('GET_OPTIONS_VALUES', ({ payload, query, socket }) => {
-
   })
 
 	/**
@@ -44,7 +42,7 @@ const setup = () => {
 	 *
 	 * query: contains name of bip, retrieved from socket's query string
 	 */
-  pubsub.subscribe('INCOMING_ACTION', ({ payload, query, socket }) => {
+  pubsub.subscribe('BIP', ({ payload, query, socket }) => {
     const appName = _.get(query, 'appName', null)
 
     if (appName) {
@@ -62,7 +60,7 @@ const setup = () => {
 	 * Accepts ping check
 	 * TODO: Clarify what todo if ping constantly fails
 	 */
-  pubsub.subscribe(config.get('actions:ping:event'), (payload) => {
+  pubsub.subscribe('PING', (payload) => {
     console.log('INFO: Ping from ', payload)
   })
 }

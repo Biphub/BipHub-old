@@ -18,3 +18,5 @@ if (env === 'development') {
 winston.log('info', 'Hello distributed log files!')
 winston.info('Hello again distributed logs')
 winston.info('new stuff')
+
+export default winston
