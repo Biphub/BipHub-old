@@ -31,7 +31,7 @@ exports.up = function (knex) {
       table.increments()
       table.string('type')
       table.string('endpoint')
-      table.string('conditions')  // JS array serialized into an array TODO: Find a better way
+      table.jsonb('conditions')  // JS array serialized into an array TODO: Find a better way
       table.string('name')
       table.timestamps()
       table.integer('app_id').references('apps.id')

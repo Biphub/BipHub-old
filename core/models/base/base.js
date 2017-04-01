@@ -14,6 +14,20 @@ const base = db.bookshelf.Model.extend({
     return _.pick(attrs, this.attributes)
   },
   /**
+   * Stringify any JSON or Array columns
+   * @param attrs
+   * @returns {*}
+   */
+  formatJson(attrs) {
+    _.forOwn(attrs, (val, key) => {
+      const current = attrs[key]
+      if (_.isArray(current) || _.isPlainObject(current)) {
+        attrs[key] = JSON.stringify(current)
+      }
+    })
+    return attrs
+  },
+  /**
    * It will ensure bookshelf fetches full entity according to
    * related:[] defined in extending entity constructor
    * http://stackoverflow.com/questions/35679855/always-fetch-from-related-models-in-bookshelf-js
@@ -53,7 +67,8 @@ const base = db.bookshelf.Model.extend({
    */
   create(data, options) {
     const parsedData = this.parse(data)
-    return this.forge(parsedData).save(null, options)
+    const jsonFormatted = this.formatJson(parsedData)
+    return this.forge(jsonFormatted).save(null, options)
   },
   /**
    * Find a model based on it's ID

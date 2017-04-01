@@ -40,7 +40,7 @@ const App = base.extend({
 
     // Creates an array of incomingActions
     _.forOwn(appData.incomingActions, (val) => {
-      val.conditions = arrayHelper.toString(val.conditions)
+      // val.conditions = arrayHelper.toString(val.conditions)
       incomingActions.push(val)
     })
 
