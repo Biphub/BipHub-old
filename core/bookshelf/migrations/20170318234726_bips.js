@@ -15,12 +15,29 @@ exports.up = function (knex) {
       table.increments()
       table.boolean('active')
       // Contains options
+      /**
+       * Example of payload after message received
+       * { data: 'tests',
+          meta:
+           { type: 'webhook/ws',
+             name: 'message',
+             conditions: [ 'matches', 'contains' ],
+             fields: { content: [Object] },
+             options: { channel: [Object] } } }
+
+       */
+      // Below jsonb field represents actual bip and its values
+      // IncomingActionField and IncomingActionOptions, they represents schema
+      // which will be used for frontend UI
+      // Example: ['matches']
+      table.jsonb('incoming_action_conditions_values')
+      // Example: [{ channelName: 'general' }]
       table.jsonb('incoming_action_options_values')
+      // Example: [{ channelName: 'everyone' }]
       table.jsonb('outgoing_action_options_values')
-      // Contains fields
-      table.jsonb('incoming_action_fields_values')
-      table.jsonb('outgoing_action_fields_values')
       // Mapping between fields
+      // [0] incoming action field id, [1] outgoing action field id
+      // Example: [{ [1,2], [3,4] }]
       table.jsonb('fields_mapping')
       table.timestamps()
       table.integer('incoming_action_condition_id').references('incoming_action_conditions.id')
@@ -42,7 +59,7 @@ exports.up = function (knex) {
       table.string('name')
       table.jsonb('condition_payload')
       table.timestamps()
-      table.integer('bip_id').references('bips.id')
+      table.integer('incoming_action_id').references('incoming_actions.id')
     }),
     knex.schema.createTableIfNotExists('outgoing_actions', (table) => {
       table.increments()
@@ -51,19 +68,33 @@ exports.up = function (knex) {
       table.timestamps()
       table.integer('app_id').references('apps.id')
     }),
-    knex.schema.createTableIfNotExists('incoming_action_field', (table) => {
+    knex.schema.createTableIfNotExists('incoming_action_fields', (table) => {
       table.increments()
       table.string('name')
       table.string('type')
       table.timestamps()
       table.integer('incoming_action_id').references('incoming_actions.id')
     }),
-    knex.schema.createTableIfNotExists('outgoing_action_field', (table) => {
+    knex.schema.createTableIfNotExists('outgoing_action_fields', (table) => {
       table.increments()
       table.string('name')
       table.string('type')
       table.timestamps()
       table.integer('outgoing_action_id').references('ougoing_actions.id')
+    }),
+    knex.schema.createTableIfNotExists('incoming_action_options', (table) => {
+      table.increments()
+      table.string('name')
+      table.string('type')
+      table.boolean('active')
+      table.integer('incoming_action_id').references('incoming_actions.id')
+    }),
+    knex.schema.createTableIfNotExists('outgoing_action_options', (table) => {
+      table.increments()
+      table.string('name')
+      table.string('type')
+      table.boolean('active')
+      table.integer('outgoing_action_id').references('outgoing_actions.id')
     }),
   ])
 }
@@ -75,7 +106,9 @@ exports.down = function (knex) {
     knex.schema.dropTableIfExists('incoming_actions'),
     knex.schema.dropTableIfExists('outgoing_actions'),
     knex.schema.dropTableIfExists('incoming_action_condition'),
-    knex.schema.dropTableIfExists('incoming_action_field'),
-    knex.schema.dropTableIfExists('outgoing_action_field'),
+    knex.schema.dropTableIfExists('incoming_action_fields'),
+    knex.schema.dropTableIfExists('outgoing_action_fields'),
+    knex.schema.dropTableIfExists('incoming_action_options'),
+    knex.schema.dropTableIfExists('outgoing_action_options'),
   ])
 }

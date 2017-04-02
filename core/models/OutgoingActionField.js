@@ -5,7 +5,7 @@ import db from '../bookshelf'
 
 const { bookshelf } = db
 const OutgoingActionField = base.extend({
-  tableName: 'outgoing_action_field',
+  tableName: 'outgoing_action_fields',
   outgoingAction() {
     return this.belongsTo('OutgoingAction')
   },

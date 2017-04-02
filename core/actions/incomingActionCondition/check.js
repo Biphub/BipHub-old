@@ -1,45 +1,77 @@
 import _ from 'lodash'
-import logger from '../../logger'
-import models from '../../models'
 import pubsub from '../../pubsub'
 
 /**
- * Check incoming action's conditions by broadcasting.
- * TODO: Put rules in the documentation: only use attributes in functions that actually use them
- * @param appName (Required to create message)
- * @param incomingActionName (Required to create name)
- * @param incomingActionConditionId
+ *
+ * @param appName
+ * @param incomingActionName
+ * @param incomingActionConditionPayload
+ * @param incomingActionConditionName
  * @param incomingActionPayload
  * @param socket
- * @returns {Promise.<void>}
+ * @returns {Promise.<{result: *}>}
  */
 async function checkIncomingActionCondition({
-	appName, incomingActionName, incomingActionConditionId, incomingActionPayload, socket,
+	appName, incomingActionName, incomingActionConditionPayload,
+  incomingActionConditionName, incomingActionPayload, socket,
 }) {
-  if (bip && !_.isEmpty(bip)) {
-    const incomingActionCondition = await models.IncomingActionCondition.findOne({
-      id: bip.get('incoming_action_condition_id'),
-    })
-		// TODO: Refactor below code
-    const appName = app.get('name')
-    const incActionName = incomingAction.get('name')
-    const conditionName = incomingActionCondition.get('name')
-    const condition = incomingActionCondition.get('condition_payload')
-		// TODO: Move below code to helper
-    const messageName = `${appName}_${incActionName}_${conditionName}`
-    const conditionResult = await pubsub.publish({
-      socket,
-      action: messageName,
-      data: {
-        payload: incomingActionPayload,
-        condition,
-      },
-    })
-    return {
-      bip,
-      result: conditionResult,
-    }
+  const messageName = `${appName}_${incomingActionName}_${incomingActionConditionName}`
+  const conditionResult = await pubsub.publish({
+    socket,
+    action: messageName,
+    data: {
+      payload: incomingActionPayload,
+      incomingActionConditionPayload,
+    },
+  })
+  return {
+    result: conditionResult,
   }
 }
 
-export default checkIncomingActionCondition
+/**
+ *
+ * @param app
+ * @param incomingAction
+ * @param incomingActionPayload
+ * @param incomingActionCondition
+ * @param bips
+ * @param socket
+ * @returns {Promise.<void>}
+ */
+async function checkAllIncomingActionConditions({
+  app, incomingAction, incomingActionPayload, incomingActionCondition, bips, socket,
+}) {
+  const conditionCheckFuncs = bips.map((bip) => {
+    const appName = app.name
+    const incomingActionName = incomingAction.name
+    const incomingActionConditionPayload = incomingActionCondition.condition_payload
+    const incomingActionConditionName = incomingActionCondition.name
+    return checkIncomingActionCondition({
+      appName,
+      incomingActionName,
+      incomingActionConditionPayload,
+      incomingActionConditionName,
+      incomingActionPayload,
+      socket,
+    })
+  })
+  _.forEach(bips, (bip) => {
+    /* conditionCheckFuncs.push(checkIncomingActionCondition({
+      app, incomingAction, bip, incomingActionPayload, socket,
+    }))*/
+  })
+  const allResult = await Q.all(conditionCheckFuncs)
+  allResult.filter((payload) => {
+    if (payload.result) {
+      return payload.bipEntity
+    }
+    return false
+  })
+  return allResult.map(payload => payload.bip)
+}
+
+export default {
+  checkAllIncomingActionConditions,
+  checkIncomingActionCondition,
+}

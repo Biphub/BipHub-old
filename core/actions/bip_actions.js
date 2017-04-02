@@ -2,74 +2,7 @@ import _ from 'lodash'
 import Q from 'q'
 import models from '../models'
 import pubsub from '../pubsub'
-
-/**
- * Check incoming action's conditions by broadcasting.
- * TODO: Put rules in the documentation: only use attributes in functions that actually use them
- * @param app
- * @param incomingAction
- * @param bipEntity
- * @param incomingActionPayload
- * @param socket
- * @returns {Promise.<void>}
- */
-async function checkIncomingActionCondition({
-  app, incomingAction, bipEntity, incomingActionPayload, socket,
-}) {
-  if (bipEntity && !_.isEmpty(bipEntity)) {
-    const incomingActionCondition = await models.IncomingActionCondition.findOne({
-      id: bipEntity.get('incoming_action_condition_id'),
-    })
-    // TODO: Refactor below code
-    const appName = app.get('name')
-    const incActionName = incomingAction.get('name')
-    const conditionName = incomingActionCondition.get('name')
-    const condition = incomingActionCondition.get('condition_payload')
-    // TODO: Move below code to helper
-    const messageName = `${appName}_${incActionName}_${conditionName}`
-    const conditionResult = await pubsub.publish({
-      socket,
-      action: messageName,
-      data: {
-        payload: incomingActionPayload,
-        condition,
-      },
-    })
-    return {
-      bip: bipEntity,
-      result: conditionResult,
-    }
-  }
-}
-
-/**
- * Check all incoming action conditions.
- * Essentially it calls checkIncomingActionCondition method
- * @param app
- * @param incomingAction
- * @param incomingActionPayload
- * @param bipEntities
- * @param socket
- * @returns {Promise.<*>}
- */
-async function checkAllIncomingActionConditions({
-  app, incomingAction, incomingActionPayload, bipEntities, socket,
-}) {
-  const conditionCheckFuncs = []
-  _.forEach(bipEntities, (bipEntity) => {
-    conditionCheckFuncs.push(checkIncomingActionCondition({
-      app, incomingAction, bipEntity, incomingActionPayload, socket,
-    }))
-  })
-  const allResult = await Q.all(conditionCheckFuncs)
-  allResult.filter((payload) => {
-    if (payload.result) {
-      return payload.bipEntity
-    }
-    return false
-  })
-  return allResult.map(payload => payload.bip)
-}
+import { checkIncomingActionCondition } from '../actions/incomingActionCondition/check'
 
 /**
  * Forwarding bips to connected apps
@@ -117,6 +50,7 @@ async function bip({
     const { meta } = incomingActionPayload
     const app = await models.App.findOne({ name: appName }, { withRelated: ['incomingActions', 'outgoingActions'] })
     const incomingAction = await app.related('incomingActions').where({ name: meta.name })
+    const foundBips = await models.Bip.findAll({ incoming_action_id: incomingAction.get('id') }, { withRelated: [] })
     /*const incomingAction = await models.IncomingAction.findOne({ app_id: app.id, name: meta.name })
     const rawBips = (await models.Bip.findAll({ incoming_actions_id: incomingAction.id })).models
     const checkedBips = await checkAllIncomingActionConditions({
