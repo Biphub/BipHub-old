@@ -87,6 +87,7 @@ exports.up = function (knex) {
       table.string('name')
       table.string('type')
       table.boolean('active')
+      table.timestamps()
       table.integer('incoming_action_id').references('incoming_actions.id')
     }),
     knex.schema.createTableIfNotExists('outgoing_action_options', (table) => {
@@ -94,6 +95,7 @@ exports.up = function (knex) {
       table.string('name')
       table.string('type')
       table.boolean('active')
+      table.timestamps()
       table.integer('outgoing_action_id').references('outgoing_actions.id')
     }),
   ])

@@ -5,6 +5,8 @@ import OutgoingAction from './OutgoingAction'
 import IncomingActionField from './IncomingActionField'
 import OutgoingActionField from './OutgoingActionField'
 import IncomingActionCondition from './IncomingActionCondition'
+import IncomingActionOption from './IncomingActionOption'
+import OutgoingActionOption from './OutgoingActionOption'
 
 export default {
   App: App.single,
@@ -21,4 +23,8 @@ export default {
   OutgoingActionFields: OutgoingActionField.collection,
   IncomingActionCondition: IncomingActionCondition.single,
   IncomingActionConditions: IncomingActionCondition.collection,
+  IncomingActionOption: IncomingActionOption.single,
+  IncomingActionOptions: IncomingActionOption.collection,
+  OutgoingActionOption: OutgoingActionOption.single,
+  OutgoingActionOptions: OutgoingActionOption.collection,
 }

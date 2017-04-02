@@ -22,15 +22,13 @@ const OutgoingAction = base.extend({
 	 */
   async createOne({ entity, appId }) {
     const fields = _.get(entity, 'fields', null)
-    // Delete fields so bookshelf can save outgoing action
-    if (fields) {
-      delete entity.fields
-    }
-
+    const options = _.get(entity, 'options', null)
     entity.app_id = appId
     const outgoingAction = await this.create(entity)
-    await models.OutgoingActionField.createMany({ fields, outgoingActionId: outgoingAction.get('id') })
-    return true
+    const outgoingActionId = outgoingAction.get('id')
+    const fieldResult = await models.OutgoingActionField.createMany({ fields, outgoingActionId })
+    const optionsResult = await models.OutgoingActionOption.createMany({ options, outgoingActionId })
+    return fieldResult && optionsResult
   },
 	/**
    * create many outgoing actions

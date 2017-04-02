@@ -23,10 +23,17 @@ const IncomingAction = base.extend({
 	 */
   async createOne({ entity, appId }) {
     const fields = _.get(entity, 'fields', null)
+    const options = _.get(entity, 'options', null)
     entity.app_id = appId
     const incAction = await this.create(entity, null)
-    await models.IncomingActionField.createMany({ fields, incomingActionId: incAction.get('id') })
-    return true
+    const incomingActionId = incAction.get('id')
+    const fieldsCreateResult =
+      await models.IncomingActionField.createMany({ fields, incomingActionId })
+    console.log('options ', options)
+    const optionsCreateResult =
+      await models.IncomingActionOption.createMany({ options, incomingActionId })
+
+    return fieldsCreateResult && optionsCreateResult
   },
 	/**
    * Creates many incoming actions

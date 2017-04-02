@@ -1,3 +1,5 @@
+import _ from 'lodash'
+import Q from 'q'
 import base from './base'
 import db from '../bookshelf'
 
@@ -10,6 +12,20 @@ const OutgoingActionOption = base.extend({
   },
 }, {
   attributes: ['id', 'name', 'type', 'active', 'outgoing_action_id'],
+  /**
+   *
+   * @param options
+   * @param outgoingActionId
+   * @returns {Promise.<*>}
+   */
+  async createMany({ options, outgoingActionId }) {
+    const fns = []
+    _.forOwn(options, (option) => {
+      option.outgoing_action_id = outgoingActionId
+      fns.push(this.create(option))
+    })
+    return Q.all(fns)
+  },
 })
 
 const OutgoingActionOptions = bookshelf.Collection.extend({
