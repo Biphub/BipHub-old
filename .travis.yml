@@ -2,6 +2,10 @@ sudo: required
 language: node_js
 node_js:
   - "node"
+
+addons:
+  srcclr: true
+
 notifications:
   slack: bipioteam:1TUQcmvbfrbxWwxViLG4ybAA
 
@@ -22,6 +26,3 @@ script:
   - npm run js:lint:dev
   - npm run test:all
   - npm run build
-
-addons:
-  srcclr: true

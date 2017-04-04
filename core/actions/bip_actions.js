@@ -51,7 +51,7 @@ async function bip({
     const app = await models.App.findOne({ name: appName }, { withRelated: ['incomingActions', 'outgoingActions'] })
     const incomingAction = await app.related('incomingActions').where({ name: meta.name })
     const foundBips = await models.Bip.findAll({ incoming_action_id: incomingAction.get('id') }, { withRelated: [] })
-    /*const incomingAction = await models.IncomingAction.findOne({ app_id: app.id, name: meta.name })
+    /* const incomingAction = await models.IncomingAction.findOne({ app_id: app.id, name: meta.name })
     const rawBips = (await models.Bip.findAll({ incoming_actions_id: incomingAction.id })).models
     const checkedBips = await checkAllIncomingActionConditions({
       app, incomingAction, bipEntities: rawBips, incomingActionPayload, socket,

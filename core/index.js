@@ -4,9 +4,10 @@ import express from 'express'
 import exphbs from 'express-handlebars'
 import http from 'http'
 import path from 'path'
+import { buildSchema } from 'graphql'
+import graphqlHTTP from 'express-graphql'
 import db from './bookshelf'
 import config from './config'
-import logger from './logger'
 import middleware from './middleware'
 import controllers from './controllers'
 import './models'
@@ -40,6 +41,24 @@ app.use(cors({
 
 app.use(bodyParser.json({
   limit: config.bodyLimit,
+}))
+
+// Construct a schema, using GraphQL schema language
+const schema = buildSchema(`
+  type Query {
+    hello: String
+  }
+`)
+
+// The root provides a resolver function for each API endpoint
+const root = {
+  hello: () => 'Hello world!',
+}
+
+app.use('/graphql', graphqlHTTP({
+  schema,
+  rootValue: root,
+  graphiql: true,
 }))
 
 // internal middleware

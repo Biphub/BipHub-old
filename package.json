@@ -5,8 +5,7 @@
   "main": "dist",
   "scripts": {
     "start": "better-npm-run dev:local",
-    "dev:local": "better-npm-run dev:local",
-    "dev:docker": "better-npm-run dev:docker",
+    "dev": "better-npm-run dev:local",
     "build": "babel core -s -D -d dist/core && babel apps -s -D -d dist/apps",
     "start:web": "node dist",
     "start:web:forever": "forever dist",
@@ -24,12 +23,6 @@
   "betterScripts": {
     "dev:local": {
       "command": "nodemon --trace-warnings -w core -w apps --exec \"babel-node\" core/index.js",
-      "env": {
-        "NODE_ENV": "development"
-      }
-    },
-    "dev:docker": {
-      "command": "nodemon -L -w core -w apps --exec \"babel-node --presets es2015,es2017,stage-0\" core/index.js",
       "env": {
         "NODE_ENV": "development"
       }
@@ -64,7 +57,9 @@
     "discord.js": "^11.0.0",
     "es6-promisify": "^5.0.0",
     "express": "^4.15.0",
+    "express-graphql": "^0.6.4",
     "express-handlebars": "^3.0.0",
+    "graphql": "^0.9.2",
     "hbs": "^4.0.1",
     "knex": "^0.12.7",
     "lodash": "^4.17.4",
@@ -95,6 +90,7 @@
     "eslint-config-airbnb-base": "^11.1.1",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-security": "^1.3.0",
+    "express-graphql": "^0.6.4",
     "flow-bin": "^0.42.0",
     "gulp": "^3.9.1",
     "gulp-live-server": "0.0.30",
