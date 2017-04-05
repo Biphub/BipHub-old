@@ -8,7 +8,8 @@
     "semi": ["error", "never"],
     "consistent-return": ["off"],
     "no-console": ["off"],
-    "import/no-unresolved": ["error", { "ignore": ["password$"] }]
+    "import/no-unresolved": ["error", { "ignore": ["password$"] }],
+    "max-len": ["error", 150]
   },
   "plugins": ["security"]
 }
