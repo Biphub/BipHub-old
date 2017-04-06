@@ -7,5 +7,6 @@
 npm-debug*
 *.sqlite3
 /core/apps/.password
+*.password.js*
 /apps/.password
 .gulp-cache
