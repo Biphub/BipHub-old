@@ -6,6 +6,6 @@
 /.idea
 npm-debug*
 *.sqlite3
-/.password
+/core/apps/.password
 /apps/.password
 .gulp-cache

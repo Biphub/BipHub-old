@@ -54,7 +54,6 @@ const schema = buildSchema(`
 const root = {
   hello: () => 'Hello world!',
 }
-
 app.use('/graphql', graphqlHTTP({
   schema,
   rootValue: root,
