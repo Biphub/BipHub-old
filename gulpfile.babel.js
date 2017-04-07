@@ -6,9 +6,9 @@ import Cache from 'gulp-file-cache'
 const cache = new Cache()
 
 gulp.task('compile', () => gulp.src('./core/**/*.{js,json,password}', { dot: true })
-    .pipe(cache.filter())
+    // .pipe(cache.filter())
     .pipe(babel())
-    .pipe(cache.cache())
+    // .pipe(cache.cache())
     .pipe(gulp.dest('./dist')), // write them
 )
 

@@ -5,7 +5,7 @@
   "main": "dist",
   "scripts": {
     "start": "better-npm-run dev:local",
-    "dev": "better-npm-run dev:local",
+    "dev": "gulp watch",
     "build": "babel core -s -D -d dist/core",
     "start:web": "node dist",
     "start:web:forever": "forever dist",
