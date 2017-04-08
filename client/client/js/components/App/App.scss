@@ -1,0 +1,27 @@
+@import '../../../styles/padding';
+@import '../../../styles/size';
+@import '../../../styles/colour';
+
+.component {
+  cursor: pointer;
+}
+
+.app-icon--border {
+  display: flex;
+  width: 67px;
+  height: 67px;
+  margin: 0 auto;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.app-icon--border > img {
+  width: 60%;
+  align-self: center;
+}
+
+.app-label {
+  font-size: $fsize--mss;
+  margin-top: 4px;
+  text-align: center;
+}
