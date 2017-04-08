@@ -1,0 +1,123 @@
+/**
+ Theme name: Biphub frontend 1
+ Author: Jason Shin
+ Created On: 07/03/2017
+ */
+@import '../size';
+$color-dark: #34425a;
+$color-deep-dark: #2b384e;
+$color-light-dark: #374051;
+$color-light-purple: #899dc1;
+$color-dark-blue: #58676c;
+$color-white: white;
+$color-light-blue: #bcdbfb;
+
+
+// Default font size
+html,
+body,
+#app {
+  height: 100%;
+}
+
+/**
+ * page/Base
+ */
+.base-main-width {
+  width: 90%;
+  margin: 0 auto;
+}
+
+div {
+  font-size: $fsize--mss;
+}
+
+/**
+ * page/explore
+ */
+
+.explore-heading {
+  text-align: center;
+  font-size: $fsize--md;
+  color: $color-dark-blue;
+}
+
+/**
+ * component/UserProfile
+ */
+
+.side-user-profile {
+  background-color: $color-dark;
+
+  .name {
+    color: $color-white;
+  }
+
+  .role {
+    color: $color-light-purple;
+  }
+}
+
+/**
+ * component/Card
+ */
+
+.card {
+  color: white;
+}
+
+/**
+ * component/Sidebar
+ */
+
+.container-side {
+  background-color: $color-dark;
+}
+
+.component-side {
+  background-color: $color-dark;
+  color: $color-light-purple;
+}
+
+.component-side--active {
+  background-color: $color-deep-dark;
+  color: $color-white;
+}
+
+/**
+ * component/InfoBox
+ */
+
+.info-box-heading {
+  color: $color-light-dark;
+}
+
+.info-box-description {
+  color: $color-light-dark;
+  font-size: 13px;
+}
+
+/**
+ * component/SearchBar
+ */
+
+.search-bar {
+  border: 1px solid #dadfe2;
+  border-radius: 3px;
+}
+
+/**
+ * component/API
+ */
+
+.app-icon--border {
+  border: 2.5px solid $color-light-blue;
+}
+
+.app-icon--no-border {
+  border: 0;
+}
+
+.app-label {
+  color: $color-dark-blue;
+}

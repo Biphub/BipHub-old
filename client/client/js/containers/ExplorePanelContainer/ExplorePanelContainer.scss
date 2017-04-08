@@ -1,0 +1,73 @@
+@import '../../../styles/padding';
+@import '../../../styles/padding';
+@import '../../../styles/margin';
+
+.component-pad {
+  padding: $pd--md;
+}
+
+.icon {
+  align-self: center;
+}
+
+.input {
+  width: 100%;
+  margin-left: 15px;
+  padding: $pd--md;
+  align-self: center;
+  outline: none;
+  border: 0;
+}
+
+.api-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
+.api-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.api-list::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);
+  border-radius: 10px;
+}
+
+.api-list::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+}
+
+
+.api-list .component {
+  // TODO: Make sure if this is meant to be fixed width
+  width: 120px;
+  text-align: center;
+  margin-bottom: $margin--md;
+}
+
+// Customer scroll
+.page::-webkit-scrollbar {
+  width: 6px;
+}
+
+.page::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.page::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: rgba(255, 0, 0, 0.8);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+.page::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(255, 0, 0, 0.4);
+}
+
