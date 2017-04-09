@@ -36,7 +36,6 @@ const loadNConf = () => {
   nconf.file('hub', { file: `${configDir}` })
   nconf.file('action', { file: `${actionConfigDir}` })
   nconf.defaults(mainConfig)
-  console.log('DB Config ', nconf.get('database'))
   // Method overriding
   nconf.getEnv = getEnv
 
