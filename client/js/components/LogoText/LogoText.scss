@@ -1,0 +1,16 @@
+@import '../../../styles/colour.scss'; // TODO: shorten this syntax
+@import '../../../styles/size.scss';
+
+.component {
+  display: flex;
+  justify-content: center;
+  background-color: $bg--green;
+  color: $font--white;
+  width: 100%;
+  min-height: 50px;
+}
+
+.logo-text {
+  align-self: center;
+  font-size: $fsize--md;
+}

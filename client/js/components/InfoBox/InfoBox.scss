@@ -1,0 +1,15 @@
+@import "../../../styles/size";
+@import "../../../styles/padding";
+
+.component {
+  width: 100%;
+}
+
+.values {
+  display: flex;
+}
+
+.heading {
+  font-size: $fsize--lg;
+  padding-right: $pd--40;
+}

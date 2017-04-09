@@ -1,0 +1,32 @@
+@import '../../../styles/padding';
+
+.component-pad {
+  background: red;
+}
+
+.formula-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.plus {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.actions {
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.35);
+
+  // TODO: Refactor this: We should not use any nested elements
+  .component-pad {
+    display: flex;
+    background: none;
+  }
+}
+
+.action-button {
+  background: rgba(0, 0, 0, 0.35);
+  padding: 5px 15px;
+}
