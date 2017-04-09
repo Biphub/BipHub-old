@@ -7,7 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const ProgressPlugin = require('webpack/lib/ProgressPlugin')
 const OfflinePlugin = require('offline-plugin')
 const base = require('./webpack.base')
-const _ = require('./utils')
+const utils = require('./utils')
 const config = require('./../config')
 
 if (config.electron) {
@@ -60,7 +60,7 @@ base.plugins.push(
 )
 
 // extract css in standalone css files
-_.cssProcessors.forEach(processor => {
+utils.cssProcessors.forEach(processor => {
   let loaders
   if (processor.loader === '') {
     loaders = ['postcss-loader']
@@ -70,7 +70,7 @@ _.cssProcessors.forEach(processor => {
   base.module.loaders.push({
     test: processor.test,
     loader: ExtractTextPlugin.extract({
-      use: [_.cssLoader].concat(loaders),
+      use: [utils.cssLoader].concat(loaders),
       fallback: 'style-loader'
     })
   })
