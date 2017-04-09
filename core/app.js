@@ -19,7 +19,7 @@ import vuepackMiddleware from './middleware/vuepack'
 // Initiating express
 const app = express()
 const server = http.Server(app)
-const port = config.get('web:port') || 3000
+const port = config.get('port')
 app.server = server
 app.set('port', port)
 

@@ -1,5 +1,6 @@
 import nconf from 'nconf'
 import path from 'path'
+import mainConfig from '../../config'
 
 const configPath = __dirname
 const ENV_DEV = 'development'
@@ -21,7 +22,6 @@ const getEnv = (short) => {
 const loadNConf = () => {
   let configDir = PATH_DEV
   let actionConfigDir = PATH_ACTIONS_DEV
-
 	// Loads environment variables
   nconf.argv().env()
   const nodeEnv = nconf.get('NODE_ENV')
@@ -33,11 +33,10 @@ const loadNConf = () => {
     configDir = path.join(configPath, PATH_PROD)
   }
 
-	// Loads configs
   nconf.file('hub', { file: `${configDir}` })
   nconf.file('action', { file: `${actionConfigDir}` })
-  nconf.file('web', { file: `${configDir}web.json` })
-
+  nconf.defaults(mainConfig)
+  console.log('DB Config ', nconf.get('database'))
   // Method overriding
   nconf.getEnv = getEnv
 

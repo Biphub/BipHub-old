@@ -5,8 +5,7 @@ import webpackConfig from '../../build/webpack.dev'
 import WebpackLogPlugin from '../../build/log-plugin'
 
 const vuepackMiddleware = (app) => {
-  const port = config.get('web:port')
-  console.log('vuepack middleware! ', port, ' app ', app)
+  const port = config.get('port')
   // Webpack dev requirements
   if (config.getEnv(true) === 'dev') {
     webpackConfig.entry.client = [

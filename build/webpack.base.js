@@ -3,8 +3,9 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const config = require('./config')
+const config = require('./../config')
 const _ = require('./utils')
+
 module.exports = {
   entry: {
     client: path.join(__dirname, '../client/index.js')

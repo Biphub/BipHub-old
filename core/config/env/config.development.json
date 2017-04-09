@@ -3,22 +3,10 @@
     "containing_directory": "apis/",
     "namespace": "biphub-"
   },
-  "web": {
-    "port": 8080,
-    "bodyLimit": "100kb",
-    "corsHeaders": ["Link"]
-  },
   "api": {
     "title": "Bipflow API",
     "description": "Bipflow API micro documentation",
     "email": "visualbbasic@gmail.com",
     "version": "1.0.0"
-  },
-  "database": {
-    "client": "sqlite3",
-    "connection": {
-      "filename": "content/data/biphub-dev.sqlite3"
-    },
-    "debug": false
   }
 }

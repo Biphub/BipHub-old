@@ -12,7 +12,7 @@ if (env === 'development') {
     user: null,
     password: null,
     filename: 'content/data/biphub-dev.sqlite3',
-    tableName: 'Logs',
+    tableName: 'Logs'
   })
 }
 winston.log('info', 'Hello distributed log files!')
