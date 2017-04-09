@@ -5,15 +5,21 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const config = require('./config')
 const _ = require('./utils')
-
 module.exports = {
   entry: {
-    client: './client/index.js'
+    client: path.join(__dirname, '../client/index.js')
   },
   output: {
     path: _.outputPath,
     filename: '[name].js',
     publicPath: config.publicPath
+  },
+  stats: {
+    // Configure the console output
+    errorDetails: true, //this does show errors
+    colors: false,
+    modules: true,
+    reasons: true
   },
   performance: {
     hints: process.env.NODE_ENV === 'production' ? 'warning' : false
@@ -78,3 +84,4 @@ module.exports = {
   ],
   target: _.target
 }
+console.log('html ', path.resolve(__dirname, 'index.html'))

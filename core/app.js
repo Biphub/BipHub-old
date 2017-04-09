@@ -16,7 +16,6 @@ import './logger'
 // Webpack requirements
 import webpack from 'webpack'
 import webpackConfig from '../build/webpack.dev'
-import clientConfig from '../build/config'
 import WebpackLogPlugin from '../build/log-plugin'
 
 // Initiating express
@@ -32,6 +31,7 @@ if (config.getEnv(true) === 'dev') {
     `webpack-hot-middleware/client?reload=true`,
     webpackConfig.entry.client
   ]
+  console.log('webpack client js ', webpackConfig.entry.client)
   webpackConfig.plugins.push(new WebpackLogPlugin(port))
 
   let compiler
@@ -54,10 +54,8 @@ if (config.getEnv(true) === 'dev') {
 
   const mfs = devMiddleWare.fileSystem
   const file = path.join(webpackConfig.output.path, 'index.html')
-
   devMiddleWare.waitUntilValid()
-
-  app.get('*', (req, res) => {
+  app.get('/', (req, res) => {
     devMiddleWare.waitUntilValid(() => {
       const html = mfs.readFileSync(file)
       res.end(html)

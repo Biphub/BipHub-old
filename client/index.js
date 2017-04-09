@@ -1,3 +1,4 @@
+console.log('index loaded frontend')
 import './promise-polyfill'
 import { app } from './app'
 
