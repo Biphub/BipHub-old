@@ -14,13 +14,6 @@ module.exports = {
     filename: '[name].js',
     publicPath: config.publicPath
   },
-  stats: {
-    // Configure the console output
-    errorDetails: true, //this does show errors
-    colors: false,
-    modules: true,
-    reasons: true
-  },
   performance: {
     hints: process.env.NODE_ENV === 'production' ? 'warning' : false
   },
@@ -58,7 +51,7 @@ module.exports = {
         test: /\.(ico|jpg|png|gif|eot|otf|webp|ttf|woff|woff2)(\?.*)?$/,
         loader: 'file-loader',
         query: {
-          name: 'static/media/[name].[hash:8].[ext]'
+          name: 'client/static/media/[name].[hash:8].[ext]'
         }
       },
       {
@@ -76,12 +69,11 @@ module.exports = {
     new webpack.LoaderOptionsPlugin(_.loadersOptions()),
     new CopyWebpackPlugin([
       {
-        from: _.cwd('./static'),
-        // to the roor of dist path
+        from: _.cwd('./client/static'),
+        // to the root of dist path
         to: './static'
       }
     ])
   ],
   target: _.target
 }
-console.log('html ', path.resolve(__dirname, 'index.html'))
