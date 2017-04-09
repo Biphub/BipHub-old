@@ -6,9 +6,9 @@ module.exports = {
   development: {
     client: 'sqlite3',
     connection: {
-      filename: path.join(__dirname, '/../../content/data/biphub-dev.sqlite3'),
+      filename: path.join(__dirname, '../../../database/biphub-dev.sqlite3')
     },
-    debug: true,
+    debug: true
   },
 
   staging: {
@@ -16,15 +16,15 @@ module.exports = {
     connection: {
       database: 'my_db',
       user: 'username',
-      password: 'password',
+      password: 'password'
     },
     pool: {
       min: 2,
-      max: 10,
+      max: 10
     },
     migrations: {
-      tableName: 'knex_migrations',
-    },
+      tableName: 'knex_migrations'
+    }
   },
 
   production: {
@@ -32,15 +32,15 @@ module.exports = {
     connection: {
       database: 'my_db',
       user: 'username',
-      password: 'password',
+      password: 'password'
     },
     pool: {
       min: 2,
-      max: 10,
+      max: 10
     },
     migrations: {
-      tableName: 'knex_migrations',
-    },
+      tableName: 'knex_migrations'
+    }
   },
-  debug: false,
+  debug: false
 }

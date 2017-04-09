@@ -11,7 +11,7 @@ const init = () => {
   }
   return {
     knex: root.knex,
-    bookshelf: root.bookshelf,
+    bookshelf: root.bookshelf
   }
 }
 
