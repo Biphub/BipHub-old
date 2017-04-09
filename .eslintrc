@@ -1,3 +1,14 @@
 {
-  "extends": "standard"
+  "extends": "standard",
+  "rules": {
+    "func-names": ["error", "never"],
+    "no-tabs": 0,
+    "no-param-reassign": ["off"],
+    "no-extra-semi": "error",
+    "semi": ["error", "never"],
+    "consistent-return": ["off"],
+    "no-console": ["off"],
+    "import/no-unresolved": ["error", { "ignore": ["password$"] }]
+  },
+  "plugins": ["security", "html"]
 }
