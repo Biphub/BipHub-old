@@ -6,7 +6,7 @@ module.exports = {
   development: {
     client: 'sqlite3',
     connection: {
-      filename: path.join(__dirname, '../../../database/biphub-dev.sqlite3')
+      filename: path.join(__dirname, '/../../.database/sqlite/biphub-dev.sqlite3'),
     },
     debug: true
   },
