@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import base from './base'
 import db from '../bookshelf'
 import models from './index'
@@ -11,16 +10,16 @@ const App = base.extend({
    * get incoming actions
 	 * @returns {*|Collection}
 	 */
-  incomingActions() {
+  incomingActions () {
     return this.hasMany(models.IncomingAction)
   },
 	/**
    * get outgoing actions
 	 * @returns {*|Collection}
 	 */
-  outgoingActions() {
+  outgoingActions () {
     return this.hasMany(models.OutgoingAction)
-  },
+  }
 }, {
   attributes: ['id', 'name', 'auth_type', 'description', 'active', 'created_at', 'updated_at'],
 	/**
@@ -29,7 +28,7 @@ const App = base.extend({
 	 * @param appData
 	 * @returns {Promise.<*>}
 	 */
-  async createOne(appData) {
+  async createOne (appData) {
     const foundApp = await this.findOne({ name: appData.name })
     // Do not register already existing app
     if (foundApp) {
@@ -49,7 +48,7 @@ const App = base.extend({
 	 * @param appId
 	 * @returns {Promise.<*|Promise|Promise.<*>|Promise.<void>>}
 	 */
-  async registerAppActions({ incomingActions, outgoingActions, appId }) {
+  async registerAppActions ({ incomingActions, outgoingActions, appId }) {
     const incCreateResult = await models.IncomingAction.createMany({ incomingActions, appId })
     const outCreateResult = await models.OutgoingAction.createMany({ outgoingActions, appId })
     return incCreateResult && outCreateResult
@@ -60,18 +59,18 @@ const App = base.extend({
 	 * @param active
 	 * @returns {Promise.<void>}
 	 */
-  async setActive({ appId, active }) {
+  async setActive ({ appId, active }) {
     const foundApp = await this.findOne({ id: appId })
     foundApp.set({ active })
     return this.update(foundApp.attributes)
-  },
+  }
 })
 
 const Apps = bookshelf.Collection.extend({
-  model: App,
+  model: App
 })
 
 export default {
   single: bookshelf.model('App', App),
-  collection: bookshelf.collection('Apps', Apps),
+  collection: bookshelf.collection('Apps', Apps)
 }

@@ -20,20 +20,20 @@ export default {
     emailDomainChanged: { type: 'webhook/ws', name: 'email_domain_changed' },
     emojiChanged: { type: 'webhook/ws', name: 'emoji_changed' },
     fileChange: { type: 'webhook/ws', name: 'file_change' },
-    message: { type: 'webhook/ws', name: 'message', conditions: ['matches', 'contains'] },
+    message: { type: 'webhook/ws', name: 'message', conditions: ['matches', 'contains'] }
   },
   outgoingActions: {
     postMessage: {
       type: 'webhook/ws',
       name: 'post_message',
       fields: {
-        data: { type: 'string', name: 'data' },
-      },
-    },
+        data: { type: 'string', name: 'data' }
+      }
+    }
   },
   requirements: {
     auth: {
-      method: 'token',
-    },
-  },
+      method: 'token'
+    }
+  }
 }

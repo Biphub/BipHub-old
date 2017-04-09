@@ -12,7 +12,7 @@
     "prestart:web": "npm run -s build",
     "test:web": "eslint src",
     "js:fix": "eslint --fix ./",
-    "js:lint:dev": "eslint ./",
+    "js:lint": "eslint ./",
     "js:lint:prod": "eslint --rule \"\"no-console\": [\"error\"]\" ./",
     "test:all": "mocha --compilers js:babel-core/register \"./test/**/*.js\"",
     "snyk:test": "snyk test",
@@ -22,7 +22,7 @@
   },
   "betterScripts": {
     "dev:local": {
-      "command": "nodemon --trace-warnings -w core --exec \"babel-node\" index.js",
+      "command": "nodemon --trace-warnings -w core index.js",
       "env": {
         "NODE_ENV": "development"
       }
@@ -103,6 +103,7 @@
     "eslint": "^3.18.0",
     "eslint-config-airbnb-base": "^11.1.1",
     "eslint-config-standard": "^10.2.0",
+    "eslint-plugin-html": "^2.0.1",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-node": "^4.2.2",
     "eslint-plugin-promise": "^3.5.0",

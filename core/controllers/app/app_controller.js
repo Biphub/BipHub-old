@@ -61,5 +61,5 @@ const setup = () => {
 }
 
 export default {
-  setup,
+  setup
 }

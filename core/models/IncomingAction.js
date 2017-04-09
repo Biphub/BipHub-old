@@ -7,12 +7,12 @@ import models from './index'
 const { bookshelf } = db
 const IncomingAction = base.extend({
   tableName: 'incoming_actions',
-  app() {
+  app () {
     return this.belongsTo('App')
   },
-  incomingActionsFields() {
+  incomingActionsFields () {
     return this.hasMany('IncomingActionField')
-  },
+  }
 }, {
   attributes: ['id', 'type', 'endpoint', 'conditions', 'name', 'app_id'],
 	/**
@@ -21,7 +21,7 @@ const IncomingAction = base.extend({
 	 * @param appId
 	 * @returns {Promise.<boolean>}
 	 */
-  async createOne({ entity, appId }) {
+  async createOne ({ entity, appId }) {
     const fields = _.get(entity, 'fields', null)
     const options = _.get(entity, 'options', null)
     entity.app_id = appId
@@ -41,7 +41,7 @@ const IncomingAction = base.extend({
 	 * @param appId
 	 * @returns {Promise.<void>}
 	 */
-  async createMany({ incomingActions, appId }) {
+  async createMany ({ incomingActions, appId }) {
     const forgedIncActions = incomingActions.map(entity => this.createOne({ entity, appId }))
     Q.all(forgedIncActions)
   },
@@ -50,18 +50,18 @@ const IncomingAction = base.extend({
 	 * @param action
 	 * @returns {*}
 	 */
-  findByEndPoint(endPoint, action) {
+  findByEndPoint (endPoint, action) {
     const endPointVariation = `/${endPoint}`
     const actionVariation = `/${action}`
     return this.findOne({ endPoint: endPointVariation, action: actionVariation })
-  },
+  }
 })
 
 const IncomingActions = bookshelf.Collection.extend({
-  model: IncomingAction,
+  model: IncomingAction
 })
 
 export default {
   single: bookshelf.model('IncomingAction', IncomingAction),
-  collection: bookshelf.collection('IncomingActions', IncomingActions),
+  collection: bookshelf.collection('IncomingActions', IncomingActions)
 }

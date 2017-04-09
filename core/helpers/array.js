@@ -12,5 +12,5 @@ const toString = (array) => {
 }
 
 export default {
-  toString,
+  toString
 }

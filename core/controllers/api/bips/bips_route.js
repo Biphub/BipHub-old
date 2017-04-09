@@ -15,5 +15,5 @@ const getBip = () => {
 
 export default {
   postBip,
-  getBip,
+  getBip
 }

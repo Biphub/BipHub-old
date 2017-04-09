@@ -3,10 +3,10 @@ const getApiActions = (originalUrl) => {
   split.shift()
   return {
     endpoint: split[1],
-    action: split[2],
+    action: split[2]
   }
 }
 
 export default {
-  getApiActions,
+  getApiActions
 }

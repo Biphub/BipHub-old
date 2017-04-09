@@ -8,7 +8,7 @@
  *		}
  */
 const toRes = (res, status = 200) => {
-  function resFunc(err, thing) {
+  function resFunc (err, thing) {
     if (err) return res.status(500).send(err)
 
     if (thing && typeof thing.toObject === 'function') {

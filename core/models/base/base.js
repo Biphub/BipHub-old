@@ -2,7 +2,7 @@ import _ from 'lodash'
 import db from '../../bookshelf'
 
 const base = db.bookshelf.Model.extend({
-  hasTimestamps: ['created_at', 'updated_at'],
+  hasTimestamps: ['created_at', 'updated_at']
 
 }, {
   /**
@@ -10,7 +10,7 @@ const base = db.bookshelf.Model.extend({
    * @param attrs
    * @returns {*}
    */
-  parse(attrs) {
+  parse (attrs) {
     return _.pick(attrs, this.attributes)
   },
   /**
@@ -18,7 +18,7 @@ const base = db.bookshelf.Model.extend({
    * @param attrs
    * @returns {*}
    */
-  formatJson(attrs) {
+  formatJson (attrs) {
     _.forOwn(attrs, (val, key) => {
       const current = attrs[key]
       if (_.isArray(current) || _.isPlainObject(current)) {
@@ -34,7 +34,7 @@ const base = db.bookshelf.Model.extend({
    * @param query
    * @returns {*|Promise.<Model|null>}
    */
-  fetchFull(query) {
+  fetchFull (query) {
     let args
     if (this.constructor.withRelated) {
       args = { withRelated: this.constructor.withRelated }
@@ -47,7 +47,7 @@ const base = db.bookshelf.Model.extend({
    * @param options
    * @returns {*|Promise.<Collection>}
    */
-  findAll(filter, options) {
+  findAll (filter, options) {
     return this.forge().where(filter).fetchAll(options)
   },
   /**
@@ -56,7 +56,7 @@ const base = db.bookshelf.Model.extend({
    * @param options
    * @returns {*|Promise.<Model|null>}
    */
-  findOne(query, options) {
+  findOne (query, options) {
     return this.forge(query).fetch(options)
   },
   /**
@@ -65,7 +65,7 @@ const base = db.bookshelf.Model.extend({
    * @param options
    * @returns {*}
    */
-  create(data, options) {
+  create (data, options) {
     const parsedData = this.parse(data)
     const jsonFormatted = this.formatJson(parsedData)
     return this.forge(jsonFormatted).save(null, options)
@@ -76,7 +76,7 @@ const base = db.bookshelf.Model.extend({
    * @param {Object} [options] Options used of model.fetch
    * @returns {*|Promise.<Model|null>}
    */
-  findById(id, options) {
+  findById (id, options) {
     return this.findOne({ [this.prototype.idAttribute]: id }, options)
   },
   /**
@@ -84,9 +84,9 @@ const base = db.bookshelf.Model.extend({
    * @param data
    * @returns {*}
    */
-  update(data) {
+  update (data) {
     return this.forge(data).save(null, { method: 'update' })
-  },
+  }
 })
 
 export default base

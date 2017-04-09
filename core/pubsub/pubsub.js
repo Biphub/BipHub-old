@@ -11,7 +11,7 @@ let events = root.events
  * Intializes IO
  * @param io
  */
-function initialize(io) {
+function initialize (io) {
   if (typeof root.io === 'undefined') {
     events = new Events.EventEmitter()
 
@@ -57,5 +57,5 @@ const subscribe = (action, callback) => {
 export default {
   initialize,
   publish,
-  subscribe,
+  subscribe
 }

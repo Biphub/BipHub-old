@@ -7,9 +7,9 @@ const { bookshelf } = db
 
 const OutgoingActionOption = base.extend({
   tableName: 'outgoing_action_options',
-  outgoingActions() {
+  outgoingActions () {
     return this.belongsTo('OutgoingAction')
-  },
+  }
 }, {
   attributes: ['id', 'name', 'type', 'active', 'outgoing_action_id'],
   /**
@@ -18,21 +18,21 @@ const OutgoingActionOption = base.extend({
    * @param outgoingActionId
    * @returns {Promise.<*>}
    */
-  async createMany({ options, outgoingActionId }) {
+  async createMany ({ options, outgoingActionId }) {
     const fns = []
     _.forOwn(options, (option) => {
       option.outgoing_action_id = outgoingActionId
       fns.push(this.create(option))
     })
     return Q.all(fns)
-  },
+  }
 })
 
 const OutgoingActionOptions = bookshelf.Collection.extend({
-  model: OutgoingActionOption,
+  model: OutgoingActionOption
 })
 
 export default {
   single: bookshelf.model('OutgoingActionOption', OutgoingActionOption),
-  collection: bookshelf.collection('OutgoingActionOptions', OutgoingActionOptions),
+  collection: bookshelf.collection('OutgoingActionOptions', OutgoingActionOptions)
 }

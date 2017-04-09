@@ -7,7 +7,7 @@ const loader = () => {
 	 * Loads APIs from APIs folder or npm modules.
 	 * Folder to load APIs is decided according to NDOE_ENV value
 	 */
-  function loadAPIs() {
+  function loadAPIs () {
     const nodeEnv = config.get('NODE_ENV')
     let rawAPIs = {}
     if (nodeEnv === 'development') {
@@ -23,13 +23,13 @@ const loader = () => {
 	/**
 	 * Init all loaded APIs
 	 */
-  function initAPIs() {
+  function initAPIs () {
     const APIs = loadAPIs()
     APIs.forEach(api => api.init())
   }
 
   return {
-    initAPIs,
+    initAPIs
   }
 }
 

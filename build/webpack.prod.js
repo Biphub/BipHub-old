@@ -7,7 +7,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const ProgressPlugin = require('webpack/lib/ProgressPlugin')
 const OfflinePlugin = require('offline-plugin')
 const base = require('./webpack.base')
-const pkg = require('../package')
 const _ = require('./utils')
 const config = require('./../config')
 

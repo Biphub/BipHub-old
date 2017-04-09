@@ -9,5 +9,5 @@ const flatForOwn = (collection) => {
 }
 
 export default {
-  flatForOwn,
+  flatForOwn
 }

@@ -11,9 +11,9 @@ import pubsub from '../../pubsub'
  * @param socket
  * @returns {Promise.<{result: *}>}
  */
-async function checkIncomingActionCondition({
+async function checkIncomingActionCondition ({
 	appName, incomingActionName, incomingActionConditionPayload,
-  incomingActionConditionName, incomingActionPayload, socket,
+  incomingActionConditionName, incomingActionPayload, socket
 }) {
   const messageName = `${appName}_${incomingActionName}_${incomingActionConditionName}`
   const conditionResult = await pubsub.publish({
@@ -21,11 +21,11 @@ async function checkIncomingActionCondition({
     action: messageName,
     data: {
       payload: incomingActionPayload,
-      incomingActionConditionPayload,
-    },
+      incomingActionConditionPayload
+    }
   })
   return {
-    result: conditionResult,
+    result: conditionResult
   }
 }
 
@@ -39,8 +39,8 @@ async function checkIncomingActionCondition({
  * @param socket
  * @returns {Promise.<void>}
  */
-async function checkAllIncomingActionConditions({
-  app, incomingAction, incomingActionPayload, incomingActionCondition, bips, socket,
+async function checkAllIncomingActionConditions ({
+  app, incomingAction, incomingActionPayload, incomingActionCondition, bips, socket
 }) {
   const conditionCheckFuncs = bips.map((bip) => {
     const appName = app.name
@@ -53,13 +53,13 @@ async function checkAllIncomingActionConditions({
       incomingActionConditionPayload,
       incomingActionConditionName,
       incomingActionPayload,
-      socket,
+      socket
     })
   })
   _.forEach(bips, (bip) => {
     /* conditionCheckFuncs.push(checkIncomingActionCondition({
       app, incomingAction, bip, incomingActionPayload, socket,
-    }))*/
+    })) */
   })
   const allResult = await Q.all(conditionCheckFuncs)
   allResult.filter((payload) => {
@@ -73,5 +73,5 @@ async function checkAllIncomingActionConditions({
 
 export default {
   checkAllIncomingActionConditions,
-  checkIncomingActionCondition,
+  checkIncomingActionCondition
 }

@@ -1,6 +1,12 @@
+# general
 /node_modules
 /test
 /dist
+
+# server
 /core/admin
 /core/index.js
 index.js
+
+# client
+/client/app.js

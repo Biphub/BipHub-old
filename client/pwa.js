@@ -8,5 +8,5 @@ runtime.install({
 
   // Reload to get the new version:
   onUpdated () {
-  },
+  }
 })

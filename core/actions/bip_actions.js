@@ -10,13 +10,13 @@ import { checkIncomingActionCondition } from '../actions/incomingActionCondition
  * @param data
  * @returns {Promise.<void>}
  */
-async function forwardBip({ bipEntity, data }) {
+async function forwardBip ({ bipEntity, data }) {
   if (!_.isEmpty(bipEntity)) {
     const outgoingAction = await models.OutgoingAction.findOne({ id: bipEntity.get('outgoing_actions_id') })
     const app = await models.App.findOne({ id: outgoingAction.get('app_id') })
     pubsub.publish({
       action: `${app.get('name')}_${outgoingAction.get('name')}`,
-      data,
+      data
     })
   }
 }
@@ -24,7 +24,7 @@ async function forwardBip({ bipEntity, data }) {
 /**
  * Foward all bips to outgoing actions
  */
-async function fowardAllBips({ bipEntities, data }) {
+async function fowardAllBips ({ bipEntities, data }) {
   const bipFoward = []
   _.forEach(bipEntities, (bipEntity) => {
     bipFoward.push(forwardBip({ bipEntity, data }))
@@ -41,10 +41,10 @@ async function fowardAllBips({ bipEntities, data }) {
  * @param socket
  * @returns {Promise.<void>}
  */
-async function bip({
+async function bip ({
   appName,
 	incomingActionPayload,
-	socket,
+	socket
 }) {
   if (appName && !_.isEmpty(incomingActionPayload) && socket) {
     const { meta } = incomingActionPayload
@@ -57,11 +57,10 @@ async function bip({
       app, incomingAction, bipEntities: rawBips, incomingActionPayload, socket,
     })
     const result = fowardAllBips({ bipEntities: checkedBips, data: incomingActionPayload.data })
-    return result*/
+    return result */
   }
 }
 
-
 export default {
-  bip,
+  bip
 }

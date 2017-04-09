@@ -97,7 +97,7 @@ exports.up = function (knex) {
       table.boolean('active')
       table.timestamps()
       table.integer('outgoing_action_id').references('outgoing_actions.id')
-    }),
+    })
   ])
 }
 
@@ -111,6 +111,6 @@ exports.down = function (knex) {
     knex.schema.dropTableIfExists('incoming_action_fields'),
     knex.schema.dropTableIfExists('outgoing_action_fields'),
     knex.schema.dropTableIfExists('incoming_action_options'),
-    knex.schema.dropTableIfExists('outgoing_action_options'),
+    knex.schema.dropTableIfExists('outgoing_action_options')
   ])
 }

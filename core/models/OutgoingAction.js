@@ -7,12 +7,12 @@ import models from './index'
 const { bookshelf } = db
 const OutgoingAction = base.extend({
   tableName: 'outgoing_actions',
-  app() {
+  app () {
     return this.belongsTo('App')
   },
-  OutgoingActionFields() {
+  OutgoingActionFields () {
     return this.hasMany('OutgoingActionField')
-  },
+  }
 }, {
   attributes: ['id', 'type', 'name', 'app_id'],
 	/**
@@ -20,7 +20,7 @@ const OutgoingAction = base.extend({
 	 * @param entity
 	 * @param appId
 	 */
-  async createOne({ entity, appId }) {
+  async createOne ({ entity, appId }) {
     const fields = _.get(entity, 'fields', null)
     const options = _.get(entity, 'options', null)
     entity.app_id = appId
@@ -35,17 +35,17 @@ const OutgoingAction = base.extend({
 	 * @param outgoingActions
 	 * @param appId
 	 */
-  async createMany({ outgoingActions, appId }) {
+  async createMany ({ outgoingActions, appId }) {
     const forgedOutActions = outgoingActions.map(entity => this.createOne({ entity, appId }))
     Q.all(forgedOutActions)
-  },
+  }
 })
 
 const OutgoingActions = bookshelf.Collection.extend({
-  model: OutgoingAction,
+  model: OutgoingAction
 })
 
 export default {
   single: bookshelf.model('OutgoingAction', OutgoingAction),
-  collection: bookshelf.collection('OutgoingActions', OutgoingActions),
+  collection: bookshelf.collection('OutgoingActions', OutgoingActions)
 }
