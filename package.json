@@ -10,7 +10,6 @@
     "start:web": "node dist",
     "start:web:forever": "forever dist",
     "prestart:web": "npm run -s build",
-    "test:web": "eslint src",
     "js:fix": "eslint --fix ./",
     "js:lint": "eslint ./",
     "js:lint:prod": "eslint --rule \"\"no-console\": [\"error\"]\" ./",

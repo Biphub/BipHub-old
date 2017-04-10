@@ -18,7 +18,7 @@
     props: {
     	src: { type: String, default: 'N/A' },
     	label: { type: String, default: null },
-      border: { type: Boolean, default: false }
+      border: { type: Boolean, default: false },
     },
     computed: {
     	iconBorder() {

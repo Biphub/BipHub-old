@@ -1,5 +1,6 @@
 {
   "extends": "standard",
+  "plugins": ["security", "html"],
   "rules": {
     "func-names": ["error", "never"],
     "no-tabs": 0,
@@ -10,5 +11,7 @@
     "no-console": ["off"],
     "import/no-unresolved": ["error", { "ignore": ["password$"] }]
   },
-  "plugins": ["security", "html"]
+  "settings": {
+    "html/html-extensions": [".html", ".vue"]
+  }
 }
