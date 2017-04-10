@@ -15,29 +15,6 @@
     "test:all": "mocha --compilers js:babel-core/register \"./test/**/*.js\"",
     "snyk:test": "snyk test"
   },
-  "betterScripts": {
-    "dev:local": {
-      "command": "nodemon --trace-warnings -w core index.js",
-      "env": {
-        "NODE_ENV": "development"
-      }
-    },
-    "build": {}
-  },
-  "eslintConfig": {
-    "extends": "eslint:recommended",
-    "parserOptions": {
-      "ecmaVersion": 7,
-      "sourceType": "module"
-    },
-    "env": {
-      "node": true
-    },
-    "rules": {
-      "no-console": 0,
-      "no-unused-vars": 1
-    }
-  },
   "repository": "bipio/biphub-core",
   "author": "Jason Shin <visualbbasic@gmail.com>",
   "license": "MIT",
