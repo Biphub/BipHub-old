@@ -27,9 +27,9 @@
 <script>
   export default {
     props: {
-    	photo: { type: String, default: '' },
-    	name: { type: String, default: 'N/A' },
-    	role: { type: String, default: 'N/A' },
+      photo: { type: String, default: '' },
+      name: { type: String, default: 'N/A' },
+      role: { type: String, default: 'N/A' },
       enablePhoto: { type: Boolean, default: true },
       enableName: { type: Boolean, default: true },
       enableRole: { type: Boolean, default: true }

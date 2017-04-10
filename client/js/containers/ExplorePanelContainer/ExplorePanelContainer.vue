@@ -111,13 +111,13 @@
 
   export default {
     components: {
-    	Icon,
+      Icon,
       SearchBar,
       App
     },
     methods: {
       onAppClick () {
-      	this.$emit('onAppClick')
+        this.$emit('onAppClick')
       }
     }
   }
