@@ -1,11 +1,11 @@
 # ignore all hidden folders
 .*
+!.idea
 /dist
 /logs
 /npm-debug.log
 /node_modules
 .DS_Store
-/.idea
 npm-debug*
 *.sqlite3
 /core/apps/.password
