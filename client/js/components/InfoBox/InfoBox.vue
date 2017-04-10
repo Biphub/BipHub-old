@@ -23,12 +23,12 @@
   import Icon from 'components/Icon'
   export default {
     components: {
-      Icon,
+      Icon
     },
     props: {
     	value: { type: String, default: 'N/A' },
     	iconType: { type: String, default: 'home' },
-      description: { type: String, default: 'N/A' },
-    },
+      description: { type: String, default: 'N/A' }
+    }
   }
 </script>

@@ -42,6 +42,8 @@ async function checkIncomingActionCondition ({
 async function checkAllIncomingActionConditions ({
   app, incomingAction, incomingActionPayload, incomingActionCondition, bips, socket
 }) {
+  // TODO: Get conditionPayload from bip
+  // TODO: Get incomingActionPayload from websocket payload
   const conditionCheckFuncs = bips.map((bip) => {
     const appName = app.name
     const incomingActionName = incomingAction.name

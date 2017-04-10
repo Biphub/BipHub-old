@@ -15,7 +15,7 @@
   import Icon from 'components/Icon'
   export default {
     components: {
-    	Icon,
+    	Icon
     }
   }
 </script>

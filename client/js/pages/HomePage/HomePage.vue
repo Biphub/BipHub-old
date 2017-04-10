@@ -46,14 +46,14 @@ export default {
     BasePage,
     InfoBox,
     SuggestionContainer,
-    ExplorePanelContainer,
+    ExplorePanelContainer
   },
   props: {
     test: { type: String, default: 'nothing!' }
   },
   methods: {
-  	onAppClick() {
-      //this.$router.
+    onAppClick () {
+    // this.$router.
     }
   }
 }

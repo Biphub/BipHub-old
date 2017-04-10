@@ -113,10 +113,10 @@
     components: {
     	Icon,
       SearchBar,
-      App,
+      App
     },
     methods: {
-      onAppClick() {
+      onAppClick () {
       	this.$emit('onAppClick')
       }
     }

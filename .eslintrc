@@ -12,6 +12,6 @@
     "import/no-unresolved": ["error", { "ignore": ["password$"] }]
   },
   "settings": {
-    "html/html-extensions": [".html", ".vue"]
+    "html/indent": "0"
   }
 }

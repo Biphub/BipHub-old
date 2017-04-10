@@ -32,7 +32,7 @@
     components: {
       LogoText,
       UserProfile,
-      MenuItem,
+      MenuItem
     }
   }
 </script>

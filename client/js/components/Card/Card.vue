@@ -27,11 +27,11 @@
 
   export default {
     props: {
-      header: { type: String, default: null },
+      header: { type: String, default: null }
     },
     components: {
       App,
-      Icon,
+      Icon
     }
   }
 </script>

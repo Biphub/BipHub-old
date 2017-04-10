@@ -23,7 +23,7 @@
   export default {
     components: {
       TopbarContainer,
-      SidebarContainer,
+      SidebarContainer
     }
   }
 </script>

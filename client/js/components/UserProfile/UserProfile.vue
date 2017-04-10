@@ -32,7 +32,7 @@
     	role: { type: String, default: 'N/A' },
       enablePhoto: { type: Boolean, default: true },
       enableName: { type: Boolean, default: true },
-      enableRole: { type: Boolean, default: true },
+      enableRole: { type: Boolean, default: true }
     }
   }
 </script>

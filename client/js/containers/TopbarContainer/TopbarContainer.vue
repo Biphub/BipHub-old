@@ -51,7 +51,7 @@ import UserProfile from 'components/UserProfile'
 export default {
   components: {
     MenuItem,
-    UserProfile,
+    UserProfile
   }
 }
 </script>

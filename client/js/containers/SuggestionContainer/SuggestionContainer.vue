@@ -22,7 +22,7 @@
 
   export default {
     components: {
-      Card,
+      Card
     }
   }
 </script>

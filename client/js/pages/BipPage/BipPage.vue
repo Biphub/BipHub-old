@@ -12,7 +12,7 @@
   import BasePage from '../Base'
   export default {
     components: {
-      BasePage,
+      BasePage
     }
   }
 </script>

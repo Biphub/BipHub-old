@@ -20,10 +20,10 @@
     props: {
       iconType: { type: String, default: null },
       label: { type: String, default: null },
-      flexDirection: { type: String, default: 'column' },
+      flexDirection: { type: String, default: 'column' }
     },
     components: {
-      Icon,
+      Icon
     },
     name: 'MenuItem',
     computed: {
@@ -32,19 +32,19 @@
        * TODO: Move strings used in this function in constants
        * @returns {string}
        */
-    	direction() {
+    	direction () {
     		let baseStyle = 'component-pad'
     		switch (this.flexDirection) {
-          case 'column-reverse':
+      case 'column-reverse':
           	return `${baseStyle} component--column-reverse`
-          case 'row':
+      case 'row':
           	return `${baseStyle} component--row`
-          case 'row-reverse':
+      case 'row-reverse':
           	return `${baseStyle} component--row-reverse`
-          default:
-            return `${baseStyle} component--column`
-        }
-      }
-    },
+      default:
+        return `${baseStyle} component--column`
+    }
+    }
+    }
   }
 </script>
