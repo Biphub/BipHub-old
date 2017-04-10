@@ -12,7 +12,6 @@ const vuepackMiddleware = (app) => {
       `webpack-hot-middleware/client?reload=true`,
       webpackConfig.entry.client
     ]
-    console.log('webpack client js ', webpackConfig.entry.client)
     webpackConfig.plugins.push(new WebpackLogPlugin(port))
 
     let compiler

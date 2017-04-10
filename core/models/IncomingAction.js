@@ -29,7 +29,6 @@ const IncomingAction = base.extend({
     const incomingActionId = incAction.get('id')
     const fieldsCreateResult =
       await models.IncomingActionField.createMany({ fields, incomingActionId })
-    console.log('options ', options)
     const optionsCreateResult =
       await models.IncomingActionOption.createMany({ options, incomingActionId })
 

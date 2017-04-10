@@ -1,3 +1,4 @@
+# ignore all hidden folders
 .*
 /dist
 /logs

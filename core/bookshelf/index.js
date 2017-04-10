@@ -9,7 +9,6 @@ const connection = db()
 const { knex, bookshelf } = connection
 
 async function migrate() {
-  console.log('migrating!')
 	// TODO, check it runs only once
   await knex.migrate.latest(migrationConfig)
 	// .then(() => knex.seed.run(seedConfig))

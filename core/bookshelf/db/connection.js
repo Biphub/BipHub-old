@@ -6,7 +6,6 @@ import root from '../../helpers/root'
 const init = () => {
   if (typeof root.bookshelf === 'undefined') {
     // TODO: Check if it needs config
-    console.log('DB! ', config.get('database'))
     root.knex = Knex(config.get('database'))
     root.bookshelf = Bookshelf(root.knex)
     root.bookshelf.plugin('registry')
