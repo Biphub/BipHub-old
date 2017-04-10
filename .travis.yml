@@ -6,6 +6,11 @@ node_js:
 addons:
   srcclr: true
 
+cache:
+  yarn: true
+  directories:
+    - node_modules
+
 notifications:
   slack: bipioteam:1TUQcmvbfrbxWwxViLG4ybAA
 
