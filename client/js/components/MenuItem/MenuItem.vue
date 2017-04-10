@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  import Icon from 'components/Icon'
+  import Icon from '../Icon'
 
   export default {
     props: {
@@ -32,19 +32,19 @@
        * TODO: Move strings used in this function in constants
        * @returns {string}
        */
-    	direction () {
-    		let baseStyle = 'component-pad'
-    		switch (this.flexDirection) {
-      case 'column-reverse':
-          	return `${baseStyle} component--column-reverse`
-      case 'row':
-          	return `${baseStyle} component--row`
-      case 'row-reverse':
-          	return `${baseStyle} component--row-reverse`
-      default:
-        return `${baseStyle} component--column`
-    }
-    }
+      direction () {
+        let baseStyle = 'component-pad'
+        switch (this.flexDirection) {
+          case 'column-reverse':
+            return `${baseStyle} component--column-reverse`
+          case 'row':
+            return `${baseStyle} component--row`
+          case 'row-reverse':
+            return `${baseStyle} component--row-reverse`
+          default:
+            return `${baseStyle} component--column`
+        }
+      }
     }
   }
 </script>

@@ -105,9 +105,9 @@
 </template>
 
 <script>
-  import App from 'components/App'
-  import Icon from 'components/Icon'
-  import SearchBar from 'components/SearchBar'
+  import App from '../../components/App'
+  import Icon from '../../components/Icon'
+  import SearchBar from '../../components/SearchBar'
 
   export default {
     components: {

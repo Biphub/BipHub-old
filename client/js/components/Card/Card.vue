@@ -22,8 +22,8 @@
 </template>
 
 <script>
-  import App from 'components/App'
-  import Icon from 'components/Icon'
+  import App from '../App'
+  import Icon from '../Icon'
 
   export default {
     props: {

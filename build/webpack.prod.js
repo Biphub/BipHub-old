@@ -1,4 +1,3 @@
-'use strict'
 process.env.NODE_ENV = 'production'
 
 const exec = require('child_process').execSync

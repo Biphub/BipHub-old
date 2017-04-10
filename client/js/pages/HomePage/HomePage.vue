@@ -36,9 +36,9 @@
 
 <script>
 import BasePage from '../Base'
-import ExplorePanelContainer from 'containers/ExplorePanelContainer'
-import SuggestionContainer from 'containers/SuggestionContainer'
-import InfoBox from 'components/InfoBox'
+import ExplorePanelContainer from '../../containers/ExplorePanelContainer'
+import SuggestionContainer from '../../containers/SuggestionContainer'
+import InfoBox from '../../components/InfoBox'
 
 // TODO: Implement page builder
 export default {

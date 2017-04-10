@@ -1,7 +1,7 @@
 <style scoped lang="scss" src="./SidebarContainer.scss"></style>
 
 <template>
-  <div class="container container-side">
+  <div class="container-side">
     <LogoText></LogoText>
     <UserProfile class="side-user-profile"
                  photo="/static/profile-menu-image.png"
@@ -24,9 +24,9 @@
 </template>
 
 <script>
-  import LogoText from 'components/LogoText'
-  import UserProfile from 'components/UserProfile'
-  import MenuItem from 'components/MenuItem'
+  import LogoText from '../../components/LogoText'
+  import UserProfile from '../../components/UserProfile'
+  import MenuItem from '../../components/MenuItem'
 
   export default {
     components: {

@@ -20,14 +20,14 @@
 </template>
 
 <script>
-  import Icon from 'components/Icon'
+  import Icon from '../Icon'
   export default {
     components: {
       Icon
     },
     props: {
-    	value: { type: String, default: 'N/A' },
-    	iconType: { type: String, default: 'home' },
+      value: { type: String, default: 'N/A' },
+      iconType: { type: String, default: 'home' },
       description: { type: String, default: 'N/A' }
     }
   }

@@ -45,8 +45,8 @@
 </template>
 
 <script>
-import MenuItem from 'components/MenuItem'
-import UserProfile from 'components/UserProfile'
+import MenuItem from '../../components/MenuItem'
+import UserProfile from '../../components/UserProfile'
 
 export default {
   components: {
