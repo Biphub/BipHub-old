@@ -50,9 +50,11 @@ async function bip ({
     // Find an app using appName
     const app = await models.App.findOne({ name: appName }, { withRelated: ['incomingActions', 'outgoingActions'] })
     // Find incoming actions of found app using name from meta data
-    const incomingAction = await app.related('incomingActions').findOne({ name: meta.name })
-    console.log('incoming action found ', incomingAction)
-    // const foundBips = await models.Bip.findAll({ incoming_action_id: incomingAction.get('id') }, { withRelated: [] })
+    const incomingAction = await app.related('incomingActions').where({ name: meta.name })
+    // Get first entity's id since meta.name can associate with only one incoming action
+    const firstIncActionId = _.head(incomingAction).get('id')
+    const foundBips = await models.Bip.findAll({ incoming_action_id: firstIncActionId }, { withRelated: [] })
+    console.log('found bips ', foundBips)
     /* const incomingAction = await models.IncomingAction.findOne({ app_id: app.id, name: meta.name })
     const rawBips = (await models.Bip.findAll({ incoming_actions_id: incomingAction.id })).models
     const checkedBips = await checkAllIncomingActionConditions({

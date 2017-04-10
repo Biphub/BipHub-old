@@ -16,7 +16,6 @@ notifications:
 
 before_install:
   - "npm install -g eslint"
-  - "npm install -g eslint-config-airbnb-base"
   - "npm install -g install-peerdeps"
   - "npm install -g eslint-plugin-security"
   - "install-peerdeps --dev eslint-config-airbnb-base"
