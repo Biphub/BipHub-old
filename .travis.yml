@@ -15,18 +15,13 @@ notifications:
   slack: bipioteam:1TUQcmvbfrbxWwxViLG4ybAA
 
 before_install:
-  - "npm install -g eslint"
-  - "npm install -g install-peerdeps"
-  - "npm install -g eslint-plugin-security"
-  - "install-peerdeps --dev eslint-config-airbnb-base"
-  - "npm install -g mocha chai babel-cli"
-  - "npm install -g snyk"
+  - "yarn global add eslint"
+  - "yarn global add snyk"
 
 install:
-  - npm install
+  - NODE_ENV=development yarn install
 
 script:
   - snyk auth $SNYK_AUTH_TOKEN
-  - npm run js:lint:dev
+  - npm run js:lint
   - npm run test:all
-  - npm run build
