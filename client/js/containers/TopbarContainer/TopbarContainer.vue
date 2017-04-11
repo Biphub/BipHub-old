@@ -10,12 +10,16 @@
       </div>
       <div class="column-center">
         <MenuItem label="Apps"
+                  fontSize="18"
         ></MenuItem>
         <MenuItem label="Bips"
+                  fontSize="18"
         ></MenuItem>
         <MenuItem label="Accounts"
+                  fontSize="18"
         ></MenuItem>
         <MenuItem label="System"
+                  fontSize="18"
         ></MenuItem>
       </div>
       <div class="column-right">

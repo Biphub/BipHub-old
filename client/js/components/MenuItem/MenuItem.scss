@@ -1,5 +1,8 @@
 @import '../../../styles/size';
 @import '../../../styles/padding';
+.component {
+  display: flex;
+}
 
 .component-pad {
   display: flex;

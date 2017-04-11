@@ -7,10 +7,14 @@
         <Icon class="icon"
               v-bind:type="iconType"
         ></Icon>
-        <div class="label">{{ label }}</div>
+        <div class="label"
+             v-bind:style="labelStyle"
+        >{{ label }}</div>
       </div>
       <div v-else>
-        <div class="label">{{ label }}</div>
+        <div class="label"
+             v-bind:style="labelStyle"
+        >{{ label }}</div>
       </div>
     </router-link>
   </div>
@@ -25,7 +29,8 @@
       label: { type: String, default: null },
       flexDirection: { type: String, default: 'column' },
       link: { type: String, default: '/' },
-      active: { type: Boolean, default: false }
+      active: { type: Boolean, default: false },
+      fontSize: { type: Number, default: 15 },
     },
     components: {
       Icon
@@ -49,7 +54,10 @@
           default:
             return `${baseStyle} component--column`
         }
-      }
+      },
+      labelStyle () {
+        return `font-size: ${this.fontSize}px`
+      },
     }
   }
 </script>
