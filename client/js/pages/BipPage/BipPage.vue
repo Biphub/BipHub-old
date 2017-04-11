@@ -7,7 +7,7 @@
         <BipSidebarContainer class="column-left"
         ></BipSidebarContainer>
         <div class="column-right">
-          test
+          test column right
         </div>
       </div>
     </div>

@@ -19,8 +19,14 @@
         ></MenuItem>
       </div>
       <div class="column-right">
+        
         <button>Make a Bip!</button>
-        <div>Logout</div>
+        <div>
+          <UserProfile v-bind:enableName="true"
+                       v-bind:enableWelcome="true"
+                       name="Jason"
+          ></UserProfile>
+        </div>
       </div>
     </div>
     
@@ -43,8 +49,8 @@
 </template>
 
 <script>
-import MenuItem from '../../components/MenuItem'
 import UserProfile from '../../components/UserProfile'
+import MenuItem from '../../components/MenuItem'
 
 export default {
   props: {

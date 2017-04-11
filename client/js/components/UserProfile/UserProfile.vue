@@ -12,7 +12,9 @@
 
       <div class="name"
            v-if="enableName">
-        {{ name }}
+        <span v-if="!enableWelcome" class="name-text">{{ name }}</span>
+        <span v-if="enableWelcome" class="name-text">{{ welcome }}</span>
+        <span class="name-arrow">&lsaquo;</span>
       </div>
 
       <div class="role"
@@ -30,9 +32,15 @@
       photo: { type: String, default: '' },
       name: { type: String, default: 'N/A' },
       role: { type: String, default: 'N/A' },
-      enablePhoto: { type: Boolean, default: true },
-      enableName: { type: Boolean, default: true },
-      enableRole: { type: Boolean, default: true }
+      enablePhoto: { type: Boolean, default: false },
+      enableName: { type: Boolean, default: false },
+      enableRole: { type: Boolean, default: false },
+      enableWelcome: { type: Boolean, default: false }
+    },
+    computed: {
+      welcome() {
+        return `Hello, ${this.name} `
+      }
     }
   }
 </script>

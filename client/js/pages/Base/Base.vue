@@ -3,9 +3,11 @@
 <template>
   <div>
     <div v-if="type === 'dashboard'" class="page">
+      <!--
       <div is="SidebarContainer"
            class="sidebar" >
       </div>
+      -->
   
       <div class="main">
         <div is="TopbarContainer"

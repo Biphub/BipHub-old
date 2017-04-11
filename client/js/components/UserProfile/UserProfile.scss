@@ -24,6 +24,12 @@
   text-transform: capitalize;
 }
 
+  .name-arrow {
+    margin-left: 5px;
+    display: inline-block;
+    transform: rotate(270deg);
+  }
+
 .role {
   font-size: $fsize--sm;
   text-transform: capitalize;

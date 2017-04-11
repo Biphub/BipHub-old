@@ -3,15 +3,15 @@
   <div class="container">
     <div class="row">
       <div class="column-left">
-        App logo
+        <img class="appLogo" src="/static/icon-overwatch.png">
       </div>
       <div class="column-right">
         <ul v-if="type === 'incomingAction'">
-          <li>Choose an app</li>
-          <li>Choose an event</li>
-          <li>Set options</li>
-          <li>Set conditions</li>
-          <li>Test it</li>
+          <li>1. Choose an app</li>
+          <li>2. Choose an event</li>
+          <li>3. Set options</li>
+          <li>4. Set conditions</li>
+          <li>5. Test it</li>
         </ul>
         <ul v-else-if="type === 'additionalStep'">
           <li>Choose an app</li>
