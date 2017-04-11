@@ -1,3 +1,16 @@
 .page {
   border: 1px solid black;
 }
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.column-left {
+  width: 250px;
+}
+
+.column-right {
+  width: 100%;
+}

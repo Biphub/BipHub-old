@@ -17,6 +17,7 @@
     </div>
     <div v-if="type === 'control'" class="page">
       <div class="main">
+        <TopbarContainer type="control"></TopbarContainer>
         <slot></slot>
       </div>
     </div>

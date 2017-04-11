@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.column-right {
+  ul {
+    padding-left: 10px;
+  }
+  li {
+    list-style: none;
+  }
+}
