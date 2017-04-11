@@ -23,8 +23,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  max-height: 200px;
+  max-height: 600px;
   overflow-y: scroll;
+  > div {
+    margin-bottom: 20px;
+  }
 }
 
 .api-list::-webkit-scrollbar {

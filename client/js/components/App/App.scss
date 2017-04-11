@@ -1,10 +1,12 @@
 @import '../../../styles/padding';
 @import '../../../styles/size';
 @import '../../../styles/colour';
-// linear-gradient(135deg, #2e87fb 0%, #ffffff 100%);
 .container {
   width: 277px;
   cursor: pointer;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid #E8E8E8;
 }
 
 .icon {
@@ -12,20 +14,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 40px;
-  padding-top: 40px;
-  background: resemble-image(url("~wave.jpg"));
+  padding-bottom: 25px;
+  padding-top: 25px;
 }
-
-
 .icon-wrapper {
+  border-radius: 20px;
   z-index: 10;
-  padding: 30px;
+  padding: 18px;
   background-color: white;
 }
 
 .label {
   font-size: $fsize--mss;
   margin-top: 4px;
-  text-align: center;
+  padding: 10px 20px;
+  > h5 {
+    margin-bottom: 2px;
+    font-weight: bold;
+  }
 }
