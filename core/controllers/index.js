@@ -21,10 +21,8 @@ const setup = (app) => {
 	// API adapter loads and inits websocket client of all APIs
   appAdapter.initialize(io)
 
-	// html router
-  app.use('/', html())
-
 	// api router
+  // TODO: Replace it with graphql
   app.use(`/api/${apiVersion}`, api())
 
 	// External webhook router

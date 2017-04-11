@@ -1,47 +1,42 @@
 <style scoped lang="scss" src="./TopbarContainer.scss"></style>
 
 <template>
-    <div class="topbar">
-      <div class="topbar-wrapper base-main-width">
-        <div class="topbar topbar-left">
-            <MenuItem class="component-top"
-                      iconType="bars"
-            ></MenuItem>
-            <MenuItem class="component-top"
-                      iconType="diamond"
-            ></MenuItem>
-            <MenuItem class="component-top"
-                      iconType="expand"
-            ></MenuItem>
-            <MenuItem class="component-top"
-                      iconType="cogs"
-            ></MenuItem>
-        </div>
-
-        <div class="topbar empty"></div>
-
-        <div class="topbar topbar-right">
-            <MenuItem class="component-top"
-                      iconType="search"
-            ></MenuItem>
-            <MenuItem class="component-top"
-                      iconType="envelope"
-            ></MenuItem>
-            <MenuItem class="component-top"
-                      iconType="bell"
-            ></MenuItem>
-            <MenuItem class="component-top"
-                      iconType="sign-out"
-                      label="logout"
-                      flexDirection="row"
-            ></MenuItem>
-            <MenuItem class="component-top"
-                      iconType="comments"
-            ></MenuItem>
+  <div v-bind:class="topbarClass">
+    <div v-if="type === 'dashboard'" class="row">
+      <div class="column-left">
+        <div class="logo">
+          <img class="logo" src="/static/bipflow-logo.png">
         </div>
       </div>
+      <div class="column-center">
+        <MenuItem label="Apps"
+        ></MenuItem>
+        <MenuItem label="Bips"
+        ></MenuItem>
+        <MenuItem label="Accounts"
+        ></MenuItem>
+        <MenuItem label="System"
+        ></MenuItem>
+      </div>
+      <div class="column-right"></div>
     </div>
-
+    
+    <div v-if="type === 'control'" class="row row-control">
+      <div class="column-left">
+        <MenuItem iconType="arrow-left"
+                  label="dashboard"
+                  flexDirection="row"
+                  link="/"
+        ></MenuItem>
+      </div>
+      <div class="column-center">
+        <div class="logo">
+          <img class="logo" src="/static/bipflow-logo.png">
+        </div>
+      </div>
+      <div class="column-right">saving..</div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -49,9 +44,21 @@ import MenuItem from '../../components/MenuItem'
 import UserProfile from '../../components/UserProfile'
 
 export default {
+  props: {
+    type: { type: String, default: 'dashboard' }
+  },
   components: {
     MenuItem,
-    UserProfile
+    UserProfile,
+  },
+  computed: {
+    topbarClass() {
+      if (this.type === 'dashboard') {
+        return 'container container-dashboard'
+      } else {
+        return 'container container-control'
+      }
+    }
   }
 }
 </script>

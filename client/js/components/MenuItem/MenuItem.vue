@@ -2,11 +2,14 @@
 
 <template>
   <div class="component">
-    <router-link to="bip">
-      <div v-bind:class="direction">
+    <router-link v-bind:to="link">
+      <div v-if="iconType" v-bind:class="direction">
         <Icon class="icon"
               v-bind:type="iconType"
         ></Icon>
+        <div class="label" v-bind:style="">{{ label }}</div>
+      </div>
+      <div v-else>
         <div class="label">{{ label }}</div>
       </div>
     </router-link>
@@ -20,7 +23,9 @@
     props: {
       iconType: { type: String, default: null },
       label: { type: String, default: null },
-      flexDirection: { type: String, default: 'column' }
+      flexDirection: { type: String, default: 'column' },
+      link: { type: String, default: '/' },
+      fontSize: { type: Number, default: 15 }
     },
     components: {
       Icon
@@ -44,7 +49,10 @@
           default:
             return `${baseStyle} component--column`
         }
-      }
+      },
+      fontSize() {
+        
+      },
     }
   }
 </script>

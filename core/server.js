@@ -23,9 +23,6 @@ const port = config.get('port')
 app.server = server
 app.set('port', port)
 
-// Webpack requirements
-vuepackMiddleware(app)
-
 // 3rd party middleware
 app.use(cors({
   exposedHeaders: config.get('web:corsHeaders')
@@ -58,6 +55,9 @@ app.use(middleware())
 // Runs latest migration
 db.migrate().then(() => {
   controllers(app)
+
+  // Webpack requirements
+  vuepackMiddleware(app)
 
   server.listen(app.get('port'), '0.0.0.0', () => {
     console.log('%s App is running at http://localhost:%d in %s mode ', app.get('port'))

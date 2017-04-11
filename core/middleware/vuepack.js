@@ -34,7 +34,7 @@ const vuepackMiddleware = (app) => {
     const mfs = devMiddleWare.fileSystem
     const file = path.join(webpackConfig.output.path, 'index.html')
     devMiddleWare.waitUntilValid()
-    app.get('/', (req, res) => {
+    app.get('*', (req, res) => {
       devMiddleWare.waitUntilValid(() => {
         const html = mfs.readFileSync(file)
         res.end(html)

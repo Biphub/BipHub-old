@@ -1,7 +1,8 @@
 <style scoped lang="scss" src="./BipPage.scss"></style>
 
 <template>
-  <BasePage>
+  <BasePage type="control">
+    <TopBarContainer type="control"></TopBarContainer>
     <div class="base-main-width">
       test
     </div>
@@ -10,9 +11,11 @@
 
 <script>
   import BasePage from '../Base'
+  import TopBarContainer from '../../containers/TopbarContainer'
   export default {
     components: {
-      BasePage
+      BasePage,
+      TopBarContainer,
     }
   }
 </script>
