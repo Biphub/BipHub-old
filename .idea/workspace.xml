@@ -2,11 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="171a6612-392e-4fe5-91f7-d501b53deea3" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/client/static/wave.jpg" afterPath="$PROJECT_DIR$/client/static/app_themes/wave.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/components/App/App.scss" afterPath="$PROJECT_DIR$/client/js/components/App/App.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/components/App/App.vue" afterPath="$PROJECT_DIR$/client/js/components/App/App.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/components/MenuItem/MenuItem.vue" afterPath="$PROJECT_DIR$/client/js/components/MenuItem/MenuItem.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/components/SearchBar/SearchBar.scss" afterPath="$PROJECT_DIR$/client/js/components/SearchBar/SearchBar.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/components/UserProfile/UserProfile.vue" afterPath="$PROJECT_DIR$/client/js/components/UserProfile/UserProfile.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/containers/BipChooseAppContainer/BipChooseAppContainer.vue" afterPath="$PROJECT_DIR$/client/js/containers/BipChooseAppContainer/BipChooseAppContainer.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/containers/BipSidebarContainer/BipSidebarContainer.vue" afterPath="$PROJECT_DIR$/client/js/containers/BipSidebarContainer/BipSidebarContainer.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/containers/ControlTopBarContainer/ControlTopBarContainer.vue" afterPath="$PROJECT_DIR$/client/js/containers/ControlTopBarContainer/ControlTopBarContainer.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/containers/ExplorePanelContainer/ExplorePanelContainer.scss" afterPath="$PROJECT_DIR$/client/js/containers/ExplorePanelContainer/ExplorePanelContainer.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/containers/TopbarContainer/TopbarContainer.vue" afterPath="$PROJECT_DIR$/client/js/containers/TopbarContainer/TopbarContainer.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/pages/Base/Base.vue" afterPath="$PROJECT_DIR$/client/js/pages/Base/Base.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/pages/BipPage/BipPage.vue" afterPath="$PROJECT_DIR$/client/js/pages/BipPage/BipPage.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.js" afterPath="$PROJECT_DIR$/config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yarn.lock" afterPath="$PROJECT_DIR$/yarn.lock" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -42,10 +53,10 @@
       <file leaf-file-name="UserProfile.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/js/components/UserProfile/UserProfile.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="9" column="33" lean-forward="false" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
+            <state relative-caret-position="22">
+              <caret line="3" column="6" lean-forward="false" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
               <folding>
-                <element signature="e#530#538#0" expanded="true" />
+                <element signature="e#544#552#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -54,38 +65,18 @@
       <file leaf-file-name="App.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/js/components/App/App.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="13" column="11" lean-forward="false" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
+            <state relative-caret-position="88">
+              <caret line="4" column="23" lean-forward="false" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="App.scss" pinned="false" current-in-tab="false">
+      <file leaf-file-name="App.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/js/components/App/App.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="616">
-              <caret line="31" column="18" lean-forward="false" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ExplorePanelContainer.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/js/containers/ExplorePanelContainer/ExplorePanelContainer.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-330">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ExplorePanelContainer.scss" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/client/js/containers/ExplorePanelContainer/ExplorePanelContainer.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="27" column="9" lean-forward="false" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
+            <state relative-caret-position="308">
+              <caret line="14" column="47" lean-forward="false" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -94,8 +85,8 @@
       <file leaf-file-name="config.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="6" column="15" lean-forward="false" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
+            <state relative-caret-position="423">
+              <caret line="31" column="15" lean-forward="false" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -103,11 +94,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HomePage.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/js/pages/HomePage/HomePage.vue">
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="8" column="12" lean-forward="false" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+            <state relative-caret-position="-726">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1491907419328" expanded="true" signature="0:3539" ph="{&quot;name&quot;: &quot;Biphub&quot;...}" />
+                <marker date="1491907419328" expanded="true" signature="762:1780" ph="{&quot;babel-plugin-webpack-loaders&quot;: &quot;^0.9.0&quot;...}" />
+                <marker date="1491907419328" expanded="true" signature="1803:3537" ph="{&quot;autoprefixer&quot;: &quot;^6.7.7&quot;...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExplorePanelContainer.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/js/containers/ExplorePanelContainer/ExplorePanelContainer.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="15" column="38" lean-forward="false" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExplorePanelContainer.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/js/containers/ExplorePanelContainer/ExplorePanelContainer.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="27" column="5" lean-forward="false" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -168,7 +183,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.eslintrc" />
         <option value="$PROJECT_DIR$/client/js/containers/SuggestionContainer/SuggestionContainer.vue" />
         <option value="$PROJECT_DIR$/client/js/containers/SidebarContainer/SidebarContainer.vue" />
         <option value="$PROJECT_DIR$/build/utils.js" />
@@ -210,15 +224,16 @@
         <option value="$PROJECT_DIR$/client/js/containers/TopbarContainer/TopbarContainer.vue" />
         <option value="$PROJECT_DIR$/client/js/components/UserProfile/UserProfile.scss" />
         <option value="$PROJECT_DIR$/client/js/pages/HomePage/HomePage.vue" />
-        <option value="$PROJECT_DIR$/client/js/components/UserProfile/UserProfile.vue" />
         <option value="$PROJECT_DIR$/client/styles/style.scss" />
         <option value="$PROJECT_DIR$/build/webpack.base.js" />
-        <option value="$PROJECT_DIR$/config.js" />
         <option value="$PROJECT_DIR$/client/js/utils/color-theif.js" />
         <option value="$PROJECT_DIR$/client/js/utils/color-thief.js" />
+        <option value="$PROJECT_DIR$/client/js/components/SearchBar/SearchBar.scss" />
+        <option value="$PROJECT_DIR$/client/js/components/UserProfile/UserProfile.vue" />
         <option value="$PROJECT_DIR$/client/js/components/App/App.vue" />
-        <option value="$PROJECT_DIR$/client/js/components/App/App.scss" />
         <option value="$PROJECT_DIR$/client/js/containers/ExplorePanelContainer/ExplorePanelContainer.scss" />
+        <option value="$PROJECT_DIR$/config.js" />
+        <option value="$PROJECT_DIR$/client/js/components/App/App.scss" />
       </list>
     </option>
   </component>
@@ -809,6 +824,10 @@
               <option name="myItemId" value="components" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SearchBar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -833,6 +852,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="MenuItem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="biphub-core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="biphub-core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1138,12 +1179,12 @@
       <workItem from="1491805958150" duration="4092000" />
       <workItem from="1491868251002" duration="8363000" />
       <workItem from="1491881020858" duration="4401000" />
-      <workItem from="1491890604756" duration="9691000" />
+      <workItem from="1491890604756" duration="11982000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="507143000" />
+    <option name="totallyTimeSpent" value="509434000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1155,8 +1196,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="0" width="1932" height="1038" extended-state="1" />
-    <editor active="true" />
+    <frame x="-8" y="0" width="1932" height="1038" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Debug Logs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.49603385" order="7" side_tool="false" content_ui="tabs" />
@@ -1165,7 +1206,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32875144" sideWeight="0.4978836" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Execute Anonymous" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.49814323" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32646048" sideWeight="0.5626653" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32646048" sideWeight="0.5626653" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24244031" sideWeight="0.7876289" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.49814913" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1198,21 +1239,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/js/containers/ControlTopBarContainer/ControlTopBarContainer.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/js/containers/SuggestionContainer/SuggestionContainer.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="22" column="18" lean-forward="false" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/styles/components/grid.scss" />
     <entry file="file://$PROJECT_DIR$/client/js/containers/ControlTopBarContainer/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -1400,14 +1426,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/js/components/MenuItem/MenuItem.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/js/pages/Base/Base.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -1446,14 +1464,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="6" column="8" lean-forward="true" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/js/components/App/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1513,26 +1523,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/js/components/UserProfile/UserProfile.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="33" lean-forward="false" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
-          <folding>
-            <element signature="e#530#538#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="15" lean-forward="false" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/js/utils/color-thief.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="511">
@@ -1549,26 +1539,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/js/containers/ExplorePanelContainer/ExplorePanelContainer.vue">
+    <entry file="file://$PROJECT_DIR$/client/js/components/SearchBar/SearchBar.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-330">
+        <state relative-caret-position="88">
+          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/js/components/SearchBar/SearchBar.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/js/components/MenuItem/MenuItem.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-379">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/js/components/App/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/js/components/App/App.vue">
+    <entry file="file://$PROJECT_DIR$/client/js/components/UserProfile/UserProfile.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="13" column="11" lean-forward="false" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
-          <folding />
+        <state relative-caret-position="22">
+          <caret line="3" column="6" lean-forward="false" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+          <folding>
+            <element signature="e#544#552#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/js/components/App/App.scss">
+    <entry file="file://$PROJECT_DIR$/client/js/containers/ExplorePanelContainer/ExplorePanelContainer.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="31" column="18" lean-forward="false" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+        <state relative-caret-position="198">
+          <caret line="15" column="38" lean-forward="false" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="38" />
           <folding />
         </state>
       </provider>
@@ -1576,7 +1592,45 @@
     <entry file="file://$PROJECT_DIR$/client/js/containers/ExplorePanelContainer/ExplorePanelContainer.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
-          <caret line="27" column="9" lean-forward="false" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
+          <caret line="27" column="5" lean-forward="false" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/js/components/App/App.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="23" lean-forward="false" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-726">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1491907419328" expanded="true" signature="0:3539" ph="{&quot;name&quot;: &quot;Biphub&quot;...}" />
+            <marker date="1491907419328" expanded="true" signature="762:1780" ph="{&quot;babel-plugin-webpack-loaders&quot;: &quot;^0.9.0&quot;...}" />
+            <marker date="1491907419328" expanded="true" signature="1803:3537" ph="{&quot;autoprefixer&quot;: &quot;^6.7.7&quot;...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="31" column="15" lean-forward="false" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/js/components/App/App.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="14" column="47" lean-forward="false" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
           <folding />
         </state>
       </provider>

@@ -58,10 +58,10 @@ export default {
   },
   components: {
     MenuItem,
-    UserProfile,
+    UserProfile
   },
   computed: {
-    topbarClass() {
+    topbarClass () {
       if (this.type === 'dashboard') {
         return 'container container-dashboard'
       } else {

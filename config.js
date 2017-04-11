@@ -1,5 +1,5 @@
 import path from 'path'
-import resembleImage from 'postcss-resemble-image'
+import rucksack from 'rucksack-css'
 
 module.exports = {
   port: 8080,
@@ -29,7 +29,7 @@ module.exports = {
       browsers: ['last 2 versions', 'ie > 8']
     }),
     require('postcss-nested'),
-    resembleImage()
+    rucksack(),
   ],
   cssModules: false
 }

@@ -22,7 +22,7 @@
     components: {
       BasePage,
       TopBarContainer,
-      BipSidebarContainer,
+      BipSidebarContainer
     }
   }
 </script>

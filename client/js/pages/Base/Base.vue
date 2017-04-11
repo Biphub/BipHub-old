@@ -30,7 +30,7 @@
   import TopbarContainer from '../../containers/TopbarContainer'
   import SidebarContainer from '../../containers/SidebarContainer'
   export default {
-    created() {
+    created () {
       console.log('created base page ')
     },
     props: {

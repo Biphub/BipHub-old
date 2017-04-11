@@ -1,8 +1,8 @@
 <style scoped lang="scss" src="./UserProfile.scss"></style>
 
 <template>
-  <div class="component">
-
+  <div to="/bip" class="component">
+    
     <div class="component-pad">
       <div class="photo"
            v-if="enablePhoto && photo">
@@ -38,7 +38,7 @@
       enableWelcome: { type: Boolean, default: false }
     },
     computed: {
-      welcome() {
+      welcome () {
         return `Hello, ${this.name} `
       }
     }

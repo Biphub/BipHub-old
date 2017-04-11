@@ -1,8 +1,9 @@
 <style scoped lang="scss" src="./App.scss"></style>
 
 <template>
-  <div class="container"
-       v-on:click="onClick" >
+  <router-link class="container"
+               to="bip"
+               v-on:click="onClick" >
     <div class="row">
       <div class="icon" v-bind:style="appTheme">
         <span class="icon-wrapper">
@@ -16,7 +17,7 @@
       </div>
       <div class="description"></div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
@@ -26,10 +27,9 @@ export default {
     src: { type: String, default: 'N/A' },
     label: { type: String, default: null },
     border: { type: Boolean, default: false },
-    theme: { type: String, default: 'orca' },
+    theme: { type: String, default: 'orca' }
   },
-  data() {
-    
+  data () {
     return {}
   },
   computed: {
@@ -40,7 +40,7 @@ export default {
         return 'app-icon--no-border'
       }
     },
-    appTheme() {
+    appTheme () {
       return `background-image: url(static/app_themes/${this.theme}.jpg)`
     }
   },

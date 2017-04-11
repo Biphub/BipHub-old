@@ -25,7 +25,7 @@
       label: { type: String, default: null },
       flexDirection: { type: String, default: 'column' },
       link: { type: String, default: '/' },
-      active: { type: Boolean, default: false },
+      active: { type: Boolean, default: false }
     },
     components: {
       Icon
@@ -49,7 +49,7 @@
           default:
             return `${baseStyle} component--column`
         }
-      },
+      }
     }
   }
 </script>

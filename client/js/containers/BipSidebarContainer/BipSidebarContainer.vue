@@ -11,7 +11,7 @@
   import BipStep from '../../components/BipStep'
   export default {
     components: {
-      BipStep,
+      BipStep
     }
   }
 </script>
