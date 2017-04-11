@@ -14,7 +14,7 @@
            v-if="enableName">
         <span v-if="!enableWelcome" class="name-text">{{ name }}</span>
         <span v-if="enableWelcome" class="name-text">{{ welcome }}</span>
-        <span class="name-arrow">&lsaquo;</span>
+        <span class="name-arrow name-arrow--inactive">&lsaquo;</span>
       </div>
 
       <div class="role"

@@ -27,6 +27,11 @@
   .name-arrow {
     margin-left: 5px;
     display: inline-block;
+  }
+  .name-arrow--active {
+    transform: rotate(90deg);
+  }
+  .name-arrow--inactive {
     transform: rotate(270deg);
   }
 
