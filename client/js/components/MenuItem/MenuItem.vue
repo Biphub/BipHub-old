@@ -7,7 +7,7 @@
         <Icon class="icon"
               v-bind:type="iconType"
         ></Icon>
-        <div class="label" v-bind:style="">{{ label }}</div>
+        <div class="label">{{ label }}</div>
       </div>
       <div v-else>
         <div class="label">{{ label }}</div>
@@ -25,7 +25,7 @@
       label: { type: String, default: null },
       flexDirection: { type: String, default: 'column' },
       link: { type: String, default: '/' },
-      fontSize: { type: Number, default: 15 }
+      active: { type: Boolean, default: false },
     },
     components: {
       Icon
@@ -49,9 +49,6 @@
           default:
             return `${baseStyle} component--column`
         }
-      },
-      fontSize() {
-        
       },
     }
   }

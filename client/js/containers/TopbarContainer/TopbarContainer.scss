@@ -14,6 +14,10 @@
   }
   .column-center {
     width: 40%;
+    justify-content: space-around;
+    .label {
+      font-size: 20px;
+    }
   }
   .column-right {
     width: 40%;
@@ -27,6 +31,7 @@
   }
   .column-center {
     width: 20%;
+    justify-content: center;
   }
   .column-right {
     width: 40%;
@@ -47,7 +52,6 @@
 .column-center {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 .column-right {

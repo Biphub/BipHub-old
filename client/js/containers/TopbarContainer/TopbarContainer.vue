@@ -18,7 +18,10 @@
         <MenuItem label="System"
         ></MenuItem>
       </div>
-      <div class="column-right"></div>
+      <div class="column-right">
+        <button>Make a Bip!</button>
+        <div>Logout</div>
+      </div>
     </div>
     
     <div v-if="type === 'control'" class="row row-control">
