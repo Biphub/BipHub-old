@@ -6,7 +6,6 @@
       <div>
         <ExplorePanelContainer v-on:onAppClick="onAppClick"
         ></ExplorePanelContainer>
-        <SuggestionContainer></SuggestionContainer>
       </div>
     </div>
     <h1>Bipflow</h1>

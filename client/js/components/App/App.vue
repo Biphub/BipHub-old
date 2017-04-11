@@ -1,14 +1,19 @@
 <style scoped lang="scss" src="./App.scss"></style>
 
 <template>
-  <div class="component"
+  <div class="container"
        v-on:click="onClick" >
-    <div v-bind:class="iconBorder">
-      <img v-bind:src="src">
-    </div>
-    <div class="app-label"
-         v-if="label" >
-      {{ label }}
+    <div class="row">
+      <div class="icon">
+        <span class="icon-wrapper">
+          <img v-bind:src="src">
+        </span>
+      </div>
+      <div class="label"
+           v-if="label" >
+        {{ label }}
+      </div>
+      <div class="description"></div>
     </div>
   </div>
 </template>
@@ -22,7 +27,6 @@ export default {
   },
   computed: {
     iconBorder () {
-      console.log('border ', this.border)
       if (this.border) {
         return 'app-icon--border'
       } else {

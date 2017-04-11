@@ -1,4 +1,5 @@
 import path from 'path'
+import resembleImage from 'postcss-resemble-image'
 
 module.exports = {
   port: 8080,
@@ -27,7 +28,8 @@ module.exports = {
       // Vue does not support ie 8 and below
       browsers: ['last 2 versions', 'ie > 8']
     }),
-    require('postcss-nested')
+    require('postcss-nested'),
+    resembleImage()
   ],
   cssModules: false
 }
