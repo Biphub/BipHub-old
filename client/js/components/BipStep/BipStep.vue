@@ -34,6 +34,8 @@
 <script>
   /**
    * Apps: user must choose an app which represents an agent
+   * 1. Current step, 1? 2? 3?
+   * 2.
    */
   export default {
     props: {

@@ -45,9 +45,9 @@
        */
       direction () {
         // base padding is enabled by default
-        let baseStyle = 'component-pad'
-        if (!this.padding) {
-          baseStyle = ''
+        let baseStyle = 'component'
+        if (this.padding) {
+          baseStyle = 'component-pad'
         }
         switch (this.flexDirection) {
           case 'column-reverse':

@@ -1,3 +1,4 @@
+@import "../../../styles/padding";
 .container {
   background-color: #f1f4f5;
 }
@@ -8,8 +9,8 @@
 }
 
 .column-left {
-  width: 250px;
-  padding-top: 20px;
+  min-width: 400px;
+  @extend .pad--20;
 }
 
 .column-right {

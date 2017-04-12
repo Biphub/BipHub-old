@@ -7,8 +7,9 @@
         <label>Name your bip</label>
         <input type="text" />
       </div>
-      <BipStep type="incomingAction"></BipStep>
-      <BipStep type="incomingAction"></BipStep>
+      <div class="progress">
+        <BipStep type="incomingAction"></BipStep>
+      </div>
     </div>
   </div>
 </template>
