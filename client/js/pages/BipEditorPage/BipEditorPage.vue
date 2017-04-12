@@ -1,4 +1,4 @@
-<style scoped lang="scss" src="./BipPage.scss"></style>
+<style scoped lang="scss" src="./BipEditorPage.scss"></style>
 
 <template>
   <BasePage type="control">
