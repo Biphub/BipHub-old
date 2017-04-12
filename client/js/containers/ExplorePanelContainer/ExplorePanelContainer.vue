@@ -17,18 +17,22 @@
       <App label="Discord"
            src="static/icon-discord.png"
            v-bind:border="true"
+           theme="orca"
            v-on:click="onAppClick"
       ></App>
       <App label="Dota 2"
            v-bind:border="true"
+           theme="grey"
            src="static/icon-dota2.png"
       ></App>
       <App label="Gmail"
            src="static/icon-gmail.png"
+           theme="ice"
            v-bind:border="true"
       ></App>
       <App label="Hearthstone"
            src="static/icon-hearthstone.png"
+           theme="love"
            v-bind:border="true"
       ></App>
       <App label="Minecraft"
@@ -37,18 +41,22 @@
       ></App>
       <App label="Overwatch"
            src="static/icon-overwatch.png"
+           theme="tonight"
            v-bind:border="true"
       ></App>
       <App label="Team Fortress2"
            src="static/icon-tf2.png"
+           theme="rose"
            v-bind:border="true"
       ></App>
       <App label="WoW"
            src="static/icon-wow.png"
+           theme="wave"
            v-bind:border="true"
       ></App>
       <App label="Team Fortress2"
            src="static/icon-tf2.png"
+           theme="love"
            v-bind:border="true"
       ></App>
       <App label="WoW"

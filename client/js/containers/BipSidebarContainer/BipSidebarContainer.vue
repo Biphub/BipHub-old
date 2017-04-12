@@ -2,6 +2,10 @@
 
 <template>
   <div class="container">
+    <div>
+      <label>Name your bip</label>
+      <input type="text" />
+    </div>
     <BipStep type="incomingAction"></BipStep>
     <BipStep type="incomingAction"></BipStep>
   </div>

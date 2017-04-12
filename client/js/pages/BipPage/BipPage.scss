@@ -1,17 +1,18 @@
-.page {
-  border: 1px solid black;
+.container {
+  background-color: #f1f4f5;
 }
 
 .row {
   display: flex;
   flex-direction: row;
-  padding-top: 20px;
 }
 
 .column-left {
   width: 250px;
+  padding-top: 20px;
 }
 
 .column-right {
   width: 100%;
+  padding-top: 20px;
 }
