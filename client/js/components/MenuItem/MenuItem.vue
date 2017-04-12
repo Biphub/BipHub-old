@@ -31,6 +31,7 @@
       link: { type: String, default: '/' },
       active: { type: Boolean, default: false },
       fontSize: { type: String, default: 15 },
+      padding: { type: Boolean, default: true },
     },
     components: {
       Icon
@@ -43,7 +44,11 @@
        * @returns {string}
        */
       direction () {
+        // base padding is enabled by default
         let baseStyle = 'component-pad'
+        if (!this.padding) {
+          baseStyle = ''
+        }
         switch (this.flexDirection) {
           case 'column-reverse':
             return `${baseStyle} component--column-reverse`

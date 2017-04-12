@@ -27,7 +27,7 @@
         ></MenuItem>
       </div>
       <div class="column-right">
-        <Button link="/bips">Make a Bip!</Button>
+        <Button link="/bip/editor">Make a Bip!</Button>
         <div>
           <UserProfile v-bind:enableName="true"
                        v-bind:enableWelcome="true"
@@ -43,6 +43,7 @@
                   label="dashboard"
                   flexDirection="row"
                   link="/"
+                  v-bind:padding="false"
         ></MenuItem>
       </div>
       <div class="column-center">
