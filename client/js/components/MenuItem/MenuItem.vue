@@ -11,7 +11,7 @@
              v-bind:style="labelStyle"
         >{{ label }}</div>
       </div>
-      <div v-else>
+      <div v-else v-bind:class="labelWrapperStyle">
         <div class="label"
              v-bind:style="labelStyle"
         >{{ label }}</div>
@@ -30,7 +30,7 @@
       flexDirection: { type: String, default: 'column' },
       link: { type: String, default: '/' },
       active: { type: Boolean, default: false },
-      fontSize: { type: Number, default: 15 },
+      fontSize: { type: String, default: 15 },
     },
     components: {
       Icon
@@ -58,6 +58,14 @@
       labelStyle () {
         return `font-size: ${this.fontSize}px`
       },
+      labelWrapperStyle () {
+        if (this.active) {
+          return 'label--active'
+        } else {
+          return 'label--inactive'
+        }
+      },
     }
+    
   }
 </script>

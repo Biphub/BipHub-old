@@ -11,20 +11,23 @@
       <div class="column-center">
         <MenuItem label="Apps"
                   fontSize="18"
+                  v-bind:active="getMenuActive('/')"
         ></MenuItem>
         <MenuItem label="Bips"
                   fontSize="18"
+                  v-bind:active="getMenuActive('bips')"
         ></MenuItem>
         <MenuItem label="Accounts"
                   fontSize="18"
+                  v-bind:active="getMenuActive('accounts')"
         ></MenuItem>
         <MenuItem label="System"
                   fontSize="18"
+                  v-bind:active="getMenuActive('system')"
         ></MenuItem>
       </div>
       <div class="column-right">
-        
-        <button>Make a Bip!</button>
+        <Button link="/bips">Make a Bip!</Button>
         <div>
           <UserProfile v-bind:enableName="true"
                        v-bind:enableWelcome="true"
@@ -53,6 +56,7 @@
 </template>
 
 <script>
+import Button from '../../components/Button'
 import UserProfile from '../../components/UserProfile'
 import MenuItem from '../../components/MenuItem'
 
@@ -61,8 +65,14 @@ export default {
     type: { type: String, default: 'dashboard' }
   },
   components: {
+    Button,
     MenuItem,
     UserProfile
+  },
+  methods: {
+    getMenuActive (label) {
+      return window.location.pathname.indexOf(label) !== -1
+    }
   },
   computed: {
     topbarClass () {
@@ -72,6 +82,6 @@ export default {
         return 'container container-control'
       }
     }
-  }
+  },
 }
 </script>
