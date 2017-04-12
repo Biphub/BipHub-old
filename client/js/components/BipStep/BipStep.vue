@@ -2,8 +2,8 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="column-left">
-        <img class="appLogo" src="/static/icon-overwatch.png">
+      <div class="stepType">
+        Event
       </div>
       <div class="column-right">
         <ul v-if="type === 'incomingAction'">
@@ -40,7 +40,15 @@
   export default {
     props: {
       step: { type: String, default: 'chooseAnApp' },
-      type: { type: String, default: 'incomingAction' }
+      type: { type: String, default: 'incomingAction' },
+    },
+    methods: {
+      /**
+       * Updates progress maximum = 100%
+       */
+      progressUpdate() {
+        
+      }
     }
   }
 </script>
