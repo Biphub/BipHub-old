@@ -5,6 +5,7 @@ import {
 
 // Queries
 import AppsList from './queries/list/AppsList'
+import IncomingActionsList from './queries/list/IncomingActionsList'
 
 const Query = new GraphQLObjectType({
   name: 'Query',
@@ -12,7 +13,8 @@ const Query = new GraphQLObjectType({
 
   fields: () => {
     return {
-      apps: AppsList
+      apps: AppsList,
+      incomingActions: IncomingActionsList
     }
   }
 })

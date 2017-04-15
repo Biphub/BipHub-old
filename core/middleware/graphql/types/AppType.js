@@ -2,7 +2,7 @@ import {
   GraphQLObjectType,
   GraphQLString,
   GraphQLInt,
-  GraphQLBoolean,
+  GraphQLBoolean
 } from 'graphql'
 
 const AppType = new GraphQLObjectType({

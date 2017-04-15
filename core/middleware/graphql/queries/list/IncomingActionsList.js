@@ -4,7 +4,7 @@ import {
   GraphQLBoolean,
   GraphQLList
 } from 'graphql'
-
+import GraphQLJSON from 'graphql-type-json'
 import IncomingActionType from '../../types/IncomingActionType'
 import models from '../../../../models'
 
@@ -24,7 +24,7 @@ const IncomingActionsQuery = {
       type: GraphQLString
     },
     conditions: {
-      type: GraphQLString
+      type: GraphQLJSON
     }
   },
   resolve (root, args) {

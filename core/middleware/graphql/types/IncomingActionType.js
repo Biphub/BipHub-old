@@ -1,8 +1,11 @@
 import {
   GraphQLObjectType,
   GraphQLString,
-  GraphQLInt
+  GraphQLInt,
+  GraphQLScalarType
 } from 'graphql'
+
+import GraphQLJSON from 'graphql-type-json'
 
 const IncomingActionType = new GraphQLObjectType({
   name: 'IncomingAction',
@@ -38,9 +41,10 @@ const IncomingActionType = new GraphQLObjectType({
       },
       /**
        * JSON Array object that represents conditions of this evnet
+       * TODO: Encode into JSON
        */
       conditions: {
-        type: GraphQLString,
+        type: GraphQLJSON,
         resolve (incomingAction) {
           return incomingAction.get('conditions')
         }
