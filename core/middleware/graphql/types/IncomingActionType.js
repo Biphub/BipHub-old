@@ -1,10 +1,8 @@
 import {
   GraphQLObjectType,
   GraphQLString,
-  GraphQLInt,
-  GraphQLScalarType
+  GraphQLInt
 } from 'graphql'
-
 import GraphQLJSON from 'graphql-type-json'
 
 const IncomingActionType = new GraphQLObjectType({
