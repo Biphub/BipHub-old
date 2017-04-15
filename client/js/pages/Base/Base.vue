@@ -1,7 +1,7 @@
 <style scoped lang="scss" src="./Base.scss"></style>
 
 <template>
-  <div>
+  <div class="container-page">
     <div v-if="type === 'dashboard'" class="page">
       <!--
       <div is="SidebarContainer"

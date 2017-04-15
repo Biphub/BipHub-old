@@ -48,7 +48,7 @@
       </div>
       <div class="column-center">
         <div class="logo">
-          <img class="logo" src="/static/bipflow-logo.png">
+          <img class="logo" src="/static/bipflow-logo-standalone.png">
         </div>
       </div>
       <div class="column-right">saving..</div>

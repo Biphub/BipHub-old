@@ -1,4 +1,4 @@
-<style scoped lang="scss" src="./BipSidebarContainer.scss"></style>
+<style scoped lang="scss" src="./BipEditorSidebarContainer.scss"></style>
 
 <template>
   <div class="container">
@@ -8,7 +8,7 @@
         <input type="text" />
       </div>
       <div class="progress">
-        <BipStep type="incomingAction"></BipStep>
+        <BipSteps v-bind:steps="steps"></BipSteps>
       </div>
     </div>
   </div>
@@ -20,10 +20,22 @@
    * 2. It should accept additional steps
    * 3. It should emit compiled json data to page component
    */
-  import BipStep from '../../components/BipStep'
+  import BipSteps from '../../components/BipSteps'
   export default {
+    props: {
+      tasks: { type: Array, default: [] },
+    },
+    data() {
+      return {
+        steps: [
+          {
+            tasks: []
+          }
+        ]
+      }
+    },
     components: {
-      BipStep
+      BipSteps,
     }
   }
 </script>

@@ -3,13 +3,13 @@ import bodyParser from 'body-parser'
 import cors from 'cors'
 import express from 'express'
 import http from 'http'
-import path from 'path'
 import { buildSchema } from 'graphql'
 import graphqlHTTP from 'express-graphql'
 import db from './bookshelf'
 import config from './config'
 import middleware from './middleware'
 import controllers from './controllers'
+import graphqlSchema from './middleware/graphql/schema'
 import './models'
 import './logger'
 
@@ -32,20 +32,14 @@ app.use(bodyParser.json({
   limit: config.bodyLimit
 }))
 
-// Construct a schema, using GraphQL schema language
-const schema = buildSchema(`
-  type Query {
-    hello: String
-  }
-`)
-
 // The root provides a resolver function for each API endpoint
 const root = {
   hello: () => 'Hello world!'
 }
 app.use('/graphql', graphqlHTTP({
-  schema,
+  schema: graphqlSchema,
   rootValue: root,
+  pretty: true,
   graphiql: true
 }))
 

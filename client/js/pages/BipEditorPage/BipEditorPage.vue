@@ -4,11 +4,16 @@
   <BasePage type="control">
     <div class="container">
       <div class="row">
-        <BipSidebarContainer class="column-left"
-        ></BipSidebarContainer>
+        
+        <BipEditorSidebarContainer class="column-left"
+        ></BipEditorSidebarContainer>
+        
         <div class="column-right">
-          test column right
+          <div class="container-form">
+            <BipEditorAppForm></BipEditorAppForm>
+          </div>
         </div>
+        
       </div>
     </div>
   </BasePage>
@@ -25,12 +30,54 @@
    */
   import BasePage from '../Base'
   import TopBarContainer from '../../containers/TopbarContainer'
-  import BipSidebarContainer from '../../containers/BipSidebarContainer'
+  import BipEditorSidebarContainer from '../../containers/BipEditorSidebarContainer'
+  import BipEditorAppForm from '../../components/BipEditorAppForm'
   export default {
+    props: {
+      incomingAction: { type: Object, default: {} },
+      outgoingAction: { type: Object, default: {} }
+    },
     components: {
       BasePage,
       TopBarContainer,
-      BipSidebarContainer
+      BipEditorSidebarContainer,
+      BipEditorAppForm,
+    },
+    data() {
+      return {
+        bip: {
+          name: '', // Name is used to define bip name
+          incomingAction: {
+            customName: 'event',  // name of this step
+            payload: {
+              app: 0,  // app id
+              event: 0,  // incoming action id
+              conditions: [], // array of conditions [ [1, 'stuff'] ] // condition id and value
+              options: [], // array of options [ [1, 'something'] ] // options id and value
+            }
+          },
+          outgoingActions: {
+            customName: 'action',
+            payload: [
+              {
+                app: '',
+                action: '',
+                conditions: '',
+                options: []
+              },
+              {
+                app: '',
+                action: '',
+                conditions: '',
+                options: []
+              },
+            ]
+          }
+        }
+      }
+    },
+    methods: {
+      
     }
   }
 </script>

@@ -12,6 +12,8 @@
     "js:fix": "eslint --fix --ext js,vue ./",
     "js:lint": "eslint --ext js,vue ./",
     "js:lint:prod": "eslint --rule \"\"no-console\": [\"error\"]\" ./",
+    "scss:lint": "stylelint \"client/**/*.scss\" --syntax scss",
+    "scss:fix": "stylefmt --recursive \"client/**/*.scss\"",
     "test:all": "mocha --compilers js:babel-core/register \"./test/**/*.js\"",
     "snyk:test": "snyk test"
   },
