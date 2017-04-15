@@ -1,0 +1,53 @@
+import {
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLInt,
+  GraphQLBoolean,
+} from 'graphql'
+
+const AppType = new GraphQLObjectType({
+  name: 'App',
+  description: 'This represents an App',
+  fields: () => {
+    return {
+      /**
+       * Unique id of an app
+       */
+      id: {
+        type: GraphQLInt,
+        resolve (app) {
+          return app.get('id')
+        }
+      },
+      /**
+       * App name
+       */
+      name: {
+        type: GraphQLString,
+        resolve (app) {
+          return app.get('name')
+        }
+      },
+      /**
+       * Authentication type such as token, oauth
+       */
+      auth_type: {
+        type: GraphQLString,
+        resolve (app) {
+          return app.get('auth_type')
+        }
+      },
+      /**
+       * Determines if app is active or not
+       */
+      active: {
+        type: GraphQLBoolean,
+        resolve (app) {
+          return app.get('active')
+        }
+      }
+    }
+  }
+})
+
+export default AppType
