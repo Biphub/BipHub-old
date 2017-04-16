@@ -13,7 +13,7 @@
       <SearchBar></SearchBar>
     </div>
     <div v-for="app in apps">
-      {{ app.name }}
+      {{ app.icon }}
     </div>
     <div class="component-pad api-list">
       <App label="Discord"

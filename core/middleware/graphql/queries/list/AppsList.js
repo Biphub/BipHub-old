@@ -23,11 +23,17 @@ const AppsQuery = {
     active: {
       type: GraphQLBoolean
     },
-    first: {
-      type: GraphQLInt,
-      resolve (root, args) {
-        console.log('args ', args)
-      }
+    label: {
+      type: GraphQLString
+    },
+    icon: {
+      type: GraphQLString
+    },
+    instructions: {
+      type: GraphQLString
+    },
+    description: {
+      type: GraphQLString
     }
   },
   resolve (root, args) {

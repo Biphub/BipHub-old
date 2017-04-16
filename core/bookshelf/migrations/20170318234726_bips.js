@@ -5,8 +5,11 @@ exports.up = function (knex) {
     knex.schema.createTableIfNotExists('apps', (table) => {
       table.increments()
       table.string('name')
+      table.string('label')
+      table.string('instructions')
+      table.string('icon')
+      table.string('description')
       table.string('auth_type')
-      table.string('description', 128)
       table.boolean('active')
       table.timestamps()
     }),

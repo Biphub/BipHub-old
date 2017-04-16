@@ -1,7 +1,9 @@
 export default {
   name: 'biphub-slack',
-  description: 'Slack bip for Biphub project!',
-  instruction: 'https://api.slack.com/rtm',
+  label: 'Slack',
+  description: "Slack brings all your communication together in one place. It's real-time messaging, archiving and search for modern teams.",
+  instructions: 'https://api.slack.com/rtm',
+  icon: 'icon-slack.png',
   incomingActions: {
     accountChanged: { type: 'webhook/ws', name: 'account_changed' },
     botAdded: { type: 'webhook/ws', name: 'bot_added' },

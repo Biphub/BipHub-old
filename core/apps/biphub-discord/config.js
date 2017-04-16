@@ -1,6 +1,10 @@
 export default {
   name: 'biphub-discord',
-  description: 'Discord Bip for Biphub!',
+  label: 'Discord',
+  description: `Step up your game with a modern voice & text chat app. Crystal clear voice,
+  multiple server and channel support, mobile apps, and more.`,
+  instructions: 'https://discordapp.com/developers/docs/intro',
+  icon: 'icon-discord.png',
   incomingActions: {
     message: {
       type: 'webhook/ws',

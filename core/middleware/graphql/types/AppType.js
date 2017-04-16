@@ -46,6 +46,30 @@ const AppType = new GraphQLObjectType({
         resolve (app) {
           return app.get('active')
         }
+      },
+      label: {
+        type: GraphQLString,
+        resolve (app) {
+          return app.get('label')
+        }
+      },
+      icon: {
+        type: GraphQLString,
+        resolve (app) {
+          return app.get('icon')
+        }
+      },
+      instructions: {
+        type: GraphQLString,
+        resolve (app) {
+          return app.get('instructions')
+        }
+      },
+      description: {
+        type: GraphQLString,
+        resolve (app) {
+          return app.get('description')
+        }
       }
     }
   }

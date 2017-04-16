@@ -13,6 +13,10 @@ export default {
           name
           auth_type
           active
+          label
+          description
+          instructions
+          icon
         }
       }
     `).then(result => {
