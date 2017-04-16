@@ -5,12 +5,9 @@
     <div class="base-main-width">
       <div>
         <ExplorePanelContainer v-on:onAppClick="onAppClick"
+                               v-bind:apps="apps"
         ></ExplorePanelContainer>
       </div>
-    </div>
-    printing apps
-    <div v-for="app in apps">
-      {{ app.active }}
     </div>
     <h1>Bipflow</h1>
     <h2>Bipflow</h2>
@@ -45,9 +42,7 @@
   import InfoBox from '../../components/InfoBox'
   
   export default {
-    created() {
-      this.$store.dispatch('loadApps')
-    },
+    
     components: {
       BasePage,
       InfoBox,
@@ -57,12 +52,9 @@
     props: {
       test: { type: String, default: 'nothing!' }
     },
-    data() {
-      return {}
+    mounted() {
+      this.$store.dispatch('loadApps')
     },
-    computed: mapState([
-      'apps'
-    ]),
     methods: {
       onAppClick () {
       // this.$router.

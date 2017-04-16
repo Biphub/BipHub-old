@@ -16,7 +16,7 @@ export default {
         }
       }
     `).then(result => {
-      commit('LOAD_APPS', result)
+      commit('LOAD_APPS', { result })
     })
   }
 }

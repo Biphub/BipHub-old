@@ -12,7 +12,9 @@
     <div class="component-pad">
       <SearchBar></SearchBar>
     </div>
-
+    <div v-for="app in apps">
+      {{ app.name }}
+    </div>
     <div class="component-pad api-list">
       <App label="Discord"
            src="static/icon-discord.png"
@@ -113,6 +115,7 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   import App from '../../components/App'
   import Icon from '../../components/Icon'
   import SearchBar from '../../components/SearchBar'
@@ -122,6 +125,11 @@
       Icon,
       SearchBar,
       App
+    },
+    computed: {
+      apps() {
+        return this.$store.state.AppModule.apps
+      }
     },
     methods: {
       onAppClick () {
