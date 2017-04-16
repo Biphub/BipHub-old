@@ -1,3 +1,6 @@
-/**
- * Created by Shin on 15/04/2017.
- */
+export default {
+  LOAD_APPS (state, apps) {
+    console.log('loading apps in mutation! state: ', state, '  new apps: ', apps)
+    state.apps = apps
+  }
+}

@@ -36,6 +36,7 @@ app.use(bodyParser.json({
 const root = {
   hello: () => 'Hello world!'
 }
+
 app.use('/graphql', graphqlHTTP({
   schema: graphqlSchema,
   rootValue: root,

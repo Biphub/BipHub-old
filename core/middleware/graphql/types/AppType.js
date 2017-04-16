@@ -5,6 +5,7 @@ import {
   GraphQLBoolean
 } from 'graphql'
 
+// Single
 const AppType = new GraphQLObjectType({
   name: 'App',
   description: 'This represents an App',
@@ -16,7 +17,7 @@ const AppType = new GraphQLObjectType({
       id: {
         type: GraphQLInt,
         resolve (app) {
-          return app.get('id')
+          return app.get('id') // Node.js
         }
       },
       /**

@@ -22,9 +22,16 @@ const AppsQuery = {
     },
     active: {
       type: GraphQLBoolean
+    },
+    first: {
+      type: GraphQLInt,
+      resolve (root, args) {
+        console.log('args ', args)
+      }
     }
   },
   resolve (root, args) {
+    // Collection of App
     return models.App.findAll(args)
   }
 }

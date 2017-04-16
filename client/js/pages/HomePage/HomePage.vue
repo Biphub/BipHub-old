@@ -8,6 +8,10 @@
         ></ExplorePanelContainer>
       </div>
     </div>
+    printing apps
+    <div v-for="app in apps">
+      {{ app.active }}
+    </div>
     <h1>Bipflow</h1>
     <h2>Bipflow</h2>
     <h3>Bipflow</h3>
@@ -34,26 +38,35 @@
 </template>
 
 <script>
-import BasePage from '../Base'
-import ExplorePanelContainer from '../../containers/ExplorePanelContainer'
-import SuggestionContainer from '../../containers/SuggestionContainer'
-import InfoBox from '../../components/InfoBox'
-
-// TODO: Implement page builder
-export default {
-  components: {
-    BasePage,
-    InfoBox,
-    SuggestionContainer,
-    ExplorePanelContainer
-  },
-  props: {
-    test: { type: String, default: 'nothing!' }
-  },
-  methods: {
-    onAppClick () {
-    // this.$router.
+  import { mapState } from 'vuex'
+  import BasePage from '../Base'
+  import ExplorePanelContainer from '../../containers/ExplorePanelContainer'
+  import SuggestionContainer from '../../containers/SuggestionContainer'
+  import InfoBox from '../../components/InfoBox'
+  
+  export default {
+    created() {
+      this.$store.dispatch('loadApps')
+    },
+    components: {
+      BasePage,
+      InfoBox,
+      SuggestionContainer,
+      ExplorePanelContainer
+    },
+    props: {
+      test: { type: String, default: 'nothing!' }
+    },
+    data() {
+      return {}
+    },
+    computed: mapState([
+      'apps'
+    ]),
+    methods: {
+      onAppClick () {
+      // this.$router.
+      }
     }
   }
-}
 </script>
