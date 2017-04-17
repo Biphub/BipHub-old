@@ -35,14 +35,13 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
   import BasePage from '../Base'
   import ExplorePanelContainer from '../../containers/ExplorePanelContainer'
   import SuggestionContainer from '../../containers/SuggestionContainer'
   import InfoBox from '../../components/InfoBox'
-  
+
   export default {
-    
+
     components: {
       BasePage,
       InfoBox,
@@ -52,7 +51,7 @@
     props: {
       test: { type: String, default: 'nothing!' }
     },
-    mounted() {
+    mounted () {
       this.$store.dispatch('loadApps')
     },
     methods: {

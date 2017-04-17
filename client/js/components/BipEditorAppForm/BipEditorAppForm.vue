@@ -8,7 +8,7 @@
   import SearchBar from '../SearchBar'
   export default {
     components: {
-      SearchBar,
+      SearchBar
     }
   }
 </script>

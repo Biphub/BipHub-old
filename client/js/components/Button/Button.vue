@@ -10,10 +10,10 @@
       link: { type: String, default: null }
     },
     methods: {
-      onClick() {
+      onClick () {
         if (this.link) {
           // return window.location = this.link
-          console.log('router ', )
+          console.log('router ')
           this.$router.push(this.link)
         }
         this.$emit('click')

@@ -35,11 +35,11 @@
       MenuItem
     },
     methods: {
-      getIconType(active) {
+      getIconType (active) {
         return active ? 'pencil' : 'lock'
       },
-      findStepType() {
-        
+      findStepType () {
+
       }
     }
   }

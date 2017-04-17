@@ -115,7 +115,6 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
   import App from '../../components/App'
   import Icon from '../../components/Icon'
   import SearchBar from '../../components/SearchBar'
@@ -127,7 +126,7 @@
       App
     },
     computed: {
-      apps() {
+      apps () {
         return this.$store.state.AppModule.apps
       }
     },

@@ -29,7 +29,7 @@ module.exports = {
       browsers: ['last 2 versions', 'ie > 8']
     }),
     require('postcss-nested'),
-    rucksack(),
+    rucksack()
   ],
   cssModules: false
 }

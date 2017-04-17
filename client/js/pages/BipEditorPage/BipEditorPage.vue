@@ -41,9 +41,9 @@
       BasePage,
       TopBarContainer,
       BipEditorSidebarContainer,
-      BipEditorAppForm,
+      BipEditorAppForm
     },
-    data() {
+    data () {
       return {
         bip: {
           name: '', // Name is used to define bip name
@@ -53,7 +53,7 @@
               app: 0,  // app id
               event: 0,  // incoming action id
               conditions: [], // array of conditions [ [1, 'stuff'] ] // condition id and value
-              options: [], // array of options [ [1, 'something'] ] // options id and value
+              options: [] // array of options [ [1, 'something'] ] // options id and value
             }
           },
           outgoingActions: {
@@ -70,14 +70,14 @@
                 action: '',
                 conditions: '',
                 options: []
-              },
+              }
             ]
           }
         }
       }
     },
     methods: {
-      
+
     }
   }
 </script>

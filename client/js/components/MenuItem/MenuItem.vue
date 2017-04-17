@@ -31,7 +31,7 @@
       link: { type: String, default: '/' },
       active: { type: Boolean, default: false },
       fontSize: { type: String, default: 15 },
-      padding: { type: Boolean, default: true },
+      padding: { type: Boolean, default: true }
     },
     components: {
       Icon
@@ -69,8 +69,8 @@
         } else {
           return 'label--inactive'
         }
-      },
+      }
     }
-    
+
   }
 </script>

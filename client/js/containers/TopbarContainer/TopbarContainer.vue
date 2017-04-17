@@ -83,6 +83,6 @@ export default {
         return 'container container-control'
       }
     }
-  },
+  }
 }
 </script>

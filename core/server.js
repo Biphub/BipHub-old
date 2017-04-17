@@ -3,7 +3,6 @@ import bodyParser from 'body-parser'
 import cors from 'cors'
 import express from 'express'
 import http from 'http'
-import { buildSchema } from 'graphql'
 import graphqlHTTP from 'express-graphql'
 import db from './bookshelf'
 import config from './config'
@@ -34,7 +33,7 @@ app.use(bodyParser.json({
 
 // The root provides a resolver function for each API endpoint
 const root = {
-  hello: () => 'Hello world!'
+  hello: () => 'Hello from Bipflow!'
 }
 
 app.use('/graphql', graphqlHTTP({

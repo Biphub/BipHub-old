@@ -23,9 +23,9 @@
   import BipSteps from '../../components/BipSteps'
   export default {
     props: {
-      tasks: { type: Array, default: [] },
+      tasks: { type: Array, default: [] }
     },
-    data() {
+    data () {
       return {
         steps: [
           {
@@ -35,7 +35,7 @@
       }
     },
     components: {
-      BipSteps,
+      BipSteps
     }
   }
 </script>
