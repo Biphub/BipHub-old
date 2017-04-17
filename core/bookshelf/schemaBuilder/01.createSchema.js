@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import createTable from './createTable'
+import createTable from './02.createTable'
 
 /**
  * Builds a schema

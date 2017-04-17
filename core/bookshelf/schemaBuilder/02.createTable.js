@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import createColumn from './createColumn'
+import createColumn from './03.createColumn'
 
 /**
  * Creates a table
