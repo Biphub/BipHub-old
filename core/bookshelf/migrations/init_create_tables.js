@@ -1,6 +1,6 @@
 import Q from 'q'
 import schema from '../schema'
-import schemaBuilder from '../schemaBuilder'
+import schemaBuilder from '../schemaBuilder/knex'
 
 exports.up = function (knex) {
   const forgedSchemaCreate = schemaBuilder.createSchema({ knex, schema })
