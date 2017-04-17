@@ -1,46 +1,11 @@
-const path = require('path')
+const coreConfig = require('../../config')
 
-// TODO: Currently Knex doesn't allow sqlite file inside core folder.
+// TODO: Refactor below of think about removing knexfile completely
 module.exports = {
 
-  development: {
-    client: 'sqlite3',
-    connection: {
-      filename: path.join(__dirname, '/../../.database/sqlite/biphub-dev.sqlite3')
-    },
-    debug: true
-  },
+  development: coreConfig.database,
 
-  staging: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user: 'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
-  },
+  staging: coreConfig.database,
 
-  production: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user: 'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
-  },
-  debug: false
+  production: coreConfig.database
 }
