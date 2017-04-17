@@ -3,7 +3,6 @@ import db from '../../bookshelf'
 
 const base = db.bookshelf.Model.extend({
   hasTimestamps: ['created_at', 'updated_at']
-
 }, {
   /**
    * Strip unnecessary fields
@@ -11,6 +10,7 @@ const base = db.bookshelf.Model.extend({
    * @returns {*}
    */
   parse (attrs) {
+    console.log('test table name PARSING ', this.options)
     return _.pick(attrs, this.attributes)
   },
   /**

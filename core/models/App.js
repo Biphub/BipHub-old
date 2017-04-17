@@ -21,8 +21,8 @@ const App = base.extend({
     return this.hasMany(models.OutgoingAction)
   }
 }, {
-  attributes: ['id', 'name', 'label', 'instructions', 'icon',
-    'auth_type', 'description', 'active', 'created_at', 'updated_at'],
+  /*attributes: ['id', 'name', 'label', 'instructions', 'icon',
+    'auth_type', 'description', 'active', 'created_at', 'updated_at'],*/
 	/**
    * Register an app
    * It prevents users from registering duplicate app
