@@ -58,6 +58,7 @@ const createColumn = (transaction, columnName, column) => {
       }
     }
   } else if (typeof column === 'boolean') {
+    // If timestamps is enabled
     if (columnName === 'timestamps') {
       transaction.timestamps()
     }

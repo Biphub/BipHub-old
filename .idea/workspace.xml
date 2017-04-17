@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="171a6612-392e-4fe5-91f7-d501b53deea3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/bookshelf/schema.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/bookshelf/schemaBuilder.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/bookshelf/migrations/20170318234726_init_create_tables.js" afterPath="$PROJECT_DIR$/core/bookshelf/migrations/init_create_tables.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/bookshelf/schema.js" afterPath="$PROJECT_DIR$/core/bookshelf/schema.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/bookshelf/schemaBuilder.js" afterPath="$PROJECT_DIR$/core/bookshelf/schemaBuilder.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -51,11 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="init_create_tables.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="init_create_tables.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/bookshelf/migrations/init_create_tables.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="55" column="56" lean-forward="false" selection-start-line="55" selection-start-column="40" selection-end-line="55" selection-end-column="56" />
+            <state relative-caret-position="288">
+              <caret line="108" column="6" lean-forward="true" selection-start-line="108" selection-start-column="6" selection-end-line="108" selection-end-column="6" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -63,21 +60,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="schemaBuilder.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/core/bookshelf/schemaBuilder.js">
+      <file leaf-file-name="schema.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/bookshelf/schema.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-632">
-              <caret line="8" column="43" lean-forward="true" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="43" />
+            <state relative-caret-position="256">
+              <caret line="67" column="32" lean-forward="true" selection-start-line="67" selection-start-column="32" selection-end-line="67" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="schema.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/bookshelf/schema.js">
+      <file leaf-file-name="schemaBuilder.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/bookshelf/schemaBuilder.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="18" column="32" lean-forward="true" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+            <state relative-caret-position="576">
+              <caret line="63" column="5" lean-forward="true" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -219,8 +216,8 @@
         <option value="$PROJECT_DIR$/client/js/store/App/App.actions.js" />
         <option value="$PROJECT_DIR$/client/js/containers/ExplorePanelContainer/ExplorePanelContainer.vue" />
         <option value="$PROJECT_DIR$/core/bookshelf/migrations/init_create_tables.js" />
-        <option value="$PROJECT_DIR$/core/bookshelf/schema.js" />
         <option value="$PROJECT_DIR$/core/bookshelf/schemaBuilder.js" />
+        <option value="$PROJECT_DIR$/core/bookshelf/schema.js" />
       </list>
     </option>
   </component>
@@ -705,12 +702,12 @@
       <workItem from="1492324325816" duration="2891000" />
       <workItem from="1492337359472" duration="600000" />
       <workItem from="1492395554034" duration="1086000" />
-      <workItem from="1492397825792" duration="3491000" />
+      <workItem from="1492397825792" duration="4331000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="569531000" />
+    <option name="totallyTimeSpent" value="570371000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1046,7 +1043,7 @@
         <state relative-caret-position="576">
           <caret line="27" column="53" lean-forward="false" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
           <folding>
-            <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#0#25#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1106,29 +1103,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/core/bookshelf/schemaBuilder.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="63" column="5" lean-forward="true" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/core/bookshelf/schema.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="18" column="32" lean-forward="true" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+        <state relative-caret-position="256">
+          <caret line="67" column="32" lean-forward="true" selection-start-line="67" selection-start-column="32" selection-end-line="67" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/bookshelf/migrations/init_create_tables.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="55" column="56" lean-forward="false" selection-start-line="55" selection-start-column="40" selection-end-line="55" selection-end-column="56" />
+        <state relative-caret-position="288">
+          <caret line="108" column="6" lean-forward="true" selection-start-line="108" selection-start-column="6" selection-end-line="108" selection-end-column="6" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/bookshelf/schemaBuilder.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-632">
-          <caret line="8" column="43" lean-forward="true" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>

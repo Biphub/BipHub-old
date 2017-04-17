@@ -21,5 +21,60 @@ export default {
     incoming_actions_id: { type: 'integer', references: 'incoming_actions.id' },
     outgoing_actions_id: { type: 'integer', references: 'outgoing_actions.id' },
     timestamps: true
+  },
+  incoming_actions: {
+    id: { type: 'increments' },
+    type: { type: 'string' },
+    endpoint: { type: 'string' },
+    conditions: { type: 'jsonb' },
+    name: { type: 'string' },
+    timestamps: true,
+    app_id: { type: 'integer', references: 'apps.id' }
+  },
+  incoming_action_conditions: {
+    id: { type: 'increments' },
+    active: { type: 'boolean' },
+    name: { type: 'string' },
+    condition_payload: { type: 'jsonb' },
+    timestamps: true,
+    incoming_action_id: { type: 'integer', references: 'incoming_actions.id' }
+  },
+  outgoing_actions: {
+    id: { type: 'increments' },
+    active: { type: 'boolean' },
+    type: { type: 'string' },
+    name: { type: 'string' },
+    timestamps: true,
+    app_id: { type: 'integer', references: 'apps.id' }
+  },
+  incoming_action_fields: {
+    id: { type: 'increments' },
+    type: { type: 'string' },
+    name: { type: 'string' },
+    timestamps: true,
+    incoming_action_id: { type: 'integer', references: 'incoming_actions.id' }
+  },
+  outgoing_action_fields: {
+    id: { type: 'increments' },
+    type: { type: 'string' },
+    name: { type: 'string' },
+    timestamps: true,
+    outgoing_action_id: { type: 'integer', references: 'ougoing_actions.id' }
+  },
+  incoming_action_options: {
+    id: { type: 'increments' },
+    type: { type: 'string' },
+    name: { type: 'string' },
+    active: { type: 'boolean' },
+    timestamps: true,
+    incoming_action_id: { type: 'integer', references: 'incoming_actions.id' }
+  },
+  outgoing_action_options: {
+    id: { type: 'increments' },
+    type: { type: 'string' },
+    name: { type: 'string' },
+    active: { type: 'boolean' },
+    timestamps: true,
+    outgoing_action_id: { type: 'integer', references: 'ougoing_actions.id' }
   }
 }
