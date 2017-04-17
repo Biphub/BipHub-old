@@ -3,7 +3,7 @@ import schema from '../schema'
 import schemaBuilder from '../schemaBuilder'
 
 exports.up = function (knex) {
-  const forgedSchema = schemaBuilder.buildSchema({ knex, schema })
+  const forgedSchema = schemaBuilder.createSchema({ knex, schema })
   return Q.allSettled(forgedSchema)
 }
 

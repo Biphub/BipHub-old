@@ -1,37 +1,6 @@
 import _ from 'lodash'
 
 /**
- * Builds a schema
- * @param knex
- * @param schema
- * @returns {Array}
- */
-const buildSchema = ({ knex, schema }) => {
-  const forgedQueries = []
-  _.forOwn(schema, (table, tableName) => {
-    forgedQueries.push(
-      createTable(knex, tableName, table)
-    )
-  })
-  return forgedQueries
-}
-
-/**
- * Creates a table
- * @param knex
- * @param tableName
- * @param table
- * @returns {*}
- */
-const createTable = (knex, tableName, table) => {
-  return knex.schema.createTableIfNotExists(tableName, (transaction) => {
-    _.forOwn(table, (column, columnName) => {
-      createColumn(transaction, columnName, column)
-    })
-  })
-}
-
-/**
  * Creates column into transaction (table)
  * @param transaction
  * @param columnName
@@ -65,7 +34,4 @@ const createColumn = (transaction, columnName, column) => {
   }
 }
 
-export default {
-  createTable,
-  buildSchema
-}
+export default createColumn
