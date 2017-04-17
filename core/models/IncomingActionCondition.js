@@ -1,11 +1,14 @@
 import base from './base'
 import db from '../bookshelf'
+import schemaUtils from '../bookshelf/schemaUtils'
 
 const { bookshelf } = db
+const tableName = 'incoming_action_conditions'
+
 const IncomingActionCondition = base.extend({
-  tableName: 'incoming_action_conditions'
+  tableName
 }, {
-  attributes: ['id', 'active', 'name', 'condition_payload', 'bip_id']
+  attributes: schemaUtils.getAttributes(tableName)
 })
 
 const IncomingActionConditions = bookshelf.Collection.extend({

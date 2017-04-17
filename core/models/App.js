@@ -2,10 +2,12 @@ import base from './base'
 import db from '../bookshelf'
 import models from './index'
 import collectionHelper from '../helpers/collection'
+import schemaUtils from '../bookshelf/schemaUtils'
 
 const { bookshelf } = db
+const tableName = 'apps'
 const App = base.extend({
-  tableName: 'apps',
+  tableName,
 	/**
    * get incoming actions
 	 * @returns {*|Collection}
@@ -21,8 +23,7 @@ const App = base.extend({
     return this.hasMany(models.OutgoingAction)
   }
 }, {
-  /*attributes: ['id', 'name', 'label', 'instructions', 'icon',
-    'auth_type', 'description', 'active', 'created_at', 'updated_at'],*/
+  attributes: schemaUtils.getAttributes(tableName),
 	/**
    * Register an app
    * It prevents users from registering duplicate app

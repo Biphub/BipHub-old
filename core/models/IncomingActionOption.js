@@ -2,16 +2,18 @@ import _ from 'lodash'
 import Q from 'q'
 import base from './base'
 import db from '../bookshelf'
+import schemaUtils from '../bookshelf/schemaUtils'
 
 const { bookshelf } = db
+const tableName = 'incoming_action_options'
 
 const IncomingActionOption = base.extend({
-  tableName: 'incoming_action_options',
+  tableName,
   outgoingActions () {
     return this.belongsTo('IncomingAction')
   }
 }, {
-  attributes: ['id', 'name', 'type', 'active', 'incoming_action_id'],
+  attributes: schemaUtils.getAttributes(tableName),
   /**
    * @param options
    * @param incomingActionId

@@ -3,10 +3,13 @@ import Q from 'q'
 import base from './base'
 import db from '../bookshelf'
 import models from './index'
+import schemaUtils from '../bookshelf/schemaUtils'
 
 const { bookshelf } = db
+const tableName = 'outgoing_actions'
+
 const OutgoingAction = base.extend({
-  tableName: 'outgoing_actions',
+  tableName,
   app () {
     return this.belongsTo('App')
   },
@@ -14,7 +17,7 @@ const OutgoingAction = base.extend({
     return this.hasMany('OutgoingActionField')
   }
 }, {
-  attributes: ['id', 'type', 'name', 'app_id'],
+  attributes: schemaUtils.getAttributes(tableName),
 	/**
    * Create one outgoing action
 	 * @param entity

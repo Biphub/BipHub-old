@@ -2,15 +2,18 @@ import _ from 'lodash'
 import Q from 'q'
 import base from './base'
 import db from '../bookshelf'
+import schemaUtils from '../bookshelf/schemaUtils'
 
 const { bookshelf } = db
+const tableName = 'incoming_action_fields'
+
 const IncomingActionField = base.extend({
-  tableName: 'incoming_action_fields',
+  tableName,
   IncomingAction () {
     return this.belongsTo('IncomingAction')
   }
 }, {
-  attributes: ['id', 'name', 'type', 'incoming_action_id'],
+  attributes: schemaUtils.getAttributes(tableName),
 	/**
    * Creates many incoming actions
 	 * @param fields

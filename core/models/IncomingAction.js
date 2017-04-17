@@ -3,10 +3,13 @@ import Q from 'q'
 import base from './base'
 import db from '../bookshelf'
 import models from './index'
+import schemaUtils from '../bookshelf/schemaUtils'
 
 const { bookshelf } = db
+const tableName = 'incoming_actions'
+
 const IncomingAction = base.extend({
-  tableName: 'incoming_actions',
+  tableName,
   app () {
     return this.belongsTo('App')
   },
@@ -14,7 +17,7 @@ const IncomingAction = base.extend({
     return this.hasMany('IncomingActionField')
   }
 }, {
-  attributes: ['id', 'type', 'endpoint', 'conditions', 'name', 'app_id'],
+  attributes: schemaUtils.getAttributes(),
 	/**
    * create one incoming action
 	 * @param entity

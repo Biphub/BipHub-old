@@ -10,7 +10,6 @@ const base = db.bookshelf.Model.extend({
    * @returns {*}
    */
   parse (attrs) {
-    console.log('test table name PARSING ', this.options)
     return _.pick(attrs, this.attributes)
   },
   /**

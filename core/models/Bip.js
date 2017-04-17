@@ -1,9 +1,12 @@
 import base from './base'
 import db from '../bookshelf'
+import schemaUtils from '../bookshelf/schemaUtils'
 
 const { bookshelf } = db
+const tableName = 'bips'
+
 const Bip = base.extend({
-  tableName: 'bips',
+  tableName,
   attributes: [],
   incomingAction () {
     return this.belongsTo('IncomingAction')
@@ -12,11 +15,7 @@ const Bip = base.extend({
     return this.belongsTo('OutgoingAction')
   }
 }, {
-  attributes: [
-    'id', 'active', 'incoming_action_options_values',
-    'outgoing_action_options_values', 'incoming_action_fields_values',
-    'outgoing_action_fields_values', 'fields_mapping', 'incoming_action_condition_id',
-    'incoming_actions_id', 'outgoing_actions_id']
+  attributes: schemaUtils.getAttributes(tableName)
 })
 
 const Bips = bookshelf.Collection.extend({
