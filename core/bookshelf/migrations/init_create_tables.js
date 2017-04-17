@@ -1,6 +1,12 @@
-const Q = require('q')
+import _  from 'lodash'
+import Q from 'q'
+import schema from '../schema'
+import schemaBuilder from '../schemaBuilder'
 
 exports.up = function (knex) {
+
+  schemaBuilder.buildSchema({ knex, schema })
+
   return Q.allSettled([
     knex.schema.createTableIfNotExists('apps', (table) => {
       table.increments()
