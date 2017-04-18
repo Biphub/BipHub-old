@@ -1,13 +1,13 @@
 export default {
   apps: {
-    id: { type: 'increments' },
-    name: { type: 'string' },
-    label: { type: 'string' },
-    instructions: { type: 'string' },
-    icon: { type: 'string' },
-    description: { type: 'string' },
-    auth_type: { type: 'string' },
-    active: { type: 'boolean' },
+    id: { type: 'increments', graphql: true },
+    name: { type: 'string', graphql: true },
+    label: { type: 'string', graphql: true },
+    instructions: { type: 'string', graphql: true },
+    icon: { type: 'string', graphql: true },
+    description: { type: 'string', graphql: true },
+    auth_type: { type: 'string', graphql: true },
+    active: { type: 'boolean', graphql: true },
     timestamps: true
   },
   bips: {

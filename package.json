@@ -46,6 +46,7 @@
     "node-sass": "^4.5.2",
     "promise-polyfill": "^6.0.2",
     "q": "^1.4.1",
+    "ramda": "^0.23.0",
     "require-all": "^2.1.0",
     "resource-router-middleware": "^0.6.0",
     "slackbots": "^1.0.2",
