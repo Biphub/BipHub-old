@@ -4,8 +4,6 @@ import {
   GraphQLInt,
   GraphQLBoolean
 } from 'graphql'
-import schema from '../../../bookshelf/schema'
-import createArgs from '../../../bookshelf/schemaBuilder/graphql/createArgs'
 
 // Single
 const AppType = new GraphQLObjectType({
@@ -16,7 +14,7 @@ const AppType = new GraphQLObjectType({
       id: {
         type: GraphQLInt,
         resolve (app) {
-          return app.get('id') // Node.js
+          return app.get('id')
         }
       },
       name: {
