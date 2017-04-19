@@ -4,9 +4,9 @@
   <BasePage>
     <div class="base-main-width">
       <div>
-        <ExplorePanelContainer v-on:onAppClick="onAppClick"
+        <HomeAppsPanelContainer v-on:onAppClick="onAppClick"
                                v-bind:apps="apps"
-        ></ExplorePanelContainer>
+        ></HomeAppsPanelContainer>
       </div>
     </div>
     <h1>Bipflow</h1>
@@ -36,7 +36,7 @@
 
 <script>
   import BasePage from '../Base'
-  import ExplorePanelContainer from '../../containers/ExplorePanelContainer'
+  import HomeAppsPanelContainer from '../../containers/HomeAppsPanelContainer'
   import SuggestionContainer from '../../containers/SuggestionContainer'
   import InfoBox from '../../components/InfoBox'
 
@@ -46,7 +46,7 @@
       BasePage,
       InfoBox,
       SuggestionContainer,
-      ExplorePanelContainer
+      HomeAppsPanelContainer
     },
     props: {
       test: { type: String, default: 'nothing!' }

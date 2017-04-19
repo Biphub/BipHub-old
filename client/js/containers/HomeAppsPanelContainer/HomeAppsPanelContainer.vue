@@ -1,4 +1,4 @@
-<style scoped lang="scss" src="./ExplorePanelContainer.scss"></style>
+<style scoped lang="scss" src="./HomeAppsPanelContainer.scss"></style>
 
 <template>
   <div class="explore-panel">
@@ -10,23 +10,23 @@
     </div>
 
     <div class="component-pad">
-      <SearchBar></SearchBar>
+      <search-bar></search-bar>
     </div>
     <div v-for="app in apps">
       {{ app.icon }}
     </div>
     <div class="component-pad api-list">
-      <App label="Discord"
+      <app label="Discord"
            src="static/icon-discord.png"
            v-bind:border="true"
            theme="orca"
            v-on:click="onAppClick"
-      ></App>
-      <App label="Dota 2"
+      ></app>
+      <app label="Dota 2"
            v-bind:border="true"
            theme="grey"
            src="static/icon-dota2.png"
-      ></App>
+      ></app>
       <App label="Gmail"
            src="static/icon-gmail.png"
            theme="ice"
@@ -127,6 +127,7 @@
     },
     computed: {
       apps () {
+        console.log('apps ', this.$store.state.AppModule.apps)
         return this.$store.state.AppModule.apps
       }
     },

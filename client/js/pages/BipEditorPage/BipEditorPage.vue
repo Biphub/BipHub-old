@@ -30,8 +30,6 @@
   import BipEditorSidebarContainer from '../../containers/BipEditorSidebarContainer'
   import BipEditorFormContainer from '../../containers/BipEditorFormContainer'
   export default {
-    props: {
-    },
     components: {
       BasePage,
       TopBarContainer,

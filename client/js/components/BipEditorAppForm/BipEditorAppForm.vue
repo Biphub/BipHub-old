@@ -12,6 +12,9 @@
     },
     components: {
       SearchBar
+    },
+    methods: {
+    
     }
   }
 </script>
