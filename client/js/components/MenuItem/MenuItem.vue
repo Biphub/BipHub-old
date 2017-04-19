@@ -24,7 +24,7 @@
   import Icon from '../Icon'
 
   export default {
-    name: 'menu-item',
+    name: 'BpMenuItem',
     props: {
       iconType: { type: String, default: null },
       label: { type: String, default: null },

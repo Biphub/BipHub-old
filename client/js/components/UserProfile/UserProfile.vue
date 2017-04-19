@@ -28,7 +28,7 @@
 
 <script>
   export default {
-    name: 'user-profile',
+    name: 'BpUserProfile',
     props: {
       photo: { type: String, default: '' },
       name: { type: String, default: 'N/A' },

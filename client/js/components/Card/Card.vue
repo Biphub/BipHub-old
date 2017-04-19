@@ -26,7 +26,7 @@
   import Icon from '../Icon'
 
   export default {
-    name: 'card',
+    name: 'BpCard',
     props: {
       header: { type: String, default: null }
     },

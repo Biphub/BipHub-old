@@ -10,7 +10,7 @@
 
 <script>
   export default {
-    name: 'logo-text',
+    name: 'BpLogoText',
     props: {
       text: { type: String, default: 'N/A' }
     }

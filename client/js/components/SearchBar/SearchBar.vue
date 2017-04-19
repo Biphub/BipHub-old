@@ -14,7 +14,7 @@
 <script>
   import Icon from '../Icon'
   export default {
-    name: 'search-bar',
+    name: 'BpSearchBar',
     components: {
       Icon
     }

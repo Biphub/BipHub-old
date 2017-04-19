@@ -22,7 +22,7 @@
    * [ { label: "choose an app", active: true } ]
    */
   export default {
-    name: 'steps',
+    name: 'BpSteps',
     props: {
       steps: { type: Array, default: [] }
     },

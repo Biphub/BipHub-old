@@ -9,42 +9,42 @@
         </div>
       </div>
       <div class="column-center">
-        <menu-item label="Apps"
+        <bp-menu-item label="Apps"
                   fontSize="18"
                   v-bind:active="getMenuActive('/')"
-        ></menu-item>
-        <menu-item label="Bips"
+        ></bp-menu-item>
+        <bp-menu-item label="Bips"
                   fontSize="18"
                   v-bind:active="getMenuActive('bips')"
-        ></menu-item>
-        <menu-item label="Accounts"
+        ></bp-menu-item>
+        <bp-menu-item label="Accounts"
                   fontSize="18"
                   v-bind:active="getMenuActive('accounts')"
-        ></menu-item>
-        <menu-item label="System"
+        ></bp-menu-item>
+        <bp-menu-item label="System"
                   fontSize="18"
                   v-bind:active="getMenuActive('system')"
-        ></menu-item>
+        ></bp-menu-item>
       </div>
       <div class="column-right">
         <bp-button link="/bip/editor">Make a Bip!</bp-button>
         <div>
-          <UserProfile v-bind:enableName="true"
+          <bp-user-profile v-bind:enableName="true"
                        v-bind:enableWelcome="true"
                        name="Jason"
-          ></UserProfile>
+          ></bp-user-profile>
         </div>
       </div>
     </div>
     
     <div v-if="type === 'control'" class="row row-control">
       <div class="column-left">
-        <menu-item iconType="arrow-left"
+        <bp-menu-item iconType="arrow-left"
                   label="dashboard"
                   flexDirection="row"
                   link="/"
                   v-bind:padding="false"
-        ></menu-item>
+        ></bp-menu-item>
       </div>
       <div class="column-center">
         <div class="logo">
@@ -57,16 +57,10 @@
 </template>
 
 <script>
-import UserProfile from '../../components/UserProfile'
-import MenuItem from '../../components/MenuItem'
 
 export default {
   props: {
     type: { type: String, default: 'dashboard' }
-  },
-  components: {
-    MenuItem,
-    UserProfile
   },
   methods: {
     getMenuActive (label) {

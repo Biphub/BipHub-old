@@ -22,7 +22,7 @@
 <script>
   import Icon from '../Icon'
   export default {
-    name: 'info-box',
+    name: 'BpInfoBox',
     components: {
       Icon
     },
