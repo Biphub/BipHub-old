@@ -5,7 +5,7 @@
 
     <div class="component-pad">
       <div class="explore-heading">
-        <Icon type="search"></Icon> Pick Apps to find out automating them
+        <icon type="search"></icon> Pick Apps to find out automating them
       </div>
     </div>
 
@@ -27,88 +27,88 @@
            theme="grey"
            src="static/icon-dota2.png"
       ></app>
-      <App label="Gmail"
+      <app label="Gmail"
            src="static/icon-gmail.png"
            theme="ice"
            v-bind:border="true"
-      ></App>
-      <App label="Hearthstone"
+      ></app>
+      <app label="Hearthstone"
            src="static/icon-hearthstone.png"
            theme="love"
            v-bind:border="true"
-      ></App>
-      <App label="Minecraft"
+      ></app>
+      <app label="Minecraft"
            src="static/icon-minecraft.png"
            v-bind:border="true"
-      ></App>
-      <App label="Overwatch"
+      ></app>
+      <app label="Overwatch"
            src="static/icon-overwatch.png"
            theme="tonight"
            v-bind:border="true"
-      ></App>
-      <App label="Team Fortress2"
+      ></app>
+      <app label="Team Fortress2"
            src="static/icon-tf2.png"
            theme="rose"
            v-bind:border="true"
-      ></App>
-      <App label="WoW"
+      ></app>
+      <app label="WoW"
            src="static/icon-wow.png"
            theme="wave"
            v-bind:border="true"
-      ></App>
-      <App label="Team Fortress2"
+      ></app>
+      <app label="Team Fortress2"
            src="static/icon-tf2.png"
            theme="love"
            v-bind:border="true"
-      ></App>
-      <App label="WoW"
+      ></app>
+      <app label="WoW"
            src="static/icon-wow.png"
            v-bind:border="true"
-      ></App>
-      <App label="Team Fortress2"
+      ></app>
+      <app label="Team Fortress2"
            src="static/icon-tf2.png"
            v-bind:border="true"
-      ></App>
-      <App label="WoW"
+      ></app>
+      <app label="WoW"
            src="static/icon-wow.png"
            v-bind:border="true"
-      ></App>
-      <App label="Team Fortress2"
+      ></app>
+      <app label="Team Fortress2"
            src="static/icon-tf2.png"
            v-bind:border="true"
-      ></App>
-      <App label="WoW"
+      ></app>
+      <app label="WoW"
            src="static/icon-wow.png"
            v-bind:border="true"
-      ></App>
-      <App label="WoW"
+      ></app>
+      <app label="WoW"
            src="static/icon-wow.png"
            v-bind:border="true"
-      ></App>
-      <App label="WoW"
+      ></app>
+      <app label="WoW"
            src="static/icon-wow.png"
            v-bind:border="true"
-      ></App>
-      <App label="WoW"
+      ></app>
+      <app label="WoW"
            src="static/icon-wow.png"
            v-bind:border="true"
-      ></App>
-      <App label="WoW"
+      ></app>
+      <app label="WoW"
            src="static/icon-wow.png"
            v-bind:border="true"
-      ></App>
-      <App label="WoW"
+      ></app>
+      <app label="WoW"
            src="static/icon-wow.png"
            v-bind:border="true"
-      ></App>
-      <App label="WoW"
+      ></app>
+      <app label="WoW"
            src="static/icon-wow.png"
            v-bind:border="true"
-      ></App>
-      <App label="WoW"
+      ></app>
+      <app label="WoW"
            src="static/icon-wow.png"
            v-bind:border="true"
-      ></App>
+      ></app>
 
     </div>
   </div>

@@ -8,12 +8,12 @@
         <input type="text" />
       </div>
       <div class="progress">
-        <BipSteps v-bind:steps="steps"
+        <bp-steps v-bind:steps="steps"
                   v-on:getApps="getApps"
                   v-on:chooseApp="chooseApp"
                   v-on:getEvents="getEvents"
                   v-on:chooseEvent="chooseEvent"
-        ></BipSteps>
+        ></bp-steps>
       </div>
     </div>
   </div>
@@ -31,7 +31,7 @@
    *  }
    * ]
    */
-  import BipSteps from '../../components/BipSteps'
+  import Steps from '../../components/Steps'
   export default {
     props: {
       tasks: { type: Array, default: [] }
@@ -42,7 +42,7 @@
       }
     },
     components: {
-      BipSteps
+      Steps
     },
     methods: {
       /**

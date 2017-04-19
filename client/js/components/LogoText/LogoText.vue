@@ -10,6 +10,7 @@
 
 <script>
   export default {
+    name: 'logo-text',
     props: {
       text: { type: String, default: 'N/A' }
     }

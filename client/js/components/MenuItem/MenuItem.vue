@@ -24,6 +24,7 @@
   import Icon from '../Icon'
 
   export default {
+    name: 'menu-item',
     props: {
       iconType: { type: String, default: null },
       label: { type: String, default: null },
@@ -36,7 +37,6 @@
     components: {
       Icon
     },
-    name: 'MenuItem',
     computed: {
       /**
        * Decides flex direction

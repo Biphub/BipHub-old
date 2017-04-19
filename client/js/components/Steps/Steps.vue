@@ -1,4 +1,4 @@
-<style scoped lang="scss" src="./BipSteps.scss"></style>
+<style scoped lang="scss" src="./Steps.scss"></style>
 <template>
   <div class="container">
     <div class="row"
@@ -22,6 +22,7 @@
    * [ { label: "choose an app", active: true } ]
    */
   export default {
+    name: 'steps',
     props: {
       steps: { type: Array, default: [] }
     },

@@ -22,6 +22,7 @@
 <script>
   import Icon from '../Icon'
   export default {
+    name: 'info-box',
     components: {
       Icon
     },

@@ -9,25 +9,25 @@
         </div>
       </div>
       <div class="column-center">
-        <MenuItem label="Apps"
+        <menu-item label="Apps"
                   fontSize="18"
                   v-bind:active="getMenuActive('/')"
-        ></MenuItem>
-        <MenuItem label="Bips"
+        ></menu-item>
+        <menu-item label="Bips"
                   fontSize="18"
                   v-bind:active="getMenuActive('bips')"
-        ></MenuItem>
-        <MenuItem label="Accounts"
+        ></menu-item>
+        <menu-item label="Accounts"
                   fontSize="18"
                   v-bind:active="getMenuActive('accounts')"
-        ></MenuItem>
-        <MenuItem label="System"
+        ></menu-item>
+        <menu-item label="System"
                   fontSize="18"
                   v-bind:active="getMenuActive('system')"
-        ></MenuItem>
+        ></menu-item>
       </div>
       <div class="column-right">
-        <Button link="/bip/editor">Make a Bip!</Button>
+        <bp-button link="/bip/editor">Make a Bip!</bp-button>
         <div>
           <UserProfile v-bind:enableName="true"
                        v-bind:enableWelcome="true"
@@ -39,12 +39,12 @@
     
     <div v-if="type === 'control'" class="row row-control">
       <div class="column-left">
-        <MenuItem iconType="arrow-left"
+        <menu-item iconType="arrow-left"
                   label="dashboard"
                   flexDirection="row"
                   link="/"
                   v-bind:padding="false"
-        ></MenuItem>
+        ></menu-item>
       </div>
       <div class="column-center">
         <div class="logo">
@@ -57,7 +57,6 @@
 </template>
 
 <script>
-import Button from '../../components/Button'
 import UserProfile from '../../components/UserProfile'
 import MenuItem from '../../components/MenuItem'
 
@@ -66,7 +65,6 @@ export default {
     type: { type: String, default: 'dashboard' }
   },
   components: {
-    Button,
     MenuItem,
     UserProfile
   },

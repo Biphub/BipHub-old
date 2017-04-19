@@ -23,6 +23,7 @@
 <script>
 // gradient images https://uigradients.com
 export default {
+  name: 'app',
   props: {
     src: { type: String, default: 'N/A' },
     label: { type: String, default: null },

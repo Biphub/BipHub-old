@@ -2,24 +2,24 @@
 
 <template>
   <div class="container-side">
-    <LogoText></LogoText>
-    <UserProfile class="side-user-profile"
+    <bp-logo-text></bp-logo-text>
+    <bp-user-profile class="side-user-profile"
                  photo="/static/profile-menu-image.png"
                  name="jason"
                  role="developer"
-    ></UserProfile>
-    <MenuItem class="component-side--active"
+    ></bp-user-profile>
+    <bp-user-profile class="component-side--active"
               iconType="home"
               label="home"
-    ></MenuItem>
-    <MenuItem class="component-side"
+    ></bp-user-profile>
+    <bp-user-profile class="component-side"
               iconType="bandcamp"
               label="bips"
-    ></MenuItem>
-    <MenuItem class="component-side"
+    ></bp-user-profile>
+    <bp-user-profile class="component-side"
               iconType="grav"
               label="profile"
-    ></MenuItem>
+    ></bp-user-profile>
   </div>
 </template>
 

@@ -6,6 +6,7 @@
 
 <script>
   export default {
+    name: 'BpButton',
     props: {
       link: { type: String, default: null }
     },

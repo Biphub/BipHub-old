@@ -3,6 +3,7 @@ import { sync } from 'vuex-router-sync'
 import App from './js/App.vue'
 import router from './js/router'
 import store from './js/store'
+import ComponentsPlugin from './js/components'
 sync(store, router)
 
 import './styles/style.scss'
@@ -15,5 +16,7 @@ const app = new Vue({
   store,
   ...App
 })
+
+Vue.use(ComponentsPlugin)
 
 export { app, router, store }
