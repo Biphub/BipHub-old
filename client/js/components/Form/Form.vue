@@ -1,13 +1,11 @@
 <template>
   <div>
-  
+    <slot></slot>
   </div>
 </template>
 
 <script>
   export default {
-    props: {
-      options: { type: Array, default: [] }
-    }
+    name: 'BpForm'
   }
 </script>

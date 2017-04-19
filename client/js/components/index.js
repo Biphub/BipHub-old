@@ -8,6 +8,7 @@ import MenuItem from './MenuItem'
 import SearchBar from './SearchBar'
 import Steps from './Steps'
 import UserProfile from './UserProfile'
+import Radio from './Radio'
 
 const components = [
   Button,
@@ -19,11 +20,17 @@ const components = [
   MenuItem,
   SearchBar,
   Steps,
-  UserProfile
+  UserProfile,
+  Radio
 ]
 
+/**
+ * Install method is exposed to Vue
+ * @param Vue
+ * @param options
+ */
 const install = (Vue, options = {}) => {
-  components.map(component => {
+  components.forEach(component => {
     Vue.component(component.name, component)
   })
 }
