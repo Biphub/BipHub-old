@@ -8,11 +8,8 @@
         <BipEditorSidebarContainer class="column-left"
         ></BipEditorSidebarContainer>
         
-        <div class="column-right">
-          <div class="container-form">
-            <BipEditorAppForm></BipEditorAppForm>
-          </div>
-        </div>
+        <BipEditorFormContainer class="column-right"
+        ></BipEditorFormContainer>
         
       </div>
     </div>
@@ -31,17 +28,15 @@
   import BasePage from '../Base'
   import TopBarContainer from '../../containers/TopbarContainer'
   import BipEditorSidebarContainer from '../../containers/BipEditorSidebarContainer'
-  import BipEditorAppForm from '../../components/BipEditorAppForm'
+  import BipEditorFormContainer from '../../containers/BipEditorFormContainer'
   export default {
     props: {
-      incomingAction: { type: Object, default: {} },
-      outgoingAction: { type: Object, default: {} }
     },
     components: {
       BasePage,
       TopBarContainer,
       BipEditorSidebarContainer,
-      BipEditorAppForm
+      BipEditorFormContainer
     },
     data () {
       return {
@@ -77,7 +72,12 @@
       }
     },
     methods: {
-
+      updateIncomingAction() {
+      
+      },
+      updateActions() {
+      
+      }
     }
   }
 </script>

@@ -8,7 +8,12 @@
         <input type="text" />
       </div>
       <div class="progress">
-        <BipSteps v-bind:steps="steps"></BipSteps>
+        <BipSteps v-bind:steps="steps"
+                  v-on:getApps="getApps"
+                  v-on:chooseApp="chooseApp"
+                  v-on:getEvents="getEvents"
+                  v-on:chooseEvent="chooseEvent"
+        ></BipSteps>
       </div>
     </div>
   </div>
@@ -19,6 +24,12 @@
    * 1. It should accept current step
    * 2. It should accept additional steps
    * 3. It should emit compiled json data to page component
+   * steps: [
+   *  {
+   *    type: 'incomingAction',
+   *    label: 'Event'
+   *  }
+   * ]
    */
   import BipSteps from '../../components/BipSteps'
   export default {
@@ -27,15 +38,41 @@
     },
     data () {
       return {
-        steps: [
-          {
-            tasks: []
-          }
-        ]
+        steps: []
       }
     },
     components: {
       BipSteps
+    },
+    methods: {
+      /**
+       * App panel
+       * Search for apps
+       */
+      getApps () {
+        console.log('INFO: Bip Editor sidebar: searching apps!')
+      },
+      /**
+       * Choose an app for either incoming action or outgoing action
+       */
+      chooseApp (eventType, appId) {
+        console.log('INFO: chose an app!')
+      },
+      /**
+       *
+       * @param appId
+       */
+      getEvents (appId) {
+        console.log('INFO: Getting events!')
+      },
+      /**
+       *
+       * @param eventType
+       * @param eventId
+       */
+      chooseEvent (eventType, eventId) {
+      
+      }
     }
   }
 </script>
