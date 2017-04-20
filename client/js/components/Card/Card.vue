@@ -6,9 +6,9 @@
     <div class="component-pad">
       <div class="header">{{ header }}</div>
       <div class="formula-box">
-        <App src="static/icon-hearthstone.png"></App>
+        <AppCard src="static/icon-hearthstone.png"></AppCard>
         <Icon class="plus" type="plus"></Icon>
-        <App src="static/icon-hearthstone.png"></App>
+        <AppCard src="static/icon-hearthstone.png"></AppCard>
       </div>
       <div class="actions">
         <div class="component-pad">
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-  import App from '../App'
+  import AppCard from '../AppCard'
   import Icon from '../Icon'
 
   export default {
@@ -31,7 +31,7 @@
       header: { type: String, default: null }
     },
     components: {
-      App,
+      AppCard,
       Icon
     }
   }

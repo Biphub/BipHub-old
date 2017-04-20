@@ -1,3 +1,3 @@
-/**
- * Created by Shin on 20/04/2017.
- */
+import BipEditorAppsFormContainer from './BipEditorAppsFormContainer.vue'
+
+export default BipEditorAppsFormContainer

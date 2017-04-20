@@ -3,6 +3,7 @@
   <div class="container">
     <div class="row" v-if="this.formType === 'incomingAction'">
       incoming action container
+      <apps-form-container></apps-form-container>
     </div>
     <div class="row" v-else-if="this.formType === 'outgoingAction'">
       outgoing action form

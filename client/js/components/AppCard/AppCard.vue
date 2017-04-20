@@ -1,4 +1,4 @@
-<style scoped lang="scss" src="./App.scss"></style>
+<style scoped lang="scss" src="./AppCard.scss"></style>
 
 <template>
   <router-link class="container"
@@ -23,7 +23,7 @@
 <script>
 // gradient images https://uigradients.com
 export default {
-  name: 'BpApp',
+  name: 'BpAppCard',
   props: {
     src: { type: String, default: 'N/A' },
     label: { type: String, default: null },

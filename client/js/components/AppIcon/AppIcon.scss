@@ -1,0 +1,29 @@
+.container {
+  width: 75px;
+  text-align: center;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 75px;
+  height: 75px;
+  border: 2px solid #e8ebed;
+  border-radius: 50%;
+  transition: 200ms ease-in-out-cubic;
+}
+
+.icon > img {
+  width: 45px;
+  height: 45px;
+}
+
+.icon:hover {
+  border: 2px solid gray;
+}
+
+.label {
+  margin-top: 5px;
+}

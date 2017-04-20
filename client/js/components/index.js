@@ -1,4 +1,5 @@
-import App from './App'
+import AppCard from './AppCard'
+import AppIcon from './AppIcon'
 import Button from './Button'
 import Card from './Card'
 import Icon from './Icon'
@@ -12,7 +13,8 @@ import Radio from './Radio'
 
 const components = [
   Button,
-  App,
+  AppCard,
+  AppIcon,
   Card,
   Icon,
   InfoBox,

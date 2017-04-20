@@ -5,126 +5,117 @@
 
     <div class="component-pad">
       <div class="explore-heading">
-        <icon type="search"></icon> Pick Apps to find out automating them
+        <bp-icon type="search"></bp-icon> Pick Apps to find out automating them
       </div>
     </div>
 
     <div class="component-pad">
-      <search-bar></search-bar>
+      <bp-search-bar></bp-search-bar>
     </div>
     <div v-for="app in apps">
       {{ app.icon }}
     </div>
     <div class="component-pad api-list">
-      <app label="Discord"
+      <bp-app-card label="Discord"
            src="static/icon-discord.png"
            v-bind:border="true"
            theme="orca"
            v-on:click="onAppClick"
-      ></app>
-      <app label="Dota 2"
+      ></bp-app-card>
+      <bp-app-card label="Dota 2"
            v-bind:border="true"
            theme="grey"
            src="static/icon-dota2.png"
-      ></app>
-      <app label="Gmail"
+      ></bp-app-card>
+      <bp-app-card label="Gmail"
            src="static/icon-gmail.png"
            theme="ice"
            v-bind:border="true"
-      ></app>
-      <app label="Hearthstone"
+      ></bp-app-card>
+      <bp-app-card label="Hearthstone"
            src="static/icon-hearthstone.png"
            theme="love"
            v-bind:border="true"
-      ></app>
-      <app label="Minecraft"
+      ></bp-app-card>
+      <bp-app-card label="Minecraft"
            src="static/icon-minecraft.png"
            v-bind:border="true"
-      ></app>
-      <app label="Overwatch"
+      ></bp-app-card>
+      <bp-app-card label="Overwatch"
            src="static/icon-overwatch.png"
            theme="tonight"
            v-bind:border="true"
-      ></app>
-      <app label="Team Fortress2"
+      ></bp-app-card>
+      <bp-app-card label="Team Fortress2"
            src="static/icon-tf2.png"
            theme="rose"
            v-bind:border="true"
-      ></app>
-      <app label="WoW"
+      ></bp-app-card>
+      <bp-app-card label="WoW"
            src="static/icon-wow.png"
            theme="wave"
            v-bind:border="true"
-      ></app>
-      <app label="Team Fortress2"
+      ></bp-app-card>
+      <bp-app-card label="Team Fortress2"
            src="static/icon-tf2.png"
            theme="love"
            v-bind:border="true"
-      ></app>
-      <app label="WoW"
+      ></bp-app-card>
+      <bp-app-card label="WoW"
            src="static/icon-wow.png"
            v-bind:border="true"
-      ></app>
-      <app label="Team Fortress2"
+      ></bp-app-card>
+      <bp-app-card label="Team Fortress2"
            src="static/icon-tf2.png"
            v-bind:border="true"
-      ></app>
-      <app label="WoW"
+      ></bp-app-card>
+      <bp-app-card label="WoW"
            src="static/icon-wow.png"
            v-bind:border="true"
-      ></app>
-      <app label="Team Fortress2"
+      ></bp-app-card>
+      <bp-app-card label="Team Fortress2"
            src="static/icon-tf2.png"
            v-bind:border="true"
-      ></app>
-      <app label="WoW"
+      ></bp-app-card>
+      <bp-app-card label="WoW"
            src="static/icon-wow.png"
            v-bind:border="true"
-      ></app>
-      <app label="WoW"
+      ></bp-app-card>
+      <bp-app-card label="WoW"
            src="static/icon-wow.png"
            v-bind:border="true"
-      ></app>
-      <app label="WoW"
+      ></bp-app-card>
+      <bp-app-card label="WoW"
            src="static/icon-wow.png"
            v-bind:border="true"
-      ></app>
-      <app label="WoW"
+      ></bp-app-card>
+      <bp-app-card label="WoW"
            src="static/icon-wow.png"
            v-bind:border="true"
-      ></app>
-      <app label="WoW"
+      ></bp-app-card>
+      <bp-app-card label="WoW"
            src="static/icon-wow.png"
            v-bind:border="true"
-      ></app>
-      <app label="WoW"
+      ></bp-app-card>
+      <bp-app-card label="WoW"
            src="static/icon-wow.png"
            v-bind:border="true"
-      ></app>
-      <app label="WoW"
+      ></bp-app-card>
+      <bp-app-card label="WoW"
            src="static/icon-wow.png"
            v-bind:border="true"
-      ></app>
-      <app label="WoW"
+      ></bp-app-card>
+      <bp-app-card label="WoW"
            src="static/icon-wow.png"
            v-bind:border="true"
-      ></app>
+      ></bp-app-card>
 
     </div>
   </div>
 </template>
 
 <script>
-  import App from '../../components/App'
-  import Icon from '../../components/Icon'
-  import SearchBar from '../../components/SearchBar'
-
   export default {
-    components: {
-      Icon,
-      SearchBar,
-      App
-    },
     computed: {
       apps () {
         console.log('apps ', this.$store.state.AppModule.apps)
