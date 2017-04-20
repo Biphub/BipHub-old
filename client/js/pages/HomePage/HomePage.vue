@@ -9,7 +9,11 @@
         ></HomeAppsPanelContainer>
       </div>
     </div>
+    <form>
     <bp-radio></bp-radio>
+    <bp-radio></bp-radio>
+    <bp-radio></bp-radio>
+    </form>
     <h1>Bipflow</h1>
     <h2>Bipflow</h2>
     <h3>Bipflow</h3>

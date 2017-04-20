@@ -3,8 +3,8 @@
 <template>
   <div class="container">
     <div class="row">
-      <input type="radio" id="s-option" name="selector">
-      <label for="s-option">{{ label }}</label>
+      <input type="radio" v-bind:id="id" name="selector">
+      <label v-bind:for="id">{{ label }}</label>
       <div class="check"><div class="inside"></div></div>
     </div>
   </div>
@@ -15,6 +15,11 @@
     name: 'BpRadio',
     props: {
       label: { type: String, default: 'radio' }
+    },
+    computed: {
+      id () {
+        return this._uid
+      }
     }
   }
 </script>

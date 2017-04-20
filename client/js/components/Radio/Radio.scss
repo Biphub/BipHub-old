@@ -40,8 +40,8 @@ input[type=radio] {
 }
 
 input[type=radio]:checked ~ .check {
-  border: 4.5px solid #0DFF92;
-  background: #0DFF92;
+  border: 4.5px solid #9b4dca;
+  background: #9b4dca;
 }
 
 input[type=radio]:checked ~ .check::before{
@@ -49,6 +49,6 @@ input[type=radio]:checked ~ .check::before{
   transform: scale(1.0, 1.0);
 }
 
+// Label color when checkbox is checked
 input[type=radio]:checked ~ label{
-  color: #0DFF92;
 }
