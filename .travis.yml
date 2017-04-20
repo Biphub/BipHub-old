@@ -24,4 +24,3 @@ install:
 script:
   - snyk auth $SNYK_AUTH_TOKEN
   - npm run js:lint
-  - npm run test:all
