@@ -8,8 +8,11 @@
              v-model="model"
              v-bind:id="radioId"
              v-bind:value="label">
-      <label v-bind:for="radioId">{{ label }}</label>
-      <div class="check"><div class="inside"></div></div>
+      <label v-bind:for="radioId">
+        <div class="check"></div>
+        <span>{{ label }}</span>
+      </label>
+      
     </div>
   </div>
 </template>
