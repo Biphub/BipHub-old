@@ -22,7 +22,7 @@
 .api-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
   max-height: 600px;
   overflow-y: scroll;
   > a {

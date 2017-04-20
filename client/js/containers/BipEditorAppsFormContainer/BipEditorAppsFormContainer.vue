@@ -6,6 +6,9 @@
       <bp-search-bar></bp-search-bar>
       <div class="apps">
         <bp-app-icon></bp-app-icon>
+        <bp-app-icon></bp-app-icon>
+        <bp-app-icon></bp-app-icon>
+        <bp-app-icon></bp-app-icon>
       </div>
     </div>
   </div>
