@@ -1,6 +1,6 @@
 # ignore all hidden folders
 .*
-!.idea
+/.idea
 /dist
 /logs
 /npm-debug.log
