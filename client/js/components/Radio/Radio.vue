@@ -15,11 +15,13 @@
 </template>
 
 <script>
+  /**
+   * Radio component will update model variable
+   */
   export default {
     name: 'BpRadio',
     props: {
-      label: { type: String, default: 'radio' },
-      value: { type: String, default: '' }
+      label: { type: String, default: 'radio' }
     },
     computed: {
       radioId () {

@@ -71,7 +71,6 @@
        * @param eventId
        */
       chooseEvent (eventType, eventId) {
-      
       }
     }
   }

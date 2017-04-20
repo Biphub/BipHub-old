@@ -2,7 +2,6 @@ import _ from 'lodash'
 import Q from 'q'
 import models from '../models'
 import pubsub from '../pubsub'
-import { checkAllIncomingActionConditions } from './incomingActionCondition/check'
 
 /**
  * Forwarding bips to connected apps
@@ -59,7 +58,7 @@ async function bip ({
     // Get first entity's id since meta.name can associate with only one incoming action
     const firstIncActionId = _.head(incomingAction).get('id')
     const foundBips = await models.Bip.findAll({ incoming_action_id: firstIncActionId }, { withRelated: [] })
-    console.log('found bips! TODO: Finish implementing conditions')
+    console.log('found bips! TODO: Finish implementing conditions ', foundBips)
     /* checkAllIncomingActionConditions({
       app, incomingAction, incomingActionPayload
     }) */
@@ -74,5 +73,6 @@ async function bip ({
 }
 
 export default {
-  bip
+  bip,
+  fowardAllBips
 }

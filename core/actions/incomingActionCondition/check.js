@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import Q from 'q'
 import pubsub from '../../pubsub'
 
 /**

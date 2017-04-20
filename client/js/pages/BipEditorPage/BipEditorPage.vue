@@ -70,12 +70,6 @@
       }
     },
     methods: {
-      updateIncomingAction() {
-      
-      },
-      updateActions() {
-      
-      }
     }
   }
 </script>

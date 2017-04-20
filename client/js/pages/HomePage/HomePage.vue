@@ -4,9 +4,9 @@
   <BasePage>
     <div class="base-main-width">
       <div>
-        <HomeAppsPanelContainer v-on:onAppClick="onAppClick"
-                               v-bind:apps="apps"
-        ></HomeAppsPanelContainer>
+        <home-apps-panel-container v-on:onAppClick="onAppClick"
+                                   v-bind:apps="apps"
+        ></home-apps-panel-container>
       </div>
     </div>
     <form>
@@ -14,12 +14,7 @@
     <bp-radio label="test2" v-model="stuff"></bp-radio>
     <bp-radio label="test3" v-model="stuff"></bp-radio>
     </form>
-    <h1>Bipflow</h1>
-    <h2>Bipflow</h2>
-    <h3>Bipflow</h3>
-    <h4>Bipflow</h4>
-    <h5>Bipflow</h5>
-    <h6>Bipflow</h6>
+    
     <div>
       <button class="btn" type="button">Button button</button>
       <a class="btn" href="#" role="button">Link button</a>
@@ -46,7 +41,6 @@
   import InfoBox from '../../components/InfoBox'
 
   export default {
-
     components: {
       BasePage,
       InfoBox,

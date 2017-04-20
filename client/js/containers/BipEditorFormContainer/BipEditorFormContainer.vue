@@ -11,6 +11,7 @@
 </template>
 
 <script>
+  import AppsFormContainer from '../BipEditorAppsFormContainer'
   export default {
     name: 'BipEditorFormContainer',
     props: {
@@ -19,6 +20,7 @@
       stage: { type: Number, default: 0 }
     },
     components: {
+      AppsFormContainer
     }
   }
 </script>
