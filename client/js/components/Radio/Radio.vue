@@ -3,8 +3,12 @@
 <template>
   <div class="container">
     <div class="row">
-      <input type="radio" v-bind:id="id" name="selector">
-      <label v-bind:for="id">{{ label }}</label>
+      <input type="radio"
+             name="selector"
+             v-model="model"
+             v-bind:id="radioId"
+             v-bind:value="label">
+      <label v-bind:for="radioId">{{ label }}</label>
       <div class="check"><div class="inside"></div></div>
     </div>
   </div>
@@ -14,11 +18,20 @@
   export default {
     name: 'BpRadio',
     props: {
-      label: { type: String, default: 'radio' }
+      label: { type: String, default: 'radio' },
+      value: { type: String, default: '' }
     },
     computed: {
-      id () {
+      radioId () {
         return this._uid
+      },
+      model: {
+        get () {
+          return this.value
+        },
+        set (val) {
+          this.$emit('input', val)
+        }
       }
     }
   }

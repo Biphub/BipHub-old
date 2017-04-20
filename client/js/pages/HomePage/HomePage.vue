@@ -10,9 +10,9 @@
       </div>
     </div>
     <form>
-    <bp-radio></bp-radio>
-    <bp-radio></bp-radio>
-    <bp-radio></bp-radio>
+    <bp-radio label="test1" v-model="stuff"></bp-radio>
+    <bp-radio label="test2" v-model="stuff"></bp-radio>
+    <bp-radio label="test3" v-model="stuff"></bp-radio>
     </form>
     <h1>Bipflow</h1>
     <h2>Bipflow</h2>
@@ -55,6 +55,16 @@
     },
     props: {
       test: { type: String, default: 'nothing!' }
+    },
+    data () {
+      return {
+        stuff: ''
+      }
+    },
+    watch: {
+      stuff (val) {
+        console.log('radio button changed! ', val)
+      }
     },
     mounted () {
       this.$store.dispatch('loadApps')
