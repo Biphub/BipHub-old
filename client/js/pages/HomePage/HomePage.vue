@@ -38,12 +38,10 @@
   import BasePage from '../Base'
   import HomeAppsPanelContainer from '../../containers/HomeAppsPanelContainer'
   import SuggestionContainer from '../../containers/SuggestionContainer'
-  import InfoBox from '../../components/InfoBox'
 
   export default {
     components: {
       BasePage,
-      InfoBox,
       SuggestionContainer,
       HomeAppsPanelContainer
     },

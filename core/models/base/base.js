@@ -10,6 +10,7 @@ const base = db.bookshelf.Model.extend({
    * @returns {*}
    */
   parse (attrs) {
+    // TODO: Refactor this.attributes by access this.tableName
     return _.pick(attrs, this.attributes)
   },
   /**

@@ -15,7 +15,6 @@ const setup = () => {
 	 */
   pubsub.subscribe('REGISTER_APP', ({ payload }) => {
 		// Register an app with incoming and outgoing actions
-    // console.log('registering payload ', payload)
     models.App.createOne(payload).then((app) => {
       app.related('incomingActions').fetch().then((model) => {
         logger.info(`Register app successful for ${model.get('name')}`)

@@ -17,7 +17,7 @@ const IncomingAction = base.extend({
     return this.hasMany('IncomingActionField')
   }
 }, {
-  attributes: schemaUtils.getAttributes(),
+  attributes: schemaUtils.getAttributes(tableName),
 	/**
    * create one incoming action
 	 * @param entity

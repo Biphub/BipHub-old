@@ -28,6 +28,7 @@ export default {
     endpoint: { type: 'string' },
     conditions: { type: 'jsonb' },
     name: { type: 'string' },
+    description: { type: 'string' },
     timestamps: true,
     app_id: { type: 'integer', references: 'apps.id' }
   },
@@ -44,6 +45,7 @@ export default {
     active: { type: 'boolean' },
     type: { type: 'string' },
     name: { type: 'string' },
+    description: { type: 'string' },
     timestamps: true,
     app_id: { type: 'integer', references: 'apps.id' }
   },

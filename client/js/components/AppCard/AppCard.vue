@@ -13,7 +13,7 @@
       <div class="label"
            v-if="label" >
         <h5>{{ label }}</h5>
-        <span>Lorem ipsum</span>
+        <span>{{ description }}</span>
       </div>
       <div class="description"></div>
     </div>
@@ -28,6 +28,7 @@ export default {
     src: { type: String, default: 'N/A' },
     label: { type: String, default: null },
     border: { type: Boolean, default: false },
+    description: { type: String, default: '' },
     theme: { type: String, default: 'orca' }
   },
   data () {
