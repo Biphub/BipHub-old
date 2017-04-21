@@ -1,0 +1,15 @@
+
+.events {
+  display: flex;
+  flex-direction: column;
+}
+
+.event {
+  border-bottom: 1px solid #374051;
+  margin-bottom: 15px;
+}
+
+.description {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}

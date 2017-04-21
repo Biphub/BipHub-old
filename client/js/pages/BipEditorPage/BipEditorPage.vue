@@ -69,6 +69,9 @@
         }
       }
     },
+    mounted () {
+      this.$store.dispatch('bipEditor_loadApps')
+    },
     methods: {
     }
   }

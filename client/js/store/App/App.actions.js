@@ -5,22 +5,38 @@ const client = new Lokka({
 })
 
 export default {
-  loadApps ({ commit }) {
+  /**
+   * Homepage load apps
+   * @param commit
+   */
+  home_loadApps ({ commit }) {
     client.query(`
       query {
         apps {
           id
           name
-          auth_type
           active
           label
           description
-          instructions
           icon
         }
       }
     `).then(result => {
       commit('LOAD_APPS', { result })
+    })
+  },
+  bipEditor_loadApps ({ commit }) {
+    client.query(`
+      query {
+        apps {
+          id
+          name
+          active
+          icon
+        }
+      }
+    `).then(result => {
+      commit('LOAD_APPS', ({ result }))
     })
   }
 }
