@@ -1,0 +1,3 @@
+import BipEditorIncomingActionFormContainer from './BipEditorIncomingActionFormContainer.vue'
+
+export default BipEditorIncomingActionFormContainer

@@ -5,7 +5,10 @@ export default {
   instructions: 'https://api.slack.com/rtm',
   icon: 'icon-slack.png',
   incomingActions: {
-    accountChanged: { type: 'webhook/ws', name: 'account_changed' },
+    accountChanged: {
+      type: 'webhook/ws',
+      name: 'account_changed'
+    },
     botAdded: { type: 'webhook/ws', name: 'bot_added' },
     botChanged: { type: 'webhook/ws', name: 'bot_changed' },
     channelArchived: { type: 'webhook/ws', name: 'channel_archived' },
@@ -28,6 +31,7 @@ export default {
     postMessage: {
       type: 'webhook/ws',
       name: 'post_message',
+      description: 'Post a message to a channel',
       fields: {
         data: { type: 'string', name: 'data' }
       }

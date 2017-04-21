@@ -4,7 +4,7 @@
     <div class="row" v-if="this.formType === 'incomingAction'">
       incoming action container
       <apps-form-container></apps-form-container>
-      <events-form-container></events-form-container>
+      <incoming-action-form-container></incoming-action-form-container>
     </div>
     <div class="row" v-else-if="this.formType === 'outgoingAction'">
       outgoing action form
@@ -14,7 +14,7 @@
 
 <script>
   import AppsFormContainer from '../BipEditorAppsFormContainer'
-  import EventsFormContainer from '../BipEditorEventsFormContainer'
+  import IncomingActionFormContainer from '../BipEditorIncomingActionFormContainer'
   export default {
     name: 'BipEditorFormContainer',
     props: {
@@ -24,7 +24,7 @@
     },
     components: {
       AppsFormContainer,
-      EventsFormContainer
+      IncomingActionFormContainer
     }
   }
 </script>
