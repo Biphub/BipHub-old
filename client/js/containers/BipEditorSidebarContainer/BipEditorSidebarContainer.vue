@@ -20,22 +20,8 @@
 </template>
 
 <script>
-  /**
-   * 1. It should accept current step
-   * 2. It should accept additional steps
-   * 3. It should emit compiled json data to page component
-   * steps: [
-   *  {
-   *    type: 'incomingAction',
-   *    label: 'Event'
-   *  }
-   * ]
-   */
   import Steps from '../../components/Steps'
   export default {
-    props: {
-      tasks: { type: Array, default: [] }
-    },
     data () {
       return {
         steps: []

@@ -5,7 +5,6 @@
     <div class="base-main-width">
       <div>
         <home-apps-panel-container v-on:onAppClick="onAppClick"
-                                   v-bind:apps="apps"
         ></home-apps-panel-container>
       </div>
     </div>
@@ -51,11 +50,6 @@
     data () {
       return {
         stuff: ''
-      }
-    },
-    watch: {
-      stuff (val) {
-        console.log('radio button changed! ', val)
       }
     },
     mounted () {

@@ -16,7 +16,6 @@
 </template>
 
 <script>
-  import MenuItem from '../../components/MenuItem'
   /**
    * tasks :
    * [ { label: "choose an app", active: true } ]
@@ -25,9 +24,6 @@
     name: 'BpSteps',
     props: {
       steps: { type: Array, default: [] }
-    },
-    components: {
-      MenuItem
     },
     methods: {
       getIconType (active) {

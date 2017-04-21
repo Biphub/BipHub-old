@@ -7,7 +7,7 @@
 </template>
 <script>
   export default {
-    name: 'BpCard',
+    name: 'BpIcon',
     props: {
       type: { type: String, default: 'home' }
     },

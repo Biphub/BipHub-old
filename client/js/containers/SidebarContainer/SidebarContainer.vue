@@ -24,15 +24,6 @@
 </template>
 
 <script>
-  import LogoText from '../../components/LogoText'
-  import UserProfile from '../../components/UserProfile'
-  import MenuItem from '../../components/MenuItem'
-
   export default {
-    components: {
-      LogoText,
-      UserProfile,
-      MenuItem
-    }
   }
 </script>

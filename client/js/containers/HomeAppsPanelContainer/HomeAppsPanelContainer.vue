@@ -30,7 +30,6 @@
   export default {
     computed: {
       apps () {
-        console.log('apps ', this.$store.state.AppModule.apps)
         return this.$store.state.AppModule.apps
       }
     },

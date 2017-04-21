@@ -31,7 +31,7 @@
       flexDirection: { type: String, default: 'column' },
       link: { type: String, default: '/' },
       active: { type: Boolean, default: false },
-      fontSize: { type: Number, default: 15 },
+      fontSize: { type: String, default: '15' },
       padding: { type: Boolean, default: true }
     },
     components: {
