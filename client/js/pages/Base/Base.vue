@@ -31,7 +31,6 @@
   import SidebarContainer from '../../containers/SidebarContainer'
   export default {
     created () {
-      console.log('created base page ')
     },
     props: {
       type: { type: String, default: 'dashboard' }

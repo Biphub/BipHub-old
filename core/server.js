@@ -9,8 +9,8 @@ import config from './config'
 import middleware from './middleware'
 import controllers from './controllers'
 import graphqlSchema from './middleware/graphql/schema'
+import logger from './logger'
 import './models'
-import './logger'
 
 // Webpack requirements
 import vuepackMiddleware from './middleware/vuepack'
@@ -54,8 +54,8 @@ db.migrate().then(() => {
   vuepackMiddleware(app)
 
   server.listen(app.get('port'), '0.0.0.0', () => {
-    console.log('%s App is running at http://localhost:%d in %s mode ', app.get('port'))
-    console.log('  Press CTRL-C to stop\n')
+    logger.info(`App is running at http://localhost:${app.get('port')} in ${config.getEnv()} mode `)
+    logger.info('Press CTRL-C to stop\n')
   })
 })
 export default app

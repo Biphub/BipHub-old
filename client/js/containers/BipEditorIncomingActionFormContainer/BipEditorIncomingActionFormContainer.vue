@@ -24,7 +24,6 @@
     },
     watch: {
       chosenEvent () {
-        console.log('chosen event changed ', this.chosenEvent)
       }
     }
   }

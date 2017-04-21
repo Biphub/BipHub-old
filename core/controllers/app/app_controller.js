@@ -53,7 +53,7 @@ const setup = () => {
 	 * TODO: Clarify what todo if ping constantly fails
 	 */
   pubsub.subscribe('PING', (payload) => {
-    console.log('INFO: Ping from ', payload)
+    logger.info('Ping from ', payload)
   })
 }
 

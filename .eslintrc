@@ -8,7 +8,7 @@
     "no-extra-semi": "error",
     "semi": ["error", "never"],
     "consistent-return": ["off"],
-    "no-console": ["off"],
+    "no-console": ["error"],
     "import/no-unresolved": ["error", { "ignore": ["password$"] }]
   },
   "settings": {

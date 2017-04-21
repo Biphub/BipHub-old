@@ -36,20 +36,17 @@
        * Search for apps
        */
       getApps () {
-        console.log('INFO: Bip Editor sidebar: searching apps!')
       },
       /**
        * Choose an app for either incoming action or outgoing action
        */
       chooseApp (eventType, appId) {
-        console.log('INFO: chose an app!')
       },
       /**
        *
        * @param appId
        */
       getEvents (appId) {
-        console.log('INFO: Getting events!')
       },
       /**
        *
