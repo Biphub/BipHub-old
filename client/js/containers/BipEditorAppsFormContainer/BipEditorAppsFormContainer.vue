@@ -10,7 +10,6 @@
                      v-bind:label="app.label"
                      v-bind:icon="`/static/${app.icon}`"
         ></bp-app-icon>
-        
       </div>
     </div>
   </div>

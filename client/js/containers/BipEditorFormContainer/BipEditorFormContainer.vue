@@ -29,7 +29,7 @@
     },
     computed: {
       apps () {
-        return this.$store.state.AppModule.apps
+        return this.$store.state.BipEditorModule.apps
       }
     }
   }

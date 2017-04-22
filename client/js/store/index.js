@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import AppModule from './App'
+import HomeModule from './Home'
+import BipEditorModule from './BipEditor'
 
 Vue.use(Vuex)
 
@@ -8,7 +9,8 @@ const debug = process.env.NODE_ENV !== 'production';
 
 const store = new Vuex.Store({
   modules: {
-    AppModule
+    HomeModule,
+    BipEditorModule
   }
 })
 

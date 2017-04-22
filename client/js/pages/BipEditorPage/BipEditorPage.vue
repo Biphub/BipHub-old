@@ -70,7 +70,7 @@
       }
     },
     mounted () {
-      this.$store.dispatch('bipEditor_loadApps')
+      this.$store.dispatch('bip_editor_inital_load')
     },
     methods: {
     }

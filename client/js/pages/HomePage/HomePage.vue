@@ -53,7 +53,7 @@
       }
     },
     mounted () {
-      this.$store.dispatch('home_loadApps')
+      this.$store.dispatch('home_initial_load')
     },
     methods: {
       onAppClick () {

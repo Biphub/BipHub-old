@@ -9,7 +9,7 @@ export default {
    * Homepage load apps
    * @param commit
    */
-  home_loadApps ({ commit }) {
+  home_initial_load ({ commit }) {
     client.query(`
       query {
         apps {
@@ -23,20 +23,6 @@ export default {
       }
     `).then(result => {
       commit('LOAD_APPS', { result })
-    })
-  },
-  bipEditor_loadApps ({ commit }) {
-    client.query(`
-      query {
-        apps {
-          id
-          name
-          active
-          icon
-        }
-      }
-    `).then(result => {
-      commit('LOAD_APPS', ({ result }))
     })
   }
 }
