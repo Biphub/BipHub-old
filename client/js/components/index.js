@@ -7,6 +7,7 @@ import InfoBox from './InfoBox'
 import LogoText from './LogoText'
 import MenuItem from './MenuItem'
 import SearchBar from './SearchBar'
+import Select from './Select'
 import Steps from './Steps'
 import UserProfile from './UserProfile'
 import Radio from './Radio'
@@ -21,6 +22,7 @@ const components = [
   LogoText,
   MenuItem,
   SearchBar,
+  Select,
   Steps,
   UserProfile,
   Radio
