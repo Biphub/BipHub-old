@@ -1,0 +1,33 @@
+.output {
+  border-radius: 20px;
+  padding: 20px 5px;
+  border: 1px solid gray;
+  text-align: center;
+}
+
+  .output-arrow {
+    transition: 100ms ease-in-out-cubic;
+    margin-left: 5px;
+    display: inline-block;
+  }
+
+  .output-arrow--inactive {
+    transform: rotate(270deg);
+  }
+
+  .output-arrow--active {
+    transform: rotate(90deg);
+  }
+
+.options {
+  transition: 100ms ease-in-out-cubic;
+  overflow: hidden;
+}
+
+.options--close {
+  height: 0;
+}
+
+.options--open {
+  height: 250px;
+}
