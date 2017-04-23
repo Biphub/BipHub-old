@@ -23,6 +23,15 @@
   @extend .pad-top--20;
   @extend .pad-bot--20;
 }
+// Icon rendered using font-awesome
+.icon-font {
+  font-size: 78px;
+}
+.icon-font-item {
+}
+.icon-label {
+  text-align: center;
+}
 .icon-wrapper {
   border-radius: 20px;
   z-index: 10;

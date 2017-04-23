@@ -22,6 +22,13 @@
                    v-on:click="onAppClick"
                    theme="orca"
       ></bp-app-card>
+      <bp-app-card class="component"
+                   icon="plus"
+                   label="Add new app"
+      ></bp-app-card>
+      <div>
+      
+      </div>
     </div>
   </div>
 </template>
