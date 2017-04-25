@@ -1,6 +1,7 @@
-@import '../../../styles/padding';
-@import '../../../styles/size';
 @import '../../../styles/colour';
+@import '../../../styles/padding';
+@import '../../../styles/fontsize';
+
 .container {
   width: 277px;
   cursor: pointer;
@@ -20,8 +21,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  @extend .pad-top--20;
-  @extend .pad-bot--20;
+  @extend %pd-top-4x;
+  @extend %pd-bottom-4x;
 }
 // Icon rendered using font-awesome
 .icon-font {
@@ -36,11 +37,11 @@
   border-radius: 20px;
   z-index: 10;
   background-color: white;
-  @extend .pad--20;
+  @extend %pd-4x;
 }
 
 .label {
-  font-size: $fsize--mss;
+  @extend %fsize-13;
   margin-top: 4px;
   padding: 10px 20px;
   color: #58676c;

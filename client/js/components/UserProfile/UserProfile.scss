@@ -8,7 +8,7 @@
 }
 
 .component-pad {
-  padding: $pd--lg;
+  @extend %pd-3x;
 }
 
 .photo {

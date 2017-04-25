@@ -3,7 +3,7 @@
 @import '../../../styles/margin';
 
 .component-pad {
-  padding: $pd--md;
+  @extend %pd-2x;
 }
 
 .icon {
@@ -13,7 +13,7 @@
 .input {
   width: 100%;
   margin-left: 15px;
-  padding: $pd--md;
+  @extend %pd-2x;
   align-self: center;
   outline: none;
   border: 0;
@@ -47,5 +47,5 @@
 
 .api-list .component {
   // TODO: Make sure if this is meant to be fixed width
-  margin: $margin--xm;
+  @extend %mg-1x;
 }

@@ -11,7 +11,7 @@
 
 .column-left {
   min-width: 400px;
-  @extend .pad--20;
+  @extend %pd-4x;
 }
 
 .column-right {

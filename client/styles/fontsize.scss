@@ -1,0 +1,8 @@
+@mixin font-sizes() {
+  @for $i from 1 to 40 {
+    // font size
+    %fsize-#{$i} { font-size: $i; }
+  }
+}
+
+@include font-sizes();

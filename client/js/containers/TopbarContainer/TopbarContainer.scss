@@ -1,6 +1,4 @@
-@import '../../../styles/size';
-@import '../../../styles/padding';
-
+@import "../../../styles/padding";
 .container {
   display: flex;
   width: 100%;
@@ -48,8 +46,8 @@
 
 .row-control {
   width: 100%;
-  @extend .pad-left--20;
-  @extend .pad-right--20;
+  @extend %pd-left-4x;
+  @extend %pd-right-4x;
 }
 
 .column-left {

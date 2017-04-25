@@ -1,13 +1,12 @@
-@import '../../../styles/size';
+@import '../../../styles/fontsize';
 @import '../../../styles/padding';
-
 .component {
   display: flex;
 }
 
 .component-pad {
   justify-content: center;
-  @extend .pad--10;
+  @extend %pd-2x;
 }
 
 // TODO: Using nested CSS is not recommended.
@@ -49,7 +48,7 @@
 }
 
 .label {
-  font-size: $fsize--ms;
+  @extend %fsize-15;
 }
   .label--active {
     border-bottom: 3px solid gray;
