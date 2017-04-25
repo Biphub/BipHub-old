@@ -42,12 +42,15 @@
 
 .options--close {
   height: 0;
+  border: 0 solid #bfcbd9;
 }
 
 .options--open {
   height: 250px;
+  border: 1px solid #bfcbd9;
 }
 
 .option {
   cursor: pointer;
+  padding: 5px 10px;
 }

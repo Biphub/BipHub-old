@@ -1,4 +1,4 @@
-.pad--40 {
+/*.pad--40 {
   padding: 40px;
 }
 
@@ -43,3 +43,25 @@
 $pd--40: 40px;
 $pd--lg: 20px;
 $pd--md: 10px;
+*/
+@mixin padding-spacing( $spacing ) {
+  @for $i from 1 to 11 {
+    // Padding
+    %padding-#{$i}x { padding: $spacing * $i; }
+
+    %padding-top-#{$i}x,
+    %padding-vertical-#{$i}x { padding-top: $spacing * $i; }
+
+    %padding-bottom-#{$i}x,
+    %padding-vertical-#{$i}x{ padding-bottom: $spacing * $i; }
+
+    %padding-left-#{$i}x,
+    %padding-horizontal-#{$i}x { padding-left: $spacing * $i; }
+
+    %padding-right-#{$i}x,
+    %padding-horizontal-#{$i}x{ padding-right: $spacing * $i; }
+  }
+}
+
+$spacing: 5px;
+@include padding-spacing($spacing);

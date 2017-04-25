@@ -1,3 +1,25 @@
 $margin--lg: 30px;
 $margin--md: 20px;
 $margin--xm: 5px;
+
+@mixin margin-spacing( $spacing ) {
+  @for $i from 1 to 11 {
+    // Margin
+    %margin-#{$i}x { margin: $spacing * $i; }
+
+    %margin-top-#{$i}x,
+    %margin-vertical-#{$i}x { margin-top: $spacing * $i; }
+
+    %margin-bottom-#{$i}x,
+    %margin-vertical-#{$i}x { margin-bottom: $spacing * $i; }
+
+    %margin-left-#{$i}x,
+    %margin-horizontal-#{$i}x { margin-left: $spacing * $i; }
+
+    %margin-right-#{$i}x,
+    %margin-horizontal-#{$i}x { margin-right: $spacing * $i; }
+  }
+}
+
+$spacing: 5px;
+@include margin-spacing($spacing);

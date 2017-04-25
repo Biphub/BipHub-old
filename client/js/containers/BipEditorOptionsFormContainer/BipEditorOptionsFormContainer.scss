@@ -1,0 +1,18 @@
+.options {
+  display: flex;
+  flex-direction: column;
+}
+
+.option {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+}
+  .input > input {
+    margin-bottom: 2px;
+  }
+
+.name {
+  width: 30%;
+}
