@@ -1,7 +1,7 @@
 <style scoped lang="scss" src="./Select.scss"></style>
 
 <template>
-  <div>
+  <div class="select">
     <div class="label">{{ label }}</div>
     <div class="output"
          v-on:click="selectClick" >

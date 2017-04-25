@@ -1,14 +1,30 @@
+.select {
+  width: 240px;
+}
+
 .output {
-  border-radius: 20px;
-  padding: 20px 5px;
-  border: 1px solid gray;
+  position: relative;
+  border-radius: 4px;
+  height: 36px;
+  border: 1px solid #bfcbd9;
+  color: #1f2d3d;
   text-align: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
   .output-arrow {
+    position: absolute;
+    right: 20px;
     transition: 100ms ease-in-out-cubic;
     margin-left: 5px;
     display: inline-block;
+    margin-right: 0;
+    justify-self: end;
   }
 
   .output-arrow--inactive {
@@ -30,4 +46,8 @@
 
 .options--open {
   height: 250px;
+}
+
+.option {
+  cursor: pointer;
 }
