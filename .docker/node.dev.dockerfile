@@ -16,25 +16,23 @@ RUN apt-get update && apt-get install -y \
     make
 
 RUN npm install -g \
+    yarn \
     node-gyp \
     node-pre-gyp \
     babel-cli \
     nodemon \
-    better-npm-run \
     eslint \
-    eslint-config-airbnb-base \
-    install-peerdeps \
     eslint-plugin-security \
     mocha \
     chai
 
-RUN install-peerdeps --dev eslint-config-airbnb-base
-
 RUN npm cache clean
-RUN npm install
-RUN npm uninstall sqlite3
+RUN yarn
+RUN yarn remove sqlite3
 RUN npm cache clean
-RUN npm install sqlite3@3.1.4
-RUN npm install --only=dev
+RUN yarn add sqlite3@3.1.4 --dev
+RUN yarn
 
 COPY . $HOME
+
+ENTRYPOINT ["yarn", "start"]

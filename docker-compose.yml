@@ -9,7 +9,6 @@ services:
     build:
       context: .
       dockerfile: .docker/node.dev.dockerfile
-    command: npm run dev
     volumes:
       - .:/home
       - /home/node_modules
