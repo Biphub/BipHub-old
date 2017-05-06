@@ -1,4 +1,4 @@
-FROM node:6
+FROM node:7
 MAINTAINER Jason Shin
 
 ENV HOME=/home
@@ -16,9 +16,6 @@ RUN apt-get update && apt-get install -y \
     make
 
 RUN npm install -g \
-    yarn \
-    node-gyp \
-    node-pre-gyp \
     babel-cli \
     nodemon \
     eslint \
@@ -27,12 +24,10 @@ RUN npm install -g \
     chai
 
 RUN npm cache clean
-RUN yarn
-RUN yarn remove sqlite3
+RUN npm uninstall sqlite3
 RUN npm cache clean
-RUN yarn add sqlite3@3.1.4 --dev
-RUN yarn
+RUN npm install --dev sqlite3@3.1.4
 
 COPY . $HOME
 
-ENTRYPOINT ["yarn", "start"]
+ENTRYPOINT ["npm", "start"]
