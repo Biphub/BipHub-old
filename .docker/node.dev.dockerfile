@@ -1,22 +1,16 @@
 FROM node:7
 MAINTAINER Jason Shin
 
-ENV CORE=$HOME/core
+ADD package.json yarn.lock /tmp/
+ADD .yarn-cache.tgz /
 
-RUN mkdir $CORE
+# Install packages
+RUN cd /tmp && yarn
+RUN mkdir -p /core && cd /core && ln -s /tmp/node_modules
 
-COPY yarn.lock $CORE
-# Copying over package.json because we are downgrading sqlite3 to 3.1.4 to be compatible with node:7
-COPY package.json $CORE
+COPY . /core
+WORKDIR /core
 
-WORKDIR $CORE
-
-# If yarn install fails because of networking issue, try restarting docker-machine
-RUN yarn
-
-# SQLITE 3 installation trick on Node:6
-RUN yarn upgrade sqlite3@^3.1.4
-
-COPY . $CORE
+ENV FORCE_COLOR=1
 
 ENTRYPOINT ["yarn", "start"]

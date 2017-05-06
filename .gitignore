@@ -12,3 +12,4 @@ npm-debug*
 *.password.js*
 /apps/.password
 .gulp-cache
+.yarn-cache*
