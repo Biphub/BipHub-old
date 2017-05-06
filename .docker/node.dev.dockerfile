@@ -1,33 +1,18 @@
-FROM node:7
+FROM node:6
 MAINTAINER Jason Shin
 
 ENV HOME=/home
 
+COPY yarn.lock $HOME
 COPY package.json $HOME
 
 WORKDIR /home
 
-RUN apt-get update && apt-get install -y \
-    sudo \
-    build-essential \
-    python-software-properties \
-    python \
-    g++ \
-    make
+RUN yarn
 
-RUN npm install -g \
-    babel-cli \
-    nodemon \
-    eslint \
-    eslint-plugin-security \
-    mocha \
-    chai
-
-RUN npm cache clean
-RUN npm uninstall sqlite3
-RUN npm cache clean
-RUN npm install --dev sqlite3@3.1.4
+# SQLITE 3 installation trick on Node:6
+RUN yarn upgrade sqlite3@^3.1.4
 
 COPY . $HOME
 
-ENTRYPOINT ["npm", "start"]
+ENTRYPOINT ["yarn", "start"]
