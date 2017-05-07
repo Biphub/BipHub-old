@@ -1,7 +1,8 @@
-FROM node:7
+FROM node:6
 MAINTAINER Jason Shin
 
 ENV CORE $HOME/core
+RUN echo $CORE
 RUN mkdir $CORE
 WORKDIR $CORE
 
@@ -9,7 +10,7 @@ WORKDIR $CORE
 # ADD package.json /tmp/package.json
 # ADD yarn.lock /tmp/yarn.lock
 # RUN cd /tmp && yarn
-# RUN mkdir -p /core && cd /core && ln -s /tmp/node_modules
+# RUN cd $CORE && ln -s /tmp/node_modules
 # RUN mkdir -p $CORE && cp -a /tmp/node_modules $CORE
 
 # Install packages without NPM trick
