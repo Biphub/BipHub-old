@@ -5,7 +5,6 @@
   "main": "dist",
   "scripts": {
     "start": "cross-env NODE_ENV=development nodemon -L --trace-warnings index.js",
-    "start:docker": "env NODE_ENV=\"development\" nodemon -L --trace-warnings index.js",
     "build": "babel core -s -D -d dist/core",
     "start:web": "node dist",
     "start:web:forever": "forever dist",
@@ -52,7 +51,7 @@
     "slackbots": "^1.0.2",
     "socket.io": "^1.7.3",
     "socket.io-client": "^1.7.3",
-    "sqlite3": "^3.1.8",
+    "sqlite3": "^3.1.4",
     "vue": "^2.2.6",
     "vue-router": "^2.4.0",
     "vuex": "^2.2.1",

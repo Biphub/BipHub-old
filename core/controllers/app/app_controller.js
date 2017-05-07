@@ -37,6 +37,7 @@ const setup = () => {
 	 */
   pubsub.subscribe('INCOMING_ACTION', ({ payload, query, socket }) => {
     const appName = _.get(query, 'appName', null)
+    console.log('testing!')
     if (appName) {
       // Search an app in DB using app name
 			// Search an associated incoming action using the app id

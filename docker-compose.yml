@@ -10,7 +10,7 @@ services:
       context: .
       dockerfile: .docker/node.dev.dockerfile
     volumes:
-      - .:/home
-      - /home/node_modules
+      - .:/core
+      - /core/node_modules
     ports:
       - "3000:8080"
