@@ -23,4 +23,4 @@ ADD . $CORE
 # Exposing default project port
 EXPOSE 8080
 
-ENTRYPOINT ["yarn", "start"]
+ENTRYPOINT ["yarn", "dev"]

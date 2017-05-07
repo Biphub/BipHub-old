@@ -7,6 +7,7 @@
       <div class="apps">
         <bp-app-icon class="app"
                      v-for="app in apps"
+                     v-bind:key="app.id || (new Date()).toTimeString()"
                      v-bind:label="app.label"
                      v-bind:icon="`/static/${app.icon}`"
         ></bp-app-icon>

@@ -24,6 +24,7 @@ module.exports = {
       components: path.join(__dirname, '../client/js/components'),
       containers: path.join(__dirname, '../client/js/containers'),
       styles: path.join(__dirname, '../client/styles')
+      // TODO: Implement isomorphic config file that's shared by both frontend and backend
     },
     modules: [
       _.cwd('node_modules'),

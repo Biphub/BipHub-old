@@ -4,7 +4,7 @@
   "description": "Connecting people and robots",
   "main": "dist",
   "scripts": {
-    "start": "cross-env NODE_ENV=development nodemon -L --trace-warnings index.js",
+    "dev": "cross-env NODE_ENV=development nodemon -L --trace-warnings index.js",
     "build": "babel core -s -D -d dist/core",
     "start:web": "node dist",
     "start:web:forever": "forever dist",
@@ -88,6 +88,7 @@
     "file-loader": "^0.11.1",
     "flow-bin": "^0.42.0",
     "friendly-errors-webpack-plugin": "^1.6.1",
+    "fs": "^0.0.1-security",
     "html-webpack-plugin": "^2.28.0",
     "mocha": "^3.2.0",
     "node-sass": "^4.5.2",

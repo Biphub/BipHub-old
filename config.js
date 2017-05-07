@@ -1,8 +1,12 @@
 import path from 'path'
 import rucksack from 'rucksack-css'
+const defaultPort = 8080
 
 module.exports = {
-  port: 8080,
+  port: defaultPort,
+  // Currently forwardedPort and URL are not being used
+  forwardedPort: process.env.FORWARDED_PORT || defaultPort,
+  url: process.env.SERVER_URL || 'localhost',
   title: 'bipflow',
   publicPath: '/',
   // Core config

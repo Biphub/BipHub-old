@@ -1,7 +1,7 @@
 const Lokka = require('lokka').Lokka
 const Transport = require('lokka-transport-http').Transport
 const client = new Lokka({
-  transport: new Transport('http://localhost:8080/graphql')
+  transport: new Transport(`http://${process.env.SERVER_URL}:${process.env.FORWARDED_PORT}/graphql`)
 })
 
 export default {

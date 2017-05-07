@@ -26,7 +26,9 @@ base.plugins.push(
   new ProgressPlugin(),
   new ExtractTextPlugin('styles.[contenthash:8].css'),
   new webpack.DefinePlugin({
-    'process.env.NODE_ENV': JSON.stringify('production')
+    'process.env.NODE_ENV': JSON.stringify('production'),
+    'process.env.SERVER_URL': JSON.stringify(`${config.url}`),
+    'process.env.FORWARDED_PORT': JSON.stringify(`${config.forwardedPort}`)
   }),
   new webpack.optimize.UglifyJsPlugin({
     sourceMap: true,

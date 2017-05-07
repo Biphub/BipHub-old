@@ -9,7 +9,7 @@
       </div>
     </div>
     <form>
-      testing yoyo
+      testing yoyo hotrealod
       <bp-radio label="test1" v-model="stuff"></bp-radio>
       <bp-radio label="test2" v-model="stuff"></bp-radio>
       <bp-radio label="test3" v-model="stuff"></bp-radio>

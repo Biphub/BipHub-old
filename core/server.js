@@ -21,7 +21,7 @@ const server = http.Server(app)
 const port = config.get('port')
 app.server = server
 app.set('port', port)
-console.log('working? yarn trick? yohhaa yo')
+
 // 3rd party middleware
 app.use(cors({
   exposedHeaders: config.get('web:corsHeaders')
