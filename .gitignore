@@ -1,5 +1,5 @@
 # ignore all hidden folders
-.*
+/core/**/.*
 /.idea
 /dist
 /logs
