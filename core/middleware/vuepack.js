@@ -24,7 +24,11 @@ const vuepackMiddleware = (app) => {
 
     const devMiddleWare = require('webpack-dev-middleware')(compiler, {
       publicPath: webpackConfig.output.publicPath,
-      quiet: true
+      quiet: true,
+      watchOptions: {
+        aggregateTimeout: 300,
+        poll: true
+      }
     })
     app.use(devMiddleWare)
     app.use(require('webpack-hot-middleware')(compiler, {

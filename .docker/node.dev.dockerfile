@@ -10,7 +10,6 @@ WORKDIR $CORE
 COPY package.json /tmp/package.json
 COPY yarn.lock /tmp/yarn.lock
 RUN cd /tmp && yarn
-# RUN cd $CORE && ln -s /tmp/node_modules
 RUN cp -a /tmp/node_modules $CORE && cd $CORE
 
 # Install packages without NPM trick
