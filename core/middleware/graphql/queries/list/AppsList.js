@@ -3,10 +3,10 @@ import {
   GraphQLInt,
   GraphQLBoolean,
   GraphQLList
-} from 'graphql'
+} from 'graphql';
 
-import AppType from '../../types/AppType'
-import models from '../../../../models'
+import AppType from '../../types/AppType';
+import models from '../../../../models';
 
 const AppsQuery = {
   type: new GraphQLList(AppType),
@@ -38,8 +38,8 @@ const AppsQuery = {
   },
   resolve (root, args) {
     // Collection of App
-    return models.App.findAll(args)
+    return models.App.findAll(args);
   }
-}
+};
 
-export default AppsQuery
+export default AppsQuery;

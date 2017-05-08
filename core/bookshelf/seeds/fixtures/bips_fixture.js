@@ -15,4 +15,4 @@ exports.default = [
       [1, 1]
     ]
   }
-]
+];

@@ -20,7 +20,7 @@
 </template>
 
 <script>
-  import Icon from '../Icon'
+  import Icon from '../Icon';
   export default {
     name: 'BpInfoBox',
     components: {
@@ -31,5 +31,5 @@
       iconType: { type: String, default: 'home' },
       description: { type: String, default: 'N/A' }
     }
-  }
+  };
 </script>

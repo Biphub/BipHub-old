@@ -3,7 +3,7 @@ import {
   GraphQLString,
   GraphQLInt,
   GraphQLBoolean
-} from 'graphql'
+} from 'graphql';
 
 // Single
 const AppType = new GraphQLObjectType({
@@ -14,53 +14,53 @@ const AppType = new GraphQLObjectType({
       id: {
         type: GraphQLInt,
         resolve (app) {
-          return app.get('id')
+          return app.get('id');
         }
       },
       name: {
         type: GraphQLString,
         resolve (app) {
-          return app.get('name')
+          return app.get('name');
         }
       },
       auth_type: {
         type: GraphQLString,
         resolve (app) {
-          return app.get('auth_type')
+          return app.get('auth_type');
         }
       },
       active: {
         type: GraphQLBoolean,
         resolve (app) {
-          return app.get('active')
+          return app.get('active');
         }
       },
       label: {
         type: GraphQLString,
         resolve (app) {
-          return app.get('label')
+          return app.get('label');
         }
       },
       icon: {
         type: GraphQLString,
         resolve (app) {
-          return app.get('icon')
+          return app.get('icon');
         }
       },
       instructions: {
         type: GraphQLString,
         resolve (app) {
-          return app.get('instructions')
+          return app.get('instructions');
         }
       },
       description: {
         type: GraphQLString,
         resolve (app) {
-          return app.get('description')
+          return app.get('description');
         }
       }
-    }
+    };
   }
-})
+});
 
-export default AppType
+export default AppType;

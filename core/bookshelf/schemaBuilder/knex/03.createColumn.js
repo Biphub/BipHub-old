@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import _ from 'lodash';
 
 /**
  * Creates column into transaction (table)
@@ -8,30 +8,30 @@ import _ from 'lodash'
  */
 const createColumn = (transaction, columnName, column) => {
   if (typeof column === 'object') {
-    const type = column.type
+    const type = column.type;
     if (type === 'increments') {
-      transaction.increments()  // Incrementing ID
+      transaction.increments();  // Incrementing ID
     } else if (type === 'string') {
-      transaction.string(columnName)
+      transaction.string(columnName);
     } else if (type === 'jsonb') {
-      transaction.jsonb(columnName)
+      transaction.jsonb(columnName);
     } else if (type === 'boolean') {
-      transaction.boolean(columnName)
+      transaction.boolean(columnName);
     } else if (type === 'integer') {
-      const references = _.get(column, 'references', null)
+      const references = _.get(column, 'references', null);
       // If integer field is for relationship
       if (references) {
-        transaction.integer(columnName).references(references)
+        transaction.integer(columnName).references(references);
       } else {
-        transaction.integer(columnName)
+        transaction.integer(columnName);
       }
     }
   } else if (typeof column === 'boolean') {
     // If timestamps is enabled
     if (columnName === 'timestamps') {
-      transaction.timestamps()
+      transaction.timestamps();
     }
   }
-}
+};
 
-export default createColumn
+export default createColumn;

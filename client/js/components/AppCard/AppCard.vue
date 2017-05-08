@@ -44,24 +44,24 @@
       theme: { type: String, default: 'orca' }
     },
     data () {
-      return {}
+      return {};
     },
     computed: {
       iconBorder () {
         if (this.border) {
-          return 'app-icon--border'
+          return 'app-icon--border';
         } else {
-          return 'app-icon--no-border'
+          return 'app-icon--no-border';
         }
       },
       appTheme () {
-        return `background-image: url(static/app_themes/${this.theme}.jpg)`
+        return `background-image: url(static/app_themes/${this.theme}.jpg)`;
       }
     },
     methods: {
       onClick () {
-        this.$emit('click')
+        this.$emit('click');
       }
     }
-  }
+  };
 </script>

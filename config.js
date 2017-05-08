@@ -1,6 +1,6 @@
-import path from 'path'
-import rucksack from 'rucksack-css'
-const defaultPort = 8080
+import path from 'path';
+import rucksack from 'rucksack-css';
+const defaultPort = 8080;
 
 module.exports = {
   port: defaultPort,
@@ -36,4 +36,4 @@ module.exports = {
     rucksack()
   ],
   cssModules: false
-}
+};

@@ -1,13 +1,13 @@
-import _ from 'lodash'
+import _ from 'lodash';
 
 const flatForOwn = (collection) => {
-  const resultArray = []
+  const resultArray = [];
   _.forOwn(collection, (val) => {
-    resultArray.push(val)
-  })
-  return resultArray
-}
+    resultArray.push(val);
+  });
+  return resultArray;
+};
 
 export default {
   flatForOwn
-}
+};

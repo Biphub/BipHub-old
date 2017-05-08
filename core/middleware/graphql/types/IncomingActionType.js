@@ -2,8 +2,8 @@ import {
   GraphQLObjectType,
   GraphQLString,
   GraphQLInt
-} from 'graphql'
-import GraphQLJSON from 'graphql-type-json'
+} from 'graphql';
+import GraphQLJSON from 'graphql-type-json';
 
 const IncomingActionType = new GraphQLObjectType({
   name: 'IncomingAction',
@@ -16,7 +16,7 @@ const IncomingActionType = new GraphQLObjectType({
       id: {
         type: GraphQLInt,
         resolve (incomingAction) {
-          return incomingAction.get('id')
+          return incomingAction.get('id');
         }
       },
       /**
@@ -25,7 +25,7 @@ const IncomingActionType = new GraphQLObjectType({
       type: {
         type: GraphQLString,
         resolve (incomingAction) {
-          return incomingAction.get('type')
+          return incomingAction.get('type');
         }
       },
       /**
@@ -34,7 +34,7 @@ const IncomingActionType = new GraphQLObjectType({
       endpoint: {
         type: GraphQLString,
         resolve (incomingAction) {
-          return incomingAction.get('endpoint')
+          return incomingAction.get('endpoint');
         }
       },
       /**
@@ -44,7 +44,7 @@ const IncomingActionType = new GraphQLObjectType({
       conditions: {
         type: GraphQLJSON,
         resolve (incomingAction) {
-          return incomingAction.get('conditions')
+          return incomingAction.get('conditions');
         }
       },
       /**
@@ -53,11 +53,11 @@ const IncomingActionType = new GraphQLObjectType({
       name: {
         type: GraphQLString,
         resolve (incomingAction) {
-          return incomingAction.get('name')
+          return incomingAction.get('name');
         }
       }
-    }
+    };
   }
-})
+});
 
-export default IncomingActionType
+export default IncomingActionType;

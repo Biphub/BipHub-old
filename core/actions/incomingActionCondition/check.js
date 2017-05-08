@@ -1,6 +1,6 @@
-import _ from 'lodash'
-import Q from 'q'
-import pubsub from '../../pubsub'
+import _ from 'lodash';
+import Q from 'q';
+import pubsub from '../../pubsub';
 
 /**
  *
@@ -16,7 +16,7 @@ async function checkIncomingActionCondition ({
 	appName, incomingActionName, incomingActionConditionPayload,
   incomingActionConditionName, incomingActionPayload, socket
 }) {
-  const messageName = `${appName}_${incomingActionName}_${incomingActionConditionName}`
+  const messageName = `${appName}_${incomingActionName}_${incomingActionConditionName}`;
   const conditionResult = await pubsub.publish({
     socket,
     action: messageName,
@@ -24,10 +24,10 @@ async function checkIncomingActionCondition ({
       payload: incomingActionPayload,
       incomingActionConditionPayload
     }
-  })
+  });
   return {
     result: conditionResult
-  }
+  };
 }
 
 /**
@@ -46,10 +46,10 @@ async function checkAllIncomingActionConditions ({
   // TODO: Get conditionPayload from bip
   // TODO: Get incomingActionPayload from websocket payload
   const conditionCheckFuncs = bips.map((bip) => {
-    const appName = app.name
-    const incomingActionName = incomingAction.name
-    const incomingActionConditionPayload = incomingActionCondition.condition_payload
-    const incomingActionConditionName = incomingActionCondition.name
+    const appName = app.name;
+    const incomingActionName = incomingAction.name;
+    const incomingActionConditionPayload = incomingActionCondition.condition_payload;
+    const incomingActionConditionName = incomingActionCondition.name;
     return checkIncomingActionCondition({
       appName,
       incomingActionName,
@@ -57,24 +57,24 @@ async function checkAllIncomingActionConditions ({
       incomingActionConditionName,
       incomingActionPayload,
       socket
-    })
-  })
+    });
+  });
   _.forEach(bips, (bip) => {
     /* conditionCheckFuncs.push(checkIncomingActionCondition({
       app, incomingAction, bip, incomingActionPayload, socket,
     })) */
-  })
-  const allResult = await Q.all(conditionCheckFuncs)
+  });
+  const allResult = await Q.all(conditionCheckFuncs);
   allResult.filter((payload) => {
     if (payload.result) {
-      return payload.bipEntity
+      return payload.bipEntity;
     }
-    return false
-  })
-  return allResult.map(payload => payload.bip)
+    return false;
+  });
+  return allResult.map(payload => payload.bip);
 }
 
 export default {
   checkAllIncomingActionConditions,
   checkIncomingActionCondition
-}
+};

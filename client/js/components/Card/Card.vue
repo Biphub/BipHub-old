@@ -22,8 +22,8 @@
 </template>
 
 <script>
-  import AppCard from '../AppCard'
-  import Icon from '../Icon'
+  import AppCard from '../AppCard';
+  import Icon from '../Icon';
 
   export default {
     name: 'BpCard',
@@ -34,5 +34,5 @@
       AppCard,
       Icon
     }
-  }
+  };
 </script>

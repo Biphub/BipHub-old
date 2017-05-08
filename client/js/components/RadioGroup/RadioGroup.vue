@@ -9,11 +9,11 @@
 </template>
 
 <script>
-  import Radio from '../Radio'
+  import Radio from '../Radio';
   export default {
     name: 'BpRadioGroup',
     components: {
       Radio
     }
-  }
+  };
 </script>

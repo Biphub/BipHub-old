@@ -34,11 +34,11 @@
     data () {
       return {
         chosenEvent: {}
-      }
+      };
     },
     watch: {
       chosenEvent () {
       }
     }
-  }
+  };
 </script>

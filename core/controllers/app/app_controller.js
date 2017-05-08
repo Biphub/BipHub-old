@@ -1,8 +1,9 @@
-import _ from 'lodash'
-import pubsub from '../../pubsub'
-import models from '../../models'
-import logger from '../../logger'
-import bipActions from '../../actions/bip_actions'
+import _ from 'lodash';
+import Joi from 'joi';
+import pubsub from '../../pubsub';
+import models from '../../models';
+import logger from '../../logger';
+import bipActions from '../../actions/bip_actions';
 
 /**
  * Setup pubsub subscribers for communication with Apps
@@ -17,12 +18,12 @@ const setup = () => {
 		// Register an app with incoming and outgoing actions
     models.App.createOne(payload).then((app) => {
       app.related('incomingActions').fetch().then((model) => {
-        logger.info(`Register app successful for ${model.get('name')}`)
-      })
+        logger.info(`Register app successful for ${model.get('name')}`);
+      });
     }).catch(() => {
-      logger.error(`Register app failed for ${payload.name}`)
-    })
-  })
+      logger.error(`Register app failed for ${payload.name}`);
+    });
+  });
 
 	/**
 	 * name: INCOMING_ACTION
@@ -35,8 +36,27 @@ const setup = () => {
 	 *
 	 * query: contains name of bip, retrieved from socket's query string
 	 */
-  pubsub.subscribe('INCOMING_ACTION', ({ payload, query, socket }) => {
-    const appName = _.get(query, 'appName', null);
+  pubsub.subscribe('INCOMING_ACTION', ({ payload, queryString, socket }) => {
+    console.log('payload from discord ', payload);
+    const schema = {
+      payload: Joi.object().keys({
+        data: Joi.any().required(),
+        meta: Joi.object().keys({
+          type: Joi.string().required(),
+          name: Joi.string().required(),
+          description: Joi.string().required(),
+          conditions: Joi.array().required(),
+          fields: Joi.object().required(),
+          options: Joi.object().required()
+        }).required()
+      }),
+      queryString: Joi.object().keys({
+        appName: Joi.string().required()
+      }).required()
+    };
+    const schemaValidResult = Joi.validate({ payload, queryString }, schema);
+    console.log('schema result: ', schemaValidResult);
+    const appName = _.get(queryString, 'appName', null);
     if (appName) {
       // Search an app in DB using app name
 			// Search an associated incoming action using the app id
@@ -46,17 +66,17 @@ const setup = () => {
 			// If passed, get bip's outgoing action id
       bipActions.bip({ appName, incomingActionPayload: payload, socket });
     }
-  })
+  });
 
 	/**
 	 * Accepts ping check
 	 * TODO: Clarify what todo if ping constantly fails
 	 */
   pubsub.subscribe('PING', (payload) => {
-    logger.info('Ping from ', payload)
-  })
-}
+    logger.info('Ping from ', payload);
+  });
+};
 
 export default {
   setup
-}
+};
