@@ -36,8 +36,7 @@ const setup = () => {
 	 * query: contains name of bip, retrieved from socket's query string
 	 */
   pubsub.subscribe('INCOMING_ACTION', ({ payload, query, socket }) => {
-    const appName = _.get(query, 'appName', null)
-    console.log('testing!')
+    const appName = _.get(query, 'appName', null);
     if (appName) {
       // Search an app in DB using app name
 			// Search an associated incoming action using the app id
@@ -45,7 +44,7 @@ const setup = () => {
 			// Broadcast condition check to incoming actions
 			// Receive condition pass or fail
 			// If passed, get bip's outgoing action id
-      bipActions.bip({ appName, incomingActionPayload: payload, socket })
+      bipActions.bip({ appName, incomingActionPayload: payload, socket });
     }
   })
 

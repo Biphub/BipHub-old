@@ -90,6 +90,7 @@
     "friendly-errors-webpack-plugin": "^1.6.1",
     "fs": "^0.0.1-security",
     "html-webpack-plugin": "^2.28.0",
+    "joi": "^10.4.1",
     "mocha": "^3.2.0",
     "node-sass": "^4.5.2",
     "nodejs-dashboard": "^0.4.1",
