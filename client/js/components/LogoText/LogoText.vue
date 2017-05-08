@@ -14,5 +14,5 @@
     props: {
       text: { type: String, default: 'N/A' }
     }
-  }
+  };
 </script>

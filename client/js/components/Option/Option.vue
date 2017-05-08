@@ -11,5 +11,5 @@
     props: {
       label: { type: String, default: '' }
     }
-  }
+  };
 </script>

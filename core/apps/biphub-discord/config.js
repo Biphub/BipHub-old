@@ -23,4 +23,4 @@ export default {
 		{ name: 'createCard' },
 		{ name: 'deleteCard' }
   ]
-}
+};

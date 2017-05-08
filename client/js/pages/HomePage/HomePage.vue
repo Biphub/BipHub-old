@@ -36,9 +36,9 @@
 </template>
 
 <script>
-  import BasePage from '../Base'
-  import HomeAppsPanelContainer from '../../containers/HomeAppsPanelContainer'
-  import SuggestionContainer from '../../containers/SuggestionContainer'
+  import BasePage from '../Base';
+  import HomeAppsPanelContainer from '../../containers/HomeAppsPanelContainer';
+  import SuggestionContainer from '../../containers/SuggestionContainer';
 
   export default {
     components: {
@@ -52,15 +52,15 @@
     data () {
       return {
         stuff: ''
-      }
+      };
     },
     mounted () {
-      this.$store.dispatch('home_initial_load')
+      this.$store.dispatch('home_initial_load');
     },
     methods: {
       onAppClick () {
       // this.$router.
       }
     }
-  }
+  };
 </script>

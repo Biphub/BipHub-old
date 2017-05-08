@@ -1,5 +1,5 @@
 const registerApp = (data) => {
 
-}
+};
 
-export default registerApp
+export default registerApp;

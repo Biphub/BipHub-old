@@ -79,4 +79,4 @@ export default {
     timestamps: true,
     outgoing_action_id: { type: 'integer', references: 'ougoing_actions.id' }
   }
-}
+};

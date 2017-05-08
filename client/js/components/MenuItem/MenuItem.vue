@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  import Icon from '../Icon'
+  import Icon from '../Icon';
 
   export default {
     name: 'BpMenuItem',
@@ -45,32 +45,32 @@
        */
       direction () {
         // base padding is enabled by default
-        let baseStyle = 'component'
+        let baseStyle = 'component';
         if (this.padding) {
-          baseStyle = 'component component-pad'
+          baseStyle = 'component component-pad';
         }
         switch (this.flexDirection) {
           case 'column-reverse':
-            return `${baseStyle} component--column-reverse`
+            return `${baseStyle} component--column-reverse`;
           case 'row':
-            return `${baseStyle} component--row`
+            return `${baseStyle} component--row`;
           case 'row-reverse':
-            return `${baseStyle} component--row-reverse`
+            return `${baseStyle} component--row-reverse`;
           default:
-            return `${baseStyle} component--column`
+            return `${baseStyle} component--column`;
         }
       },
       labelStyle () {
-        return `font-size: ${this.fontSize}px`
+        return `font-size: ${this.fontSize}px`;
       },
       labelWrapperStyle () {
         if (this.active) {
-          return 'label--active'
+          return 'label--active';
         } else {
-          return 'label--inactive'
+          return 'label--inactive';
         }
       }
     }
 
-  }
+  };
 </script>

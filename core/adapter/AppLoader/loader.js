@@ -1,6 +1,6 @@
-import _ from 'lodash'
-import requireAll from 'require-all'
-import config from '../../config'
+import _ from 'lodash';
+import requireAll from 'require-all';
+import config from '../../config';
 
 const loader = () => {
 	/**
@@ -8,29 +8,29 @@ const loader = () => {
 	 * Folder to load APIs is decided according to NDOE_ENV value
 	 */
   function loadAPIs () {
-    const nodeEnv = config.get('NODE_ENV')
-    let rawAPIs = {}
+    const nodeEnv = config.get('NODE_ENV');
+    let rawAPIs = {};
     if (nodeEnv === 'development') {
-      rawAPIs = requireAll(`${__dirname}/../../apps`)
+      rawAPIs = requireAll(`${__dirname}/../../apps`);
     }
-    const APIs = []
+    const APIs = [];
     _.forOwn(rawAPIs, (value, key) => {
-      APIs.push(rawAPIs[key].index.default)
-    })
-    return APIs
+      APIs.push(rawAPIs[key].index.default);
+    });
+    return APIs;
   }
 
 	/**
 	 * Init all loaded APIs
 	 */
   function initAPIs () {
-    const APIs = loadAPIs()
-    APIs.forEach(api => api.init())
+    const APIs = loadAPIs();
+    APIs.forEach(api => api.init());
   }
 
   return {
     initAPIs
-  }
-}
+  };
+};
 
-export default loader
+export default loader;

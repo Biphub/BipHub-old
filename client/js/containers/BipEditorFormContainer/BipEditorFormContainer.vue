@@ -19,9 +19,9 @@
 </template>
 
 <script>
-  import AppsFormContainer from '../BipEditorAppsFormContainer'
-  import ActionsFormContainer from '../BipEditorActionsFormContainer'
-  import OptionsFormContainer from '../BipEditorOptionsFormContainer'
+  import AppsFormContainer from '../BipEditorAppsFormContainer';
+  import ActionsFormContainer from '../BipEditorActionsFormContainer';
+  import OptionsFormContainer from '../BipEditorOptionsFormContainer';
   export default {
     name: 'BipEditorFormContainer',
     props: {
@@ -35,8 +35,8 @@
     },
     computed: {
       apps () {
-        return this.$store.state.BipEditorModule.apps
+        return this.$store.state.BipEditorModule.apps;
       }
     }
-  }
+  };
 </script>

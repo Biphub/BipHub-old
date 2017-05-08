@@ -5,7 +5,7 @@
  * @returns {*}
  */
 const destoryTable = (knex, tableName) => {
-  return knex.schema.dropTableIfExists(tableName)
-}
+  return knex.schema.dropTableIfExists(tableName);
+};
 
-export default destoryTable
+export default destoryTable;

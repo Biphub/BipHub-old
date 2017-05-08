@@ -19,7 +19,7 @@
 </template>
 
 <script>
-  import toggleClass from '../../utils/toggleClass'
+  import toggleClass from '../../utils/toggleClass';
   export default {
     name: 'BpSelect',
     props: {
@@ -31,19 +31,19 @@
         value: 'Please select an option',
         optionsStyle: 'options options--close',
         outputArrowStyle: 'output-arrow output-arrow--inactive'
-      }
+      };
     },
     methods: {
       selectClick () {
-        const newOptionsStyle = toggleClass(this.optionsStyle, 'options--close', 'options--open')
-        const newOutputArrowStyle = toggleClass(this.outputArrowStyle, 'output-arrow--inactive', 'output-arrow--active')
-        this.optionsStyle = `options ${newOptionsStyle}`
-        this.outputArrowStyle = `output-arrow ${newOutputArrowStyle}`
+        const newOptionsStyle = toggleClass(this.optionsStyle, 'options--close', 'options--open');
+        const newOutputArrowStyle = toggleClass(this.outputArrowStyle, 'output-arrow--inactive', 'output-arrow--active');
+        this.optionsStyle = `options ${newOptionsStyle}`;
+        this.outputArrowStyle = `output-arrow ${newOutputArrowStyle}`;
       },
       optionClick (v) {
-        this.selectClick()
-        this.value = v
+        this.selectClick();
+        this.value = v;
       }
     }
-  }
+  };
 </script>
