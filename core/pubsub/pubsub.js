@@ -22,7 +22,10 @@ function initialize (io) {
         const { event } = value;
         socket.on(event, (payload) => {
           const { query } = socket.handshake;
-          events.emit(event, { payload, queryString: query, socket });
+          const queryString = {
+            appName: query.appName
+          };
+          events.emit(event, { payload, queryString, socket });
         });
       });
     });

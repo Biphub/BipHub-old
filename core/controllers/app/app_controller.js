@@ -37,7 +37,6 @@ const setup = () => {
 	 * query: contains name of bip, retrieved from socket's query string
 	 */
   pubsub.subscribe('INCOMING_ACTION', ({ payload, queryString, socket }) => {
-    console.log('payload from discord ', payload);
     const schema = {
       payload: Joi.object().keys({
         data: Joi.any().required(),
@@ -52,18 +51,18 @@ const setup = () => {
       }),
       queryString: Joi.object().keys({
         appName: Joi.string().required()
-      }).required()
+      }).required(),
+      socket: Joi.object().isRequired()
     };
     const schemaValidResult = Joi.validate({ payload, queryString }, schema);
-    console.log('schema result: ', schemaValidResult);
-    const appName = _.get(queryString, 'appName', null);
-    if (appName) {
+    if (!schemaValidResult.error) {
       // Search an app in DB using app name
 			// Search an associated incoming action using the app id
 			// Search for bips using incoming action id
 			// Broadcast condition check to incoming actions
 			// Receive condition pass or fail
 			// If passed, get bip's outgoing action id
+      const appName = _.get(queryString, 'appName', null);
       bipActions.bip({ appName, incomingActionPayload: payload, socket });
     }
   });
