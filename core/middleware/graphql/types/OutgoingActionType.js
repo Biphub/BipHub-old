@@ -2,7 +2,7 @@ import {
   GraphQLObjectType,
   GraphQLString,
   GraphQLInt
-} from 'graphql';
+} from 'graphql'
 
 const OutgoingActionType = new GraphQLObjectType({
   name: 'OutgoingAction',
@@ -15,7 +15,7 @@ const OutgoingActionType = new GraphQLObjectType({
       id: {
         type: GraphQLInt,
         resolve (outgoingAction) {
-          return outgoingAction.get('id');
+          return outgoingAction.get('id')
         }
       },
       /**
@@ -24,7 +24,7 @@ const OutgoingActionType = new GraphQLObjectType({
       type: {
         type: GraphQLString,
         resolve (outgoingAction) {
-          return outgoingAction.get('type');
+          return outgoingAction.get('type')
         }
       },
       /**
@@ -33,11 +33,11 @@ const OutgoingActionType = new GraphQLObjectType({
       name: {
         type: GraphQLString,
         resolve (incomingAction) {
-          return incomingAction.get('name');
+          return incomingAction.get('name')
         }
       }
-    };
+    }
   }
-});
+})
 
-export default OutgoingActionType;
+export default OutgoingActionType

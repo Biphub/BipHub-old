@@ -40,8 +40,8 @@
     },
     computed: {
       welcome () {
-        return `Hello, ${this.name} `;
+        return `Hello, ${this.name} `
       }
     }
-  };
+  }
 </script>

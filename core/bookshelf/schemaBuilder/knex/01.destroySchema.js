@@ -1,5 +1,5 @@
-import _ from 'lodash';
-import destroyTable from './02.destroyTable';
+import _ from 'lodash'
+import destroyTable from './02.destroyTable'
 
 /**
  * Destroy a schema from database
@@ -8,13 +8,13 @@ import destroyTable from './02.destroyTable';
  * @returns {Array}
  */
 const destroySchema = ({ knex, schema }) => {
-  const forgedQueries = [];
+  const forgedQueries = []
   _.forOwn(schema, (table, tableName) => {
     forgedQueries.push(
       destroyTable(knex, tableName, table)
-    );
-  });
-  return forgedQueries;
-};
+    )
+  })
+  return forgedQueries
+}
 
-export default destroySchema;
+export default destroySchema

@@ -1,5 +1,5 @@
-import _ from 'lodash';
-import createTable from './02.createTable';
+import _ from 'lodash'
+import createTable from './02.createTable'
 
 /**
  * Builds a schema
@@ -8,13 +8,13 @@ import createTable from './02.createTable';
  * @returns {Array}
  */
 const createSchema = ({ knex, schema }) => {
-  const forgedQueries = [];
+  const forgedQueries = []
   _.forOwn(schema, (table, tableName) => {
     forgedQueries.push(
       createTable(knex, tableName, table)
-    );
-  });
-  return forgedQueries;
-};
+    )
+  })
+  return forgedQueries
+}
 
-export default createSchema;
+export default createSchema

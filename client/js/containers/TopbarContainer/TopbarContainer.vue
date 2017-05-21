@@ -64,17 +64,17 @@ export default {
   },
   methods: {
     getMenuActive (label) {
-      return window.location.pathname.indexOf(label) !== -1;
+      return window.location.pathname.indexOf(label) !== -1
     }
   },
   computed: {
     topbarClass () {
       if (this.type === 'dashboard') {
-        return 'container container-dashboard';
+        return 'container container-dashboard'
       } else {
-        return 'container container-control';
+        return 'container container-control'
       }
     }
   }
-};
+}
 </script>

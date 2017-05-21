@@ -21,5 +21,5 @@
     props: {
       apps: { type: Array, default: [] }
     }
-  };
+  }
 </script>

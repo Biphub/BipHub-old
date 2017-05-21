@@ -1,11 +1,11 @@
-import Events from 'events';
-import _ from 'lodash';
-import logger from '../logger';
-import config from '../config';
-import root from '../helpers/root';
+import Events from 'events'
+import _ from 'lodash'
+import logger from '../logger'
+import config from '../config'
+import root from '../helpers/root'
 
-const actions = config.get('actions');
-let events = root.events;
+const actions = config.get('actions')
+let events = root.events
 
 /**
  * Intializes IO
@@ -13,22 +13,22 @@ let events = root.events;
  */
 function initialize (io) {
   if (typeof root.io === 'undefined') {
-    events = new Events.EventEmitter();
+    events = new Events.EventEmitter()
 
-    root.events = events;
-    root.io = io;
+    root.events = events
+    root.io = io
     io.on('connection', (socket) => {
       _.forOwn(actions, (value) => {
-        const { event } = value;
+        const { event } = value
         socket.on(event, (payload) => {
-          const { query } = socket.handshake;
+          const { query } = socket.handshake
           const queryString = {
             appName: query.appName
-          };
-          events.emit(event, { payload, queryString, socket });
-        });
-      });
-    });
+          }
+          events.emit(event, { payload, queryString, socket })
+        })
+      })
+    })
   }
 }
 
@@ -39,13 +39,13 @@ function initialize (io) {
  * @param socket
  */
 const publish = ({ action, data, socket }) => new Promise((resolve) => {
-  const { io } = root;
+  const { io } = root
   if (io && !socket) {
-    io.emit(action, data);
+    io.emit(action, data)
   } else {
-    socket.emit(action, data, result => resolve(result));
+    socket.emit(action, data, result => resolve(result))
   }
-});
+})
 
 /**
  * Promisified subscribe
@@ -53,12 +53,12 @@ const publish = ({ action, data, socket }) => new Promise((resolve) => {
  * @param callback
  */
 const subscribe = (action, callback) => {
-  logger.info(`pubsub subscribing to ${action}`);
-  events.on(action, callback);
-};
+  logger.info(`pubsub subscribing to ${action}`)
+  events.on(action, callback)
+}
 
 export default {
   initialize,
   publish,
   subscribe
-};
+}

@@ -20,12 +20,12 @@
 </template>
 
 <script>
-  import Steps from '../../components/Steps';
+  import Steps from '../../components/Steps'
   export default {
     data () {
       return {
         steps: []
-      };
+      }
     },
     components: {
       Steps
@@ -56,5 +56,5 @@
       chooseEvent (eventType, eventId) {
       }
     }
-  };
+  }
 </script>

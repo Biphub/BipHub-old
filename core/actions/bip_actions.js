@@ -1,7 +1,7 @@
-import _ from 'lodash';
-import Q from 'q';
-import models from '../models';
-import pubsub from '../pubsub';
+import _ from 'lodash'
+import Q from 'q'
+import models from '../models'
+import pubsub from '../pubsub'
 
 /**
  * Forwarding bips to connected apps
@@ -11,12 +11,12 @@ import pubsub from '../pubsub';
  */
 async function forwardBip ({ bipEntity, data }) {
   if (!_.isEmpty(bipEntity)) {
-    const outgoingAction = await models.OutgoingAction.findOne({ id: bipEntity.get('outgoing_actions_id') });
-    const app = await models.App.findOne({ id: outgoingAction.get('app_id') });
+    const outgoingAction = await models.OutgoingAction.findOne({ id: bipEntity.get('outgoing_actions_id') })
+    const app = await models.App.findOne({ id: outgoingAction.get('app_id') })
     pubsub.publish({
       action: `${app.get('name')}_${outgoingAction.get('name')}`,
       data
-    });
+    })
   }
 }
 
@@ -24,11 +24,11 @@ async function forwardBip ({ bipEntity, data }) {
  * Foward all bips to outgoing actions
  */
 async function fowardAllBips ({ bipEntities, data }) {
-  const bipFoward = [];
+  const bipFoward = []
   _.forEach(bipEntities, (bipEntity) => {
-    bipFoward.push(forwardBip({ bipEntity, data }));
-  });
-  return Q.all(bipFoward);
+    bipFoward.push(forwardBip({ bipEntity, data }))
+  })
+  return Q.all(bipFoward)
 }
 
 // Actual composed actions below
@@ -45,17 +45,16 @@ async function bip ({
 	payload,
 	socket
 }) {
-  console.log('invoked bip action! ', appName);
-  const { meta } = payload;
+  const { meta } = payload
   const app = await models.App.findOne(
     { name: appName },
     { withRelated: ['incomingActions', 'outgoingActions'] }
-  );
+  )
   const incomingAction = await app.related('incomingActions')
-    .where({ name: meta.name });
+    .where({ name: meta.name })
   // Get first entity's id since meta.name can associate with only one incoming action
-  const firstIncActionId = _.head(incomingAction).get('id');
-  const bips = await models.Bip.findAll({ incoming_action_id: firstIncActionId }, { withRelated: [] });
+  const firstIncActionId = _.head(incomingAction).get('id')
+  const bips = await models.Bip.findAll({ incoming_action_id: firstIncActionId }, { withRelated: [] })
   /* checkAllIncomingActionConditions({
     app, incomingAction, incomingActionPayload
   })
@@ -70,4 +69,4 @@ async function bip ({
 
 export default {
   bip
-};
+}

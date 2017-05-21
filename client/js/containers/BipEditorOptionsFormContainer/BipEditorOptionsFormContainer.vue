@@ -27,5 +27,5 @@
     props: {
       options: { type: Array, default: [] }
     }
-  };
+  }
 </script>

@@ -5,12 +5,12 @@
  */
 const toString = (array) => {
   if (typeof array !== 'undefined' && array !== null) {
-    const result = JSON.stringify(array);
-    return result;
+    const result = JSON.stringify(array)
+    return result
   }
-  return null;
-};
+  return null
+}
 
 export default {
   toString
-};
+}

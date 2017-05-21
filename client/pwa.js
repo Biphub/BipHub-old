@@ -1,12 +1,12 @@
-import runtime from 'offline-plugin/runtime';
+import runtime from 'offline-plugin/runtime'
 
 runtime.install({
   // When an update is ready, tell ServiceWorker to take control immediately:
   onUpdateReady () {
-    runtime.applyUpdate();
+    runtime.applyUpdate()
   },
 
   // Reload to get the new version:
   onUpdated () {
   }
-});
+})

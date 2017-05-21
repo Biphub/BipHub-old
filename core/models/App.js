@@ -1,11 +1,11 @@
-import base from './base';
-import db from '../bookshelf';
-import models from './index';
-import collectionHelper from '../helpers/collection';
-import schemaUtils from '../bookshelf/schemaUtils';
+import base from './base'
+import db from '../bookshelf'
+import models from './index'
+import collectionHelper from '../helpers/collection'
+import schemaUtils from '../bookshelf/schemaUtils'
 
-const { bookshelf } = db;
-const tableName = 'apps';
+const { bookshelf } = db
+const tableName = 'apps'
 const App = base.extend({
   tableName,
 	/**
@@ -13,14 +13,14 @@ const App = base.extend({
 	 * @returns {*|Collection}
 	 */
   incomingActions () {
-    return this.hasMany(models.IncomingAction);
+    return this.hasMany(models.IncomingAction)
   },
 	/**
    * get outgoing actions
 	 * @returns {*|Collection}
 	 */
   outgoingActions () {
-    return this.hasMany(models.OutgoingAction);
+    return this.hasMany(models.OutgoingAction)
   }
 }, {
   attributes: schemaUtils.getAttributes(tableName),
@@ -31,17 +31,17 @@ const App = base.extend({
 	 * @returns {Promise.<*>}
 	 */
   async createOne (appData) {
-    const foundApp = await this.findOne({ name: appData.name });
+    const foundApp = await this.findOne({ name: appData.name })
     // Do not register already existing app
     if (foundApp) {
-      return foundApp;
+      return foundApp
     }
-    const incomingActions = collectionHelper.flatForOwn(appData.incomingActions);
-    const outgoingActions = collectionHelper.flatForOwn(appData.outgoingActions);
+    const incomingActions = collectionHelper.flatForOwn(appData.incomingActions)
+    const outgoingActions = collectionHelper.flatForOwn(appData.outgoingActions)
 
-    const savedApp = await this.create(appData, null);
-    await this.registerAppActions({ incomingActions, outgoingActions, appId: savedApp.id });
-    return savedApp;
+    const savedApp = await this.create(appData, null)
+    await this.registerAppActions({ incomingActions, outgoingActions, appId: savedApp.id })
+    return savedApp
   },
 	/**
    * Register app's incoming and outgoing actions
@@ -51,9 +51,9 @@ const App = base.extend({
 	 * @returns {Promise.<*|Promise|Promise.<*>|Promise.<void>>}
 	 */
   async registerAppActions ({ incomingActions, outgoingActions, appId }) {
-    const incCreateResult = await models.IncomingAction.createMany({ incomingActions, appId });
-    const outCreateResult = await models.OutgoingAction.createMany({ outgoingActions, appId });
-    return incCreateResult && outCreateResult;
+    const incCreateResult = await models.IncomingAction.createMany({ incomingActions, appId })
+    const outCreateResult = await models.OutgoingAction.createMany({ outgoingActions, appId })
+    return incCreateResult && outCreateResult
   },
 	/**
    * set active of app
@@ -62,17 +62,17 @@ const App = base.extend({
 	 * @returns {Promise.<void>}
 	 */
   async setActive ({ appId, active }) {
-    const foundApp = await this.findOne({ id: appId });
-    foundApp.set({ active });
-    return this.update(foundApp.attributes);
+    const foundApp = await this.findOne({ id: appId })
+    foundApp.set({ active })
+    return this.update(foundApp.attributes)
   }
-});
+})
 
 const Apps = bookshelf.Collection.extend({
   model: App
-});
+})
 
 export default {
   single: bookshelf.model('App', App),
   collection: bookshelf.collection('Apps', Apps)
-};
+}

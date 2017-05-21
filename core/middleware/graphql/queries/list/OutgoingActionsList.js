@@ -2,9 +2,9 @@ import {
   GraphQLString,
   GraphQLInt,
   GraphQLList
-} from 'graphql';
-import OutgoingActionType from '../../types/OutgoingActionType';
-import models from '../../../../models';
+} from 'graphql'
+import OutgoingActionType from '../../types/OutgoingActionType'
+import models from '../../../../models'
 
 const OutgoingActionsQuery = {
   type: new GraphQLList(OutgoingActionType),
@@ -20,8 +20,8 @@ const OutgoingActionsQuery = {
     }
   },
   resolve (root, args) {
-    return models.OutgoingAction.findAll(args);
+    return models.OutgoingAction.findAll(args)
   }
-};
+}
 
-export default OutgoingActionsQuery;
+export default OutgoingActionsQuery

@@ -1,16 +1,16 @@
-import _ from 'lodash';
-import Q from 'q';
-import base from './base';
-import db from '../bookshelf';
-import schemaUtils from '../bookshelf/schemaUtils';
+import _ from 'lodash'
+import Q from 'q'
+import base from './base'
+import db from '../bookshelf'
+import schemaUtils from '../bookshelf/schemaUtils'
 
-const { bookshelf } = db;
-const tableName = 'incoming_action_fields';
+const { bookshelf } = db
+const tableName = 'incoming_action_fields'
 
 const IncomingActionField = base.extend({
   tableName,
   IncomingAction () {
-    return this.belongsTo('IncomingAction');
+    return this.belongsTo('IncomingAction')
   }
 }, {
   attributes: schemaUtils.getAttributes(tableName),
@@ -21,20 +21,20 @@ const IncomingActionField = base.extend({
 	 * @returns {Promise.<*>}
 	 */
   async createMany ({ fields, incomingActionId }) {
-    const fns = [];
+    const fns = []
     _.forOwn(fields, (field) => {
-      field.incoming_action_id = incomingActionId;
-      fns.push(this.create(field));
-    });
-    return Q.all(fns);
+      field.incoming_action_id = incomingActionId
+      fns.push(this.create(field))
+    })
+    return Q.all(fns)
   }
-});
+})
 
 const IncomingActionFields = bookshelf.Collection.extend({
   model: IncomingActionField
-});
+})
 
 export default {
   single: bookshelf.model('IncomingActionField', IncomingActionField),
   collection: bookshelf.collection('IncomingActionFields', IncomingActionFields)
-};
+}

@@ -1,8 +1,8 @@
-const Lokka = require('lokka').Lokka;
-const Transport = require('lokka-transport-http').Transport;
+const Lokka = require('lokka').Lokka
+const Transport = require('lokka-transport-http').Transport
 const client = new Lokka({
   transport: new Transport(`http://${process.env.SERVER_URL}:${process.env.FORWARDED_PORT}/graphql`)
-});
+})
 
 export default {
   /**
@@ -22,7 +22,7 @@ export default {
         }
       }
     `).then(result => {
-      commit('LOAD_APPS', { result });
-    });
+      commit('LOAD_APPS', { result })
+    })
   }
-};
+}

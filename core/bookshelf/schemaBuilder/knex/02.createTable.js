@@ -1,5 +1,5 @@
-import _ from 'lodash';
-import createColumn from './03.createColumn';
+import _ from 'lodash'
+import createColumn from './03.createColumn'
 
 /**
  * Creates a table
@@ -11,9 +11,9 @@ import createColumn from './03.createColumn';
 const createTable = (knex, tableName, table) => {
   return knex.schema.createTableIfNotExists(tableName, (transaction) => {
     _.forOwn(table, (column, columnName) => {
-      createColumn(transaction, columnName, column);
-    });
-  });
-};
+      createColumn(transaction, columnName, column)
+    })
+  })
+}
 
-export default createTable;
+export default createTable

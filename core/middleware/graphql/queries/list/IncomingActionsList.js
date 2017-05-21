@@ -2,10 +2,10 @@ import {
   GraphQLString,
   GraphQLInt,
   GraphQLList
-} from 'graphql';
-import GraphQLJSON from 'graphql-type-json';
-import IncomingActionType from '../../types/IncomingActionType';
-import models from '../../../../models';
+} from 'graphql'
+import GraphQLJSON from 'graphql-type-json'
+import IncomingActionType from '../../types/IncomingActionType'
+import models from '../../../../models'
 
 const IncomingActionsQuery = {
   type: new GraphQLList(IncomingActionType),
@@ -27,8 +27,8 @@ const IncomingActionsQuery = {
     }
   },
   resolve (root, args) {
-    return models.IncomingAction.findAll(args);
+    return models.IncomingAction.findAll(args)
   }
-};
+}
 
-export default IncomingActionsQuery;
+export default IncomingActionsQuery

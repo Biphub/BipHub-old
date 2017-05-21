@@ -28,16 +28,16 @@
     },
     computed: {
       radioId () {
-        return this._uid;
+        return this._uid
       },
       model: {
         get () {
-          return this.value;
+          return this.value
         },
         set (val) {
-          this.$emit('input', val);
+          this.$emit('input', val)
         }
       }
     }
-  };
+  }
 </script>

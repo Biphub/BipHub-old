@@ -22,8 +22,8 @@
     },
     methods: {
       click () {
-        this.$emit('click', this.label);
+        this.$emit('click', this.label)
       }
     }
-  };
+  }
 </script>

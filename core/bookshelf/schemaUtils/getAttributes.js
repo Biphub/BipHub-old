@@ -1,5 +1,5 @@
-import _ from 'lodash';
-import schema from '../schema';
+import _ from 'lodash'
+import schema from '../schema'
 
 /**
  * get attributes from table
@@ -8,14 +8,14 @@ import schema from '../schema';
  * @returns {Array}
  */
 const getAttributes = (tableName) => {
-  const attrs = [];
-  const table = _.get(schema, tableName, []);
+  const attrs = []
+  const table = _.get(schema, tableName, [])
   _.forOwn(table, (_, columnName) => {
-    attrs.push(columnName);
-  });
-  return attrs;
-};
+    attrs.push(columnName)
+  })
+  return attrs
+}
 
 export default {
   getAttributes
-};
+}

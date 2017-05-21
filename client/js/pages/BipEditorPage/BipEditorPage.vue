@@ -25,10 +25,10 @@
    * 4. set event ( app, incoming action, options, conditions, test )
    * 5. set actions multiple ( app, outgoing action, options, test )
    */
-  import BasePage from '../Base';
-  import TopBarContainer from '../../containers/TopbarContainer';
-  import BipEditorSidebarContainer from '../../containers/BipEditorSidebarContainer';
-  import BipEditorFormContainer from '../../containers/BipEditorFormContainer';
+  import BasePage from '../Base'
+  import TopBarContainer from '../../containers/TopbarContainer'
+  import BipEditorSidebarContainer from '../../containers/BipEditorSidebarContainer'
+  import BipEditorFormContainer from '../../containers/BipEditorFormContainer'
   export default {
     components: {
       BasePage,
@@ -67,12 +67,12 @@
             ]
           }
         }
-      };
+      }
     },
     mounted () {
-      this.$store.dispatch('bip_editor_inital_load');
+      this.$store.dispatch('bip_editor_inital_load')
     },
     methods: {
     }
-  };
+  }
 </script>

@@ -1,3 +1,3 @@
-const root = global;
+const root = global
 
-export default root;
+export default root

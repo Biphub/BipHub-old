@@ -13,8 +13,8 @@
     },
     computed: {
       iconClass () {
-        return `fa fa-${this.type}`;
+        return `fa fa-${this.type}`
       }
     }
-  };
+  }
 </script>

@@ -27,11 +27,11 @@
     },
     methods: {
       getIconType (active) {
-        return active ? 'pencil' : 'lock';
+        return active ? 'pencil' : 'lock'
       },
       findStepType () {
 
       }
     }
-  };
+  }
 </script>

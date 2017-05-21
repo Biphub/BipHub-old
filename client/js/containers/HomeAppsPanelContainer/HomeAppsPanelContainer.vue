@@ -37,13 +37,13 @@
   export default {
     computed: {
       apps () {
-        return this.$store.state.HomeModule.apps;
+        return this.$store.state.HomeModule.apps
       }
     },
     methods: {
       onAppClick () {
-        this.$emit('onAppClick');
+        this.$emit('onAppClick')
       }
     }
-  };
+  }
 </script>

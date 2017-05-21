@@ -9,14 +9,14 @@
  */
 const toRes = (res, status = 200) => {
   function resFunc (err, thing) {
-    if (err) return res.status(500).send(err);
+    if (err) return res.status(500).send(err)
 
     if (thing && typeof thing.toObject === 'function') {
-      thing = thing.toObject();
+      thing = thing.toObject()
     }
-    res.status(status).json(thing);
+    res.status(status).json(thing)
   }
-  return resFunc;
-};
+  return resFunc
+}
 
-export default toRes;
+export default toRes

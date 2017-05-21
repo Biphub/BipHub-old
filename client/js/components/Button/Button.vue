@@ -13,10 +13,10 @@
     methods: {
       onClick () {
         if (this.link) {
-          this.$router.push(this.link);
+          this.$router.push(this.link)
         }
-        this.$emit('click');
+        this.$emit('click')
       }
     }
-  };
+  }
 </script>
