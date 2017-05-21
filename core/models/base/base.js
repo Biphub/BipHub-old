@@ -20,16 +20,9 @@ const base = db.bookshelf.Model.extend({
    * @returns {*}
    */
   formatJson (attrs) {
-    const arrayOrObject = R.anyPass([
-      R.is(Array), R.is(Object)
-    ])
-    const stringify = R.ifElse(
-      arrayOrObject,
-      R.toString,
-      R.identity
-    )
-    const mapList = R.map(stringify)
-    return mapList(attrs)
+    return R.map(
+      x => R.is(Array) || R.is(Object) ? R.toString : x
+    )(attrs)
   },
   /**
    * It will ensure bookshelf fetches full entity according to
