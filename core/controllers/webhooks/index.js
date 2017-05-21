@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import incomingAction from '../../models/IncomingAction'
+// import incomingAction from '../../models/IncomingAction'
 import urlHelper from '../../helpers/url'
 import pubsub from '../../pubsub'
 
@@ -14,7 +14,7 @@ export default () => {
    * Received webhook incoming action
 	 */
   webhook.use('/*', (req, res) => {
-    const { body, originalUrl } = req
+    /*const { body, originalUrl } = req
     const { endpoint, action } = urlHelper.getApiActions(originalUrl)
 
     // Handle incoming action and publish it to APIs
@@ -26,7 +26,7 @@ export default () => {
     })
     .catch(() => {
       res.json({ result: false })
-    })
+    })*/
   })
   return webhook
 }
