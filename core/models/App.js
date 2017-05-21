@@ -37,9 +37,20 @@ const App = base.extend({
     if (foundApp) {
       return foundApp
     }
-    const incomingActions = R.values(appData.incomingActions)
-    const outgoingActions = R.values(appData.incomingActions)
-    console.log('inc actions values ', incomingActions, '  outgoing ', outgoingActions)
+    const getIncomingActions = R.compose(
+      R.map(R.assoc('type', 'outgoing')),
+      R.values,
+      R.propOr([], 'outgoingActions')
+    )
+    const getOutgoingActions = R.compose(
+      R.map(R.assoc('type', 'incoming')),
+      R.values,
+      R.propOr([], 'incomingActions')
+    )
+    const incomingActions = getIncomingActions(appData)
+    const outgoingActions = getOutgoingActions(appData)
+    console.log('inc actions values ', incomingActions, ' outgoing ', outgoingActions)
+
     const savedApp = await this.create(appData, null)
     await this.registerAppActions({ incomingActions, outgoingActions, appId: savedApp.id })
     return savedApp
