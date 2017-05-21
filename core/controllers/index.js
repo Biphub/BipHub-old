@@ -3,7 +3,7 @@ import config from '../config'
 import api from './api'
 import html from './html'
 import webhook from './webhooks'
-import apps from './app'
+import hub from './hub'
 import appAdapter from '../adapter'
 import pubsub from '../pubsub'
 
@@ -29,7 +29,7 @@ const setup = (app) => {
   app.use('/webhook', webhook())
 
 	// APIs actions controller
-  apps.setup()
+  hub.setup()
 }
 
 export default setup

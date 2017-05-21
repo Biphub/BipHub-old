@@ -15,6 +15,7 @@ const setup = () => {
 	 * TODO: Check that query contains requires data. query.bipName must be present
 	 */
   pubsub.subscribe('REGISTER_APP', ({ payload }) => {
+    console.log('registering app')
 		// Register an app with incoming and outgoing actions
     models.App.createOne(payload).then((app) => {
       app.related('incomingActions').fetch().then((model) => {

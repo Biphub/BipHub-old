@@ -1,3 +1,4 @@
+import R from 'ramda'
 import base from './base'
 import db from '../bookshelf'
 import models from './index'
@@ -36,6 +37,7 @@ const App = base.extend({
     if (foundApp) {
       return foundApp
     }
+    console.log('foundApp ', R.values(appData.incomingActions))
     const incomingActions = collectionHelper.flatForOwn(appData.incomingActions)
     const outgoingActions = collectionHelper.flatForOwn(appData.outgoingActions)
 
