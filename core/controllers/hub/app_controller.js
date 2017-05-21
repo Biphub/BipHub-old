@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import R from 'ramda'
 import Joi from 'joi'
 import pubsub from '../../pubsub'
 import models from '../../models'
@@ -62,8 +62,8 @@ const setup = () => {
 			// Broadcast condition check to incoming actions
 			// Receive condition pass or fail
 			// If passed, get bip's outgoing action id
-      const appName = _.get(queryString, 'appName', null)
-      bipActions.bip({ appName, payload, socket })
+      const appName = R.propOr(null, 'appName', queryString)
+      bipActions.bip(appName, payload, socket)
     }
   })
 

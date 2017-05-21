@@ -1,3 +1,4 @@
+import R from 'ramda'
 import _ from 'lodash'
 import db from '../../bookshelf'
 
@@ -11,7 +12,7 @@ const base = db.bookshelf.Model.extend({
    */
   parse (attrs) {
     // TODO: Refactor this.attributes by access this.tableName
-    return _.pick(attrs, this.attributes)
+    return R.pick(this.attributes, attrs)
   },
   /**
    * Stringify any JSON or Array columns
@@ -19,13 +20,16 @@ const base = db.bookshelf.Model.extend({
    * @returns {*}
    */
   formatJson (attrs) {
-    _.forOwn(attrs, (val, key) => {
-      const current = attrs[key]
-      if (_.isArray(current) || _.isPlainObject(current)) {
-        attrs[key] = JSON.stringify(current)
-      }
-    })
-    return attrs
+    const arrayOrObject = R.anyPass([
+      R.is(Array), R.is(Object)
+    ])
+    const stringify = R.ifElse(
+      arrayOrObject,
+      R.toString,
+      R.identity
+    )
+    const mapList = R.map(stringify)
+    return mapList(attrs)
   },
   /**
    * It will ensure bookshelf fetches full entity according to

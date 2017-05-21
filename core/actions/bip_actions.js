@@ -40,11 +40,7 @@ async function fowardAllBips ({ bipEntities, data }) {
  * @param socket
  * @returns {Promise.<void>}
  */
-async function bip ({
-  appName,
-	payload,
-	socket
-}) {
+async function bip (appName, payload, socket) {
   const { meta } = payload
   const app = await models.App.findOne(
     { name: appName },
