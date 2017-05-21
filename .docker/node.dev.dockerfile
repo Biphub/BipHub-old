@@ -1,9 +1,9 @@
 FROM node:7
 MAINTAINER Jason Shin
 
-ENV CORE /core
-RUN echo $CORE
+ENV CORE /home/node/app
 RUN mkdir $CORE
+RUN echo $CORE
 WORKDIR $CORE
 
 # Install packages using NPM / Yarn trick
@@ -23,4 +23,4 @@ ADD . $CORE
 # Exposing default project port
 EXPOSE 8080
 
-ENTRYPOINT ["yarn", "dev"]
+CMD ["npm", "run", "dev"]
