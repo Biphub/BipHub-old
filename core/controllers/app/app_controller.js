@@ -52,9 +52,9 @@ const setup = () => {
       queryString: Joi.object().keys({
         appName: Joi.string().required()
       }).required(),
-      socket: Joi.object().isRequired()
+      socket: Joi.object().required()
     };
-    const schemaValidResult = Joi.validate({ payload, queryString }, schema);
+    const schemaValidResult = Joi.validate({ payload, queryString, socket }, schema);
     if (!schemaValidResult.error) {
       // Search an app in DB using app name
 			// Search an associated incoming action using the app id
@@ -63,7 +63,7 @@ const setup = () => {
 			// Receive condition pass or fail
 			// If passed, get bip's outgoing action id
       const appName = _.get(queryString, 'appName', null);
-      bipActions.bip({ appName, incomingActionPayload: payload, socket });
+      bipActions.bip({ appName, payload, socket });
     }
   });
 

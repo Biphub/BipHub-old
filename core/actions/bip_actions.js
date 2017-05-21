@@ -36,39 +36,36 @@ async function fowardAllBips ({ bipEntities, data }) {
 /**
  * Base bip action that reacts to incoming event and forward it to outgoing action
  * @param appName
- * @param incomingActionPayload
- * structure: {
- * data: {actual data received},
- * meta: { type: "e.g.: webhook/ws", name: 'message', conditions: 'array[ 'conditions', 'contains' ]' }
- * }
+ * @param payload // Initial payload from incoming action
  * @param socket
  * @returns {Promise.<void>}
  */
 async function bip ({
   appName,
-	incomingActionPayload,
+	payload,
 	socket
 }) {
-  if (appName && !_.isEmpty(incomingActionPayload) && socket) {
-    const { meta } = incomingActionPayload;
-    // Find an app using appName
-    const app = await models.App.findOne({ name: appName }, { withRelated: ['incomingActions', 'outgoingActions'] });
-    // Find incoming actions of found app using name from meta data
-    const incomingAction = await app.related('incomingActions').where({ name: meta.name });
-    // Get first entity's id since meta.name can associate with only one incoming action
-    const firstIncActionId = _.head(incomingAction).get('id');
-    await models.Bip.findAll({ incoming_action_id: firstIncActionId }, { withRelated: [] });
-    /* checkAllIncomingActionConditions({
-      app, incomingAction, incomingActionPayload
-    })
-    const incomingAction = await models.IncomingAction.findOne({ app_id: app.id, name: meta.name })
-    const rawBips = (await models.Bip.findAll({ incoming_actions_id: incomingAction.id })).models
-    const checkedBips = await checkAllIncomingActionConditions({
-      app, incomingAction, bipEntities: rawBips, incomingActionPayload, socket,
-    })
-    const result = fowardAllBips({ bipEntities: checkedBips, data: incomingActionPayload.data })
-    return result */
-  }
+  console.log('invoked bip action! ', appName);
+  const { meta } = payload;
+  const app = await models.App.findOne(
+    { name: appName },
+    { withRelated: ['incomingActions', 'outgoingActions'] }
+  );
+  const incomingAction = await app.related('incomingActions')
+    .where({ name: meta.name });
+  // Get first entity's id since meta.name can associate with only one incoming action
+  const firstIncActionId = _.head(incomingAction).get('id');
+  const bips = await models.Bip.findAll({ incoming_action_id: firstIncActionId }, { withRelated: [] });
+  /* checkAllIncomingActionConditions({
+    app, incomingAction, incomingActionPayload
+  })
+  const incomingAction = await models.IncomingAction.findOne({ app_id: app.id, name: meta.name })
+  const rawBips = (await models.Bip.findAll({ incoming_actions_id: incomingAction.id })).models
+  const checkedBips = await checkAllIncomingActionConditions({
+    app, incomingAction, bipEntities: rawBips, incomingActionPayload, socket,
+  })
+  const result = fowardAllBips({ bipEntities: checkedBips, data: incomingActionPayload.data })
+  return result */
 }
 
 export default {
