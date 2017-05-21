@@ -21,7 +21,7 @@ const base = db.bookshelf.Model.extend({
    */
   formatJson (attrs) {
     return R.map(
-      x => R.is(Array) || R.is(Object) ? R.toString : x
+      x => R.is(Array) || R.is(Object) ? R.toString(x) : x
     )(attrs)
   },
   /**
