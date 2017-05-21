@@ -4,11 +4,11 @@ import {
   GraphQLList
 } from 'graphql'
 import GraphQLJSON from 'graphql-type-json'
-import IncomingActionType from '../../types/IncomingActionType'
+import ActionType from '../../types/ActionType'
 import models from '../../../../models'
 
-const IncomingActionsQuery = {
-  type: new GraphQLList(IncomingActionType),
+const ActionsQuery = {
+  type: new GraphQLList(ActionType),
   args: {
     id: {
       type: GraphQLInt
@@ -27,8 +27,8 @@ const IncomingActionsQuery = {
     }
   },
   resolve (root, args) {
-    return models.IncomingAction.findAll(args)
+    return models.Action.findAll(args)
   }
 }
 
-export default IncomingActionsQuery
+export default ActionsQuery

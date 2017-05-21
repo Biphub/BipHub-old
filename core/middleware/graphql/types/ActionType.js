@@ -5,7 +5,7 @@ import {
 } from 'graphql'
 import GraphQLJSON from 'graphql-type-json'
 
-const IncomingActionType = new GraphQLObjectType({
+const ActionType = new GraphQLObjectType({
   name: 'IncomingAction',
   description: 'This represents an incoming action (event)',
   fields: () => {
@@ -15,8 +15,8 @@ const IncomingActionType = new GraphQLObjectType({
        */
       id: {
         type: GraphQLInt,
-        resolve (incomingAction) {
-          return incomingAction.get('id')
+        resolve (action) {
+          return action.get('id')
         }
       },
       /**
@@ -24,8 +24,8 @@ const IncomingActionType = new GraphQLObjectType({
        */
       type: {
         type: GraphQLString,
-        resolve (incomingAction) {
-          return incomingAction.get('type')
+        resolve (action) {
+          return action.get('type')
         }
       },
       /**
@@ -33,8 +33,8 @@ const IncomingActionType = new GraphQLObjectType({
        */
       endpoint: {
         type: GraphQLString,
-        resolve (incomingAction) {
-          return incomingAction.get('endpoint')
+        resolve (action) {
+          return action.get('endpoint')
         }
       },
       /**
@@ -43,8 +43,8 @@ const IncomingActionType = new GraphQLObjectType({
        */
       conditions: {
         type: GraphQLJSON,
-        resolve (incomingAction) {
-          return incomingAction.get('conditions')
+        resolve (action) {
+          return action.get('conditions')
         }
       },
       /**
@@ -52,12 +52,12 @@ const IncomingActionType = new GraphQLObjectType({
        */
       name: {
         type: GraphQLString,
-        resolve (incomingAction) {
-          return incomingAction.get('name')
+        resolve (action) {
+          return action.get('name')
         }
       }
     }
   }
 })
 
-export default IncomingActionType
+export default ActionType
