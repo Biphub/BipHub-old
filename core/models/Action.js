@@ -1,3 +1,4 @@
+import R from 'ramda'
 import _ from 'lodash'
 import Q from 'q'
 import base from './base'
@@ -25,15 +26,15 @@ const Action = base.extend({
    * @returns {Promise.<boolean>}
    */
   async createOne ({ entity, appId }) {
-    const fields = _.get(entity, 'fields', null)
-    const options = _.get(entity, 'options', null)
+    const fields = R.propOr(null, 'fields')(entity)
+    const options = R.propOr(null, 'fields')(entity)
     entity.app_id = appId
-    const incAction = await this.create(entity, null)
-    const incomingActionId = incAction.get('id')
+    const action = await this.create(entity, null)
+    const actionId = action.get('id')
     const fieldsCreateResult =
-      await models.IncomingActionField.createMany({ fields, incomingActionId })
+      await models.ActionField.createMany({ fields, actionId })
     const optionsCreateResult =
-      await models.IncomingActionOption.createMany({ options, incomingActionId })
+      await models.ActionOption.createMany({ options, actionId })
 
     return fieldsCreateResult && optionsCreateResult
   },

@@ -25,6 +25,19 @@ const App = base.extend({
   }
 }, {
   attributes: schemaUtils.getAttributes(tableName),
+  /**
+   * Utility function to get actions from app
+   * @param type
+   * @param appData
+   * @returns {*}
+   */
+  getActionsFromApp (type, appData) {
+    return R.compose(
+      R.map(R.assoc('type', type)),
+      R.values,
+      R.propOr([], type)
+    )(appData)
+  },
 	/**
    * Register an app
    * It prevents users from registering duplicate app
@@ -37,20 +50,10 @@ const App = base.extend({
     if (foundApp) {
       return foundApp
     }
-    const getIncomingActions = R.compose(
-      R.map(R.assoc('type', 'outgoing')),
-      R.values,
-      R.propOr([], 'outgoingActions')
-    )
-    const getOutgoingActions = R.compose(
-      R.map(R.assoc('type', 'incoming')),
-      R.values,
-      R.propOr([], 'incomingActions')
-    )
-    const incomingActions = getIncomingActions(appData)
-    const outgoingActions = getOutgoingActions(appData)
-    console.log('inc actions values ', incomingActions, ' outgoing ', outgoingActions)
+    const incomingActions = this.getActionsFromApp('incomingActions', appData)
+    const outgoingActions = this.getActionsFromApp('outgoingActions', appData)
 
+    console.log('inc actions values ', incomingActions, ' outgoing ', outgoingActions)
     const savedApp = await this.create(appData, null)
     await this.registerAppActions({ incomingActions, outgoingActions, appId: savedApp.id })
     return savedApp
@@ -63,8 +66,8 @@ const App = base.extend({
 	 * @returns {Promise.<*|Promise|Promise.<*>|Promise.<void>>}
 	 */
   async registerAppActions ({ incomingActions, outgoingActions, appId }) {
-    const incCreateResult = await models.IncomingAction.createMany({ incomingActions, appId })
-    const outCreateResult = await models.OutgoingAction.createMany({ outgoingActions, appId })
+    const incCreateResult = await models.Action.createMany({ incomingActions, appId })
+    const outCreateResult = await models.Action.createMany({ outgoingActions, appId })
     return incCreateResult && outCreateResult
   },
 	/**
