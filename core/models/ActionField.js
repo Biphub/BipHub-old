@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import R from 'ramda'
 import Q from 'q'
 import base from './base'
 import db from '../bookshelf'
@@ -21,11 +21,11 @@ const ActionField = base.extend({
    * @returns {Promise.<*>}
    */
   async createMany (fields, actionId) {
-    const fns = []
-    _.forOwn(fields, (field) => {
-      field.action_id = actionId
-      fns.push(this.create(field))
-    })
+    const fns = R.compose(
+      R.map(x => this.create(x)),
+      R.values,
+      R.map(R.assoc('action_id', actionId))
+    )(fields)
     return Q.all(fns)
   }
 })

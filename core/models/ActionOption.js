@@ -1,3 +1,4 @@
+import R from 'ramda'
 import _ from 'lodash'
 import Q from 'q'
 import base from './base'
@@ -20,11 +21,11 @@ const ActionOption = base.extend({
    * @returns {Promise.<*>}
    */
   async createMany (options, actionId) {
-    const fns = []
-    _.forOwn(options, (option) => {
-      option.action_id = actionId
-      fns.push(this.create(option))
-    })
+    const fns = R.compose(
+      R.map(x => this.create(x)),
+      R.values,
+      R.map(R.assoc('action_id', actionId))
+    )(options)
     return Q.all(fns)
   }
 })

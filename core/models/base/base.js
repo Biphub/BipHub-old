@@ -1,5 +1,4 @@
 import R from 'ramda'
-import _ from 'lodash'
 import db from '../../bookshelf'
 
 const base = db.bookshelf.Model.extend({
