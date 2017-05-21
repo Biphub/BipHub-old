@@ -19,7 +19,7 @@ const ActionOption = base.extend({
    * @param actionId
    * @returns {Promise.<*>}
    */
-  async createMany ({ options, actionId }) {
+  async createMany (options, actionId) {
     const fns = []
     _.forOwn(options, (option) => {
       option.action_id = actionId

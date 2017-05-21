@@ -20,7 +20,7 @@ const ActionField = base.extend({
    * @param actionId
    * @returns {Promise.<*>}
    */
-  async createMany ({ fields, actionId }) {
+  async createMany (fields, actionId) {
     const fns = []
     _.forOwn(fields, (field) => {
       field.action_id = actionId

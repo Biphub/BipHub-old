@@ -2,7 +2,6 @@ import R from 'ramda'
 import base from './base'
 import db from '../bookshelf'
 import models from './index'
-import collectionHelper from '../helpers/collection'
 import schemaUtils from '../bookshelf/schemaUtils'
 
 const { bookshelf } = db
@@ -55,7 +54,7 @@ const App = base.extend({
 
     console.log('inc actions values ', incomingActions, ' outgoing ', outgoingActions)
     const savedApp = await this.create(appData, null)
-    await this.registerAppActions({ incomingActions, outgoingActions, appId: savedApp.id })
+    await this.registerAppActions(incomingActions, outgoingActions, savedApp.id)
     return savedApp
   },
 	/**
@@ -65,9 +64,9 @@ const App = base.extend({
 	 * @param appId
 	 * @returns {Promise.<*|Promise|Promise.<*>|Promise.<void>>}
 	 */
-  async registerAppActions ({ incomingActions, outgoingActions, appId }) {
-    const incCreateResult = await models.Action.createMany({ incomingActions, appId })
-    const outCreateResult = await models.Action.createMany({ outgoingActions, appId })
+  async registerAppActions (incomingActions, outgoingActions, appId) {
+    const incCreateResult = await models.Action.createMany(incomingActions, appId)
+    const outCreateResult = await models.Action.createMany(outgoingActions, appId)
     return incCreateResult && outCreateResult
   },
 	/**

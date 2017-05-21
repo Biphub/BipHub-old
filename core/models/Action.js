@@ -21,21 +21,18 @@ const Action = base.extend({
   attributes: schemaUtils.getAttributes(tableName),
   /**
    * create one incoming action
-   * @param entity
+   * @param action
    * @param appId
    * @returns {Promise.<boolean>}
    */
-  async createOne ({ entity, appId }) {
-    const fields = R.propOr(null, 'fields')(entity)
-    const options = R.propOr(null, 'fields')(entity)
-    entity.app_id = appId
-    const action = await this.create(entity, null)
-    const actionId = action.get('id')
-    const fieldsCreateResult =
-      await models.ActionField.createMany({ fields, actionId })
-    const optionsCreateResult =
-      await models.ActionOption.createMany({ options, actionId })
-
+  async createOne (action, appId) {
+    const newAction = R.assoc('app_id', appId, action)
+    const fields = R.propOr(null, 'fields')(action)
+    const options = R.propOr(null, 'options')(action)
+    const result = await this.create(newAction, null)
+    const actionId = result.get('id')
+    const fieldsCreateResult = await models.ActionField.createMany(fields, actionId)
+    const optionsCreateResult = await models.ActionOption.createMany(options, actionId)
     return fieldsCreateResult && optionsCreateResult
   },
   /**
@@ -44,8 +41,8 @@ const Action = base.extend({
    * @param appId
    * @returns {Promise.<void>}
    */
-  async createMany ({ actions, appId }) {
-    const forgedActions = actions.map(entity => this.createOne({ entity, appId }))
+  async createMany (actions, appId) {
+    const forgedActions = actions.map(entity => this.createOne(entity, appId))
     Q.all(forgedActions)
   }
 })
