@@ -37,9 +37,8 @@ const App = base.extend({
     if (foundApp) {
       return foundApp
     }
-    console.log('foundApp ', R.values(appData.incomingActions))
-    const incomingActions = collectionHelper.flatForOwn(appData.incomingActions)
-    const outgoingActions = collectionHelper.flatForOwn(appData.outgoingActions)
+    const incomingActions = R.values(appData.incomingActions)
+    const outgoingActions = R.values(appData.incomingActions)
 
     const savedApp = await this.create(appData, null)
     await this.registerAppActions({ incomingActions, outgoingActions, appId: savedApp.id })
