@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import R from 'ramda'
 import Q from 'q'
 import models from '../models'
 import pubsub from '../pubsub'
@@ -10,7 +10,7 @@ import pubsub from '../pubsub'
  * @returns {Promise.<void>}
  */
 async function forwardBip ({ bipEntity, data }) {
-  if (!_.isEmpty(bipEntity)) {
+  if (!R.isEmpty(bipEntity)) {
     const outgoingAction = await models.OutgoingAction.findOne({ id: bipEntity.get('outgoing_actions_id') })
     const app = await models.App.findOne({ id: outgoingAction.get('app_id') })
     pubsub.publish({
@@ -24,10 +24,7 @@ async function forwardBip ({ bipEntity, data }) {
  * Foward all bips to outgoing actions
  */
 async function fowardAllBips ({ bipEntities, data }) {
-  const bipFoward = []
-  _.forEach(bipEntities, (bipEntity) => {
-    bipFoward.push(forwardBip({ bipEntity, data }))
-  })
+  const bipFoward = R.map((bipEntity) => forwardBip({ bipEntity, data }), bipEntities)
   return Q.all(bipFoward)
 }
 
@@ -49,7 +46,7 @@ async function bip (appName, payload, socket) {
   const incomingAction = await app.related('incomingActions')
     .where({ name: meta.name })
   // Get first entity's id since meta.name can associate with only one incoming action
-  const firstIncActionId = _.head(incomingAction).get('id')
+  const firstIncActionId = R.head(incomingAction).get('id')
   const bips = await models.Bip.findAll({ incoming_action_id: firstIncActionId }, { withRelated: [] })
   /* checkAllIncomingActionConditions({
     app, incomingAction, incomingActionPayload

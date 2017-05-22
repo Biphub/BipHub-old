@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import R from 'ramda'
 import schema from '../schema'
 
 /**
@@ -9,10 +9,10 @@ import schema from '../schema'
  */
 const getAttributes = (tableName) => {
   const attrs = []
-  const table = _.get(schema, tableName, [])
-  _.forOwn(table, (_, columnName) => {
+  const table = R.propOr([], tableName, schema)
+  R.forEachObjIndexed((_, columnName) => {
     attrs.push(columnName)
-  })
+  })(table)
   return attrs
 }
 

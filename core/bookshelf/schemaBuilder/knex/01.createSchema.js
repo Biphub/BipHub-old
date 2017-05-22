@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import R from 'ramda'
 import createTable from './02.createTable'
 
 /**
@@ -9,11 +9,11 @@ import createTable from './02.createTable'
  */
 const createSchema = ({ knex, schema }) => {
   const forgedQueries = []
-  _.forOwn(schema, (table, tableName) => {
+  R.forEachObjIndexed((table, tableName) => {
     forgedQueries.push(
       createTable(knex, tableName, table)
     )
-  })
+  })(schema)
   return forgedQueries
 }
 

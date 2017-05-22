@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import R from 'ramda'
 
 /**
  * Creates column into transaction (table)
@@ -18,7 +18,7 @@ const createColumn = (transaction, columnName, column) => {
     } else if (type === 'boolean') {
       transaction.boolean(columnName)
     } else if (type === 'integer') {
-      const references = _.get(column, 'references', null)
+      const references = R.propOr(null, 'references', column)
       // If integer field is for relationship
       if (references) {
         transaction.integer(columnName).references(references)

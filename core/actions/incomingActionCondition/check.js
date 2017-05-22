@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import Q from 'q'
 import pubsub from '../../pubsub'
 
@@ -58,11 +57,6 @@ async function checkAllIncomingActionConditions ({
       incomingActionPayload,
       socket
     })
-  })
-  _.forEach(bips, (bip) => {
-    /* conditionCheckFuncs.push(checkIncomingActionCondition({
-      app, incomingAction, bip, incomingActionPayload, socket,
-    })) */
   })
   const allResult = await Q.all(conditionCheckFuncs)
   allResult.filter((payload) => {
