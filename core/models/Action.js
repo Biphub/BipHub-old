@@ -30,7 +30,6 @@ const Action = base.extend({
     const options = R.propOr(null, 'options')(action)
     const result = await this.create(newAction, null)
     const actionId = result.get('id')
-    console.log('Action fields ', fields, '  options ', options)
     const fieldsCreateResult = await models.ActionField.createMany(fields, actionId)
     const optionsCreateResult = await models.ActionOption.createMany(options, actionId)
     return fieldsCreateResult && optionsCreateResult

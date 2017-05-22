@@ -49,6 +49,7 @@ const App = base.extend({
     if (foundApp) {
       return foundApp
     }
+    console.log('app found? still creating?  ', appData.name)
     const incomingActions = this.getActionsFromApp('incomingActions', appData)
     const outgoingActions = this.getActionsFromApp('outgoingActions', appData)
     const savedApp = await this.create(appData, null)
