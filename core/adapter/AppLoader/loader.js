@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import R from 'ramda'
 import requireAll from 'require-all'
 import config from '../../config'
 
@@ -13,10 +13,11 @@ const loader = () => {
     if (nodeEnv === 'development') {
       rawAPIs = requireAll(`${__dirname}/../../apps`)
     }
+    // TODO: Implement production version
     const APIs = []
-    _.forOwn(rawAPIs, (value, key) => {
+    R.forEachObjIndexed((value, key) => {
       APIs.push(rawAPIs[key].index.default)
-    })
+    })(rawAPIs)
     return APIs
   }
 

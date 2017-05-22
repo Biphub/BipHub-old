@@ -1,5 +1,4 @@
 import R from 'ramda'
-import _ from 'lodash'
 import Q from 'q'
 import base from './base'
 import db from '../bookshelf'

@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import R from 'ramda'
 import createColumn from './03.createColumn'
 
 /**
@@ -10,9 +10,9 @@ import createColumn from './03.createColumn'
  */
 const createTable = (knex, tableName, table) => {
   return knex.schema.createTableIfNotExists(tableName, (transaction) => {
-    _.forOwn(table, (column, columnName) => {
+    R.forEachObjIndexed((column, columnName) => {
       createColumn(transaction, columnName, column)
-    })
+    })(table)
   })
 }
 

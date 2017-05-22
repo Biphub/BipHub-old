@@ -1,5 +1,5 @@
+import R from 'ramda'
 import Events from 'events'
-import _ from 'lodash'
 import logger from '../logger'
 import config from '../config'
 import root from '../helpers/root'
@@ -18,7 +18,7 @@ function initialize (io) {
     root.events = events
     root.io = io
     io.on('connection', (socket) => {
-      _.forOwn(actions, (value) => {
+      R.chain((value) => {
         const { event } = value
         socket.on(event, (payload) => {
           const { query } = socket.handshake
@@ -27,7 +27,7 @@ function initialize (io) {
           }
           events.emit(event, { payload, queryString, socket })
         })
-      })
+      })(actions)
     })
   }
 }
