@@ -13,6 +13,7 @@ const setup = () => {
 	 * Registers any apps.
 	 * name: REGISTER_APP
 	 * TODO: Check that query contains requires data. query.bipName must be present
+   * TODO: Refactor below using composeP
 	 */
   pubsub.subscribe('REGISTER_APP', ({ payload }) => {
 		// Register an app with incoming and outgoing actions

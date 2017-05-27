@@ -28,7 +28,18 @@ async function fowardAllBips ({ bipEntities, data }) {
   return Q.all(bipFoward)
 }
 
-// Actual composed actions below
+async function findAppIncomingAction (app) {
+  const incomingAction = await app.related('incomingActions')
+  return incomingAction
+}
+
+async function findAppByName (name) {
+  const app = await models.App.findOne(
+    { name },
+    { withRelated: ['incomingActions', 'outgoingActions'] }
+  )
+  return app
+}
 
 /**
  * Base bip action that reacts to incoming event and forward it to outgoing action
@@ -39,7 +50,7 @@ async function fowardAllBips ({ bipEntities, data }) {
  */
 async function bip (appName, payload, socket) {
   const { meta } = payload
-  const app = await models.App.findOne(
+  /*const app = await models.App.findOne(
     { name: appName },
     { withRelated: ['incomingActions', 'outgoingActions'] }
   )
@@ -47,7 +58,15 @@ async function bip (appName, payload, socket) {
     .where({ name: meta.name })
   // Get first entity's id since meta.name can associate with only one incoming action
   const firstIncActionId = R.head(incomingAction).get('id')
-  const bips = await models.Bip.findAll({ incoming_action_id: firstIncActionId }, { withRelated: [] })
+  const bips = await models.Bip.findAll({ incoming_action_id: firstIncActionId }, { withRelated: [] })*/
+  const bipAction = R.composeP(
+    (app) => Promise.resolve(
+      app.related('incomingActions').where({ name: meta.name })
+    ),
+    models.App.findOne
+  )
+  console.log('checking bip!')
+  bipAction.then(console.log)
   /* checkAllIncomingActionConditions({
     app, incomingAction, incomingActionPayload
   })
