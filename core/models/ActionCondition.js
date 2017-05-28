@@ -17,15 +17,18 @@ const ActionCondition = base.extend({
    * @param actionId
    * @returns {Promise.<*>}
    */
-  async createMany (fields, actionId) {
+  async createMany (conditions, actionId) {
     // TODO: Below code is redundant, move it to the base model
-    console.log('creating many action conditions ', fields, '  act id ', actionId)
-    return R.compose(
-      (fns) => fns ? Q.all(fns) : null,
-      R.map(x => this.create(x)),
-      R.values,
-      R.map(R.assoc('action_id', actionId))
-    )(fields)
+    console.log('creating many action conditions ', conditions, '  act id ', actionId)
+    if (conditions && actionId) {
+      return R.compose(
+        (fns) => Q.all(fns),
+        R.map(x => this.create(x)),
+        R.values,
+        R.map(R.assoc('action_id', actionId))
+      )(conditions)
+    }
+    return null
   }
 })
 

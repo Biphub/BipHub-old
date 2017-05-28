@@ -21,12 +21,15 @@ const ActionField = base.extend({
    * @returns {Promise.<*>}
    */
   async createMany (fields, actionId) {
-    return R.compose(
-      fns => fns ? Q.all(fns) : null,
-      R.map(x => this.create(x)),
-      R.values,
-      R.map(R.assoc('action_id', actionId))
-    )(fields)
+    if (fields && actionId) {
+      return R.compose(
+        (fns) => Q.all(fns),
+        R.map(x => this.create(x)),
+        R.values,
+        R.map(R.assoc('action_id', actionId))
+      )(fields)
+    }
+    return null
   }
 })
 
