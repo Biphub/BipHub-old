@@ -13,7 +13,7 @@ const ActionCondition = base.extend({
   attributes: schemaUtils.getAttributes(tableName),
   /**
    * Creates many incoming actions
-   * @param fields
+   * @param conditions
    * @param actionId
    * @returns {Promise.<*>}
    */

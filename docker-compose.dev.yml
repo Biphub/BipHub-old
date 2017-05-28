@@ -16,3 +16,4 @@ services:
       - /home/node/app/node_modules
     ports:
       - "3000:8080"
+      - "56745:56745"

@@ -22,5 +22,6 @@ ADD . $CORE
 
 # Exposing default project port
 EXPOSE 8080
+EXPOSE 56745
 
 CMD ["npm", "run", "dev"]

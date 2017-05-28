@@ -26,12 +26,14 @@ function forwardBip(bip) {
 async function bip (appName, payload, socket) {
   const { meta } = payload
   const incActionName = meta.name
+  console.log('finding app!')
   const app = await models.App
     .findOne({
       name: appName
     }, {
       withRelated: ['actions']
     })
+  console.log('found an app! ', app.get('name'))
   const incomingActions = await app.related('actions')
     .where({
       name: incActionName,

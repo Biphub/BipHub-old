@@ -20,7 +20,7 @@ module.exports = {
     connection: {
       filename: path.join(__dirname, '.database/sqlite/biphub-dev.sqlite3')
     },
-    debug: false
+    debug: true
   },
   // Frontend Config
   babel: {
