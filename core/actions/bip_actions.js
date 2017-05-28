@@ -1,28 +1,6 @@
 import R from 'ramda'
-import Q from 'q'
 import models from '../models'
 import pubsub from '../pubsub'
-
-/**
- * Forwarding bips to connected apps
- * @param bipEntity
- * @param data
- * @returns {Promise.<void>}
- */
-async function forwardBip ({ bipEntity, data }) {
-  if (!R.isEmpty(bipEntity)) {
-    const outgoingAction = await models.OutgoingAction.findOne({ id: bipEntity.get('outgoing_actions_id') })
-    const app = await models.App.findOne({ id: outgoingAction.get('app_id') })
-    pubsub.publish({
-      action: `${app.get('name')}_${outgoingAction.get('name')}`,
-      data
-    })
-  }
-}
-
-async function forwardAllBips() {
-
-}
 
 /**
  * Base bip action that reacts to incoming event and forward it to outgoing action
@@ -33,20 +11,29 @@ async function forwardAllBips() {
  */
 async function bip (appName, payload, socket) {
   const { meta } = payload
-  const app = await models.App.findOne(
-    { name: appName },
-    { withRelated: ['actions'] }
-  )
+  const app = await models.App
+    .findOne({
+      name: appName
+    }, {
+      withRelated: ['actions']
+    })
   const incomingActions = await app.related('actions')
-    .where({ name: meta.name, app_id: app.get('id'), type: 'incomingActions' })
+    .where({
+      name: meta.name,
+      app_id: app.get('id'),
+      type: 'incomingActions'
+    })
   // Get first entity's id since meta.name can associate with only one incoming action
   // Received incoming action must be unique using action meta.name & app_id & type: incomingActions
   const firstIncActionName = R.head(incomingActions).get('name')
   // Find all bips that is associated with the unique incoming action
-  console.log('finding bips actionName ', firstIncActionName, ' app ', app.get('name'))
   const bips = await models.Bip
     .findAll({ incoming_action_name: firstIncActionName, incoming_app_name: app.get('name') })
-  console.log('found bips yoyo ', bips.models)
+    .models // Only interested in bookshelf models
+  console.log('found bips yoyo ', bips)
+  R.map(model => {
+    console.log('bip model ', model)
+  })(bips)
   /* checkAllIncomingActionConditions({
     app, incomingAction, incomingActionPayload
   })

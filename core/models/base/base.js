@@ -52,7 +52,7 @@ const base = db.bookshelf.Model.extend({
    * @param options
    * @returns {*|Promise.<Model|null>}
    */
-  findOne (query, options) {
+  findOne (query = {}, options = {}) {
     return this.forge(query).fetch(options)
   },
   /**
