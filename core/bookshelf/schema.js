@@ -27,6 +27,7 @@ export default {
     action_chain: { type: 'jsonb' }, // Entry point data during INCOMING_ACTION trying t find this bip
     incoming_app_name: { type: 'string' }, // Entry point data during INCOMING_ACTION trying to find this bip
     incoming_action_name: { type: 'string' },
+    incoming_action_condition_names: { type: 'jsonb' }, // Unique value to search for incoming_action_condition
     incoming_action_conditions_values: { type: 'jsonb' },
     incoming_action_options_values: { type: 'jsonb' },
     outgoing_action_options_values: { type: 'jsonb' },
