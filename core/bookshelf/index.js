@@ -1,4 +1,5 @@
 import path from 'path'
+import knexCleaner from 'knex-cleaner'
 import knexConfig from './knexfile'
 import db from './db/connection'
 
@@ -9,7 +10,7 @@ const connection = db()
 const { knex, bookshelf } = connection
 
 async function migrate() {
-	// TODO, check it runs only once
+  await knexCleaner.clean(knex)
   await knex.migrate.latest(migrationConfig)
 	// .then(() => knex.seed.run(seedConfig))
 	// .then(() => console.log('migration complete2!'))

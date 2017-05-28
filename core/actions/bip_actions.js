@@ -37,10 +37,10 @@ async function bip (appName, payload, socket) {
     { name: appName },
     { withRelated: ['actions'] }
   )
-  console.log('testing!! app found action name ', meta.name)
+  console.log('testing!! app found action name  ', meta.name)
   const actions = await app.related('actions')
-    .where({ name: meta.name })
-  console.log('actions found!!')
+    .where({ name: meta.name, app_id: app.get('id'), type: 'incoming' })
+  console.log('actions found!! ', actions)
   // Get first entity's id since meta.name can associate with only one incoming action
   const firstIncActionId = R.head(actions).get('id')
   console.log('first inc action id ', firstIncActionId)
