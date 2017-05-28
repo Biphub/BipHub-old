@@ -39,16 +39,14 @@ async function bip (appName, payload, socket) {
   )
   const incomingActions = await app.related('actions')
     .where({ name: meta.name, app_id: app.get('id'), type: 'incomingActions' })
-  console.log('found actions ', incomingActions)
   // Get first entity's id since meta.name can associate with only one incoming action
   // Received incoming action must be unique using action meta.name & app_id & type: incomingActions
-  const firstIncActionId = R.head(incomingActions).get('id')
   const firstIncActionName = R.head(incomingActions).get('name')
-  console.log('first inc action id ', firstIncActionId, ' name: ', firstIncActionName)
   // Find all bips that is associated with the unique incoming action
+  console.log('finding bips actionName ', firstIncActionName, ' app ', app.get('name'))
   const bips = await models.Bip
-    .findAll({ incoming_action_id: firstIncActionId }, { withRelated: [] })
-  console.log('found bips ', bips.toJSON())
+    .findAll({ incoming_action_name: firstIncActionName, incoming_app_name: app.get('name') })
+  console.log('found bips  ', bips)
   /* checkAllIncomingActionConditions({
     app, incomingAction, incomingActionPayload
   })

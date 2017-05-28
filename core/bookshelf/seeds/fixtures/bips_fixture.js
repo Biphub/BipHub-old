@@ -13,6 +13,8 @@ exports.default = [
         app_name: 'biphub-slack',
         action_name: 'post_message'
       }
-    ])
+    ]),
+    incoming_app_name: 'biphub-discord',
+    incoming_action_name: 'message'
   }
 ]
