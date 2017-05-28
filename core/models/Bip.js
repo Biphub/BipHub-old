@@ -9,10 +9,10 @@ const Bip = base.extend({
   tableName,
   attributes: [],
   incomingAction () {
-    return this.belongsTo('IncomingAction')
+    return this.belongsTo('Action')
   },
   outgoingAction () {
-    return this.belongsTo('OutgoingAction')
+    return this.belongsTo('Action')
   }
 }, {
   attributes: schemaUtils.getAttributes(tableName)

@@ -1,8 +1,8 @@
 import R from 'ramda'
 import Joi from 'joi'
 import pubsub from '../../pubsub'
-import models from '../../models'
 import logger from '../../logger'
+import appActions from '../../actions/app_actions'
 import bipActions from '../../actions/bip_actions'
 
 /**
@@ -16,11 +16,8 @@ const setup = () => {
    * TODO: Refactor below using composeP
 	 */
   pubsub.subscribe('REGISTER_APP', ({ payload }) => {
-		// Register an app with incoming and outgoing actions
-    models.App.createOne(payload).then((app) => {
-      app.related('incomingActions').fetch().then((model) => {
-        logger.info(`Register app successful for ${model.get('name')}`)
-      })
+    appActions.registerApp(payload).then((app) => {
+      logger.info(`RegiserApp successful for ${app.get('name')}`)
     }).catch(() => {
       logger.error(`Register app failed for ${payload.name}`)
     })

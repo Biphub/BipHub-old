@@ -20,25 +20,8 @@ async function forwardBip ({ bipEntity, data }) {
   }
 }
 
-/**
- * Foward all bips to outgoing actions
- */
-async function fowardAllBips ({ bipEntities, data }) {
-  const bipFoward = R.map((bipEntity) => forwardBip({ bipEntity, data }), bipEntities)
-  return Q.all(bipFoward)
-}
+async function forwardAllBips() {
 
-async function findAppIncomingAction (app) {
-  const incomingAction = await app.related('incomingActions')
-  return incomingAction
-}
-
-async function findAppByName (name) {
-  const app = await models.App.findOne(
-    { name },
-    { withRelated: ['incomingActions', 'outgoingActions'] }
-  )
-  return app
 }
 
 /**
@@ -50,23 +33,18 @@ async function findAppByName (name) {
  */
 async function bip (appName, payload, socket) {
   const { meta } = payload
-  /*const app = await models.App.findOne(
+  const app = await models.App.findOne(
     { name: appName },
-    { withRelated: ['incomingActions', 'outgoingActions'] }
+    { withRelated: ['actions'] }
   )
-  const incomingAction = await app.related('incomingActions')
+  console.log('testing!! app found action name ', meta.name)
+  const actions = await app.related('actions')
     .where({ name: meta.name })
+  console.log('actions found!!')
   // Get first entity's id since meta.name can associate with only one incoming action
-  const firstIncActionId = R.head(incomingAction).get('id')
-  const bips = await models.Bip.findAll({ incoming_action_id: firstIncActionId }, { withRelated: [] })*/
-  const bipAction = R.composeP(
-    (app) => Promise.resolve(
-      app.related('incomingActions').where({ name: meta.name })
-    ),
-    models.App.findOne
-  )
-  console.log('checking bip!')
-  bipAction.then(console.log)
+  const firstIncActionId = R.head(actions).get('id')
+  console.log('first inc action id ', firstIncActionId)
+  // const bips = await models.Bip.findAll({ incoming_action_id: firstIncActionId }, { withRelated: [] })
   /* checkAllIncomingActionConditions({
     app, incomingAction, incomingActionPayload
   })

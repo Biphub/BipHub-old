@@ -12,6 +12,18 @@ export default {
   },
   bips: {
     id: { type: 'increments' },
+    /**
+     * Chain must be in order inside an array
+     * [
+     *   {
+     *     action_id: 123, // First action must be an incoming type action
+     *   },
+     *   {
+     *     action_id: 124, // n+1th action must be outgoing type action
+     *   },
+     * ]
+     */
+    action_chain: { type: 'jsonb' },
     incoming_action_conditions_values: { type: 'jsonb' },
     incoming_action_options_values: { type: 'jsonb' },
     outgoing_action_options_values: { type: 'jsonb' },

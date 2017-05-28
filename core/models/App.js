@@ -12,15 +12,8 @@ const App = base.extend({
    * get incoming actions
 	 * @returns {*|Collection}
 	 */
-  incomingActions () {
-    return this.hasMany(models.IncomingAction)
-  },
-	/**
-   * get outgoing actions
-	 * @returns {*|Collection}
-	 */
-  outgoingActions () {
-    return this.hasMany(models.OutgoingAction)
+  actions () {
+    return this.hasMany(models.Action)
   }
 }, {
   attributes: schemaUtils.getAttributes(tableName),
@@ -49,8 +42,8 @@ const App = base.extend({
     if (foundApp) {
       return foundApp
     }
-    const incomingActions = this.getActionsFromApp('incomingActions', appData)
-    const outgoingActions = this.getActionsFromApp('outgoingActions', appData)
+    const incomingActions = this.getActionsFromApp('incoming', appData)
+    const outgoingActions = this.getActionsFromApp('outgoing', appData)
     const savedApp = await this.create(appData, null)
     await this.registerAppActions(incomingActions, outgoingActions, savedApp.id)
     return savedApp
