@@ -12,6 +12,7 @@ export default {
   },
   bips: {
     id: { type: 'increments' },
+    active: { type: 'boolean' },
     /**
      * Chain must be in order inside an array
      * [
@@ -28,7 +29,6 @@ export default {
     incoming_action_options_values: { type: 'jsonb' },
     outgoing_action_options_values: { type: 'jsonb' },
     fields_mapping: { type: 'jsonb' },
-    active: { type: 'boolean' },
     incoming_action_condition_id: { type: 'integer', references: 'action_conditions.id' },
     incoming_actions_id: { type: 'integer', references: 'actions.id' },
     outgoing_actions_id: { type: 'integer', references: 'actions.id' },

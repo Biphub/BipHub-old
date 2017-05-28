@@ -43,7 +43,6 @@ const App = base.extend({
       return foundApp
     }
     const incomingActions = this.getActionsFromApp('incomingActions', appData)
-    console.log('create one app inc actions  ', incomingActions)
     const outgoingActions = this.getActionsFromApp('outgoingActions', appData)
     const savedApp = await this.create(appData, null)
     await this.registerAppActions(incomingActions, outgoingActions, savedApp.id)

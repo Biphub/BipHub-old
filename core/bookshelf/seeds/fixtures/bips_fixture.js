@@ -1,18 +1,18 @@
 exports.default = [
-  { id: 1,
+  // Assumptions: incoming action is discord onMessage
+  // outgoing action is slack send message
+  {
+    id: 1,
     active: true,
-    incoming_action_conditions_value: {
-      matches: { value: 'test' }
-    },
-    incoming_action_options_value: {
-      channel: { value: 'general' }
-    },
-    outgoing_action_options_value: {
-      channel: { value: 'general' }
-    },
-    // Fields mapping, inc ID to out ID
-    fields_mapping: [
-      [1, 1]
-    ]
+    action_chain: JSON.stringify([
+      {
+        app_name: 'biphub-discord',
+        action_name: 'message'
+      },
+      {
+        app_name: 'biphub-slack',
+        action_name: 'post_message'
+      }
+    ])
   }
 ]
