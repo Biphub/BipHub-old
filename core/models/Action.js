@@ -1,4 +1,5 @@
 import R from 'ramda'
+// TODO: Replace it with native Promise.all or bluebird.all
 import Q from 'q'
 import base from './base'
 import db from '../bookshelf'
@@ -28,11 +29,15 @@ const Action = base.extend({
     const newAction = R.assoc('app_id', appId, action)
     const fields = R.propOr(null, 'fields')(action)
     const options = R.propOr(null, 'options')(action)
+    const conditions = R.propOr(null, 'conditions')(action)
+    console.log('conditions ', conditions)
     const result = await this.create(newAction, null)
     const actionId = result.get('id')
-    const fieldsCreateResult = await models.ActionField.createMany(fields, actionId)
-    const optionsCreateResult = await models.ActionOption.createMany(options, actionId)
-    return fieldsCreateResult && optionsCreateResult
+    const fieldsCreateResult = models.ActionField.createMany(fields, actionId)
+    const optionsCreateResult = models.ActionOption.createMany(options, actionId)
+    console.log('about to make action conditions')
+    const conditionsCreateResult = models.ActionCondition.createMany(conditions, actionId)
+    return fieldsCreateResult && optionsCreateResult && conditionsCreateResult
   },
   /**
    * Creates many incoming actions

@@ -25,7 +25,17 @@ export default {
     emailDomainChanged: { name: 'email_domain_changed' },
     emojiChanged: { name: 'emoji_changed' },
     fileChange: { name: 'file_change' },
-    message: { name: 'message', conditions: ['matches', 'contains'] }
+    message: {
+      name: 'message',
+      conditions: {
+        matches: {
+          name: 'matches'
+        },
+        contains: {
+          name: 'contains'
+        }
+      }
+    }
   },
   outgoingActions: {
     postMessage: {

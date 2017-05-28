@@ -7,7 +7,6 @@ function checkIncActionCondition() {
 }
 
 function forwardBip(bip) {
-  pubsub.publish({  })
 }
 
 /**

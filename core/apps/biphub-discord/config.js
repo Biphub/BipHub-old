@@ -10,7 +10,14 @@ export default {
       type: 'webhook/ws',
       name: 'message',
       description: 'Message event that triggers when there is a new message',
-      conditions: ['matches', 'contains'],
+      conditions: {
+        matches: {
+          name: 'matches'
+        },
+        contains: {
+          name: 'contains'
+        }
+      },
       fields: {
         content: { type: 'string', name: 'content' }
       },

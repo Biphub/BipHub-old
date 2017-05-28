@@ -20,12 +20,12 @@ const ActionOption = base.extend({
    * @returns {Promise.<*>}
    */
   async createMany (options, actionId) {
-    const fns = R.compose(
+    return R.compose(
+      (fns) => fns ? Q.all(fns) : null,
       R.map(x => this.create(x)),
       R.values,
       R.map(R.assoc('action_id', actionId))
     )(options)
-    return Q.all(fns)
   }
 })
 
