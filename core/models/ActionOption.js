@@ -5,7 +5,7 @@ import db from '../bookshelf'
 import schemaUtils from '../bookshelf/schemaUtils'
 
 const { bookshelf } = db
-const tableName = 'incoming_action_options'
+const tableName = 'action_options'
 
 const ActionOption = base.extend({
   tableName,

@@ -2,11 +2,18 @@ import R from 'ramda'
 import models from '../models'
 import pubsub from '../pubsub'
 
-function checkIncActionCondition() {
-
+async function checkActionCondition(appName, actionName, condName, actionPayload, socket) {
+  const checkIncActionMessageName = `${appName}_${actionName}_${condName}`
+  const result = await pubsub.publish({
+    action: checkIncActionMessageName,
+    payload: actionPayload,
+    socket
+  })
+  return result
 }
 
 function forwardBip(bip) {
+  // const appName =
 }
 
 /**
@@ -31,6 +38,7 @@ async function bip (appName, payload, socket) {
       app_id: app.get('id'),
       type: 'incomingActions'
     })
+  console.log('inc actions ', incomingActions.toJSON())
   // Received incoming action must be unique using action meta.name & app_id & type: incomingActions
   const firstIncActionName = R.head(incomingActions).get('name')
   // Find all bips that is associated with the unique incoming action

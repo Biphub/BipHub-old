@@ -14,8 +14,14 @@ const Action = base.extend({
   app () {
     return this.belongsTo('App')
   },
-  actionsFields () {
+  actionFields () {
     return this.hasMany('ActionField')
+  },
+  actionConditions () {
+    return this.hasMany('ActionCondition')
+  },
+  actionOptions () {
+    return this.hasMany('ActionOption')
   }
 }, {
   attributes: schemaUtils.getAttributes(tableName),
@@ -30,12 +36,10 @@ const Action = base.extend({
     const fields = R.propOr(null, 'fields')(action)
     const options = R.propOr(null, 'options')(action)
     const conditions = R.propOr(null, 'conditions')(action)
-    console.log('conditions ', conditions)
     const result = await this.create(newAction, null)
     const actionId = result.get('id')
     const fieldsCreateResult = models.ActionField.createMany(fields, actionId)
     const optionsCreateResult = models.ActionOption.createMany(options, actionId)
-    console.log('about to make action conditions')
     const conditionsCreateResult = models.ActionCondition.createMany(conditions, actionId)
     return fieldsCreateResult && optionsCreateResult && conditionsCreateResult
   },

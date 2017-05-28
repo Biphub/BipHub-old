@@ -19,12 +19,12 @@ const ActionCondition = base.extend({
    */
   async createMany (conditions, actionId) {
     // TODO: Below code is redundant, move it to the base model
-    console.log('creating many action conditions ', conditions, '  act id ', actionId)
     if (conditions && actionId) {
       return R.compose(
         (fns) => Q.all(fns),
         R.map(x => this.create(x)),
         R.values,
+        R.map(R.assoc('active', true)),
         R.map(R.assoc('action_id', actionId))
       )(conditions)
     }

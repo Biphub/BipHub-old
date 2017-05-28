@@ -57,6 +57,7 @@ export default {
   },
   action_fields: {
     id: { type: 'increments' },
+    active: { type: 'boolean' },
     type: { type: 'string' },
     name: { type: 'string' },
     timestamps: true,
@@ -64,9 +65,9 @@ export default {
   },
   action_options: {
     id: { type: 'increments' },
+    active: { type: 'boolean' },
     type: { type: 'string' },
     name: { type: 'string' },
-    active: { type: 'boolean' },
     timestamps: true,
     outgoing_action_id: { type: 'integer', references: 'actions.id' }
   }

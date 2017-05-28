@@ -26,6 +26,7 @@ const ActionField = base.extend({
         (fns) => Q.all(fns),
         R.map(x => this.create(x)),
         R.values,
+        R.map(R.assoc('active', true)),
         R.map(R.assoc('action_id', actionId))
       )(fields)
     }
