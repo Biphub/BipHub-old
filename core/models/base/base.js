@@ -43,7 +43,7 @@ const base = db.bookshelf.Model.extend({
    * @param options
    * @returns {*|Promise.<Collection>}
    */
-  findAll (filter, options) {
+  findAll (filter = {}, options = {}) {
     return this.forge().where(filter).fetchAll(options)
   },
   /**

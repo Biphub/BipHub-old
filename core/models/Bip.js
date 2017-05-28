@@ -5,6 +5,8 @@ import schemaUtils from '../bookshelf/schemaUtils'
 const { bookshelf } = db
 const tableName = 'bips'
 
+console.log('bips schema ', schemaUtils.getAttributes(tableName))
+
 const Bip = base.extend({
   tableName,
   attributes: [],

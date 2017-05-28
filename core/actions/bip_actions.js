@@ -46,7 +46,7 @@ async function bip (appName, payload, socket) {
   console.log('finding bips actionName ', firstIncActionName, ' app ', app.get('name'))
   const bips = await models.Bip
     .findAll({ incoming_action_name: firstIncActionName, incoming_app_name: app.get('name') })
-  console.log('found bips  ', bips)
+  console.log('found bips yoyo ', bips.models)
   /* checkAllIncomingActionConditions({
     app, incomingAction, incomingActionPayload
   })
