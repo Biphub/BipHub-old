@@ -34,25 +34,24 @@ async function bip (appName, payload, socket) {
       incoming_app_name: app.get('name')
     })
   ).models
-  R.map(x => {
+  const bipActions = R.map(x => {
     const bipModel = x.toJSON()
-    const incActionConds = bipModel.incoming_action_condition_names
-    console.log('bip inc action conds name  ', incActionConds)
-    // checkActionCondition(bipModel)
+    return bipModel.incoming_action_condition_names
   })(bips)
 }
 
-async function checkActionCondition(appName, actionName, condName, actionPayload, socket) {
-  const checkIncActionMessageName = `${appName}_${actionName}_${condName}`
-  const result = await pubsub.publish({
-    action: checkIncActionMessageName,
-    payload: actionPayload,
-    socket
-  })
-  console.log('result of checking action condition ', result)
-  return result
-}
+function checkActionCondition (appName, actionName, condName, actionPayload, socket) {
+  return new Promise((resolve, reject) => {
+    const checkIncActionMessageName = `${appName}_${actionName}_${condName}`
+    pubsub.publish({
+      action: checkIncActionMessageName,
+      payload: actionPayload,
+      socket
+    }).then((result) => {
 
+    })
+  })
+}
 
 export default {
   bip

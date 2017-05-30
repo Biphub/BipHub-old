@@ -38,12 +38,17 @@ function initialize (io) {
  * @param data
  * @param socket
  */
-const publish = ({ action, data, socket }) => new Promise((resolve) => {
+const publish = ({ action, data, socket }) => new Promise((resolve, reject) => {
   const { io } = root
   if (io && !socket) {
     io.emit(action, data)
   } else {
-    socket.emit(action, data, result => resolve(result))
+    socket.emit(action, data, (error, result) => {
+      if (error) {
+        return reject(error)
+      }
+      return resolve(result)
+    })
   }
 })
 
