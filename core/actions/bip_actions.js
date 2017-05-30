@@ -16,20 +16,26 @@ function checkActionCondition (appName, actionName, condName, actionPayload, soc
   })
 }
 
-function getAppByName (appName) {
+function getAppByName ({ appName, payload, socket }) {
   return new Future((rej, res) => {
     models.App.findOne({name: appName}, {withRelated: ['actions']})
       .then(model => {
         if (model) {
-          return res(model)
+          return res({
+            app: model,
+            payload,
+            socket
+          })
         }
-        return rej(model)
+        return rej(undefined)
       })
   })
 }
 
-function getIncActionsFromApp (incActionName, app) {
+function getIncActionsFromApp ({ app, payload, socket }) {
   return new Future((rej, res) => {
+    const { meta } = payload
+    const incActionName = meta.name
     const relatedActions = app.related('actions')
       .where({
         name: incActionName,
@@ -37,9 +43,13 @@ function getIncActionsFromApp (incActionName, app) {
         type: 'incomingActions'
       })
     if (relatedActions) {
-      return res(relatedActions)
+      return res({
+        app,
+        actions: relatedActions,
+        socket
+      })
     }
-    return rej(relatedActions)
+    return rej(undefined)
   })
 }
 
@@ -51,13 +61,11 @@ function getIncActionsFromApp (incActionName, app) {
  * @returns {Promise.<void>}
  */
 function bip (appName, payload, socket) {
-  const { meta, data } = payload
-  const incActionName = meta.name
   const getApp = R.compose(
-    R.chain(R.curry(getIncActionsFromApp)(incActionName)),
+    R.chain(getIncActionsFromApp),
     getAppByName
   )
-  getApp(appName).fork(console.error, console.log)
+  getApp({ appName, payload, socket }).fork(console.error, console.log)
  /* const { meta, data } = payload
   const incActionName = meta.name
   const app = await models.App
