@@ -16,16 +16,13 @@ function checkActionCondition (appName, actionName, condName, actionPayload, soc
   })
 }
 
-function getAppByName ({ appName, payload, socket }) {
+function getBips ({ app, incomingAction, socket }) {
   return new Future((rej, res) => {
-    models.App.findOne({name: appName}, {withRelated: ['actions']})
-      .then(model => {
-        if (model) {
-          return res({
-            app: model,
-            payload,
-            socket
-          })
+    models.Bip
+      .findAll({ incoming_action_name: incomingAction.get('name'), incoming_app_name: app.get('name') })
+      .then(bips => {
+        if (bips) {
+          return res({ app, bips, socket })
         }
         return rej(undefined)
       })
@@ -45,11 +42,23 @@ function getIncActionsFromApp ({ app, payload, socket }) {
     if (relatedActions) {
       return res({
         app,
-        actions: relatedActions,
+        incomingAction: R.head(relatedActions),
         socket
       })
     }
     return rej(undefined)
+  })
+}
+
+function getAppByName ({ appName, payload, socket }) {
+  return new Future((rej, res) => {
+    models.App.findOne({name: appName}, {withRelated: ['actions']})
+      .then(app => {
+        if (app) {
+          return res({ app, payload, socket })
+        }
+        return rej(undefined)
+      })
   })
 }
 
@@ -62,6 +71,7 @@ function getIncActionsFromApp ({ app, payload, socket }) {
  */
 function bip (appName, payload, socket) {
   const getApp = R.compose(
+    R.chain(getBips),
     R.chain(getIncActionsFromApp),
     getAppByName
   )
@@ -95,7 +105,7 @@ function bip (appName, payload, socket) {
       names => JSON.parse(names)
     )
     return checkConditions(bipModel.incoming_action_condition_names)
-  })(bips)*/
+  })(bips) */
 }
 
 export default {
