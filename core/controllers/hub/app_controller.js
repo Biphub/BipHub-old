@@ -42,7 +42,7 @@ const setup = () => {
           type: Joi.string().required(),
           name: Joi.string().required(),
           description: Joi.string().required(),
-          conditions: Joi.array().required(),
+          conditions: Joi.object().required(),
           fields: Joi.object().required(),
           options: Joi.object().required()
         }).required()
@@ -53,7 +53,7 @@ const setup = () => {
       socket: Joi.object().required()
     }
     const schemaValidResult = Joi.validate({ payload, queryString, socket }, schema)
-    if (!schemaValidResult.error) {
+    if (schemaValidResult.error === null) {
       // Search an app in DB using app name
 			// Search an associated incoming action using the app id
 			// Search for bips using incoming action id
@@ -62,6 +62,8 @@ const setup = () => {
 			// If passed, get bip's outgoing action id
       const appName = R.propOr(null, 'appName', queryString)
       bipActions.bip(appName, payload, socket)
+    } else {
+      console.error('Incoming action validation failed! ', schemaValidResult)
     }
   })
 
