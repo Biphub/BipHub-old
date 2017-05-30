@@ -1,6 +1,47 @@
 import R from 'ramda'
+import Fantasy from 'ramda-fantasy'
 import models from '../models'
 import pubsub from '../pubsub'
+const Future = Fantasy.Future
+
+function checkActionCondition (appName, actionName, condName, actionPayload, socket) {
+  return new Future((rej, res) => {
+    const checkIncActionMessageName = `${appName}_${actionName}_${condName}`
+    pubsub.publish({
+      action: checkIncActionMessageName,
+      data: actionPayload,
+      socket
+    }).then((result) => res(result))
+      .catch((error) => rej(error))
+  })
+}
+
+function getAppByName (appName) {
+  return new Future((rej, res) => {
+    models.App.findOne({name: appName}, {withRelated: ['actions']})
+      .then(model => {
+        if (model) {
+          return res(model)
+        }
+        return rej(model)
+      })
+  })
+}
+
+function getIncActionsFromApp (incActionName, app) {
+  return new Future((rej, res) => {
+    const relatedActions = app.related('actions')
+      .where({
+        name: incActionName,
+        app_id: app.get('id'),
+        type: 'incomingActions'
+      })
+    if (relatedActions) {
+      return res(relatedActions)
+    }
+    return rej(relatedActions)
+  })
+}
 
 /**
  * Base bip action that reacts to incoming event and forward it to outgoing action
@@ -9,8 +50,15 @@ import pubsub from '../pubsub'
  * @param socket
  * @returns {Promise.<void>}
  */
-async function bip (appName, payload, socket) {
-  const { meta } = payload
+function bip (appName, payload, socket) {
+  const { meta, data } = payload
+  const incActionName = meta.name
+  const getApp = R.compose(
+    R.chain(R.curry(getIncActionsFromApp)(incActionName)),
+    getAppByName
+  )
+  getApp(appName).fork(console.error, console.log)
+ /* const { meta, data } = payload
   const incActionName = meta.name
   const app = await models.App
     .findOne({
@@ -24,9 +72,7 @@ async function bip (appName, payload, socket) {
       app_id: app.get('id'),
       type: 'incomingActions'
     })
-  // Received incoming action must be unique using action meta.name & app_id & type: incomingActions
   const firstIncActionName = R.head(incomingActions).get('name')
-  // Find all bips that is associated with the unique incoming action
   const bips = (
     await models.Bip
     .findAll({
@@ -36,21 +82,12 @@ async function bip (appName, payload, socket) {
   ).models
   const bipActions = R.map(x => {
     const bipModel = x.toJSON()
-    return bipModel.incoming_action_condition_names
-  })(bips)
-}
-
-function checkActionCondition (appName, actionName, condName, actionPayload, socket) {
-  return new Promise((resolve, reject) => {
-    const checkIncActionMessageName = `${appName}_${actionName}_${condName}`
-    pubsub.publish({
-      action: checkIncActionMessageName,
-      payload: actionPayload,
-      socket
-    }).then((result) => {
-
-    })
-  })
+    const checkConditions = R.compose(
+      R.map(condName => checkActionCondition(appName, incActionName, condName, data, socket)),
+      names => JSON.parse(names)
+    )
+    return checkConditions(bipModel.incoming_action_condition_names)
+  })(bips)*/
 }
 
 export default {

@@ -39,8 +39,9 @@ function init() {
 
   // Incoming action conditions check
   // 1. message contains
-  socket.on('biphub-discord_message_contains', ({ payload, condition }, reply) => {
-    const parsed = JSON.parse(condition)
+  socket.on('biphub-discord_message_contains', (payload, reply) => {
+    console.log('message check payload ', payload, ' condition ')
+    const parsed = '';
     if (parsed && payload && payload.data.includes(parsed.subject)) {
       console.log('INFO: discord passed on message conditions test!')
       reply(true)
