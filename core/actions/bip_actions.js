@@ -16,13 +16,39 @@ function checkActionCondition (appName, actionName, condName, actionPayload, soc
   })
 }
 
-function getBips ({ app, incomingAction, socket }) {
+function getConditionCheckedBips ({ app, payloadData, bips, socket }) {
+  return new Future((rej, res) => {
+    const getBipCheckArgs = R.map((bip) => {
+      const getConds = R.compose(
+        conds => JSON.parse(conds),
+        bip => R.prop('incoming_action_condition_names')(bip)
+      )
+      const constructArgs = R.compose(
+        conds => R.map(cond => [
+          app.get('name'),
+          R.prop('incoming_action_name', bip),
+          cond,
+          payloadData,
+          socket
+        ])(conds)
+      )
+      return constructArgs(getConds(bip))
+    })
+    const getSpreadBipCheckArgs = R.compose(
+      jsonBips => getBipCheckArgs(jsonBips)[0], // Unwraps a layer of array
+      bips => bips.toJSON()
+    )
+    return res(getSpreadBipCheckArgs(bips))
+  })
+}
+
+function getBips ({ app, payloadData, incomingAction, socket }) {
   return new Future((rej, res) => {
     models.Bip
       .findAll({ incoming_action_name: incomingAction.get('name'), incoming_app_name: app.get('name') })
       .then(bips => {
         if (bips) {
-          return res({ app, bips, socket })
+          return res({ app, payloadData, bips, socket })
         }
         return rej(undefined)
       })
@@ -31,7 +57,7 @@ function getBips ({ app, incomingAction, socket }) {
 
 function getIncActionsFromApp ({ app, payload, socket }) {
   return new Future((rej, res) => {
-    const { meta } = payload
+    const { meta, data } = payload
     const incActionName = meta.name
     const relatedActions = app.related('actions')
       .where({
@@ -42,6 +68,7 @@ function getIncActionsFromApp ({ app, payload, socket }) {
     if (relatedActions) {
       return res({
         app,
+        payloadData: data,
         incomingAction: R.head(relatedActions),
         socket
       })
@@ -71,6 +98,7 @@ function getAppByName ({ appName, payload, socket }) {
  */
 function bip (appName, payload, socket) {
   const getApp = R.compose(
+    R.chain(getConditionCheckedBips),
     R.chain(getBips),
     R.chain(getIncActionsFromApp),
     getAppByName
