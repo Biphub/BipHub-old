@@ -4,9 +4,10 @@ import models from '../models'
 import pubsub from '../pubsub'
 const Future = Fantasy.Future
 
-function checkBipCondition (appName, actionName, condName, actionPayload, socket) {
+function checkBipCondition ({appName, actionName, condName, actionPayload, socket}) {
   return new Future((rej, res) => {
     const checkIncActionMessageName = `${appName}_${actionName}_${condName}`
+    console.log('invoking future BipCondition app name ', appName, '  actionName ', actionName, ' condname ', condName, '  actionPayload ', actionPayload)
     pubsub.publish({
       action: checkIncActionMessageName,
       data: actionPayload,
@@ -16,8 +17,9 @@ function checkBipCondition (appName, actionName, condName, actionPayload, socket
   })
 }
 
-function getConditionCheckedBips({ app, payloadData, bips, socket, conditionCheckArgs }) {
+function getConditionCheckedBips ({ app, payloadData, bips, socket, conditionCheckArgs }) {
   return new Future((rej, res) => {
+    console.log('checking bip conds args ', conditionCheckArgs)
     const checkBipsConditions = R.traverse(Future.of, checkBipCondition, conditionCheckArgs)
     console.log('checking bip conds')
     checkBipsConditions.fork(console.error, console.log)
@@ -33,15 +35,19 @@ function getBipsCheckConditionArgs ({ app, payloadData, bips, socket }) {
         bip => R.prop('incoming_action_condition_names')(bip)
       )
       const constructArgs = R.compose(
-        conds => R.map(cond => [
-          app.get('name'),
-          R.prop('incoming_action_name', bip),
-          cond,
-          payloadData,
+        conds => R.map(cond => ({
+          appName: app.get('name'),
+          actionName: R.prop('incoming_action_name', bip),
+          condName: cond,
+          actionPayload: payloadData,
           socket
-        ])(conds)
+        }))(conds)
       )
-      return constructArgs(getConds(bip))
+
+      return R.compose(
+        constructArgs,
+        getConds
+      )(bip)
     })
     const getSpreadBipCheckArgs = R.compose(
       jsonBips => getBipCheckArgs(jsonBips)[0], // Unwraps a layer of array
