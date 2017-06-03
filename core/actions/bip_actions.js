@@ -4,7 +4,7 @@ import models from '../models'
 import pubsub from '../pubsub'
 const Future = Fantasy.Future
 
-function checkActionCondition (appName, actionName, condName, actionPayload, socket) {
+function checkBipCondition (appName, actionName, condName, actionPayload, socket) {
   return new Future((rej, res) => {
     const checkIncActionMessageName = `${appName}_${actionName}_${condName}`
     pubsub.publish({
@@ -16,7 +16,16 @@ function checkActionCondition (appName, actionName, condName, actionPayload, soc
   })
 }
 
-function getConditionCheckedBips ({ app, payloadData, bips, socket }) {
+function getConditionCheckedBips({ app, payloadData, bips, socket, conditionCheckArgs }) {
+  return new Future((rej, res) => {
+    const checkBipsConditions = R.traverse(Future.of, checkBipCondition, conditionCheckArgs)
+    console.log('checking bip conds')
+    checkBipsConditions.fork(console.error, console.log)
+    res(true)
+  })
+}
+
+function getBipsCheckConditionArgs ({ app, payloadData, bips, socket }) {
   return new Future((rej, res) => {
     const getBipCheckArgs = R.map((bip) => {
       const getConds = R.compose(
@@ -38,7 +47,7 @@ function getConditionCheckedBips ({ app, payloadData, bips, socket }) {
       jsonBips => getBipCheckArgs(jsonBips)[0], // Unwraps a layer of array
       bips => bips.toJSON()
     )
-    return res(getSpreadBipCheckArgs(bips))
+    return res({ app, payloadData, bips, socket, conditionCheckArgs: getSpreadBipCheckArgs(bips) })
   })
 }
 
@@ -99,41 +108,12 @@ function getAppByName ({ appName, payload, socket }) {
 function bip (appName, payload, socket) {
   const getApp = R.compose(
     R.chain(getConditionCheckedBips),
+    R.chain(getBipsCheckConditionArgs),
     R.chain(getBips),
     R.chain(getIncActionsFromApp),
     getAppByName
   )
   getApp({ appName, payload, socket }).fork(console.error, console.log)
- /* const { meta, data } = payload
-  const incActionName = meta.name
-  const app = await models.App
-    .findOne({
-      name: appName
-    }, {
-      withRelated: ['actions']
-    })
-  const incomingActions = await app.related('actions')
-    .where({
-      name: incActionName,
-      app_id: app.get('id'),
-      type: 'incomingActions'
-    })
-  const firstIncActionName = R.head(incomingActions).get('name')
-  const bips = (
-    await models.Bip
-    .findAll({
-      incoming_action_name: firstIncActionName,
-      incoming_app_name: app.get('name')
-    })
-  ).models
-  const bipActions = R.map(x => {
-    const bipModel = x.toJSON()
-    const checkConditions = R.compose(
-      R.map(condName => checkActionCondition(appName, incActionName, condName, data, socket)),
-      names => JSON.parse(names)
-    )
-    return checkConditions(bipModel.incoming_action_condition_names)
-  })(bips) */
 }
 
 export default {
