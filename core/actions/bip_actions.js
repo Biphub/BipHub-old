@@ -19,7 +19,6 @@ function checkBipCondition ({appName, actionName, condName, actionPayload, socke
 
 function getConditionCheckedBips ({ app, payloadData, bips, socket, conditionCheckArgs }) {
   return new Future((rej, res) => {
-    console.log('checking bip conds args ', conditionCheckArgs)
     const checkBipsConditions = R.traverse(Future.of, checkBipCondition, conditionCheckArgs)
     console.log('checking bip conds')
     checkBipsConditions.fork(console.error, console.log)
@@ -34,15 +33,13 @@ function getBipsCheckConditionArgs ({ app, payloadData, bips, socket }) {
         conds => JSON.parse(conds),
         bip => R.prop('incoming_action_condition_names')(bip)
       )
-      const constructArgs = R.compose(
-        conds => R.map(cond => ({
-          appName: app.get('name'),
-          actionName: R.prop('incoming_action_name', bip),
-          condName: cond,
-          actionPayload: payloadData,
-          socket
-        }))(conds)
-      )
+      const constructArgs = R.map(cond => ({
+        appName: app.get('name'),
+        actionName: R.prop('incoming_action_name', bip),
+        condName: cond,
+        actionPayload: payloadData,
+        socket
+      }))
 
       return R.compose(
         constructArgs,
