@@ -5,6 +5,20 @@ import pubsub from '../pubsub'
 import logger from '../logger'
 const Future = Fantasy.Future
 
+
+function forwardBip ({ app, payloadData, bip, socket, currentActionChain }) {
+  return new Future((rej, res) => {
+    const actionName = `${currentActionChain.app_name}_${currentActionChain.action_name}`
+    logger.log('action name created! ', actionName)
+    return res(actionName)
+  })
+}
+
+function forwardAllBips ({ app, payloadData, bips, socket }) {
+  return new Future((rej, res) => {
+  })
+}
+
 function checkBipCondition ({appName, actionName, condName, condTestCase, actionPayload, socket}) {
   return new Future((rej, res) => {
     const checkIncActionMessageName = `${appName}_${actionName}_${condName}`
@@ -46,7 +60,12 @@ function getConditionCheckedBips ({ app, payloadData, bips, socket, conditionChe
       // resultArray = [true, false, true] : contains results of bips condition check
       const filterIndexed = R.addIndex(R.filter)
       const filterBips = filterIndexed((bip, idx) => resultArray[idx])
-      return res(filterBips(bips))
+      return res({
+        app,
+        payloadData,
+        bips: filterBips(bips),
+        socket
+      })
     })
   })
 }
@@ -76,19 +95,6 @@ function getBipsCheckConditionArgs ({ app, payloadData, bips, socket }) {
       bips => bips.toJSON()
     )
     return res({ app, payloadData, bips, socket, conditionCheckArgs: getSpreadBipCheckArgs(bips) })
-  })
-}
-
-function forwardBip ({ app, payloadData, bip, socket, currentActionChain }) {
-  return new Future((rej, res) => {
-    const actionName = `${currentActionChain.app_name}_${currentActionChain.action_name}`
-    logger.log('action name created! ', actionName)
-    return res(actionName)
-  })
-}
-
-function forwardAllBips ({ app, payloadData, bips, socket }) {
-  return new Future((rej, res) => {
   })
 }
 
