@@ -43,9 +43,10 @@ const publish = ({ action, data, socket }) => new Promise((resolve, reject) => {
   if (io && !socket) {
     io.emit(action, data)
   } else {
-    socket.emit(action, data, (error, result) => {
-      if (error) {
-        return reject(error)
+    console.log('calling promise based socket publish! ', data)
+    socket.emit(action, data, (result) => {
+      if (!result.success) {
+        return reject(result)
       }
       return resolve(result)
     })

@@ -2,12 +2,12 @@ import R from 'ramda'
 import Fantasy from 'ramda-fantasy'
 import models from '../models'
 import pubsub from '../pubsub'
+import logger from '../logger'
 const Future = Fantasy.Future
 
 function checkBipCondition ({appName, actionName, condName, condTestCase, actionPayload, socket}) {
   return new Future((rej, res) => {
     const checkIncActionMessageName = `${appName}_${actionName}_${condName}`
-    console.log('cond testcase inside checkip condition ', condTestCase)
     const payload = {
       data: actionPayload,
       testCase: condTestCase
@@ -16,8 +16,14 @@ function checkBipCondition ({appName, actionName, condName, condTestCase, action
       action: checkIncActionMessageName,
       data: payload,
       socket
-    }).then((result) => res(result))
-      .catch((error) => rej(error))
+    }).then((result) => {
+      logger.info('condition test received a result! ', result)
+      return res(result)
+    })
+    .catch((error) => {
+      console.log('condition test received an error! ', error)
+      return rej(error)
+    })
   })
 }
 
@@ -33,9 +39,12 @@ function checkBipCondition ({appName, actionName, condName, condTestCase, action
 function getConditionCheckedBips ({ app, payloadData, bips, socket, conditionCheckArgs }) {
   return new Future((rej, res) => {
     const checkBipsConditions = R.traverse(Future.of, checkBipCondition, conditionCheckArgs)
-    checkBipsConditions.fork(console.error, (result) => {
+    checkBipsConditions.fork((err) => {
+      console.error('error while checking conditions ', err)
+      return rej(err)
+    }, (result) => {
       console.log('checkied all bips conds ', result)
-      res(result)
+      return res(result)
     })
   })
 }
@@ -55,9 +64,7 @@ function getBipsCheckConditionArgs ({ app, payloadData, bips, socket }) {
         actionPayload: payloadData,
         socket
       }))
-      console.log('before constructing!')
       return R.compose(
-        R.tap(console.log),
         constructArgs,
         getConds
       )(bip)
@@ -70,7 +77,7 @@ function getBipsCheckConditionArgs ({ app, payloadData, bips, socket }) {
   })
 }
 
-function forwardBip({ app, payloadData, bip, socket, currentActionChain }) {
+function forwardBip ({ app, payloadData, bip, socket, currentActionChain }) {
   return new Future((rej, res) => {
     const actionName = `${currentActionChain.app_name}_${currentActionChain.action_name}`
     console.log('action name created! ', actionName)
@@ -78,7 +85,7 @@ function forwardBip({ app, payloadData, bip, socket, currentActionChain }) {
   })
 }
 
-function forwardAllBips({ app, payloadData, bips, socket }) {
+function forwardAllBips ({ app, payloadData, bips, socket }) {
   return new Future((rej, res) => {
   })
 }

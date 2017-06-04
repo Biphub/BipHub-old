@@ -1,11 +1,15 @@
 import winston from 'winston'
+import Tracer from 'tracer'
 import 'winston-sqlite3'
 import config from '../config'
 
-const env = config.get('NDOE_ENV')
+let instance = null
+const env = config.get('NODE_ENV')
 
 if (env === 'development') {
-  winston.add(winston.transports.Console)
+  instance = Tracer.colorConsole({
+    format: '{{file}}:{{line}} | {{message}}'
+  })
 } else if (env === 'production') {
   winston.add(winston.transports.SQLite3, {
     database: null,
@@ -14,9 +18,7 @@ if (env === 'development') {
     filename: 'content/data/biphub-dev.sqlite3',
     tableName: 'Logs'
   })
+  instance = winston
 }
-winston.log('info', 'Hello distributed log files!')
-winston.info('Hello again distributed logs')
-winston.info('new stuff')
 
-export default winston
+export default instance
