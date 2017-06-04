@@ -21,7 +21,7 @@ function checkBipCondition ({appName, actionName, condName, condTestCase, action
       return res(result)
     })
     .catch((error) => {
-      console.log('condition test received an error! ', error)
+      logger.error('condition test received an error! ', error)
       return rej(error)
     })
   })
@@ -40,11 +40,13 @@ function getConditionCheckedBips ({ app, payloadData, bips, socket, conditionChe
   return new Future((rej, res) => {
     const checkBipsConditions = R.traverse(Future.of, checkBipCondition, conditionCheckArgs)
     checkBipsConditions.fork((err) => {
-      console.error('error while checking conditions ', err)
+      logger.error('error while checking conditions ', err)
       return rej(err)
-    }, (result) => {
-      console.log('checkied all bips conds ', result)
-      return res(result)
+    }, (resultArray) => {
+      // resultArray = [true, false, true] : contains results of bips condition check
+      const filterIndexed = R.addIndex(R.filter)
+      const filterBips = filterIndexed((bip, idx) => resultArray[idx])
+      return res(filterBips(bips))
     })
   })
 }
@@ -80,7 +82,7 @@ function getBipsCheckConditionArgs ({ app, payloadData, bips, socket }) {
 function forwardBip ({ app, payloadData, bip, socket, currentActionChain }) {
   return new Future((rej, res) => {
     const actionName = `${currentActionChain.app_name}_${currentActionChain.action_name}`
-    console.log('action name created! ', actionName)
+    logger.log('action name created! ', actionName)
     return res(actionName)
   })
 }
@@ -152,7 +154,7 @@ function bip (appName, payload, socket) {
     R.chain(getIncActionsFromApp),
     getAppByName
   )
-  getApp({ appName, payload, socket }).fork(console.error, console.log)
+  getApp({ appName, payload, socket }).fork(logger.error, logger.log)
 }
 
 export default {
