@@ -4,25 +4,39 @@ import models from '../models'
 import pubsub from '../pubsub'
 const Future = Fantasy.Future
 
-function checkBipCondition ({appName, actionName, condName, actionPayload, socket}) {
+function checkBipCondition ({appName, actionName, condName, condTestCase, actionPayload, socket}) {
   return new Future((rej, res) => {
     const checkIncActionMessageName = `${appName}_${actionName}_${condName}`
-    console.log('invoking future BipCondition app name ', appName, '  actionName ', actionName, ' condname ', condName, '  actionPayload ', actionPayload)
+    console.log('cond testcase inside checkip condition ', condTestCase)
+    const payload = {
+      data: actionPayload,
+      testCase: condTestCase
+    }
     pubsub.publish({
       action: checkIncActionMessageName,
-      data: actionPayload,
+      data: payload,
       socket
     }).then((result) => res(result))
       .catch((error) => rej(error))
   })
 }
 
+/**
+ * Filter and retrieve checked bips only
+ * @param app
+ * @param payloadData
+ * @param bips
+ * @param socket
+ * @param conditionCheckArgs
+ * @returns {*}
+ */
 function getConditionCheckedBips ({ app, payloadData, bips, socket, conditionCheckArgs }) {
   return new Future((rej, res) => {
     const checkBipsConditions = R.traverse(Future.of, checkBipCondition, conditionCheckArgs)
-    console.log('checking bip conds')
-    checkBipsConditions.fork(console.error, console.log)
-    res(true)
+    checkBipsConditions.fork(console.error, (result) => {
+      console.log('checkied all bips conds ', result)
+      res(result)
+    })
   })
 }
 
@@ -36,12 +50,14 @@ function getBipsCheckConditionArgs ({ app, payloadData, bips, socket }) {
       const constructArgs = R.map(cond => ({
         appName: app.get('name'),
         actionName: R.prop('incoming_action_name', bip),
-        condName: cond,
+        condName: R.prop('name', cond),
+        condTestCase: R.prop('testCase', cond),
         actionPayload: payloadData,
         socket
       }))
-
+      console.log('before constructing!')
       return R.compose(
+        R.tap(console.log),
         constructArgs,
         getConds
       )(bip)
@@ -51,6 +67,19 @@ function getBipsCheckConditionArgs ({ app, payloadData, bips, socket }) {
       bips => bips.toJSON()
     )
     return res({ app, payloadData, bips, socket, conditionCheckArgs: getSpreadBipCheckArgs(bips) })
+  })
+}
+
+function forwardBip({ app, payloadData, bip, socket, currentActionChain }) {
+  return new Future((rej, res) => {
+    const actionName = `${currentActionChain.app_name}_${currentActionChain.action_name}`
+    console.log('action name created! ', actionName)
+    return res(actionName)
+  })
+}
+
+function forwardAllBips({ app, payloadData, bips, socket }) {
+  return new Future((rej, res) => {
   })
 }
 

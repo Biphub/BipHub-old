@@ -40,7 +40,7 @@ function init() {
 
   // Slack outgoing actions
   // Note: simply below config.outgoingactions....
-  socket.on(`${appName}_${config.outgoingActions.postMessage.name}`, (data) => {
+  socket.on(`biphub-slack_post_message`, (data) => {
     console.log('slack: post message received')
     bot.postMessage('general', `test bip forward ${data}`, null)
   })

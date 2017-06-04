@@ -16,6 +16,11 @@ exports.default = [
     ]),
     incoming_app_name: 'biphub-discord',
     incoming_action_name: 'message',
-    incoming_action_condition_names: JSON.stringify(['contains', 'ends'])
+    incoming_action_condition_names: JSON.stringify([
+      {
+        name: 'contains',
+        testCase: 'test'
+      }
+    ])
   }
 ]
