@@ -53,7 +53,7 @@ const setup = () => {
       socket: Joi.object().required()
     }
     const schemaValidResult = Joi.validate({ payload, queryString, socket }, schema)
-    console.log('schema valid ', schemaValidResult)
+    logger.log('schema valid ', schemaValidResult)
     if (schemaValidResult.error === null) {
       // Search an app in DB using app name
 			// Search an associated incoming action using the app id
@@ -64,7 +64,7 @@ const setup = () => {
       const appName = R.propOr(null, 'appName', queryString)
       bipActions.bip(appName, payload, socket)
     } else {
-      console.error('Incoming action validation failed! ', schemaValidResult)
+      logger.error('Incoming action validation failed! ', schemaValidResult)
     }
   })
 

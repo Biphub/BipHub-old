@@ -5,19 +5,18 @@ import pubsub from '../pubsub'
 import logger from '../logger'
 const Future = Fantasy.Future
 
-
-function forwardBip ({ app, payloadData, bip, socket, currentActionChain }) {
+/* function forwardBip ({ app, payloadData, bip, socket, currentActionChain }) {
   return new Future((rej, res) => {
     const actionName = `${currentActionChain.app_name}_${currentActionChain.action_name}`
     logger.log('action name created! ', actionName)
     return res(actionName)
   })
-}
+} */
 
-function forwardAllBips ({ app, payloadData, bips, socket }) {
+/* function forwardAllBips ({ app, payloadData, bips, socket }) {
   return new Future((rej, res) => {
   })
-}
+} */
 
 function checkBipCondition ({appName, actionName, condName, condTestCase, actionPayload, socket}) {
   return new Future((rej, res) => {
