@@ -3,9 +3,6 @@ language: node_js
 node_js:
   - "node"
 
-addons:
-  srcclr: true
-
 cache:
   yarn: true
   directories:
