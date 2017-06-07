@@ -6,8 +6,7 @@ import db from './db/connection'
 // Assigns migration and seed directory path for Knex
 const migrationConfig = Object.assign(knexConfig, { directory: path.join(__dirname, 'migrations'), debug: false })
 const seedConfig = { directory: path.join(__dirname, 'seeds'), debug: true }
-const connection = db()
-const { knex, bookshelf } = connection
+const { knex, bookshelf } = db
 
 async function migrate() {
   await knexCleaner.clean(knex)
