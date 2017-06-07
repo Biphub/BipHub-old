@@ -7,11 +7,11 @@ if (typeof root.bookshelf === 'undefined') {
 	// TODO: Check if it needs config
   let dbConfig = config.get('database')
   root.knex = Knex(dbConfig)
+  let fs = require('fs')
 
   if (dbConfig.client === 'sqlite3' && !fs.existsSync(dbConfig.connection.filename)) {
     let dbClient = require('sqlite3').verbose()
     let connection = new dbClient.Database(dbConfig.connection.filename)
-    let fs = require('fs')
     let sql = fs.readFileSync('core/bookshelf/create.sql').toString()
     root.knex.raw(sql).then(function (resp) {})
     connection.close()
