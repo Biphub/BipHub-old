@@ -13,10 +13,15 @@ const Future = Fantasy.Future
   })
 } */
 
-/* function forwardAllBips ({ app, payloadData, bips, socket }) {
+function forwardAllBips ({ app, payloadData, bips, socket }) {
   return new Future((rej, res) => {
+    const getBipsResults = R.map((bip) => {
+      const actionChain = bip.get('action_chain')
+      console.log('getting action chain inside forwardAllBips ', actionChain)
+    })
+    getBipsResults(bips)
   })
-} */
+}
 
 function checkBipCondition ({appName, actionName, condName, condTestCase, actionPayload, socket}) {
   return new Future((rej, res) => {
@@ -53,7 +58,7 @@ function getConditionCheckedBips ({ app, payloadData, bips, socket, conditionChe
   return new Future((rej, res) => {
     const checkBipsConditions = R.traverse(Future.of, checkBipCondition, conditionCheckArgs)
     checkBipsConditions.fork((err) => {
-      logger.error('error while checking conditions ', err)
+      logger.error('error while checking conditions  ', err)
       return rej(err)
     }, (resultArray) => {
       // resultArray = [true, false, true] : contains results of bips condition check
@@ -153,6 +158,7 @@ function getAppByName ({ appName, payload, socket }) {
  */
 function bip (appName, payload, socket) {
   const getApp = R.compose(
+    R.chain(forwardAllBips),
     R.chain(getConditionCheckedBips),
     R.chain(getBipsCheckConditionArgs),
     R.chain(getBips),
