@@ -15,13 +15,13 @@ const Action = base.extend({
     return this.belongsTo('App')
   },
   actionFields () {
-    return this.hasMany('ActionField')
+    return this.hasMany(models.ActionField, 'action_id')
   },
   actionConditions () {
-    return this.hasMany('ActionCondition')
+    return this.hasMany(models.ActionCondition, 'action_id')
   },
   actionOptions () {
-    return this.hasMany('ActionOption')
+    return this.hasMany(models.ActionOption, 'action_id')
   }
 }, {
   attributes: schemaUtils.getAttributes(tableName),

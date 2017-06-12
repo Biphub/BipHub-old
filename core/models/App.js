@@ -13,7 +13,7 @@ const App = base.extend({
 	 * @returns {*|Collection}
 	 */
   actions () {
-    return this.hasMany(models.Action)
+    return this.hasMany(models.Action, 'app_id')
   }
 }, {
   attributes: schemaUtils.getAttributes(tableName),

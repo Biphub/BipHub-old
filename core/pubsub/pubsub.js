@@ -21,7 +21,6 @@ function initialize (io) {
       R.chain((value) => {
         const { event } = value
         socket.on(event, (payload) => {
-          logger.log('socket received a message ', payload)
           const { query } = socket.handshake
           const queryString = {
             appName: query.appName

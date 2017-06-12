@@ -51,7 +51,10 @@ export default {
     id: { type: 'increments' },
     active: { type: 'boolean' },
     name: { type: 'string' },
-    condition_payload: { type: 'jsonb' },
+    /**
+     *
+     */
+    required_fields: { type: 'jsonb' },
     timestamps: true,
     action_id: { type: 'integer', references: 'actions.id' }
   },

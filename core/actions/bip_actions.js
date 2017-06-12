@@ -36,13 +36,14 @@ function forwardAllBips ({ app, data, bips, socket }) {
   })
 }
 
-function checkBipCondition ({appName, actionName, condName, condTestCase, data, socket}) {
+function checkIncomingActionBipCondition ({appName, actionName, incomingAction, condName, condTestCase, data, socket}) {
   return new Future((rej, res) => {
     const checkIncActionMessageName = `${appName}_${actionName}_${condName}`
     const payload = {
       data,
       testCase: condTestCase
     }
+    logger.log('checking bip condition, looking at data ', data)
     pubsub.publish({
       action: checkIncActionMessageName,
       data: payload,
@@ -67,9 +68,9 @@ function checkBipCondition ({appName, actionName, condName, condTestCase, data, 
  * @param conditionCheckArgs
  * @returns {*}
  */
-function getConditionCheckedBips ({ app, data, bips, socket, conditionCheckArgs }) {
+function getIncActionConditionCheckedBips ({ app, data, bips, socket, conditionCheckArgs }) {
   return new Future((rej, res) => {
-    const checkBipsConditions = R.traverse(Future.of, checkBipCondition, conditionCheckArgs)
+    const checkBipsConditions = R.traverse(Future.of, checkIncomingActionBipCondition, conditionCheckArgs)
     checkBipsConditions.fork((err) => {
       logger.error('error while checking conditions  ', err)
       return rej(err)
@@ -86,10 +87,9 @@ function getConditionCheckedBips ({ app, data, bips, socket, conditionCheckArgs 
     })
   })
 }
-
-function getBipsCheckConditionArgs ({ app, data, bips, socket }) {
+// TODO: Check if current bip can pass condition check
+function getBipsCheckIncActionConditionArgs ({ app, data, incomingAction, bips, socket }) {
   return new Future((rej, res) => {
-    logger.log('checking conditions ', data);
     const getBipCheckArgs = R.map((bip) => {
       const getConds = R.compose(
         conds => JSON.parse(conds),
@@ -100,6 +100,7 @@ function getBipsCheckConditionArgs ({ app, data, bips, socket }) {
         actionName: R.prop('incoming_action_name', bip),
         condName: R.prop('name', cond),
         condTestCase: R.prop('testCase', cond),
+        incomingAction,
         data,
         socket
       }))
@@ -122,7 +123,7 @@ function getBips ({ app, data, incomingAction, socket }) {
       .findAll({ incoming_action_name: incomingAction.get('name'), incoming_app_name: app.get('name') })
       .then(bips => {
         if (bips) {
-          return res({ app, data, bips, socket })
+          return res({ app, data, bips, incomingAction, socket })
         }
         return rej(undefined)
       })
@@ -153,7 +154,12 @@ function getIncActionsFromApp ({ app, payload, socket }) {
 
 function getAppByName ({ appName, payload, socket }) {
   return new Future((rej, res) => {
-    models.App.findOne({name: appName}, {withRelated: ['actions']})
+    models.App.findOne({name: appName}, {withRelated: [
+      'actions',
+      'actions.actionFields',
+      'actions.actionOptions',
+      'actions.actionConditions'
+    ]})
       .then(app => {
         if (app) {
           return res({ app, payload, socket })
@@ -171,13 +177,11 @@ function getAppByName ({ appName, payload, socket }) {
  * @returns {Promise.<void>}
  */
 function bip (appName, payload, socket) {
-  logger.log('bipping! ', appName, '  PAYLOAD ', payload)
   const getApp = R.compose(
-    R.chain(forwardAllBips),
-    R.chain(getConditionCheckedBips),
-    R.chain(getBipsCheckConditionArgs),
+    R.chain(forwardAllBips),                     // Fowarding bips
+    R.chain(getIncActionConditionCheckedBips),   // Incoming action
+    R.chain(getBipsCheckIncActionConditionArgs), // Incoming action
     R.chain(getBips),
-    R.tap(logger.log),
     R.chain(getIncActionsFromApp),
     getAppByName
   )

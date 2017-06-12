@@ -32,7 +32,8 @@ exports.default = [
     incoming_action_condition_names: JSON.stringify([
       {
         name: 'contains',
-        testCase: 'test'
+        testCase: 'test',
+        fields_required: ['content']
       }
     ])
   }
