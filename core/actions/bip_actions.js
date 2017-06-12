@@ -36,14 +36,27 @@ function forwardAllBips ({ app, data, bips, socket }) {
   })
 }
 
-function checkIncomingActionBipCondition ({appName, actionName, incomingAction, condName, condTestCase, data, socket}) {
+function checkIncomingActionBipCondition ({
+  appName, actionName, incomingAction, condName, condTestCase, condRequiredFields, data, socket
+}) {
   return new Future((rej, res) => {
     const checkIncActionMessageName = `${appName}_${actionName}_${condName}`
+    // TODO: Refactor below
+    // Basically it builds a result object that contains props extracted from data
+    const buildPayloadData = (data, requiredFields) => {
+      let result = {}
+      R.map(field => {
+        const currentData = R.propOr(undefined, field)(data)
+        result = R.assoc(field, currentData, result)
+      })(requiredFields)
+      return result
+    }
     const payload = {
-      data,
+      data: buildPayloadData(data, condRequiredFields),
       testCase: condTestCase
     }
-    logger.log('checking bip condition, looking at data ', data)
+    // TODO: extract props from data using cond required fields
+    logger.log('checking bip condition, looking at data ')
     pubsub.publish({
       action: checkIncActionMessageName,
       data: payload,
@@ -99,6 +112,9 @@ function getBipsCheckIncActionConditionArgs ({ app, data, incomingAction, bips, 
         appName: app.get('name'),
         actionName: R.prop('incoming_action_name', bip),
         condName: R.prop('name', cond),
+        // Required field is used to extract correct props from data
+        // TODO: See if you can use incomingAction's required_fields
+        condRequiredFields: R.prop('required_fields', cond),
         condTestCase: R.prop('testCase', cond),
         incomingAction,
         data,

@@ -12,10 +12,12 @@ export default {
       description: 'Message event that triggers when there is a new message',
       conditions: {
         matches: {
-          name: 'matches'
+          name: 'matches',
+          required_fields: ['content']
         },
         contains: {
-          name: 'contains'
+          name: 'contains',
+          required_fields: ['content']
         }
       },
       fields: {

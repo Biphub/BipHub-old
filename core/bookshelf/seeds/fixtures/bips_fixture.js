@@ -33,7 +33,7 @@ exports.default = [
       {
         name: 'contains',
         testCase: 'test',
-        fields_required: ['content']
+        required_fields: ['content']
       }
     ])
   }
