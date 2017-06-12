@@ -35,6 +35,7 @@ const setup = () => {
 	 * query: contains name of bip, retrieved from socket's query string
 	 */
   pubsub.subscribe('INCOMING_ACTION', ({ payload, queryString, socket }) => {
+    logger.log('inc action before checking schema ', payload)
     const schema = {
       payload: Joi.object().keys({
         data: Joi.any().required(),
@@ -53,6 +54,7 @@ const setup = () => {
       socket: Joi.object().required()
     }
     const schemaValidResult = Joi.validate({ payload, queryString, socket }, schema)
+    logger.log('received incoming action')
     logger.log('schema valid ', schemaValidResult)
     if (schemaValidResult.error === null) {
       // Search an app in DB using app name

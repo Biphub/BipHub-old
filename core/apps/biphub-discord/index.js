@@ -27,9 +27,11 @@ function init() {
   discordClient.on('message', (message) => {
     // Note: simply declare messages as if else
     if (message.type === 'DEFAULT') {
-      console.log('INFO discord message ', message.content, '  ', config.incomingActions.message)
+      console.log('INFO discord message ', message, '  ', config.incomingActions.message)
       socket.emit('INCOMING_ACTION', {
-        data: message.content,
+        data: {
+          content: message.content
+        },
         meta: config.incomingActions.message,
       })
     }
@@ -41,7 +43,6 @@ function init() {
   // 1. message contains
   socket.on('biphub-discord_message_contains', (payload, reply) => {
     console.log('message check payload  ', payload)
-    console.log('message data ', payload.data)
     if (payload && payload.data.includes(payload.testCase)) {
       console.log('INFO: discord passed on message conditions test!')
       return reply({

@@ -11,7 +11,20 @@ exports.default = [
       },
       {
         app_name: 'biphub-slack',
-        action_name: 'post_message'
+        action_name: 'post_message',
+        // link between one of incoming action's field and outgoing action's field
+        fields_link: [
+          {
+            app_name: 'biphub-discord',
+            action_name: 'message',
+            field_name: 'content'
+          },
+          {
+            app_name: 'biphub-slack',
+            action_name: 'post_message',
+            field_name: 'data'
+          }
+        ]
       }
     ]),
     incoming_app_name: 'biphub-discord',

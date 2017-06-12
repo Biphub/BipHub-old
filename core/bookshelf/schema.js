@@ -61,7 +61,7 @@ export default {
     type: { type: 'string' },
     name: { type: 'string' },
     timestamps: true,
-    incoming_action_id: { type: 'integer', references: 'actions.id' }
+    action_id: { type: 'integer', references: 'actions.id' }
   },
   action_options: {
     id: { type: 'increments' },
@@ -69,6 +69,6 @@ export default {
     type: { type: 'string' },
     name: { type: 'string' },
     timestamps: true,
-    outgoing_action_id: { type: 'integer', references: 'actions.id' }
+    action_id: { type: 'integer', references: 'actions.id' }
   }
 }
