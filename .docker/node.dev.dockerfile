@@ -6,6 +6,14 @@ RUN mkdir $CORE
 RUN echo $CORE
 WORKDIR $CORE
 
+# Install global packages
+RUN yarn global add nodejs-dashboard
+
+# Install baseline cache
+COPY ./scripts/baseline/package.json $CORE
+COPY ./scripts/baseline/yarn.lock $CORE
+RUN yarn
+
 # Install packages using NPM / Yarn trick
 # COPY package.json /tmp/package.json
 # COPY yarn.lock /tmp/yarn.lock
