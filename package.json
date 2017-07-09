@@ -78,6 +78,7 @@
     "chai": "^3.5.0",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
+    "element-ui": "^1.3.7",
     "eslint": "^3.18.0",
     "eslint-config-standard": "^10.2.0",
     "eslint-plugin-html": "^2.0.1",

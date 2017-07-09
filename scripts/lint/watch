@@ -1,0 +1,13 @@
+#!/bin/bash
+echo $(pwd);
+inotifywait -r -m -e close_write $(pwd)/* |
+while read eventdir eventlist eventfile
+do
+  EXT=${eventfile##*.}
+  if [ "$EXT" == "scss" ]; then
+    echo "yarn scss:lint"
+  fi
+  if [ "$EXT" == "js" ]; then
+    echo "js file edited!"
+  fi
+done

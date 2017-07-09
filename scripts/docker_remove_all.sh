@@ -1,2 +1,0 @@
-docker rm $( docker ps -q -f status=exited)
-docker rmi -f $(docker images -q -f dangling=true)
