@@ -9,6 +9,7 @@
     "start:web": "node dist",
     "start:web:forever": "forever dist",
     "prestart:web": "npm run -s build",
+    "js:lint:watch": "nodemon -L --trace-warnings --watch client --watch core --exec \"yarn js:lint\"",
     "js:fix": "eslint --fix --ext js,vue ./",
     "js:lint": "eslint --ext js,vue ./",
     "js:lint:prod": "eslint --rule \"\"no-console\": [\"error\"]\" ./",

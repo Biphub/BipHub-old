@@ -193,6 +193,7 @@ function getAppByName ({ appName, payload, socket }) {
  * @returns {Promise.<void>}
  */
 function bip (appName, payload, socket) {
+  console.log('heyzz')
   const getApp = R.compose(
     R.chain(forwardAllBips),                     // Fowarding bips
     R.chain(getIncActionConditionCheckedBips),   // Incoming action

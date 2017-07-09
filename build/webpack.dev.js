@@ -3,7 +3,6 @@ const base = require('./webpack.base')
 const utils = require('./utils')
 const config = require('../config')
 const FriendlyErrors = require('friendly-errors-webpack-plugin')
-
 base.devtool = 'eval-source-map'
 base.plugins.push(
   new webpack.DefinePlugin({

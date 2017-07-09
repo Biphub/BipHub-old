@@ -1,13 +1,9 @@
-#!/bin/bash
-echo $(pwd);
-inotifywait -r -m -e close_write $(pwd)/* |
-while read eventdir eventlist eventfile
-do
-  EXT=${eventfile##*.}
-  if [ "$EXT" == "scss" ]; then
-    echo "yarn scss:lint"
-  fi
-  if [ "$EXT" == "js" ]; then
-    echo "js file edited!"
-  fi
-done
+#!/bin/bash -e
+
+TAG="bipflow:$LOGNAME"
+docker build --tag="$TAG" \
+  --file="./.docker/node.dev.dockerfile" \
+  "."
+
+docker run -it -v "$(pwd):/home/node/app" -v "/home/node/app/node_modules" $TAG \
+ yarn js:lint:watch
