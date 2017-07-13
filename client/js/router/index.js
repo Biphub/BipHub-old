@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HomePage from '../pages/HomePage'
 import BipEditorPage from '../pages/BipEditorPage'
+import RegistryPage from '../pages/RegistryPage'
 
 Vue.use(Router)
 
@@ -17,5 +18,9 @@ export default new Router({
       path: '/bip/editor',
       component: BipEditorPage,
     },
+    {
+      path: '/registry',
+      component: RegistryPage,
+    }
   ],
 })

@@ -1,0 +1,13 @@
+#!/bin/bash -e
+
+TAG="bipflow:$LOGNAME"
+docker build --tag="$TAG" \
+  --file="./.docker/node.dev.dockerfile" \
+  "."
+
+docker run -it -v "$(pwd):/home/node/app" -v "/home/node/app/node_modules" \
+--publish="3000:8080" \
+-e NODE_ENV=development \
+-e SERVER_URL=localhost \
+-e FORWARDED_PORT=3000 \
+$TAG

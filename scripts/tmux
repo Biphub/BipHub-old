@@ -6,9 +6,8 @@ tmux new-session -d -s $SESSION
 tmux new-window -t $SESSION:1 -n 'biphub'
 
 tmux select-window -t $SESSION:1
-tmux send-keys 'vim test1' C-m
+tmux send-keys 'bash ./scripts/dev'
 tmux split-window -v
-tmux split-window -h
-tmux send-keys 'vim test2' C-m
+tmux send-keys 'bash ./scripts/lint/watch'
 
 tmux attach -t $SESSION
