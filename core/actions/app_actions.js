@@ -7,6 +7,7 @@ import models from '../models'
  */
 async function registerApp (payload) {
   const app = await models.App.createOne(payload)
+  console.log('registered an app!')
   return app
 }
 

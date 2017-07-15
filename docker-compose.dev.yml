@@ -16,6 +16,4 @@ services:
       - /home/node/app/node_modules
     ports:
       - "3000:8080"
-      - "56745:56745"
-    tty: true
-    stdin_open: true
+      - "5858:5858"

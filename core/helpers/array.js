@@ -5,8 +5,7 @@
  */
 const toString = (array) => {
   if (typeof array !== 'undefined' && array !== null) {
-    const result = JSON.stringify(array)
-    return result
+    return JSON.stringify(array)
   }
   return null
 }
