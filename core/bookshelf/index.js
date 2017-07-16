@@ -15,7 +15,6 @@ async function migrate(env) {
   if (env === 'test') {
 	  await knex.seed.run(seedConfig)
   }
-	// .then(() => console.log('migration complete2!'))
   return true
 }
 export default {

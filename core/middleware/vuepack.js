@@ -1,13 +1,12 @@
 import path from 'path'
 import webpack from 'webpack'
-import config from '../config'
 import webpackConfig from '../../build/webpack.dev'
 import WebpackLogPlugin from '../../build/log-plugin'
 
-const vuepackMiddleware = (app) => {
-  const port = config.get('port')
+const vuepackMiddleware = (app, config) => {
+  const port = config.port
   // Webpack dev requirements
-  if (config.getEnv(true) === 'dev') {
+  if (process.env.NODE_ENV === 'development') {
     webpackConfig.entry.client = [
       `webpack-hot-middleware/client?reload=true`,
       webpackConfig.entry.client

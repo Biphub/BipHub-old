@@ -5,7 +5,7 @@ import express from 'express'
 import http from 'http'
 import graphqlHTTP from 'express-graphql'
 import db from './bookshelf'
-import config from './config'
+import config from '../config'
 import middleware from './middleware'
 import controllers from './controllers'
 import graphqlSchema from './middleware/graphql/schema'
@@ -18,17 +18,17 @@ import vuepackMiddleware from './middleware/vuepack'
 // Initiating express
 const app = express()
 const server = http.Server(app)
-const port = config.get('port')
+const port = config.port
 app.server = server
 app.set('port', port)
 
 // 3rd party middleware
 app.use(cors({
-  exposedHeaders: config.get('web:corsHeaders')
+  exposedHeaders: config.web.corsHeaders
 }))
 
 app.use(bodyParser.json({
-  limit: config.bodyLimit
+  limit: config.web.bodyLimit
 }))
 
 // The root provides a resolver function for each API endpoint
@@ -51,7 +51,7 @@ db.migrate().then(() => {
   controllers(app)
 
   // Webpack requirements
-  vuepackMiddleware(app)
+  vuepackMiddleware(app, config)
 
   server.listen(app.get('port'), '0.0.0.0', () => {
     logger.info(`App is running at http://localhost:${app.get('port')} in ${config.getEnv()} mode `)

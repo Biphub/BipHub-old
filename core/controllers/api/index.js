@@ -1,5 +1,4 @@
 import { Router } from 'express'
-import config from '../../config'
 import models from '../../models'
 import bips from './bips'
 
@@ -26,8 +25,7 @@ export default () => {
    * Retreives index info of api
 	 */
   api.get('/', (req, res) => {
-    const result = config.get('api')
-    res.json({ result })
+    res.json({ test: true })
   })
   return api
 }

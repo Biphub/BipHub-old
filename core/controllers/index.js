@@ -1,13 +1,10 @@
 import SocketIO from 'socket.io'
-import config from '../config'
 import api from './api'
 import html from './html'
 import webhook from './webhooks'
 import hub from './hub'
 import appAdapter from '../adapter'
 import pubsub from '../pubsub'
-
-const apiVersion = config.get('api:version')
 
 /**
  * Initialises routing and websocket portion of express

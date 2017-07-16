@@ -6,7 +6,9 @@ module.exports = {
   port: defaultPort,
   // Currently forwardedPort and URL are not being used
   forwardedPort: process.env.FORWARDED_PORT || defaultPort,
+  // Core server URL. Default to SERVER_URL env variable
   url: process.env.SERVER_URL || 'localhost',
+  // Title used by frontend
   title: 'bipflow',
   publicPath: '/',
   // Core config
@@ -16,11 +18,27 @@ module.exports = {
   },
   // Core config
   database: {
-    client: 'sqlite3',
-    connection: {
-      filename: path.join(__dirname, '.database/sqlite/biphub-dev.sqlite3')
+    production: {
+      client: 'sqlite3',
+      connection: {
+        filename: path.join(__dirname, '.database/sqlite/biphub-dev.sqlite3')
+      },
+      debug: false
     },
-    debug: false
+    development: {
+      client: 'sqlite3',
+      connection: {
+        filename: path.join(__dirname, '.database/sqlite/biphub-dev.sqlite3')
+      },
+      debug: false
+    },
+    test: {
+      client: 'sqlite3',
+      connection: {
+        filename: ':memory:'
+      },
+      debug: true
+    }
   },
   // Frontend Config
   babel: {
