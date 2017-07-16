@@ -15,7 +15,7 @@
     "js:lint:prod": "eslint --rule \"\"no-console\": [\"error\"]\" ./",
     "scss:lint": "stylelint \"client/**/*.scss\" --syntax scss",
     "scss:fix": "stylefmt --recursive \"client/**/*.scss\"",
-    "test:all": "mocha --compilers js:babel-core/register --recursive \"core/test/\"",
+    "test:all": "cross-env NODE_ENV=test mocha --compilers js:babel-core/register --recursive \"core/test/\"",
     "test:client": "testcafe all client/tests/index.js --app \"npm start\" --app-init-delay 10000",
     "snyk:test": "snyk test"
   },

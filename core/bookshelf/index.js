@@ -9,10 +9,12 @@ const seedConfig = { directory: path.join(__dirname, 'seeds'), debug: true }
 const connection = db()
 const { knex, bookshelf } = connection
 
-async function migrate() {
+async function migrate(env) {
   await knexCleaner.clean(knex)
   await knex.migrate.latest(migrationConfig)
-	await knex.seed.run(seedConfig)
+  if (env === 'test') {
+	  await knex.seed.run(seedConfig)
+  }
 	// .then(() => console.log('migration complete2!'))
   return true
 }
