@@ -10,7 +10,7 @@ import middleware from './middleware'
 import controllers from './controllers'
 import graphqlSchema from './middleware/graphql/schema'
 import logger from './logger'
-import './models'
+// import './models'
 
 // Webpack requirements
 import vuepackMiddleware from './middleware/vuepack'
@@ -46,16 +46,22 @@ app.use('/graphql', graphqlHTTP({
 // internal middleware
 app.use(middleware())
 
+console.log('before running migrate!')
 // Runs latest migration
-db.migrate().then(() => {
-  controllers(app)
+db.migrate().fork(
+  () => {
+    console.error('Failed migration!')
+  },
+  () => {
+    controllers(app)
 
-  // Webpack requirements
-  vuepackMiddleware(app, config)
+    // Webpack requirements
+    vuepackMiddleware(app, config)
 
-  server.listen(app.get('port'), '0.0.0.0', () => {
-    logger.info(`App is running at http://localhost:${app.get('port')} in ${config.getEnv()} mode `)
-    logger.info('Press CTRL-C to stop\n')
-  })
-})
+    server.listen(app.get('port'), '0.0.0.0', () => {
+      logger.info(`App is running at http://localhost:${app.get('port')} in ${config.getEnv()} mode `)
+      logger.info('Press CTRL-C to stop\n')
+    })
+  }
+)
 export default app

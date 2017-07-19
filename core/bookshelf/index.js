@@ -34,6 +34,7 @@ function clean(bookshelf) {
 
 function init() {
   return new Future((rej, res) => {
+    console.log('initing database!!')
     if (typeof root.bookshelf === 'undefined') {
       // TODO: Check if it needs config
       root.knex = Knex(config.get('database'))
@@ -45,8 +46,9 @@ function init() {
 }
 
 function migrate() {
-  R.compose(
-
+  console.log('migrating using ramda!')
+  return R.compose(
+    R.chain(migrateLatest),
     R.chain(clean),
     init
   )
@@ -64,6 +66,5 @@ async function migrate() {
 */
 
 export default {
-  bookshelf,
   migrate,
 }
