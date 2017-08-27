@@ -18,6 +18,7 @@ const seedConfig = { directory: path.join(__dirname, 'seeds'), debug: true }
 
 function migrateLatest(bookshelf) {
   return new Future((rej, res) => {
+    console.log('checking bookshelf ', bookshelf);
     bookshelf.knex.migrate.latest(migrationConfig).then(() => {
       return res(bookshelf)
     })
@@ -34,7 +35,7 @@ function clean(bookshelf) {
 
 function init() {
   return new Future((rej, res) => {
-    console.log('initing database!!')
+    console.info('initing database!!')
     if (typeof root.bookshelf === 'undefined') {
       // TODO: Check if it needs config
       root.knex = Knex(config.get('database'))
@@ -45,8 +46,15 @@ function init() {
   })
 }
 
+function getBookshelf() {
+  console.log('checking db config ', config.database.development)
+  const knex = Knex(config.database.development)
+  const bookshelf = Bookshelf(knex)
+  bookshelf.plugin('registry')
+  return bookshelf
+}
+
 function migrate() {
-  console.log('migrating using ramda!')
   return R.compose(
     R.chain(migrateLatest),
     R.chain(clean),
@@ -67,4 +75,5 @@ async function migrate() {
 
 export default {
   migrate,
+  bookshelf: getBookshelf(),
 }

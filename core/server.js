@@ -12,6 +12,7 @@ import graphqlSchema from './middleware/graphql/schema'
 import logger from './logger'
 // import './models'
 
+console.info('vuepack starting!')
 // Webpack requirements
 import vuepackMiddleware from './middleware/vuepack'
 
@@ -46,7 +47,7 @@ app.use('/graphql', graphqlHTTP({
 // internal middleware
 app.use(middleware())
 
-console.log('before running migrate!')
+console.log('before migration')
 // Runs latest migration
 db.migrate().fork(
   () => {
