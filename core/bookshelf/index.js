@@ -18,41 +18,41 @@ const seedConfig = { directory: path.join(__dirname, 'seeds'), debug: true }
 
 function migrateLatest(bookshelf) {
   return new Future((rej, res) => {
-    console.log('checking bookshelf ', bookshelf);
-    bookshelf.knex.migrate.latest(migrationConfig).then(() => {
-      return res(bookshelf)
-    })
+    bookshelf.knex.migrate.latest(migrationConfig)
+      .then((result) => {
+        console.info('Migrate to latest ', result)
+        return res(bookshelf)
+      })
   })
 }
 
 function clean(bookshelf) {
   return new Future((rej, res) => {
-    knexCleaner.clean(bookshelf.knex).then(() => {
-      return res(bookshelf)
-    })
-  })
-}
-
-function init() {
-  return new Future((rej, res) => {
-    console.info('initing database!!')
-    if (typeof root.bookshelf === 'undefined') {
-      // TODO: Check if it needs config
-      root.knex = Knex(config.get('database'))
-      root.bookshelf = Bookshelf(root.knex)
-      root.bookshelf.plugin('registry')
-      return res(root.bookshelf)
-    }
+    knexCleaner.clean(bookshelf.knex)
+      .then((result) => {
+        console.info('Result of clean ', result)
+        return res(bookshelf)
+      })
   })
 }
 
 function getBookshelf() {
-  console.log('checking db config ', config.database.development)
-  const knex = Knex(config.database.development)
-  const bookshelf = Bookshelf(knex)
-  bookshelf.plugin('registry')
-  return bookshelf
+  if (typeof root.bookshelf === 'undefined') {
+    // TODO: Check if it needs config
+    root.knex = Knex(config.database.development)
+    root.bookshelf = Bookshelf(root.knex)
+    root.bookshelf.plugin('registry')
+    return root.bookshelf
+  }
+  return root.bookshelf
 }
+
+function init() {
+  return new Future((rej, res) => {
+    return res(getBookshelf())
+  })
+}
+
 
 function migrate() {
   return R.compose(
@@ -62,18 +62,7 @@ function migrate() {
   )
 }
 
-/*
-async function migrate() {
-  await knexCleaner.clean(knex)
-  await knex.migrate.latest(migrationConfig)
-  if (process.env.NODE_ENV === 'test') {
-	  await knex.seed.run(seedConfig)
-  }
-  return true
-}
-*/
-
 export default {
-  migrate,
+  migrate: migrate(),
   bookshelf: getBookshelf(),
 }

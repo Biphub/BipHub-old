@@ -1,6 +1,4 @@
 import SocketIO from 'socket.io'
-import api from './api'
-import html from './html'
 import webhook from './webhooks'
 import hub from './hub'
 import appAdapter from '../adapter'
@@ -17,12 +15,8 @@ const setup = (app) => {
   pubsub.initialize(io)
 	// API adapter loads and inits websocket client of all APIs
   appAdapter.initialize(io)
-
-	// api router
-  // TODO: Replace it with graphql
-  app.use(`/api/${apiVersion}`, api())
-
 	// External webhook router
+  // DO WE NEED THIS?
   app.use('/webhook', webhook())
 
 	// APIs actions controller
