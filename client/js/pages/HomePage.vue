@@ -1,4 +1,9 @@
-<style scoped lang="scss" src="./HomePage.scss"></style>
+<style scoped lang="scss">
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+  }
+</style>
 
 <template>
   <BasePage>
@@ -36,9 +41,9 @@
 </template>
 
 <script>
-  import BasePage from '../Base'
-  import HomeAppsPanelContainer from '../../containers/HomeAppsPanelContainer'
-  import SuggestionContainer from '../../containers/SuggestionContainer'
+  import BasePage from './Base.vue'
+  import HomeAppsPanelContainer from '../containers/HomeAppsPanelContainer/index'
+  import SuggestionContainer from '../containers/SuggestionContainer/index'
 
   export default {
     components: {

@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HomePage from '../pages/HomePage'
-import BipEditorPage from '../pages/BipEditorPage'
-import RegistryPage from '../pages/RegistryPage'
+import HomePage from '../pages/HomePage.vue'
+import BipEditorPage from '../pages/BipEditorPage.vue'
+import RegistryPage from '../pages/RegistryPage.vue'
 
 Vue.use(Router)
 

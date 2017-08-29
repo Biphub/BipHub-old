@@ -1,16 +1,37 @@
-<style scoped lang="scss" src="./BipEditorPage.scss"></style>
+<style scoped lang="scss">
+  @import "../../styles/padding";
+  .container {
+    background-color: #f1f4f5;
+  }
+  
+  .row {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .column-left {
+    min-width: 400px;
+    @extend %pd-4x;
+  }
+  
+  .column-right {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    box-shadow: 1px 2px 5px 0 rgba(0,0,0,0.21);
+    background-color: white;
+    border-radius: 5px;
+    margin: 20px;
+    padding: 20px;
+  }
+</style>
 
 <template>
   <BasePage type="control">
     <div class="container">
       <div class="row">
-        
-        <BipEditorSidebarContainer class="column-left"
-        ></BipEditorSidebarContainer>
-        
-        <BipEditorFormContainer class="column-right"
-        ></BipEditorFormContainer>
-        
+        <bip-editor-sidebar-container></bip-editor-sidebar-container>
+        <bip-editor-trigger-container></bip-editor-trigger-container>
       </div>
     </div>
   </BasePage>
@@ -18,23 +39,21 @@
 
 <script>
   /**
-   * Ideas:
-   * 1. app logo with circle border that fills in as user finishes bip creation
-   * 2. bip steps (being able to add extra steps)
-   * 3. add step name
-   * 4. set event ( app, incoming action, options, conditions, test )
-   * 5. set actions multiple ( app, outgoing action, options, test )
+   * Select an app
+   * Select a trigger
+   * Select an action
+   * Select more actions
    */
-  import BasePage from '../Base'
-  import TopBarContainer from '../../containers/TopbarContainer'
-  import BipEditorSidebarContainer from '../../containers/BipEditorSidebarContainer'
-  import BipEditorFormContainer from '../../containers/BipEditorFormContainer'
+  import BasePage from './Base.vue'
+  import TopBarContainer from '../containers/TopbarContainer/index'
+  import BipEditorSidebarContainer from '../containers/BipEditorSidebarContainer/index'
+  import BipEditorTriggerContainer from '../containers/BipEditorTriggerContainer/index'
   export default {
     components: {
       BasePage,
       TopBarContainer,
       BipEditorSidebarContainer,
-      BipEditorFormContainer
+      BipEditorTriggerContainer,
     },
     data () {
       return {

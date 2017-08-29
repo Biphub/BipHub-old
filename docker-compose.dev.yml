@@ -6,7 +6,7 @@ services:
     container_name: biphub-dev
     environment:
         NODE_ENV: development
-        SERVER_URL: localhost
+        SERVER_URL: 192.168.99.100
         FORWARDED_PORT: 3000
     build:
       context: .

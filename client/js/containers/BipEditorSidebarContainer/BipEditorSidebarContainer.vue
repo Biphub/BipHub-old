@@ -8,12 +8,8 @@
         <input type="text" />
       </div>
       <div class="progress">
-        <bp-steps v-bind:steps="steps"
-                  v-on:getApps="getApps"
-                  v-on:chooseApp="chooseApp"
-                  v-on:getEvents="getEvents"
-                  v-on:chooseEvent="chooseEvent"
-        ></bp-steps>
+        <div>Choose a trigger</div>
+        <div>Set actions</div>
       </div>
     </div>
   </div>

@@ -1,4 +1,26 @@
-<style scoped lang="scss" src="./Base.scss"></style>
+<style scoped lang="scss">
+  .container-page {
+    display: flex;
+    height: 100%;
+  }
+  
+  .page {
+    height: 100%;
+    width: 100%;
+    display: flex;
+  }
+  
+  .sidebar {
+    width: 160px;
+  }
+  
+  .main {
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    margin: 0 auto;
+  }
+</style>
 
 <template>
   <div class="container-page">
@@ -27,8 +49,8 @@
 </template>
 
 <script>
-  import TopbarContainer from '../../containers/TopbarContainer'
-  import SidebarContainer from '../../containers/SidebarContainer'
+  import TopbarContainer from '../containers/TopbarContainer/index'
+  import SidebarContainer from '../containers/SidebarContainer/index'
   export default {
     created () {
     },

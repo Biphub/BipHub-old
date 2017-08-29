@@ -1,5 +1,3 @@
-<style scoped lang="scss" src="./RegistryPage.scss"></style>
-
 <template>
   <base-page>
     testing registry!!
@@ -7,7 +5,7 @@
 </template>
 
 <script>
-  import BasePage from '../Base'
+  import BasePage from './Base.vue'
   export default {
     components: {
       BasePage

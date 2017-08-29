@@ -5,6 +5,9 @@ Biphub - Connecting games and people together
 [![Build Status](https://travis-ci.org/Biphub/BipHub.svg?branch=master)](https://travis-ci.org/Biphub/BipHub)
 ![Dependencies](https://david-dm.org/Biphub/BipHub.svg)
 
+Note:
+
+In development, make sure to change SERVER_URL inside docker-compose.dev.yml
 
 This is a straightforward boilerplate for building REST APIs with ES6 and Express.
 
