@@ -7,7 +7,7 @@ const ProgressPlugin = require('webpack/lib/ProgressPlugin')
 const OfflinePlugin = require('offline-plugin')
 const base = require('./webpack.base')
 const utils = require('./utils')
-const config = require('./../config')
+const config = require('../config')
 
 if (config.electron) {
   // remove dist folder in electron mode

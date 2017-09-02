@@ -1,6 +1,6 @@
 import nconf from 'nconf'
 import path from 'path'
-import mainConfig from '../../config'
+import defaultConfig from '../../config'
 
 const configPath = __dirname
 const ENV_DEV = 'development'
@@ -9,6 +9,11 @@ const PATH_DEV = 'env/config.development.json'
 const PATH_PROD = 'env/config.production.json'
 const PATH_ACTIONS_DEV = 'env/actions.development.json'
 
+/**
+ * Getting shortened version of configs
+ * @param short
+ * @returns {*}
+ */
 const getEnv = (short) => {
   const env = nconf.get('NODE_ENV')
   if (short && env === ENV_DEV) {
@@ -17,6 +22,16 @@ const getEnv = (short) => {
     return 'prod'
   }
   return env
+}
+
+const getDbConfig = () => {
+  const env = nconf.get('NODE_ENV')
+  if (env === ENV_DEV) {
+    return nconf.get('database:development')
+  } else if (env === ENV_PROD) {
+    return nconf.get('database:production')
+  }
+  return nconf.get('database:development')
 }
 
 const loadNConf = () => {
@@ -35,9 +50,10 @@ const loadNConf = () => {
 
   nconf.file('hub', { file: `${configDir}` })
   nconf.file('action', { file: `${actionConfigDir}` })
-  nconf.defaults(mainConfig)
+  nconf.defaults(defaultConfig)
   // Method overriding
   nconf.getEnv = getEnv
+  nconf.getDbConfig = getDbConfig
 
   return nconf
 }

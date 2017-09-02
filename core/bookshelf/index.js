@@ -6,7 +6,7 @@ import Bookshelf from 'bookshelf'
 import path from 'path'
 import knexCleaner from 'knex-cleaner'
 import knexConfig from './knexfile'
-import config from '../../config'
+import config from '../config'
 // import db from './db/connection'
 const Future = Fantasy.Future
 
@@ -39,7 +39,7 @@ function clean(bookshelf) {
 function getBookshelf() {
   if (typeof root.bookshelf === 'undefined') {
     // TODO: Check if it needs config
-    root.knex = Knex(config.database.development)
+    root.knex = Knex(config.getDbConfig())
     root.bookshelf = Bookshelf(root.knex)
     root.bookshelf.plugin('registry')
     return root.bookshelf

@@ -1,16 +1,17 @@
+// General config file
 import path from 'path'
 import rucksack from 'rucksack-css'
 const defaultPort = 8080
 
 module.exports = {
+  /**
+   * BACKEND CONFIGS
+   */
   port: defaultPort,
   // Currently forwardedPort and URL are not being used
   forwardedPort: process.env.FORWARDED_PORT || defaultPort,
   // Core server URL. Default to SERVER_URL env variable
   url: process.env.SERVER_URL || 'localhost',
-  // Title used by frontend
-  title: 'bipflow',
-  publicPath: '/',
   // Core config
   web: {
     bodyLimit: '100kb',
@@ -40,7 +41,11 @@ module.exports = {
       debug: true
     }
   },
-  // Frontend Config
+  /**
+   * FRONTEND CONFIGS
+   */
+  title: 'bipflow',
+  publicPath: '/',
   babel: {
     babelrc: true
   },
