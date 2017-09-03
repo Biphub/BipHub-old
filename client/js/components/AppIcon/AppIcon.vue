@@ -19,7 +19,7 @@
     name: 'BpAppIcon',
     props: {
       icon: { type: String },
-      label: { type: String, default: 'Discord' }
+      label: { type: String, default: 'Select' }
     },
     methods: {
       click () {

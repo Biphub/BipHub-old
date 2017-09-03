@@ -1,6 +1,7 @@
 <style scoped lang="scss">
   @import "../../styles/padding";
   .container {
+    padding-top: 20px;
     background-color: #f1f4f5;
   }
   
@@ -30,7 +31,6 @@
   <BasePage type="control">
     <div class="container">
       <div class="row">
-        <bip-editor-sidebar-container></bip-editor-sidebar-container>
         <bip-editor-trigger-container></bip-editor-trigger-container>
       </div>
     </div>
@@ -92,6 +92,12 @@
       this.$store.dispatch('bip_editor_inital_load')
     },
     methods: {
+      /**
+       * Proceed to the next step of bip editor
+       */
+      proceedNext () {
+      
+      }
     }
   }
 </script>

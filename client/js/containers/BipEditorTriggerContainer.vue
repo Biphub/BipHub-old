@@ -13,7 +13,7 @@
     width: 30%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     padding: 20px;
   }
   .controls {
@@ -22,37 +22,65 @@
     justify-content: flex-end;
     align-items: flex-end;
   }
+  .dialog {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 20px;
+  }
 </style>
 
 <template>
   <div class="container">
+    Select your trigger
     <div class="apps">
-      <bp-app-icon v-on:click="this.onClick"
-      ></bp-app-icon>
-      <bp-app-icon v-on:click="this.onClick"
+      <bp-app-icon v-on:click="this.onClickTrigger"
       ></bp-app-icon>
     </div>
     <div class="controls">
-      <bp-button>Next</bp-button>
+      <bp-button v-on:click="onClickNext"
+      >Next</bp-button>
     </div>
+    <bp-dialog v-bind:open='this.openDialog'>
+      <div class="dialog">
+        <bp-search-bar></bp-search-bar>
+        yoyo!!
+      </div>
+    </bp-dialog>
   </div>
 </template>
 
 <script>
   import BpAppIcon from '../components/AppIcon/AppIcon.vue'
   import BpButton from '../components/Button/Button.vue'
+  import BpDialog from '../components/Dialog/Dialog.vue'
+  import BpSearchBar from '../components/SearchBar/SearchBar.vue'
 
   export default {
     components: {
+      BpSearchBar,
       BpButton,
-      BpAppIcon
+      BpAppIcon,
+      BpDialog
     },
     props: {
       triggerApps: Array
     },
+    data () {
+      return {
+        openDialog: false
+      }
+    },
     methods: {
-      onClick (values) {
+      onClickTrigger (values) {
         console.log('testing on clickj!! ', values)
+        this.openDialog = true;
+      },
+      onClickNext () {
+        console.log('clicked next!!')
       }
     }
   }

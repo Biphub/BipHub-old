@@ -11,6 +11,7 @@ import Select from './Select'
 import Steps from './Steps'
 import UserProfile from './UserProfile'
 import Radio from './Radio'
+import Dialog from './Dialog'
 
 const components = [
   Button,
@@ -25,7 +26,8 @@ const components = [
   Select,
   Steps,
   UserProfile,
-  Radio
+  Radio,
+  Dialog
 ]
 
 /**
