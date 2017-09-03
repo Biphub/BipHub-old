@@ -4,7 +4,8 @@
        v-on:click="click">
     <div class="row">
       <div class="icon">
-        <img v-bind:src="icon">
+        <img v-if='icon' v-bind:src="icon">
+        <span v-if='!icon' class='empty' />
       </div>
       <div class="label">
         {{ label }}
@@ -17,7 +18,7 @@
   export default {
     name: 'BpAppIcon',
     props: {
-      icon: { type: String, default: '/static/icon-discord.png' },
+      icon: { type: String },
       label: { type: String, default: 'Discord' }
     },
     methods: {

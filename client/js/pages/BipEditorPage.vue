@@ -47,13 +47,13 @@
   import BasePage from './Base.vue'
   import TopBarContainer from '../containers/TopbarContainer/index'
   import BipEditorSidebarContainer from '../containers/BipEditorSidebarContainer/index'
-  import BipEditorTriggerContainer from '../containers/BipEditorTriggerContainer/index'
+  import BipEditorTriggerContainer from '../containers/BipEditorTriggerContainer.vue'
   export default {
     components: {
       BasePage,
       TopBarContainer,
       BipEditorSidebarContainer,
-      BipEditorTriggerContainer,
+      BipEditorTriggerContainer
     },
     data () {
       return {
