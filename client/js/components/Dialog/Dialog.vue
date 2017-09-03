@@ -1,25 +1,26 @@
-<style scoped lang="scss">
+<style module lang="scss">
   .container {
     position: fixed;
-    width: 100vh;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     z-index: 90;
-  }
-  .lightbox {
-    width: 100vh;
-    height: 100vh;
-    background: rgba(0,0,0,.5);
-    position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+  .lightbox {
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+    position: fixed;
     z-index: 91;
   }
   .component {
     width: 50%;
     height: 50%;
     z-index: 92;
+    position: fixed;
   }
   .placeholder {
     width: 100%;
@@ -32,18 +33,18 @@
 </style>
 
 <template>
-  <div class="container"
-       v-if='this.dataOpen'
+  <div v-bind:class="$style.container"
+       v-if='this.open'
   >
-    <div class="lightbox"
+    <div v-bind:class="$style.lightbox"
          v-on:click='onClickLightbox'
     >
     </div>
-    <div class='component'
+    <div v-bind:class='$style.component'
          v-on:click='onClickComponent'
     >
       <slot>
-        <div class="placeholder">
+        <div v-bind:class="$style.placeholder">
           <div>No content was passed into the component!</div>
         </div>
       </slot>
@@ -55,11 +56,14 @@
   export default {
     name: 'BpDialog',
     props: {
-      open: { type: Boolean, default: true }
+      open: { type: Boolean, default: false }
     },
     methods: {
+      /**
+       * Event to close dialog
+       */
       onClickLightbox () {
-        this.$emit()
+        this.$emit('onClose')
       },
       onClickComponent () {
         console.log('component click!')

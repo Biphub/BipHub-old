@@ -58,5 +58,5 @@ module.exports = {
     require('postcss-nested'),
     rucksack()
   ],
-  cssModules: false
+  cssModules: true
 }

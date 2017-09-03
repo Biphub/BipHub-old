@@ -44,7 +44,9 @@
       <bp-button v-on:click="onClickNext"
       >Next</bp-button>
     </div>
-    <bp-dialog v-bind:open='this.openDialog'>
+    <bp-dialog v-bind:open='this.openDialog'
+               v-on:onClose='this.onCloseDialog'
+    >
       <div class="dialog">
         <bp-search-bar></bp-search-bar>
         yoyo!!
@@ -75,9 +77,16 @@
       }
     },
     methods: {
+      /**
+       * Opens up the dialog
+       * @param values
+       */
       onClickTrigger (values) {
         console.log('testing on clickj!! ', values)
         this.openDialog = true;
+      },
+      onCloseDialog () {
+        this.openDialog = false;
       },
       onClickNext () {
         console.log('clicked next!!')
