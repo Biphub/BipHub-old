@@ -8,6 +8,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    left: 0;
+    top: 0;
   }
   .lightbox {
     width: 100%;
