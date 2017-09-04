@@ -4,7 +4,7 @@
   "description": "Connecting people and robots",
   "main": "dist",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon -L --watch build --watch core --watch apps --trace-warnings index.js",
+    "dev": "cross-env NODE_ENV=development nodemon -L --watch build --watch core --trace-warnings index.js",
     "build": "babel core -s -D -d dist/core",
     "start:web": "node dist",
     "start:web:forever": "forever dist",
