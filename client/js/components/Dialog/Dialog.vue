@@ -19,7 +19,7 @@
     z-index: 91;
   }
   .component {
-    width: 50%;
+    width: 80%;
     height: 50%;
     z-index: 92;
     position: fixed;

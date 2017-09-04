@@ -16,6 +16,7 @@
       <bp-app-card v-for="app in apps"
                    v-bind:key="app.id"
                    class="component"
+                   link='/bip/editor'
                    v-bind:label="app.label"
                    v-bind:src="`static/${app.icon}`"
                    v-bind:border="true"

@@ -1,7 +1,7 @@
 <style scoped lang="scss" src="./AppCard.scss"></style>
 
 <template>
-  <router-link class="container"
+  <div class="container"
                to="bip"
                v-on:click="onClick" >
     <div class="row">
@@ -9,7 +9,7 @@
            v-bind:style="appTheme"
            v-if="!icon" >
         <span class="icon-wrapper">
-          <img v-bind:src="src">
+          <img v-bind:src="appSrc">
         </span>
       </div>
       <div class="icon icon-font"
@@ -28,7 +28,7 @@
       </div>
       <div class="description"></div>
     </div>
-  </router-link>
+  </div>
 </template>
 
 <script>
@@ -41,7 +41,8 @@
       label: { type: String, default: null },
       border: { type: Boolean, default: false },
       description: { type: String, default: '' },
-      theme: { type: String, default: 'orca' }
+      theme: { type: String, default: 'orca' },
+      link: { type: String, default: null }
     },
     data () {
       return {}
@@ -55,11 +56,20 @@
         }
       },
       appTheme () {
-        return `background-image: url(static/app_themes/${this.theme}.jpg)`
+        return `background-image: url(/static/app_themes/${this.theme}.jpg)`
+      },
+      appSrc () {
+        if (!/^\//.test(this.src)) {
+          return `/${this.src}`
+        }
+        return this.src
       }
     },
     methods: {
       onClick () {
+        if (this.link) {
+          return this.$router.push(this.link)
+        }
         this.$emit('click')
       }
     }

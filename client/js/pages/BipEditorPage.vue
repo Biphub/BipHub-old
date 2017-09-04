@@ -90,14 +90,7 @@
     },
     mounted () {
       this.$store.dispatch('bip_editor_inital_load')
-    },
-    methods: {
-      /**
-       * Proceed to the next step of bip editor
-       */
-      proceedNext () {
-      
-      }
+      this.$store.dispatch('home_initial_load')
     }
   }
 </script>

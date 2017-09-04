@@ -1,4 +1,4 @@
-<style lang="scss" scoped>
+<style lang="scss" module>
   .container {
     display: flex;
     justify-content: center;
@@ -31,25 +31,44 @@
     background-color: white;
     border-radius: 20px;
   }
+  .dialogApps {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    justify-content: space-around;
+  }
+  .app {
+  }
 </style>
 
 <template>
-  <div class="container">
+  <div v-bind:class="$style.container">
     Select your trigger
-    <div class="apps">
+    <div v-bind:class="$style.apps">
       <bp-app-icon v-on:click="this.onClickTrigger"
       ></bp-app-icon>
     </div>
-    <div class="controls">
+    <div v-bind:class="$style.controls">
       <bp-button v-on:click="onClickNext"
       >Next</bp-button>
     </div>
     <bp-dialog v-bind:open='this.openDialog'
                v-on:onClose='this.onCloseDialog'
     >
-      <div class="dialog">
+      <div v-bind:class="$style.dialog">
         <bp-search-bar></bp-search-bar>
-        yoyo!!
+        <div v-bind:class="$style.dialogApps">
+          <bp-app-card v-for="app in apps"
+                       v-bind:key="app.id"
+                       v-bind:label="app.label"
+                       v-bind:src="`static/${app.icon}`"
+                       v-bind:border="true"
+                       v-bind:description="app.description"
+                       v-on:click="onClickApp"
+                       theme="orca"
+          ></bp-app-card>
+        </div>
       </div>
     </bp-dialog>
   </div>
@@ -68,12 +87,14 @@
       BpAppIcon,
       BpDialog
     },
-    props: {
-      triggerApps: Array
-    },
     data () {
       return {
         openDialog: false
+      }
+    },
+    computed: {
+      apps () {
+        return this.$store.state.HomeModule.apps
       }
     },
     methods: {
@@ -83,10 +104,14 @@
        */
       onClickTrigger (values) {
         console.log('testing on clickj!! ', values)
-        this.openDialog = true;
+        this.openDialog = true
+      },
+      onClickApp (value) {
+        console.log('app clicked! ', value)
+        this.openDialog = false
       },
       onCloseDialog () {
-        this.openDialog = false;
+        this.openDialog = false
       },
       onClickNext () {
         console.log('clicked next!!')
